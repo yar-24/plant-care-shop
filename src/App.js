@@ -1,17 +1,11 @@
-import Navigation from "./pages/Navigation";
-import styled from "styled-components";
-
-const Container = styled.div`
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-`;
+import Navigation from "./Navigation";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
-    <Container>
+    <Router>
       <Navigation />
-    </Container>
+    </Router>
   );
 }
 
