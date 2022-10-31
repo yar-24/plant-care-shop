@@ -1,13 +1,11 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-
-// import AppBar from '../components/AppBar'
 import Header from '../components/Header'
-import Register from '../components/Register'
-import Services from '../components/Services'
+import Register from './Register'
+import Services from './Services'
 import Home from './Home'
-import Login from '../components/Login'
-import ForgotPassword from '../components/ForgotPassword'
+import Login from './Login'
+import ForgotPassword from './ForgotPassword'
 
 
 const Navigation = () => {

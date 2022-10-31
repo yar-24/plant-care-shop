@@ -1,0 +1,36 @@
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import { Home, Login, Shop, PlantCare, Services, Register, ForgotPassword } from '../pages'
+import Header from '../components/Header'
+
+
+const Navigation = () => {
+  return (
+    <>
+        <Header/>
+        <Routes>
+            <Route element={<Home/>} path="/"/>
+        </Routes>
+        <Routes>
+            <Route element={<Shop/>} path="/shop"/>
+        </Routes>
+        <Routes>
+            <Route element={<PlantCare/>} path="/plant-care"/>
+        </Routes>
+        <Routes>
+            <Route element={<Services/>} path="/services"/>
+        </Routes>
+        <Routes>
+            <Route element={<Login/>} path="/login"/>
+        </Routes>
+        <Routes>
+            <Route element={<Register/>} path="/register"/>
+        </Routes>
+        <Routes>
+            <Route element={<ForgotPassword/>} path="/forgot-password"/>
+        </Routes>
+    </>
+  )
+}
+
+export default Navigation
