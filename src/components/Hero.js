@@ -17,7 +17,7 @@ const Left = styled.div`
   margin: 50px 50px 50px 100px;
 `;
 const Title = styled.h1`
-  font-family: ${fonts.comforteaa};
+  font-family: ${fonts.comfortaa};
 `;
 
 const Desc = styled.p`
