@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Home, Login, Shop, PlantCare, Services } from '../pages'
+import { Home, Login, Shop, PlantCare, Services, Register, ForgotPassword } from '../pages'
 import Header from '../components/Header'
 
 
@@ -22,6 +22,12 @@ const Navigation = () => {
         </Routes>
         <Routes>
             <Route element={<Login/>} path="/login"/>
+        </Routes>
+        <Routes>
+            <Route element={<Register/>} path="/register"/>
+        </Routes>
+        <Routes>
+            <Route element={<ForgotPassword/>} path="/forgot-password"/>
         </Routes>
     </>
   )
