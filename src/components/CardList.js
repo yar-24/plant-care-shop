@@ -3,7 +3,9 @@ import {styled} from '@mui/material/styles'
 import { Grid,Typography } from '@mui/material/'
 import CardItem from './CardItem'
 import { fonts } from '../utils'
-const CardListContainer = styled('div')`
+import { Container } from '@mui/system'
+
+const CardListContainer = styled(Container)`
   max-width: 1024px;
   margin: 0 auto;
 `
@@ -11,7 +13,6 @@ const CardListContainer = styled('div')`
 const TitleText = styled(Typography)`
   font-size: 32px;
   font-family: ${fonts.comfortaa};
-  font-family: ${fonts.comfortaa}; 
   font-weight: 700;
   margin: 32px 0;
 `

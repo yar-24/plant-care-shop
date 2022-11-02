@@ -6,7 +6,7 @@ function Header() {
   return (
     <>
       <nav className="navbar">
-        <div class="logo">Plant and Care Shop</div>
+        <div className="logo">Plant and Care Shop</div>
         <ul>
           <li className="tautan">
             <Link style={{ textDecoration: "none" }} to="/">
@@ -14,7 +14,7 @@ function Header() {
             </Link>
           </li>
           <li className="tautan">
-            <Link style={{ textDecoration: "none" }} to="/shop" >
+            <Link style={{ textDecoration: "none" }} to="/shop">
               Shop
             </Link>
           </li>
@@ -41,7 +41,9 @@ function Header() {
               <BsSearch />
             </button>
             <button className="navigation">
-              <BsFillCartFill />
+              <Link to="/cart">
+                <BsFillCartFill />
+              </Link>
             </button>
             <button className="navigation">
               <BsTranslate />

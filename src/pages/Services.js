@@ -1,8 +1,9 @@
+import { Container } from '@mui/material'
 import React from 'react'
 
 const Services = () => {
   return (
-    <>
+    <Container>
       <div className='services'>
         <img class="gambar1" src="https://img.freepik.com/free-vector/asian-farmer-working-agriculture-field-man-collecting-crops-fields-with-plow-hoe_575670-981.jpg?size=626&ext=jpg&ga=GA1.2.1760872244.1657091755" alt="" />
         <div class="kolom">
@@ -31,7 +32,7 @@ const Services = () => {
           src="https://img.freepik.com/premium-photo/asian-farmer-transplant-rice-seedlings-rice-field-farmer-planting-rice-rainy-season_61243-156.jpg?size=626&ext=jpg&ga=GA1.2.2063963505.1657106894"
           alt="" />
       </div>
-    </>
+    </Container>
   )
 }
 
