@@ -14,7 +14,7 @@ const Left = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 50%;
-  margin: 50px 50px 50px 100px;
+  margin: 50px 50px 50px 200px;
 `;
 const Title = styled.h1`
   font-family: ${fonts.comfortaa};

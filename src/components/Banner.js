@@ -13,7 +13,7 @@ const Container = styled.div`
   background-size: cover;
   background-position: 100%;
   width: 100%;
-  height: 30vh;
+  height: 40vh;
   position: relative;
 `;
 

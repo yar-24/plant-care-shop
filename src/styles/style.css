@@ -1,10 +1,10 @@
 body {
-  background-color: #E5F7F0;
+  background-color: #e5f7f0;
 }
-header{
+header {
   width: 100%;
   display: flex;
-  line-height: 45px;    
+  line-height: 45px;
   margin: 20px 0px 20px 0px;
 }
 
@@ -16,7 +16,7 @@ header{
   justify-content: space-between;
   height: 65px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(1, 1, 1, 0.19);
-} 
+}
 
 nav {
   width: 100%;
@@ -26,7 +26,7 @@ nav {
   position: sticky;
   position: -webkit-sticky;
   top: 0;
-  background-color: #E5F7F0;
+  background-color: #e5f7f0;
   z-index: 1;
 }
 
@@ -45,7 +45,6 @@ nav ul li {
   font-size: 18px;
   font-weight: 400;
   cursor: pointer;
-
 }
 
 .tautan:hover {
@@ -58,50 +57,46 @@ nav ul li button {
   text-decoration: none;
   height: 45px;
   padding: 0px 15px 0px 15px;
-  background: #E5F7F0;
+  background: #e5f7f0;
   border: transparent;
   cursor: pointer;
   border-radius: 10px;
-
 }
 
 nav ul li button:hover {
   background-color: #9ed7c1;
-
 }
 
 .logo {
   font-size: 27px;
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   top: 10px;
   right: 15px;
   padding-left: 15px;
-  color: #009E72;
+  color: #009e72;
   text-decoration: none;
   cursor: pointer;
   font-weight: bold;
-
 }
 
 .logo a {
   text-decoration: none;
-  color: #009E72;
+  color: #009e72;
 }
 
 .login {
   margin: 0px 10px 0px 10px;
   font-size: 17px;
-  background-color: #009E72;
+  background-color: #009e72;
   color: white;
   border: transparent;
   border-radius: 30px;
-  font-family: 'Inter';
-
+  font-family: "Inter";
 }
 
 .login-a {
   color: white;
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   font-size: 16px;
 }
 
@@ -112,31 +107,38 @@ nav ul li button:hover {
   border-radius: 40px;
 }
 
-.input-register, .input-login, .forgot-password{
+.input-register,
+.input-login,
+.forgot-password {
   font-size: 17px;
   margin: 50px;
 }
 
-.input-register h2, .input-login h2, .forgot-password h2 {
+.input-register h2,
+.input-login h2,
+.forgot-password h2 {
   font-size: 35px;
   margin-left: 50px;
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   font-style: normal;
   font-weight: 800;
 }
 
-.input-register h3, .forgot-password h3 {
+.input-register h3,
+.forgot-password h3 {
   margin-left: 50px;
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
 }
-.input-register button, .input-login button, .forgot-password button {
+.input-register button,
+.input-login button,
+.forgot-password button {
   /* display: block; */
   padding: 12px;
   font-size: 17px;
-  background-color: #009E72;
+  background-color: #009e72;
   color: white;
   border: transparent;
   border-radius: 10px;
@@ -147,7 +149,7 @@ nav ul li button:hover {
 
 .forgot-password .button2 {
   background-color: white;
-  color: #009E72;
+  color: #009e72;
   border: transparent;
   border-radius: 10px;
   margin-left: 10px;
@@ -156,34 +158,36 @@ nav ul li button:hover {
   font-size: 17px;
 }
 
-.input-register button:hover, .input-login button:hover, .forgot-password button:hover {
+.input-register button:hover,
+.input-login button:hover,
+.forgot-password button:hover {
   background-color: #006d4e;
   color: white;
   border: transparent;
 }
 
-.input-register p, .input-login p {
+.input-register p,
+.input-login p {
   margin-top: 10px;
   margin-left: 100px;
 }
 
 .forgot-password p {
   margin-left: 50px;
-
 }
 
 .services {
-  margin: 25px 50px 25px 50px;
+  margin: 25px 0px 25px 0px;
   display: flex;
   /* grid-template-columns: 1fr 1fr;
   grid-column-gap: 25px;
   grid-row-gap: 20px; */
-  font-family: 'Inter';
+  font-family: "Inter";
 }
 
-.services h2{
+.services h2 {
   font-size: 30px;
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
 }
 
 .services .kolom {
@@ -202,6 +206,18 @@ a {
 }
 
 .link {
-  color: #009E72;
+  color: #009e72;
 }
 
+.photos {
+  width: 85%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.shop img {
+  width: 16%;
+  margin: 30px auto;
+}
