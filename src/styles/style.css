@@ -205,3 +205,15 @@ a {
   color: #009E72;
 }
 
+.photos {
+  width: 85%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.shop img {
+  width: 16%;
+  margin: 30px auto;
+}
