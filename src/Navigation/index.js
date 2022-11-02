@@ -7,27 +7,16 @@ import Header from '../components/Header'
 const Navigation = () => {
   return (
     <>
-        <Header/>
+         <Header/>
         <Routes>
             <Route element={<Home/>} path="/"/>
-        </Routes>
-        <Routes>
-            <Route element={<Shop/>} path="/shop"/>
-        </Routes>
-        <Routes>
-            <Route element={<PlantCare/>} path="/plant-care"/>
-        </Routes>
-        <Routes>
-            <Route element={<Services/>} path="/services"/>
-        </Routes>
-        <Routes>
-            <Route element={<Login/>} path="/login"/>
-        </Routes>
-        <Routes>
             <Route element={<Register/>} path="/register"/>
-        </Routes>
-        <Routes>
+            <Route element={<Login/>} path="/login"/>
+            <Route element={<Services/>} path="/services"/>
+            <Route element={<PlantCare/>} path="/plant-care"/>
+            <Route element={<Shop/>} path="/shop"/>
             <Route element={<ForgotPassword/>} path="/forgot-password"/>
+
         </Routes>
     </>
   )
