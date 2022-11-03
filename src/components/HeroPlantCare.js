@@ -20,11 +20,18 @@ const ReadMoreButton = styled(Button)`
   }
 `;
 
+const HeroImage = styled("img")`
+  width: 100%;
+`;
+
 const HeroPlantCare = () => {
   return (
-    <Container fixed >
-      <Stack direction="row" my={10} spacing={10}>
-        <Stack>
+    <Container fixed>
+      <Stack
+        direction={{ xs: "column-reverse", md: "row" }}
+        my={{ xs: 5, md: 10 }}
+        spacing={{ xs: 5, md: 10 }}>
+        <Stack sx={{ flex: 3 }}>
           <Typography
             variant="h4"
             component="h1"
@@ -45,8 +52,8 @@ const HeroPlantCare = () => {
             Read More
           </ReadMoreButton>
         </Stack>
-        <Box>
-          <img src={PlantCareHero} alt="Plant" />
+        <Box sx={{ flex: 2 }}>
+          <HeroImage src={PlantCareHero} alt="Plant" />
         </Box>
       </Stack>
     </Container>
