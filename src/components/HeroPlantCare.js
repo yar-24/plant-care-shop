@@ -36,9 +36,9 @@ const HeroPlantCare = () => {
           <CustomButton size="large" sx={{ alignSelf: "flex-end" }}>
             Read More
           </CustomButton>
-        </Stack>
-        <Box sx={{ flex: 2 }}>
-          <HeroImage src={PlantCareHero} alt="Plant" className="plant-img"/>
+          </Stack>
+        <Box>
+          <img src={PlantCareHero} alt="Plant" className="plant-img"/>
         </Box>
       </Stack>
     </Container>
