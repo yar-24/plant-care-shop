@@ -1,30 +1,22 @@
 import React from "react";
-import { Container, Stack, Box, Typography, Button } from "@mui/material";
+import { Container, Stack, Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { colors, fonts } from "../utils/";
+import CustomButton from "./CustomButton";
+import { fonts } from "../utils/";
 import { PlantCareHero } from "../images/img";
 
-const ReadMoreButton = styled(Button)`
-  background-color: ${colors.secondary};
-  box-shadow: none;
-  text-transform: none;
-  align-self: flex-end;
-  margin: 16px 0;
-  padding: 16px 32px;
-  font-weight: 600;
-  font-family: ${fonts.inter};
-  &:hover {
-    background-color: ${colors.secondary};
-    background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
-    box-shadow: none;
-  }
+const HeroImage = styled("img")`
+  width: 100%;
 `;
 
 const HeroPlantCare = () => {
   return (
-    <Container fixed >
-      <Stack direction="row" my={10} spacing={10}>
-        <Stack>
+    <Container fixed>
+      <Stack
+        direction={{ xs: "column-reverse", md: "row" }}
+        my={{ xs: 5, md: 10 }}
+        spacing={{ xs: 5, md: 10 }}>
+        <Stack sx={{ flex: 3 }}>
           <Typography
             variant="h4"
             component="h1"
@@ -41,12 +33,12 @@ const HeroPlantCare = () => {
             conditions for your plants, as long as they’re kept well watered. Here’s how to help
             them enjoy summer.
           </Typography>
-          <ReadMoreButton variant="contained" size="large">
+          <CustomButton size="large" sx={{ alignSelf: "flex-end" }}>
             Read More
-          </ReadMoreButton>
+          </CustomButton>
         </Stack>
-        <Box>
-          <img src={PlantCareHero} alt="Plant" />
+        <Box sx={{ flex: 2 }}>
+          <HeroImage src={PlantCareHero} alt="Plant" />
         </Box>
       </Stack>
     </Container>
