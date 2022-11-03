@@ -38,7 +38,7 @@ const HeroPlantCare = () => {
           </CustomButton>
           </Stack>
         <Box>
-          <img src={PlantCareHero} alt="Plant" className="plant-img"/>
+          <HeroImage src={PlantCareHero} alt="Plant" className="plant-img"/>
         </Box>
       </Stack>
     </Container>
