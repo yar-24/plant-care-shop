@@ -12,11 +12,12 @@ const PlantCare = () => {
       <Banner>
         <Typography
           variant="h3"
-          component="h1"
+          component="h3"
           sx={{
             fontFamily: fonts.comfortaa,
             lineHeight: 2,
             color: colors.white,
+            margin: '0px 30px 0px 30px'
           }}
           gutterBottom
         >
@@ -24,8 +25,8 @@ const PlantCare = () => {
         </Typography>
         <Typography
           variant="h4"
-          component="h1"
-          sx={{ fontFamily: fonts.inter, lineHeight: 2, color: colors.white }}
+          component="h3"
+          sx={{ fontFamily: fonts.inter, lineHeight: 2, color: colors.white, margin: '0px 30px 0px 30px' }}
           gutterBottom
         >
           Tips, tricks, and plant guides to make plant care downright easy.

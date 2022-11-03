@@ -10,6 +10,9 @@ const Title = styled.h1`
   font-family: ${fonts.inter};
   color: white;
   letter-spacing: 1px ;
+
+  @media (max-width: 1200px) {
+  }
 `;
 
 const Home = () => {

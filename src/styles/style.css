@@ -1,6 +1,7 @@
 body {
   background-color: #e5f7f0;
 }
+
 header {
   width: 100%;
   display: flex;
@@ -132,6 +133,7 @@ nav ul li button:hover {
   font-weight: 500;
   font-size: 24px;
 }
+
 .input-register button,
 .input-login button,
 .forgot-password button {
@@ -144,7 +146,7 @@ nav ul li button:hover {
   border-radius: 10px;
   margin-left: 100px;
   /* margin: auto; */
-  width: 10%;
+  width: 12%;
 }
 
 .forgot-password .button2 {
@@ -153,7 +155,7 @@ nav ul li button:hover {
   border: transparent;
   border-radius: 10px;
   margin-left: 10px;
-  width: 10%;
+  width: 12%;
   padding: 12px;
   font-size: 17px;
 }
@@ -179,14 +181,12 @@ nav ul li button:hover {
 .services {
   margin: 25px 0px 25px 0px;
   display: flex;
-  /* grid-template-columns: 1fr 1fr;
-  grid-column-gap: 25px;
-  grid-row-gap: 20px; */
   font-family: "Inter";
+  width: 100%;
 }
 
 .services h2 {
-  font-size: 30px;
+  font-size: 25px;
   font-family: "Comfortaa";
 }
 
@@ -196,7 +196,7 @@ nav ul li button:hover {
 }
 
 .services img {
-  width: 80%;
+  width: 46%;
   margin: auto;
 }
 
@@ -220,4 +220,60 @@ a {
 .detail-product img {
   width: 16%;
   margin: 30px auto;
+}
+
+
+
+/* RESPONSIF */
+
+@media screen and (max-width : 1200px) {
+  .plant-img {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width : 725px) {
+  .services {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 20px;
+    text-align: center;
+  }
+
+  .input-register h2,
+  .input-login h2,
+  .forgot-password h2 {
+    margin: auto;
+    font-size: 30px;
+  }
+
+  .input-register h3,
+.forgot-password h3 {
+  margin: 10px auto;
+  font-size: 20px;
+}
+
+  .input-register button,
+  .input-login button,
+  .forgot-password button {
+
+    margin: auto;
+    width: auto;
+  }
+
+  .input-register p,
+  .input-login p {
+   margin: 5px auto;
+  }
+
+  .forgot-password .button2 {
+    margin-left: 10px auto;
+    width: auto;
+  }
+
+  .forgot-password p {
+    margin: 5px auto;
+  }
+
 }

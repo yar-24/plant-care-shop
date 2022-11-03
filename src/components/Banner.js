@@ -16,8 +16,6 @@ const Container = styled.div`
   position: relative;
 `;
 
-
-
 const Banner = ({children, ...rest}) => {
   return (
     <Container>

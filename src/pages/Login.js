@@ -11,6 +11,10 @@ const Log = styled.div`
     grid-column-gap: 25px;
     grid-row-gap: 20px;
     width: 80;
+
+    @media (max-width: 725px) {
+    margin: 30px auto;
+  }
 `;
 
 const Login = () => {
