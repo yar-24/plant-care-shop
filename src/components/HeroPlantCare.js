@@ -22,8 +22,8 @@ const ReadMoreButton = styled(Button)`
 
 const HeroPlantCare = () => {
   return (
-    <Container fixed>
-      <Stack direction="row" my={6} spacing={10}>
+    <Container fixed >
+      <Stack direction="row" my={10} spacing={10}>
         <Stack>
           <Typography
             variant="h4"

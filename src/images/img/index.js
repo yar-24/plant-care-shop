@@ -11,6 +11,10 @@ import Photo2 from "./137.jpg";
 import Photo3 from "./138.jpg";
 import Photo4 from "./139.jpg";
 import BgBannerServices from "./bannerServices.jpg";
+import PlantCare1 from "./plantCare1.jpg";
+import PlantCare2 from "./plantCare2.jpg";
+import PlantCare3 from "./plantCare3.jpg";
+import PlantCare4 from "./plantCare4.jpg";
 
 export {
   PlantHero,
@@ -26,4 +30,8 @@ export {
   Photo3,
   Photo4,
   BgBannerServices,
+  PlantCare1,
+  PlantCare2,
+  PlantCare3,
+  PlantCare4,
 };

@@ -1,8 +1,7 @@
 import React from "react";
+import { Stack } from "@mui/material";
 import styled from "styled-components";
 import { BgBanner } from "../images/img";
-import { fonts } from "../utils";
-import Tombol from "./kecil/Tombol";
 
 const Container = styled.div`
   display: flex;
@@ -13,36 +12,23 @@ const Container = styled.div`
   background-size: cover;
   background-position: 100%;
   width: 100%;
-  height: 40vh;
+  height: 300px;
   position: relative;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-  width: 80% ;
-`;
 
 const Title = styled.h1`
   font-family: ${fonts.inter};
   color: white;
   letter-spacing: 1px ;
-
-  @media (max-width: 720px) {
-    font-size: 27px;
-  }
 `;
 
-const Banner = () => {
+const Banner = ({children, ...rest}) => {
   return (
     <Container>
-      <Wrapper>
-        <Title>
-          Tips, tricks, and plant guides to make plant care downright easy
-        </Title>
-        <Tombol label=" Read more blogs"/>
-      </Wrapper>
+      <Stack {...rest}>
+        {children}
+      </Stack>
     </Container>
   );
 };
