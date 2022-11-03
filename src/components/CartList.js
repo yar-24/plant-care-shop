@@ -1,50 +1,84 @@
 import React from "react";
-import styled from "styled-components";
+import { styled } from "@mui/material/styles";
+import {Typography, Container, Stack } from "@mui/material";
+import CardItem from "./CardItem";
 import { fonts } from "../utils";
-import { Cart1, Cart2, Cart3 } from "../images/img";
-import CartItem from "./CartItem";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import ItemHarga from "./kecil/ItemHarga";
-import Tombol from "./kecil/Tombol";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
-const Container = styled.div`
-  margin-top: 50px;
+const CardListContainer = styled(Container)`
+  max-width: 1024px;
+  margin: 0 auto;
 `;
-const Title = styled.h2`
+
+const TitleText = styled(Typography)`
+  font-size: 32px;
   font-family: ${fonts.comfortaa};
+  font-weight: 700;
+  margin: 32px 0;
 `;
+const CardList = ({ children }) => {
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 3, // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2, // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+  };
 
-const ContainerBtn = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 50px 0px 50px 0px;
-`;
-
-const CartList = () => {
   return (
-    <Container>
-      <Title>Your bag</Title>
-      <CartItem src={Cart1} name="Book The Inspired House Plant" />
-      <CartItem src={Cart2} name="Cactus" height="40-50 cm" />
-      <CartItem src={Cart3} name="Snake plant" height="70-80 cm" />
-      <ItemHarga title="Subtitle" harga="$150" />
-      <ItemHarga title="Delivey" harga="Free" />
-      <ItemHarga title="Total" harga="$150" />
-      <ContainerBtn>
-        <Tombol
-          label=" Place Order"
-          variant="contained"
-          startIcon={<ShoppingCartIcon />}
-          style={{
-            backgroundColor: "#009E72",
-            width: "40%",
-            padding: "10px 0px 10px 0px",
-            fontWeight: "bold",
-          }}
-        />
-      </ContainerBtn>
-    </Container>
+    <CardListContainer>
+      <TitleText variant="h2">{children}</TitleText>
+      <Stack my={5}>
+
+        <Carousel
+          additionalTransfrom={0}
+          arrows
+          autoPlaySpeed={3000}
+          centerMode={true}
+          className=""
+          containerClass="container"
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          infinite={false}
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={80}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          responsive={responsive}
+          rewind={false}
+          rewindWithAnimation={false}
+          rtl={false}
+          shouldResetAutoplay
+          showDots={false}
+          sliderClass=""
+          slidesToSlide={1}
+          swipeable
+        >
+          <CardItem />
+          <CardItem />
+          <CardItem />
+          <CardItem />
+          <CardItem />
+          <CardItem />
+          <CardItem />
+        </Carousel>
+      </Stack>
+    </CardListContainer>
   );
 };
-
-export default CartList;
+export default CardList;

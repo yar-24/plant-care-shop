@@ -16,13 +16,6 @@ const Container = styled.div`
   position: relative;
 `;
 
-
-const Title = styled.h1`
-  font-family: ${fonts.inter};
-  color: white;
-  letter-spacing: 1px ;
-`;
-
 const Banner = ({children, ...rest}) => {
   return (
     <Container>

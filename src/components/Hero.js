@@ -3,35 +3,7 @@ import styled from "styled-components";
 import { fonts } from "../utils/";
 import { PlantHero } from "../images/img";
 import Tombol from "./kecil/Tombol";
-import { Stack, Box } from "@mui/material";
-import { colors } from "@mui/material";
-
-const Container = styled.div`
-  display: flex;
-  height: 90vh;
-  background: ${colors.primary};
-
-  @media (max-width: 900px) {
-    margin: auto;
-    width: auto;
-  }
-`;
-
-// const Left = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   width: 50%;
-//   margin: 50px 50px 50px 200px;
-
-//   @media (max-width: 1000px) {
-//     margin: 30px 80px 30px 80px;
-//   }
-
-//   @media (max-width: 600px) {
-//     margin: 40px;
-//   }
-// `;
+import { Container, Stack, Box } from "@mui/material";
 
 const Title = styled.h1`
   font-family: ${fonts.comfortaa};
@@ -51,16 +23,6 @@ const Image = styled.img`
   position: absolute;
   bottom: 0;
   z-index:2 ;
-
-  @media (max-width: 900px) {
-    margin: auto;
-    width: 70%;
-  }
-
-  @media (max-width: 600px) {
-    margin: auto;
-    width: 50%;
-  }
 `;
 
 const Kotak = styled.div`
