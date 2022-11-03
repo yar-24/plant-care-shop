@@ -30,6 +30,12 @@ const CardList = ({children}) => {
         <Grid item>
           <CardItem/>
         </Grid>
+        <Grid item>
+          <CardItem/>
+        </Grid>
+        <Grid item>
+          <CardItem/>
+        </Grid>
       </Grid>
     </CardListContainer>
   )

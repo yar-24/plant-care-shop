@@ -28,6 +28,10 @@ const Title = styled.h1`
   font-family: ${fonts.inter};
   color: white;
   letter-spacing: 1px ;
+
+  @media (max-width: 720px) {
+    font-size: 27px;
+  }
 `;
 
 const Banner = () => {

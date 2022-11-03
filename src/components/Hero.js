@@ -8,6 +8,11 @@ const Container = styled.div`
   display: flex;
   height: 90vh;
   background: ${colors.primary};
+
+  @media (max-width: 900px) {
+    margin: auto;
+    width: auto;
+  }
 `;
 const Left = styled.div`
   display: flex;
@@ -15,6 +20,14 @@ const Left = styled.div`
   justify-content: center;
   width: 50%;
   margin: 50px 50px 50px 200px;
+
+  @media (max-width: 1000px) {
+    margin: 30px 80px 30px 80px;
+  }
+
+  @media (max-width: 600px) {
+    margin: 40px;
+  }
 `;
 const Title = styled.h1`
   font-family: ${fonts.comfortaa};
@@ -34,6 +47,16 @@ const Image = styled.img`
   position: absolute;
   right: 100px;
   bottom: 0;
+
+  @media (max-width: 900px) {
+    margin: auto;
+    width: 70%;
+  }
+
+  @media (max-width: 600px) {
+    margin: auto;
+    width: 50%;
+  }
 `;
 
 const Box = styled.div`

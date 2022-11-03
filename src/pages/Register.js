@@ -10,6 +10,13 @@ const Regis = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 25px;
     grid-row-gap: 20px;
+
+    @media (max-width: 725px) {
+    margin: 30px auto;
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr; 
+  }
 `;
 
 const Register = () => {

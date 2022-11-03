@@ -9,22 +9,22 @@ function Header() {
         <div className="logo">Plant and Care Shop</div>
         <ul>
           <li className="tautan">
-            <Link style={{ textDecoration: "none" }} to="/">
+            <Link style={{ textDecoration: "none", padding: "15px 5px 15px 5px" }} to="/">
               Home
             </Link>
           </li>
           <li className="tautan">
-            <Link style={{ textDecoration: "none" }} to="/shop">
+            <Link style={{ textDecoration: "none", padding: "15px 5px 15px 5px" }} to="/shop">
               Shop
             </Link>
           </li>
           <li className="tautan">
-            <Link style={{ textDecoration: "none" }} to="/plant-care">
+            <Link style={{ textDecoration: "none", padding: "15px 5px 15px 5px" }} to="/plant-care">
               Plant Care
             </Link>
           </li>
           <li className="tautan">
-            <Link style={{ textDecoration: "none" }} to="/services">
+            <Link style={{ textDecoration: "none", padding: "15px 5px 15px 5px" }} to="/services">
               Services
             </Link>
           </li>

@@ -46,7 +46,7 @@ const HeroPlantCare = () => {
           </ReadMoreButton>
         </Stack>
         <Box>
-          <img src={PlantCareHero} alt="Plant" />
+          <img src={PlantCareHero} alt="Plant" className="plant-img"/>
         </Box>
       </Stack>
     </Container>

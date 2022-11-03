@@ -16,7 +16,7 @@ import Header from "../components/Header";
 const Navigation = () => {
   return (
     <>
-         <Header/>
+        <Header/>
         <Routes>
             <Route element={<Home/>} path="/"/>
             <Route element={<Register/>} path="/register"/>
