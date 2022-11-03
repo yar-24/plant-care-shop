@@ -1,8 +1,9 @@
 import React from 'react'
+import HeroPlantCare from '../components/HeroPlantCare'
 
 const PlantCare = () => {
   return (
-    <div>PlantCare Page</div>
+    <HeroPlantCare/>
   )
 }
 
