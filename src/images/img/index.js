@@ -1,5 +1,6 @@
 import PlantHero from "./plant1.png";
 import PlantCareHero from "./plant2.png";
+import ServicesHero from "./plant3.png";
 import BgBanner from "./banner.jpg";
 import PlantItemImg from "./plantitem1.png";
 import Cart1 from "./cart1.jpg";
@@ -19,6 +20,7 @@ import PlantCare4 from "./plantCare4.jpg";
 export {
   PlantHero,
   PlantCareHero,
+  ServicesHero,
   BgBanner,
   PlantItemImg,
   Cart1,

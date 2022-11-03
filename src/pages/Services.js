@@ -1,12 +1,14 @@
-import React from 'react'
-import BannerServices from '../components/BannerServices'
+import React from "react";
+import BannerServices from "../components/BannerServices";
+import HeroServices from "../components/HeroServices";
 
 const Services = () => {
   return (
     <>
-    <BannerServices/>
+      <BannerServices />
+      <HeroServices />
     </>
-  )
-}
+  );
+};
 
-export default Services
+export default Services;
