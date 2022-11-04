@@ -18,7 +18,7 @@ const HeroPlantCare = () => {
         spacing={{ xs: 5, md: 10 }}>
         <Stack sx={{ flex: 3 }}>
           <Typography
-            variant="h4"
+            variant="h5"
             component="h1"
             sx={{ fontFamily: fonts.comfortaa, fontWeight: 700 }}
             gutterBottom>

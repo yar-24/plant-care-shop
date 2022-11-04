@@ -44,7 +44,7 @@ const Hero = () => {
         <Box my={{ xs: 5, md: 20 }} sx={{ flex: 3 }}>
           <Typography
             variant="h4"
-            component="h1"
+            component="h2"
             sx={{ fontFamily: fonts.comfortaa, fontWeight: 700 }}
             gutterBottom
           >

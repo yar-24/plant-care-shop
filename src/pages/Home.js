@@ -9,7 +9,7 @@ import Tombol from "../components/kecil/Tombol";
 const Title = styled.h1`
   font-family: ${fonts.inter};
   color: white;
-  letter-spacing: 1px ;
+  letter-spacing: 1px;
 
   @media (max-width: 1200px) {
   }
@@ -19,11 +19,11 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Banner alignItems="end">
+      <Banner alignItems={{lg: "end", xs: "center"}} sx={{m: 2}} >
         <Title>
           Tips, tricks, and plant guides to make plant care downright easy
         </Title>
-        <Tombol label=" Read more blogs" />
+        <Tombol label="Read more blogs"  />
       </Banner>
       <CardList>Popular Categories</CardList>
     </>

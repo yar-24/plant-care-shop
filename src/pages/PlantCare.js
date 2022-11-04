@@ -16,8 +16,7 @@ const PlantCare = () => {
           sx={{
             fontFamily: fonts.comfortaa,
             lineHeight: 2,
-            color: colors.white,
-            margin: '0px 30px 0px 30px'
+            color: colors.white
           }}
           gutterBottom
         >
@@ -26,7 +25,7 @@ const PlantCare = () => {
         <Typography
           variant="h4"
           component="h3"
-          sx={{ fontFamily: fonts.inter, lineHeight: 2, color: colors.white, margin: '0px 30px 0px 30px' }}
+          sx={{ fontFamily: fonts.inter, lineHeight: 2, color: colors.white}}
           gutterBottom
         >
           Tips, tricks, and plant guides to make plant care downright easy.

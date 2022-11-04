@@ -1,3 +1,4 @@
+import axios from "axios"
 import { css } from "styled-components";
 
 export  const colors = {
@@ -29,3 +30,7 @@ export const tablet = (props) => {
     }
   `
 }
+
+export const axiosInstance = axios.create({
+    baseURL : "https://plant-care-shop-api.herokuapp.com/v2"
+})

@@ -146,6 +146,7 @@ nav ul li button:hover {
   border-radius: 10px;
   margin-left: 100px;
   /* margin: auto; */
+  cursor: pointer;
   width: 12%;
 }
 
