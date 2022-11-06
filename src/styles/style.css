@@ -88,6 +88,7 @@ nav ul li button:hover {
 .login {
   margin: 0px 10px 0px 10px;
   font-size: 17px;
+  padding: 10px;
   background-color: #009e72;
   color: white;
   border: transparent;
@@ -146,6 +147,7 @@ nav ul li button:hover {
   border-radius: 10px;
   margin-left: 100px;
   /* margin: auto; */
+  cursor: pointer;
   width: 12%;
 }
 

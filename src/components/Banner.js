@@ -2,6 +2,7 @@ import React from "react";
 import { Stack } from "@mui/material";
 import styled from "styled-components";
 import { BgBanner } from "../images/img";
+import { mobile } from "../utils";
 
 const Container = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const Container = styled.div`
   width: 100%;
   height: 300px;
   position: relative;
+  ${mobile({textAlign: "center"})}
 `;
 
 const Banner = ({children, ...rest}) => {
