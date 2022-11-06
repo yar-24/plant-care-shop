@@ -12,11 +12,14 @@ import {
   Cart
 } from "../pages";
 import Header from "../components/Header";
+import Appbar from "../components/Appbar";
+
 
 const Navigation = () => {
   return (
     <>
-        <Header/>
+        {/* <Header/> */}
+        <Appbar/>
         <Routes>
             <Route element={<Home/>} path="/"/>
             <Route element={<Register/>} path="/register"/>
