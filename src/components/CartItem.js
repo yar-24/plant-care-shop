@@ -37,7 +37,8 @@ const Right = styled.div`
   width: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-end;
+  margin-right: 50px;
 `;
 
 const ContainerJumlah = styled.div`
@@ -65,18 +66,20 @@ const ContainerHarga = styled.div`
   align-items: center;
   justify-content: space-between ;
   width: 70px ;
+  margin-left: 50px;
 `;
 
 const Harga = styled.p`
     font-weight: bold ;
     font-size: 1.2rem ;
+
 `;
 
 const BtnDelete = styled(RiDeleteBinLine)`
 cursor: pointer;
 `
 
-const CartItem = ({src, name, height}) => {
+const CartItem = ({src, name, height, price}) => {
   return (
     <Container>
       <Left>
@@ -93,7 +96,7 @@ const CartItem = ({src, name, height}) => {
           <CounterBtn>+</CounterBtn>
         </ContainerJumlah>
         <ContainerHarga>
-          <Harga>$10</Harga>
+          <Harga>${price}</Harga>
           <BtnDelete size={20}  />
         </ContainerHarga>
       </Right>

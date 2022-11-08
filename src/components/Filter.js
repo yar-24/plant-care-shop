@@ -43,7 +43,7 @@ export default function Filter() {
   const Container = styled.div`
     width: 25%;
     background-color: #fff;
-    margin-top: 20px;
+    margin-top: 30px;
     display: block;
   `;
 
@@ -61,6 +61,7 @@ export default function Filter() {
               color: "white",
               fontSize: "24px",
               fontWeight: 700,
+              position: "sticky",
             }}
           >
             Filter
