@@ -47,7 +47,7 @@ function DrawerAppBar(props) {
         </Link>
         <Link to="/plant-care">
           <ListItem {...rest}>
-            <ListItemButton sx={{ textAlign: "center" }}>
+            <ListItemButton sx={{ textAlign: "center" }}> 
               <ListItemText primary={"Care"} />
             </ListItemButton>
           </ListItem>

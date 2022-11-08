@@ -12,12 +12,14 @@ import {
   Cart
 } from "../pages";
 import Appbar from "../components/Appbar";
+import Toast from "../components/kecil/Toast";
 
 
 const Navigation = () => {
   return (
     <>
         <Appbar/>
+        <Toast/>
         <Routes>
             <Route element={<Home/>} path="/"/>
             <Route element={<Register/>} path="/register"/>

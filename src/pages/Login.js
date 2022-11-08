@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import {useDispatch} from "react-redux"
-import { TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { login } from "../redux/features/auth/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { login, reset } from "../redux/features/auth/authSlice";
+import { TextField } from "@mui/material";
+import { toast } from "react-toastify";
 
 const Log = styled.div`
   font-size: 13px;
@@ -16,6 +17,7 @@ const Log = styled.div`
 
   @media (max-width: 725px) {
     margin: 30px auto;
+    padding-right: 50px;
   }
 `;
 
@@ -26,6 +28,11 @@ const Login = () => {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
 
   const { email, password } = formData;
 
@@ -44,18 +51,28 @@ const Login = () => {
       password,
     };
 
-    dispatch(login(userData))
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    if (!email || !password) {
+      toast.warning("Input email or password");
+    } else {
+      dispatch(login(userData));
+    }
   };
 
+  useEffect(() => {
+    if (isError) {
+      toast.error("Wrong email or password");
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+      window.location.reload();
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   return (
-    <div className="input-login">
+    <form className="input-login" onSubmit={onSubmit}>
       <h2>Login Page</h2>
       <Log>
         <TextField
@@ -77,9 +94,8 @@ const Login = () => {
           onChange={onChange}
         />
       </Log>
-      <button type="button" onClick={onSubmit}>
-        Login
-      </button>
+      <button type="submit">Login</button>
+
       <p>
         New customer?{" "}
         <Link to="/register" className="link">
@@ -91,7 +107,7 @@ const Login = () => {
           <strong>Forgot your password</strong>
         </Link>
       </p>
-    </div>
+    </form>
   );
 };
 
