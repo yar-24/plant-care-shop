@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import {useDispatch} from "react-redux"
-import { TextField } from "@mui/material";
+import { useDispatch } from "react-redux"
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { login } from "../redux/features/auth/authSlice";
@@ -16,6 +15,8 @@ const Log = styled.div`
 
   @media (max-width: 725px) {
     margin: 30px auto;
+    padding-right: 50px;
+
   }
 `;
 
@@ -45,41 +46,46 @@ const Login = () => {
     };
 
     dispatch(login(userData))
-    .then((res) => {
-      console.log(res)
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   };
 
 
   return (
     <div className="input-login">
-      <h2>Login Page</h2>
-      <Log>
-        <TextField
-          id="email"
-          color="success"
-          type="email"
-          label="Email"
-          name="email"
-          value={email}
-          onChange={onChange}
-        />
-        <TextField
-          id="password"
-          color="success"
-          type="password"
-          label="Password"
-          name="password"
-          value={password}
-          onChange={onChange}
-        />
-      </Log>
-      <button type="button" onClick={onSubmit}>
-        Login
-      </button>
+      <form onSubmit={onSubmit}>
+        <h2>Login Page</h2>
+        <Log>
+          <input
+            id="email"
+            color="success"
+            type="email"
+            label="Email"
+            name="email"
+            placeholder='Email'
+            value={email}
+            onChange={onChange}
+          />
+          <input
+            id="password"
+            color="success"
+            type="password"
+            label="Password"
+            name="password"
+            placeholder="Password"
+            value={password}
+            onChange={onChange}
+          />
+        </Log>
+        <button type="button" onClick={onSubmit}>
+          Login
+        </button>
+      </form>
+
       <p>
         New customer?{" "}
         <Link to="/register" className="link">
