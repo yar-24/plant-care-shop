@@ -121,7 +121,7 @@ function DrawerAppBar(props) {
                 sx={{
                   display: { xs: "none", md: "block", fontFamily: "Comfortaa", fontSize: "27px" },
                 }}>
-                LOGO
+                Breath
               </Typography>
             </Link>
             <Box sx={{ display: "flex" }}>

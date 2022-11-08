@@ -253,6 +253,7 @@ a {
   .input-register h3,
 .forgot-password h3 {
   margin: 10px auto;
+  padding-top: 10px;
   font-size: 20px;
 }
 
@@ -278,4 +279,16 @@ a {
     margin: 5px auto;
   }
 
+}
+
+.input-login input, .input-register input, .forgot-password input{
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  display: block;
+  width: 100%;
+  padding: 20px;
+  background-color: #9ed7c1;
+  border: 5px #009e72;
+  color: black;
+  
 }
