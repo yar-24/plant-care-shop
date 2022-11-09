@@ -234,13 +234,60 @@ a {
   margin: 30px auto;
 }
 
+.title-detail{
+  font-size: 20px;
+  height: auto;
+  font-family: 'Comfortaa';
+  color: #009e72;
+  display: block;
+  margin: 0px;
+}
 
+.title-product{
+  font-size: 30px;
+  height: auto;
+  font-family: 'Comfortaa';
+  display: block;
+  margin: 40px 30px 25px 30px ;
+  text-align: center;
+}
+
+.product {
+  width: 70%;
+  margin: 10px 30px 30px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 25px;
+  grid-row-gap: 20px;
+  height: fit-content;
+}
+
+.shop{
+  display: flex;
+  
+}
 
 /* RESPONSIF */
+
+@media screen and (max-width : 1250px) {
+  .product {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 25px;
+    grid-row-gap: 20px;
+  }
+}
 
 @media screen and (max-width : 1200px) {
   .plant-img {
     width: 300px;
+  }
+}
+
+@media screen and (max-width : 1000px) {
+  .product {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 25px;
+    grid-row-gap: 20px;
   }
 }
 
@@ -293,6 +340,12 @@ a {
     font-size: 25px;
   }
 
+  .product {
+    grid-template-columns: 1fr;
+    grid-column-gap: 25px;
+    grid-row-gap: 20px;
+    margin: 10px ;
+  }
 }
 
 .input-login input,

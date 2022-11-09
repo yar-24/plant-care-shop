@@ -10,13 +10,13 @@ import { Checkbox, FormControlLabel, Typography } from "@mui/material";
 import styled from "styled-components";
 
 export default function Filter() {
-  const [open, setOpen] = React.useState(true);
-  const [open2, setOpen2] = React.useState(true);
-  const [open3, setOpen3] = React.useState(true);
-  const [open4, setOpen4] = React.useState(true);
-  const [open5, setOpen5] = React.useState(true);
-  const [open6, setOpen6] = React.useState(true);
-  const [open7, setOpen7] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
+  const [open3, setOpen3] = React.useState(false);
+  const [open4, setOpen4] = React.useState(false);
+  const [open5, setOpen5] = React.useState(false);
+  const [open6, setOpen6] = React.useState(false);
+  const [open7, setOpen7] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
@@ -43,14 +43,24 @@ export default function Filter() {
   const Container = styled.div`
     width: 19%;
     background-color: #fff;
-    margin: 30px;
+    margin: 10px 30px 30px 40px;
     display: block;
+    height: fit-content;
+
+    @media (max-width: 1000px) {
+      width: 30%;
+    }
+    @media (max-width: 600px) {
+      width: 170px;
+      font-size: 20px;
+      margin: 10px;
+    }
   `;
 
   return (
     <Container>
       <List
-        sx={{ width: '100%', maxWidth: 300, bgcolor: "background.paper" }}
+        sx={{ width: '100%', maxWidth: 300, bgcolor: "background.paper", display:'block' }}
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader
@@ -59,9 +69,10 @@ export default function Filter() {
             style={{
               backgroundColor: "#009E72",
               color: "white",
-              fontSize: "24px",
+              fontSize: "22px",
               fontWeight: 700,
               position: "sticky",
+
             }}
           >
             Filter
@@ -71,7 +82,7 @@ export default function Filter() {
         <ListItemButton onClick={handleClick}>
         <ListItemText
             primary={
-              <Typography variant="h6" component="h5">
+              <Typography variant="h6" component="h6">
                 Plant Tipe
               </Typography>
             }
