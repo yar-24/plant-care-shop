@@ -5,6 +5,7 @@ import { Typography } from "@mui/material";
 import { colors, fonts } from "../utils";
 import PlantCareList from "../components/PlantCareList";
 import BannerFreeOngkir from "../components/BannerFreeOngkir";
+import Footer from "../components/Footer";
 
 const PlantCare = () => {
   return (
@@ -34,6 +35,7 @@ const PlantCare = () => {
       </Banner>
       <PlantCareList/>
       <BannerFreeOngkir/>
+      <Footer/>
     </>
   );
 };

@@ -5,6 +5,7 @@ import CardList from "../components/CardList";
 import styled from "styled-components";
 import { fonts } from "../utils";
 import Tombol from "../components/kecil/Tombol";
+import Footer from "../components/Footer";
 
 const Title = styled.h1`
   font-family: ${fonts.inter};
@@ -26,6 +27,7 @@ const Home = () => {
         <Tombol label="Read more blogs"  />
       </Banner>
       <CardList>Popular Categories</CardList>
+      <Footer />
     </>
   );
 };
