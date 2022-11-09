@@ -1,19 +1,13 @@
+import  React, {useEffect, useState} from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Container } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
+import { Container, AppBar, Box, Divider, Drawer, IconButton, List, ListItem, Toolbar, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import * as React from "react";
 import { BsFillCartFill, BsSearch, BsTranslate } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { colors, fonts } from "../utils";
+import Swal from "sweetalert2";
+import { logout, reset } from "../redux/features/auth/authSlice";
 
 const drawerWidth = 240;
 const navItems = [
@@ -37,10 +31,38 @@ const navItems = [
 
 function DrawerAppBar(props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  const dispatch = useDispatch();
+
+  const onLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you have Logout!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: colors.secondary,
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          "Logout!",
+          "Your account has been logout.",
+          "success",
+          dispatch(logout()),
+          dispatch(reset()),
+        );
+      }
+    });
   };
 
   const NavLink = styled(Link)`
@@ -126,12 +148,12 @@ function DrawerAppBar(props) {
             </Link>
             <Box sx={{ display: "flex" }}>
               <Box sx={{ display: { xs: "none", md: "flex" }, marginRight: 4 }}>
-                {navItems.map((item) => (
-                  <NavLink to={item.link}>{item.name}</NavLink>
+                {navItems.map((item, index) => (
+                  <NavLink key={index} to={item.link}>{item.name}</NavLink>
                 ))}
               </Box>
               <Box sx={{ display: "block" }}>
-                <LoginLink to="/login">Login</LoginLink>
+              {user ?  <LoginLink onClick={onLogout}>Logout</LoginLink> :  <LoginLink to="/login">Login</LoginLink>}
                 <IconButton
                   size="medium"
                   aria-label="account of current user"

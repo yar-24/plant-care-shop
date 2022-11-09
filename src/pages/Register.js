@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux"
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { register } from "../redux/features/auth/authSlice";
+import { TextField } from "@mui/material";
+import { toast } from "react-toastify";
 
 const Regis = styled.div`
   font-size: 13px;
@@ -50,13 +52,11 @@ const Register = () => {
       password,
     };
 
-    dispatch(register(userData))
-      .then((res) => {
-        console.log(res)
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    if(!firstname || !lastname || !email|| !password){
+      toast.warning("Please add all fields")
+    } else {
+      dispatch(register(userData))
+    }
   };
 
   return (
@@ -65,48 +65,44 @@ const Register = () => {
         <h2>Register Page</h2>
         <h3>Create Account</h3>
         <Regis>
-          <input
+          <TextField
             id="firstname"
             color="success"
             type="text"
             label="First Name"
             name="firstname"
-            placeholder="First Name"
             value={firstname}
             onChange={onChange}
           />
-          <input
+          <TextField
             id="lastname"
             color="success"
             type="text"
             label="Last Name"
             name="lastname"
-            placeholder="Last Name"
             value={lastname}
             onChange={onChange}
           />
-          <input
+          <TextField
             id="email"
             color="success"
             type="email"
             label="Email"
             name="email"
-            placeholder="Email"
             value={email}
             onChange={onChange}
           />
-          <input
+          <TextField
             id="password"
             color="success"
             type="password"
             label="Password"
             name="password"
-            placeholder="Password"
             value={password}
             onChange={onChange}
           />
         </Regis>
-        <button type="button" onClick={onSubmit}>Create</button>
+        <button type="submit">Create</button>
       </form>
       <p>
         Returning customer?{" "}
