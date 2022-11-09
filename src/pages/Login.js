@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { login, reset } from "../redux/features/auth/authSlice";
 import { TextField } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 import { toast } from "react-toastify";
+import LoadingBtn from "../components/kecil/LoadingBtn";
 
 const Log = styled.div`
   font-size: 13px;
@@ -65,7 +67,6 @@ const Login = () => {
 
     if (isSuccess || user) {
       navigate("/");
-      window.location.reload();
     }
 
     dispatch(reset());
@@ -94,7 +95,8 @@ const Login = () => {
           onChange={onChange}
         />
       </Log>
-      <button type="submit">Login</button>
+
+      <LoadingBtn label="Login" loading={isLoading}/>
 
       <p>
         New customer?{" "}

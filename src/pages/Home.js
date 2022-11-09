@@ -11,6 +11,7 @@ const Title = styled.h1`
   font-family: ${fonts.inter};
   color: white;
   letter-spacing: 1px;
+  margin-bottom:20px ;
 
   @media (max-width: 1200px) {
   }

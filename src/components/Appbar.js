@@ -1,13 +1,36 @@
-import  React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Container, AppBar, Box, Divider, Drawer, IconButton, List, ListItem, Toolbar, Typography } from "@mui/material";
+import {
+  Container,
+  AppBar,
+  Box,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  Toolbar,
+  Typography,
+  Popper,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { BsFillCartFill, BsSearch, BsTranslate } from "react-icons/bs";
+import {
+  BsFillCartFill,
+  BsSearch,
+  BsTranslate,
+  BsPlusSquare,
+} from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { colors, fonts } from "../utils";
 import Swal from "sweetalert2";
 import { logout, reset } from "../redux/features/auth/authSlice";
+import { AddShoppingCart, ExpandLess, ExpandMore, DraftsIcon} from "@mui/icons-material";
+import InboxIcon from '@mui/icons-material/Inbox';
+
 
 const drawerWidth = 240;
 const navItems = [
@@ -32,6 +55,7 @@ const navItems = [
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -59,7 +83,7 @@ function DrawerAppBar(props) {
           "Your account has been logout.",
           "success",
           dispatch(logout()),
-          dispatch(reset()),
+          dispatch(reset())
         );
       }
     });
@@ -121,7 +145,15 @@ function DrawerAppBar(props) {
     </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
+  const handleClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popper" : undefined;
 
   return (
     <>
@@ -133,7 +165,8 @@ function DrawerAppBar(props) {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { md: "none" } }}>
+              sx={{ mr: 2, display: { md: "none" } }}
+            >
               <MenuIcon />
             </IconButton>
             <Link to="/" style={{ color: "#009e72" }}>
@@ -141,25 +174,38 @@ function DrawerAppBar(props) {
                 variant="h6"
                 component="div"
                 sx={{
-                  display: { xs: "none", md: "block", fontFamily: "Comfortaa", fontSize: "27px" },
-                }}>
+                  display: {
+                    xs: "none",
+                    md: "block",
+                    fontFamily: "Comfortaa",
+                    fontSize: "27px",
+                  },
+                }}
+              >
                 Breath
               </Typography>
             </Link>
             <Box sx={{ display: "flex" }}>
               <Box sx={{ display: { xs: "none", md: "flex" }, marginRight: 4 }}>
                 {navItems.map((item, index) => (
-                  <NavLink key={index} to={item.link}>{item.name}</NavLink>
+                  <NavLink key={index} to={item.link}>
+                    {item.name}
+                  </NavLink>
                 ))}
               </Box>
               <Box sx={{ display: "block" }}>
-              {user ?  <LoginLink onClick={onLogout}>Logout</LoginLink> :  <LoginLink to="/login">Login</LoginLink>}
+                {user ? (
+                  <LoginLink onClick={onLogout}>Logout</LoginLink>
+                ) : (
+                  <LoginLink to="/login">Login</LoginLink>
+                )}
                 <IconButton
                   size="medium"
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
-                  style={{ color: "black" }}>
+                  style={{ color: "black" }}
+                >
                   <BsSearch />
                 </IconButton>
                 <IconButton
@@ -167,7 +213,8 @@ function DrawerAppBar(props) {
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
-                  style={{ color: "black" }}>
+                  style={{ color: "black" }}
+                >
                   <Link to="/cart">
                     <BsFillCartFill />
                   </Link>
@@ -177,10 +224,48 @@ function DrawerAppBar(props) {
                   aria-label="account of current user"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
-                  style={{ color: "black" }}>
+                  style={{ color: "black" }}
+                >
                   <BsTranslate />
                 </IconButton>
+                {user ? (
+                  <IconButton
+                    aria-describedby={id}
+                    size="medium"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    style={{ color: "black" }}
+                    onClick={handleClick}
+                  >
+                    {open ? <ExpandLess /> : <ExpandMore />}
+                  </IconButton>
+                ) : null}
               </Box>
+              <Popper id={id} open={open} anchorEl={anchorEl}>
+                <Box
+                  sx={{ border: `1px solid ${colors.secondary}`, mt: 2, bgcolor: "background.paper" }}
+                >
+                  <List>
+                    <ListItem disablePadding sx={{ borderBottom: `1px solid ${colors.secondary}`}}>
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Edit Blog" />
+                      </ListItemButton>
+                    </ListItem>
+                    <ListItem disablePadding>
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <AddShoppingCart />
+                        </ListItemIcon>
+                        <ListItemText primary="Edit Cart" />
+                      </ListItemButton>
+                    </ListItem>
+                  </List>
+                </Box>
+              </Popper>
             </Box>
           </Toolbar>
         </Container>
@@ -196,8 +281,12 @@ function DrawerAppBar(props) {
           }}
           sx={{
             display: { xs: "block", md: "none" },
-            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
-          }}>
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
           {drawer}
         </Drawer>
       </Box>
