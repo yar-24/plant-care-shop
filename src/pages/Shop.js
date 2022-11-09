@@ -1,5 +1,4 @@
 import React from 'react';
-import Filter from '../components/Filter';
 import Footer from '../components/Footer';
 import Product from '../components/Product';
 
