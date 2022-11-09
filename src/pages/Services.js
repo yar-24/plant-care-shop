@@ -1,6 +1,7 @@
 import React from "react";
 import BannerFreeOngkir from "../components/BannerFreeOngkir";
 import BannerServices from "../components/BannerServices";
+import Footer from "../components/Footer";
 import HeroServices from "../components/HeroServices";
 
 const Services = () => {
@@ -9,6 +10,7 @@ const Services = () => {
       <BannerServices />
       <HeroServices />
       <BannerFreeOngkir/>
+      <Footer/>
     </>
   );
 };

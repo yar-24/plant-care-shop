@@ -41,9 +41,9 @@ export default function Filter() {
   };
 
   const Container = styled.div`
-    width: 25%;
+    width: 19%;
     background-color: #fff;
-    margin-top: 30px;
+    margin: 30px;
     display: block;
   `;
 
