@@ -73,9 +73,11 @@ const ForgotPassword = () => {
           />
         </Forpas>
         <button type="submit">Submit</button>
-        <Link to={"/"} className="button2">
-          Cancel
-        </Link>
+        <button type="button" className="button2">
+                <Link to="/login" style={{ color: '#009e72' }}>
+                    Cancel
+                </Link>
+        </button>
       </form>
     </div>
   );
