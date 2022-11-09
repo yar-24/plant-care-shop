@@ -162,6 +162,10 @@ nav ul li button:hover {
   font-size: 17px;
 }
 
+.forgot-password .button2:hover{
+  color: white;
+}
+
 .input-register button:hover,
 .input-login button:hover,
 .forgot-password button:hover {
@@ -279,6 +283,10 @@ a {
     margin: 5px auto;
   }
 
+  .title{
+    font-size: 25px;
+  }
+
 }
 
 .input-login input, .input-register input, .forgot-password input{
@@ -292,3 +300,4 @@ a {
   color: black;
   
 }
+

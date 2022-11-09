@@ -20,7 +20,7 @@ const Home = () => {
     <>
       <Hero />
       <Banner alignItems={{lg: "end", xs: "center"}} sx={{m: 2}} >
-        <Title>
+        <Title className="title">
           Tips, tricks, and plant guides to make plant care downright easy
         </Title>
         <Tombol label="Read more blogs"  />
