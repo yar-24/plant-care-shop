@@ -22,15 +22,12 @@ const ForgotPassword = () => {
                 <h3>Reset your password</h3>
                 <p>We will send you an email to reset your password</p>
                 <Forpas>
-                    <input id="demo-helper-text-misaligned-no-helper" color="success" type="email" label="Email" placeholder="Email" />
+                    <input id="demo-helper-text-misaligned-no-helper" color="success" type="newPassword" label="New-Password" placeholder="New Password" style={{ marginBottom: '20px' }}/>
+                    <input id="demo-helper-text-misaligned-no-helper" color="success" type="confirmPassword" label="Confirm-Password" placeholder="Confirm Password" />
                 </Forpas>
-                <button type="button">
-                <Link to="/reset-password" style={{ color: 'white' }}>
-                    Submit
-                </Link>
-                </button>
+                <button type="button">Submit</button>
                 <button type="button" className="button2">
-                <Link to="/login" style={{ color: '#009e72' }}>
+                <Link to="/forgot-password" style={{ color: '#009e72' }}>
                     Cancel
                 </Link>
                 </button>

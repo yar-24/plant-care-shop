@@ -9,7 +9,8 @@ import {
   Register,
   ForgotPassword,
   DetailProduct,
-  Cart
+  Cart,
+  ResetPassword
 } from "../pages";
 import Appbar from "../components/Appbar";
 
@@ -27,6 +28,7 @@ const Navigation = () => {
             <Route element={<Shop/>} path="/shop"/>
             <Route element={<DetailProduct/>} path="/detail-product"/>
             <Route element={<ForgotPassword/>} path="/forgot-password"/>
+            <Route element={<ResetPassword />} path="/reset-password" />
             <Route element={<Cart />} path="/cart" />
         </Routes>
     </>

@@ -7,5 +7,6 @@ import Register from './Register'
 import ForgotPassword from './ForgotPassword'
 import Cart from './Cart'
 import DetailProduct from './DetailProduct'
+import ResetPassword from './ResetPassword'
 
-export {Home, Login, PlantCare, Services, Shop, Register, ForgotPassword, Cart, DetailProduct}
+export {Home, Login, PlantCare, Services, Shop, Register, ForgotPassword, Cart, DetailProduct, ResetPassword}

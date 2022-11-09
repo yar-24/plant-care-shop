@@ -10,13 +10,21 @@ const Right = styled(Box)`
   justify-content: end;
   position: relative;
   width: 50%;
-  ${mobile({ display: "none" })}
+  /* ${mobile({ display: "none" })} */
 `;
 
 const Image = styled.img`
   position: absolute;
   bottom: 0;
   z-index: 2;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  } 
+  @media (max-width: 900px) {
+    width: 200%;
+  } 
+
 `;
 
 const Kotak = styled.div`
@@ -34,14 +42,38 @@ const Kotak = styled.div`
   max-height: 600px;
   position: absolute;
   right: 0;
-  ${mobile({ display: "none" })}
+  /* ${mobile({ display: "none" })} */
+
+  @media (max-width: 900px) {
+    width: 150px;
+  }  
+  @media (max-width: 600px) {
+    width: 100px;
+    height: 100%;
+    max-height: 100%;
+  }  
+`;
+
+const Layout = styled.div`
+  margin: 20px;
+
+  @media (max-width: 1200px) {
+    margin: 0px auto;
+  }  
+  @media (max-width: 900px) {
+    margin: 85px auto;
+  }  
+  @media (max-width: 600px) {
+    margin: 20px auto;
+  }  
 `;
 
 const Hero = () => {
   return (
     <Container fixed>
       <Stack direction="row" spacing={10}>
-        <Box my={{ xs: 5, md: 20 }} sx={{ flex: 3 }}>
+      <Layout>
+        <Box my={{ xs: 5, md: 20 }} sx={{ flex: 5 }}>
           <Typography
             variant="h4"
             component="h2"
@@ -63,6 +95,7 @@ const Hero = () => {
             label="Discover The Plants"
           />
         </Box>
+        </Layout>
         <Right>
           <Image src={PlantHero} />
         </Right>
