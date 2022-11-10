@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux"
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { register } from "../redux/features/auth/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { register, reset } from "../redux/features/auth/authSlice";
 import { TextField } from "@mui/material";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import LoadingBtn from "../components/kecil/LoadingBtn";
 
 const Regis = styled.div`
   font-size: 13px;
@@ -32,8 +34,10 @@ const Register = () => {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { firstname, lastname, email, password } = formData;
+  const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -58,6 +62,24 @@ const Register = () => {
       dispatch(register(userData))
     }
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error("Email already exists");
+    }
+
+    if (isSuccess || user) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Login Berhasil!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    }
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   return (
     <div className="input-register">
@@ -102,7 +124,7 @@ const Register = () => {
             onChange={onChange}
           />
         </Regis>
-        <button type="submit">Create</button>
+        <LoadingBtn label="Create" loading={isLoading} />
       </form>
       <p>
         Returning customer?{" "}

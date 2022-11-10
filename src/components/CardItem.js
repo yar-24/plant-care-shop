@@ -7,12 +7,12 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { PlantItemImg } from "../images/img";
 
 const CardContainer = styled(Card)`
-  max-width: 241px;
+  /* max-width: 241px; */
   border-radius: 0;
   background-color: #cedfd9;
+  width: max-content ;
 `;
 const CardActionsContainer = styled("div")`
   display: flex;
@@ -43,13 +43,13 @@ const ActionButton = styled(Button)`
     background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
   }
 `;
-const CardItem = () => {
+const CardItem = ({imgProduct, priceProduct, nameProduct}) => {
   return (
     <CardContainer>
-      <CardMedia component="img" height="235" image={PlantItemImg} alt="green iguana" />
+      <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${imgProduct}`} alt="green iguana" />
       <CardContent>
-        <PlantTitleText>Bertie & pot</PlantTitleText>
-        <PlantPriceText mt={3}>From Rp120.000</PlantPriceText>
+        <PlantTitleText>{nameProduct}</PlantTitleText>
+        <PlantPriceText mt={3}>From Rp{priceProduct}</PlantPriceText>
       </CardContent>
       <CardActionsContainer>
         <ActionButton bgcolor={colors.white} txcolor="#000" size="small">

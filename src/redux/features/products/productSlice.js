@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import productService from './productService'
 
 const initialState = {
-  produts: [],
+  products: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -103,7 +103,7 @@ export const updateProduct = createAsyncThunk(
 )
 
 export const productSlice = createSlice({
-  name: 'produts',
+  name: 'products',
   initialState,
   reducers: {
     reset: (state) => {
@@ -121,7 +121,7 @@ export const productSlice = createSlice({
       .addCase(createProduct.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.produts.push(action.payload)
+        state.products.push(action.payload)
       })
       .addCase(createProduct.rejected, (state, action) => {
         state.isLoading = false
@@ -134,7 +134,7 @@ export const productSlice = createSlice({
       .addCase(getProduct.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.produts = action.payload
+        state.products = action.payload
       })
       .addCase(getProduct.rejected, (state, action) => {
         state.isLoading = false
@@ -147,7 +147,7 @@ export const productSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.produts = action.payload
+        state.products = action.payload
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.isLoading = false
@@ -160,7 +160,7 @@ export const productSlice = createSlice({
       .addCase(deleteProduct.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.produts = state.produts.filter(
+        state.products = state.products.filter(
           (product) => product._id !== action.payload.productId
         )
       })
@@ -175,10 +175,10 @@ export const productSlice = createSlice({
       .addCase(updateProduct.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.produts = state.produts.filter(
+        state.products = state.products.filter(
           (product) => product._id !== action.payload.productId
         )
-        state.produts.push(action.payload)
+        state.products.push(action.payload)
       })
       .addCase(updateProduct.rejected, (state, action) => {
         state.isLoading = false

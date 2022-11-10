@@ -8,7 +8,7 @@ const Custom = styled(LoadingButton)`
   box-shadow: none;
   text-transform: none;
   margin: 16px 0;
-  padding: 5px 32px;
+  padding: 5px 5px;
   font-weight: 600;
   font-family: ${fonts.inter};
   &:hover {

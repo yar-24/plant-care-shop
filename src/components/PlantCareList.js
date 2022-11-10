@@ -1,4 +1,4 @@
-import { Container, Stack } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import React from "react";
 import PlantCareItem from "./PlantCareItem";
 import { PlantCare1, PlantCare2, PlantCare3, PlantCare4 } from "../images/img";
@@ -26,7 +26,7 @@ const PlantCareList = () => {
 
   return (
     <Container fixed>
-      <Stack my={5}>
+      <Box my={5}>
         <Carousel
           additionalTransfrom={0}
           arrows
@@ -59,7 +59,7 @@ const PlantCareList = () => {
           <PlantCareItem title="Complete guide to watering" image={PlantCare3} />
           <PlantCareItem title="Complete guide to watering" image={PlantCare4} />
         </Carousel>
-      </Stack>
+      </Box>
     </Container>
   );
 };

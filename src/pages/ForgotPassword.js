@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import { axiosInstance } from "../utils";
+import LoadingBtn from "../components/kecil/LoadingBtn";
+import { useSelector } from "react-redux";
 
 const Forpas = styled.div`
   font-size: 13px;
@@ -17,43 +19,45 @@ const Forpas = styled.div`
 `;
 
 const ForgotPassword = () => {
-    const [formData, setFormData] = useState({
-        email: "",
-      });
+  const [formData, setFormData] = useState({
+    email: "",
+  });
 
-      const { email } = formData;
+  const { email } = formData;
+  const { isLoading } = useSelector((state) => state.auth);
 
-      const onChange = (e) => {
-        setFormData((prevState) => ({
-          ...prevState,
-          [e.target.name]: e.target.value,
-        }));
-      };
+  const onChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-      const onSubmit = (e) => {
-        e.preventDefault();
-    
-        const userData = {
-          email,
-        };
-    
-        if (!email) {
-            toast.warning("Please input email!!")
-        } else {
-          axiosInstance.post("/users/forgotPassword", userData)
-            .then((res) => {
-              const pesan = res.data.message;
-              if (pesan === "Email tidak ditemukan") {
-                toast.error(pesan);
-              } else {
-                toast.success(pesan);
-              }
-            })
-            .catch((err) => {
-              console.log("err");
-            });
-        }
-      };
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const userData = {
+      email,
+    };
+
+    if (!email) {
+      toast.warning("Please input email!!");
+    } else {
+      axiosInstance
+        .post("/users/forgot-password", userData)
+        .then((res) => {
+          const pesan = res.data.message;
+          if (pesan === "Email tidak ditemukan") {
+            toast.error(pesan);
+          } else {
+            toast.success(pesan);
+          }
+        })
+        .catch((err) => {
+          toast.error(err);
+        });
+    }
+  };
 
   return (
     <div className="forgot-password">
@@ -72,12 +76,10 @@ const ForgotPassword = () => {
             onChange={onChange}
           />
         </Forpas>
-        <button type="submit">Submit</button>
-        <button type="button" className="button2">
-                <Link to="/login" style={{ color: '#009e72' }}>
-                    Cancel
-                </Link>
-        </button>
+        <LoadingBtn className="button" label="Submit" loading={isLoading} />
+        <Link className="button2" to="/login">
+          Cancel
+        </Link>
       </form>
     </div>
   );

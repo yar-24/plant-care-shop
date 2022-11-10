@@ -158,18 +158,17 @@ nav ul li button:hover {
 }
 
 .forgot-password .button2 {
+  text-align: center;
   background-color: white;
   color: #009e72;
-  border: transparent;
   border-radius: 10px;
   margin-left: 10px;
-  width: 12%;
-  padding: 12px;
+  padding: 16px 4%;
   font-size: 17px;
 }
 
 .forgot-password .button2:hover {
-  color: white;
+  opacity: 0.7;
 }
 
 .input-register button:hover,
@@ -264,7 +263,6 @@ a {
 
 .shop{
   display: flex;
-  
 }
 
 /* RESPONSIF */

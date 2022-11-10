@@ -31,7 +31,7 @@ const getProduct = async (productId, productData) => {
   };
 
   const response = await axiosInstance.get(
-    `/produts/${productId}`,
+    `/products/${productId}`,
     productData,
     config
   );
@@ -48,7 +48,7 @@ const getProducts = async () => {
   };
 
   const response = await axiosInstance.get(
-    '/produts',
+    '/products',
     config
   );
 
@@ -80,7 +80,7 @@ const deleteProduct = async (productId, token) => {
     },
   };
 
-  const response = await axiosInstance.delete(`/product/${productId}`, config);
+  const response = await axiosInstance.delete(`/products/${productId}`, config);
 
   return response.data;
 };
