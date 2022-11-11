@@ -298,6 +298,11 @@ a {
     text-align: center;
   }
 
+  .services img {
+    width: 65%;
+    margin: auto;
+  }
+
   .input-register h2,
   .input-login h2,
   .forgot-password h2 {

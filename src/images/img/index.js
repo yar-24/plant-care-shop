@@ -16,6 +16,13 @@ import PlantCare1 from "./plantCare1.jpg";
 import PlantCare2 from "./plantCare2.jpg";
 import PlantCare3 from "./plantCare3.jpg";
 import PlantCare4 from "./plantCare4.jpg";
+import ServicesList1 from "./Serviceslist1.jpg";
+import ServicesList2 from "./Serviceslist2.jpg";
+import ServicesList3 from "./Serviceslist3.jpg";
+import ServicesList4 from "./Serviceslist4.jpg";
+import ServicesList5 from "./Serviceslist5.jpg";
+
+
 
 export {
   PlantHero,
@@ -36,4 +43,9 @@ export {
   PlantCare2,
   PlantCare3,
   PlantCare4,
+  ServicesList1,
+  ServicesList2,
+  ServicesList3,
+  ServicesList4,
+  ServicesList5,
 };
