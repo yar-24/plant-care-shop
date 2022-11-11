@@ -10,10 +10,12 @@ import {
   ForgotPassword,
   DetailProduct,
   Cart,
-  ResetPassword
+  ResetPassword,
+  DetailServices
 } from "../pages";
 import Appbar from "../components/Appbar";
 import Toast from "../components/kecil/Toast";
+import EditBlogServices from "../pages/EditBlogServices";
 
 
 const Navigation = () => {
@@ -28,10 +30,12 @@ const Navigation = () => {
             <Route element={<Services/>} path="/services"/>
             <Route element={<PlantCare/>} path="/plant-care"/>
             <Route element={<Shop/>} path="/shop"/>
-            <Route element={<DetailProduct/>} path="/detail-product"/>
+            <Route element={<DetailProduct/>} path="/detail-product/:id"/>
+            <Route element={<DetailServices/>} path="/detail-services"/>
             <Route element={<ForgotPassword/>} path="/forgot-password"/>
             <Route element={<ResetPassword />} path="/reset-password" />
             <Route element={<Cart />} path="/cart" />
+            <Route element={<EditBlogServices/>} path="/edit-blog-service" />
         </Routes>
     </>
   );

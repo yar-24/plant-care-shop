@@ -7,6 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 
 const CardContainer = styled(Card)`
   /* max-width: 241px; */
@@ -43,7 +44,14 @@ const ActionButton = styled(Button)`
     background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
   }
 `;
-const CardItem = ({imgProduct, priceProduct, nameProduct}) => {
+const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
+
+  const navigate = useNavigate()
+
+  const onDetailproduct = () => {
+    navigate(`/detail-product/${idProduct}`)
+  }
+
   return (
     <CardContainer>
       <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${imgProduct}`} alt="green iguana" />
@@ -55,7 +63,7 @@ const CardItem = ({imgProduct, priceProduct, nameProduct}) => {
         <ActionButton bgcolor={colors.white} txcolor="#000" size="small">
           <FaShoppingCart />
         </ActionButton>
-        <ActionButton bgcolor={colors.secondary} txcolor={colors.white} size="small">
+        <ActionButton bgcolor={colors.secondary} txcolor={colors.white} size="small" onClick={onDetailproduct}>
           See More
         </ActionButton>
       </CardActionsContainer>

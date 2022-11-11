@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "@mui/material";
+import { useDispatch } from "react-redux";
 
-const DetailServices = () => {
+const BlogDetailServices = () => {
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getProducts())
+  //   .then((res) => {
+  //     const data = res.payload.products;
+  //     setproducts(data);
+  //     setIsLoading(true);
+  //   })
+  //   .catch((err) => {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Oops...',
+  //       text: 'Something went wrong!',
+  //       footer: err
+  //     })
+  //   });
+  // })
+
   return (
     <Container>
     <div className='services'>
       <img className="gambar1" src="https://img.freepik.com/free-vector/asian-farmer-working-agriculture-field-man-collecting-crops-fields-with-plow-hoe_575670-981.jpg?size=626&ext=jpg&ga=GA1.2.1760872244.1657091755" alt="" />
       <div className="kolom">
-        <p className="deskripsi">Selamat Datang di Website Desa Panglipuran Bali</p>
         <h2>Memuat Segala Informasi Mengenai Desa Panglipuran</h2>
         <p className="deskripsi2">Desa Adat Panglipuran merupakan satu kawasan pedesaan yang memiliki tatanan
           spesifik dari struktur desa tradisional, sehingga mampu menampilkan wajah pedesaan yang asri.
@@ -18,8 +38,7 @@ const DetailServices = () => {
     </div>
     <div className='services'>
       <div className="kolom">
-        <p className="deskripsi">Profile Desa</p>
-        <h2>Desa Panglipuran</h2>
+        <h3>Desa Panglipuran</h3>
         <p className="deskripsi2">Desa adat Penglipuran merupakan sebuah komplek pemukiman penduduk yang ramah
           lingkungan, bangunan-bangunan tertata rapi dibangun di atas luas lahan yang sama, pintu utama
           (angku-angkul) berbentuk sama dan simetris, suasana perkampungan yang unik dan indah.</p>
@@ -36,4 +55,4 @@ const DetailServices = () => {
   );
 };
 
-export default DetailServices;
+export default BlogDetailServices;

@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
-import DetailPlant from '../components/DetailPlant';
 import Footer from '../components/Footer';
 import BannerFreeOngkir from "../components/BannerFreeOngkir";
 import CardList from "../components/CardList";
 import { Photo, Photo1, Photo2, Photo3, Photo4 } from "../images/img";
+import ProductDetail from '../components/ProductDetail';
 
 const DetailProduct = () => {
   return (
@@ -19,7 +19,7 @@ const DetailProduct = () => {
         </div>
     </div>
 
-    <DetailPlant/>
+    <ProductDetail/>
     <BannerFreeOngkir/>
     <CardList>You Might Like</CardList>
 

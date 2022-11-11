@@ -14,11 +14,11 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(getProducts())
-      .then((res) => {
-        const data = res.payload.products;
-        setproducts(data);
-        setIsLoading(true);
-      })
+    .then((res) => {
+      const data = res.payload.products;
+      setproducts(data);
+      setIsLoading(true);
+    })
       .catch((err) => {
         Swal.fire({
           icon: 'error',
@@ -28,6 +28,8 @@ const Product = () => {
         })
       });
   }, [dispatch]);
+
+  console.log(products)
 
   return (
     <>
@@ -41,6 +43,7 @@ const Product = () => {
                 nameProduct={product.namePlant}
                 imgProduct={`${product.idImageProduct}`}
                 priceProduct={product.price}
+                idProduct={product._id}
               />
             ) : (
               <SkeletonCardItem />

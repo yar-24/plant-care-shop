@@ -196,9 +196,9 @@ nav ul li button:hover {
   width: 100%;
 }
 
-.services h2 {
-  font-size: 25px;
+.services h2, h3 {
   font-family: "Comfortaa";
+  margin-bottom: 5px;
 }
 
 .services .kolom {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   Container,
@@ -21,14 +21,13 @@ import {
   BsFillCartFill,
   BsSearch,
   BsTranslate,
-  BsPlusSquare,
 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { colors, fonts } from "../utils";
 import Swal from "sweetalert2";
 import { logout, reset } from "../redux/features/auth/authSlice";
-import { AddShoppingCart, ExpandLess, ExpandMore, DraftsIcon} from "@mui/icons-material";
+import { ExpandLess, ExpandMore} from "@mui/icons-material";
 import InboxIcon from '@mui/icons-material/Inbox';
 
 
@@ -61,7 +60,7 @@ function DrawerAppBar(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
+  const { user, isLoading} = useSelector(
     (state) => state.auth
   );
 
@@ -155,6 +154,12 @@ function DrawerAppBar(props) {
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
 
+  const navigate = useNavigate()
+
+  const onNavigate = () => {
+    navigate("/edit-blog-service")
+  }
+
   return (
     <>
       <AppBar component="nav" sx={{ background: "#e5f7f0", color: "#009e72" }}>
@@ -242,30 +247,23 @@ function DrawerAppBar(props) {
                   </IconButton>
                 ) : null}
               </Box>
+              {user ? 
               <Popper id={id} open={open} anchorEl={anchorEl}>
                 <Box
                   sx={{ border: `1px solid ${colors.secondary}`, mt: 2, bgcolor: "background.paper" }}
                 >
                   <List>
-                    <ListItem disablePadding sx={{ borderBottom: `1px solid ${colors.secondary}`}}>
-                      <ListItemButton>
+                    <ListItem disablePadding>
+                      <ListItemButton onClick={onNavigate}>
                         <ListItemIcon>
                           <InboxIcon />
                         </ListItemIcon>
                         <ListItemText primary="Edit Blog" />
                       </ListItemButton>
                     </ListItem>
-                    <ListItem disablePadding>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <AddShoppingCart />
-                        </ListItemIcon>
-                        <ListItemText primary="Edit Cart" />
-                      </ListItemButton>
-                    </ListItem>
                   </List>
                 </Box>
-              </Popper>
+              </Popper>: null}
             </Box>
           </Toolbar>
         </Container>
