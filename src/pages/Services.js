@@ -3,6 +3,7 @@ import BannerFreeOngkir from "../components/BannerFreeOngkir";
 import BannerServices from "../components/BannerServices";
 import Footer from "../components/Footer";
 import HeroServices from "../components/HeroServices";
+import ServicesList from "../components/ServicesList";
 
 const Services = () => {
   return (
@@ -10,6 +11,7 @@ const Services = () => {
       <BannerServices />
       <HeroServices />
       <BannerFreeOngkir/>
+      <ServicesList/>
       <Footer/>
     </>
   );

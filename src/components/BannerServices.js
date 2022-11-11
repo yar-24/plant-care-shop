@@ -31,7 +31,7 @@ const BannerServices = () => {
   return (
     <Container>
       <Wrapper>
-        <Text>
+        <Text style={{ padding: '15px' }}>
           Plants can have a massive impact on how a space feels and looks
         </Text>
       </Wrapper>
