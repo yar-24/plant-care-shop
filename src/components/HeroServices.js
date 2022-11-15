@@ -28,7 +28,7 @@ const HeroServices = () => {
             Once you've decided on your plants, get your and your new pals some pots and plant
             stands to help them look their best. Entrust us with the decoration of your home
           </Typography>
-          <CustomButton size="large" sx={{ alignSelf: "flex-start" }}>
+          <CustomButton size="large" sx={{ alignSelf: "flex-start", my: 4, px: 4, py: 2 }}>
             Decorate your home now
           </CustomButton>
         </Stack>

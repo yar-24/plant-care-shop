@@ -16,11 +16,13 @@ import {
 import Appbar from "../components/Appbar";
 import Toast from "../components/kecil/Toast";
 import EditBlogServices from "../pages/EditBlogServices";
+import ScrollToTop from "../components/ScrollToTop";
 
 
 const Navigation = () => {
   return (
     <>
+        <ScrollToTop/>
         <Appbar/>
         <Toast/>
         <Routes>
