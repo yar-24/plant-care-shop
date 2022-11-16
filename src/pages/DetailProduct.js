@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import BannerFreeOngkir from "../components/BannerFreeOngkir";
 import CardList from "../components/CardList";
 import ProductDetail from '../components/ProductDetail';
+import LocaleContext from "../contexts/LocaleContext";
 import ProductInformation from '../components/ProductInformation';
 import { getProduct } from '../redux/features/products/productSlice';
 import Swal from 'sweetalert2';
@@ -11,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 const DetailProduct = () => {
+  const { locale } = React.useContext(LocaleContext);
   const [product, setProduct] = useState({});
   const {id} = useParams();
   
@@ -48,7 +50,7 @@ const DetailProduct = () => {
 
     <ProductDetail/>
     <BannerFreeOngkir/>
-    <CardList>You Might Like</CardList>
+    <CardList>{locale === 'id' ? 'Mungkin Anda Sukai' : 'You Might Like'}</CardList>
 
     <Footer/>
     </>

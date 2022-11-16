@@ -4,6 +4,7 @@ import { fonts, mobile } from "../utils/";
 import { PlantHero } from "../images/img";
 import Tombol from "./kecil/Tombol";
 import { Container, Stack, Box, Typography } from "@mui/material";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Right = styled(Box)`
   display: flex;
@@ -69,6 +70,8 @@ const Layout = styled.div`
 `;
 
 const Hero = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   return (
     <Container fixed>
       <Stack direction="row" spacing={10}>
@@ -80,19 +83,17 @@ const Hero = () => {
             sx={{ fontFamily: fonts.comfortaa, fontWeight: 700 }}
             gutterBottom
           >
-            Discover the best plant for your aura and your space. Protect your
-            breath.
+            {locale === 'id' ? 'Temukan tanaman terbaik untuk aura dan ruang anda. Lindungi napas anda.' : 'Discover the best plant for your aura and your space. Protect your breath.'}
           </Typography>
           <Typography
             variant="body1"
             sx={{ fontFamily: fonts.inter, lineHeight: 2, mt: 2, mb: 3 }}
             gutterBottom
           >
-            Breath helps you discover the best plants for your space, delivers
-            them to your door and helps you look after them.
+            {locale === 'id' ? 'Nafas membantu anda menemukan tanaman terbaik untuk ruang anda, mengirimkannya ke pintu anda dan membantu anda merawatnya.' : 'Breath helps you discover the best plants for your space, delivers them to your door and helps you look after them.'}
           </Typography>
           <Tombol
-            label="Discover The Plants"
+            label= {locale === 'id' ? 'Temukan Tanaman' : "Discover The Plants"}
           />
         </Box>
         </Layout>

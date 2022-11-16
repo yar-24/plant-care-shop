@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { fonts } from "../utils";
 import Tombol from "../components/kecil/Tombol";
 import Footer from "../components/Footer";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Title = styled.h1`
   font-family: ${fonts.inter};
@@ -18,16 +19,18 @@ const Title = styled.h1`
 `;
 
 const Home = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   return (
     <>
       <Hero />
       <Banner alignItems={{lg: "end", xs: "center"}} sx={{m: 2}} >
         <Title className="title">
-          Tips, tricks, and plant guides to make plant care downright easy
+        {locale === 'id' ? 'Kiat, trik, dan panduan untuk membuat perawatan tanaman benar-benar mudah' : 'Tips, tricks, and plant guides to make plant care downright easy'}
         </Title>
-        <Tombol label="Read more blogs"  />
+        <Tombol label={locale === 'id' ? 'Baca blog lainnya' : 'Read more blogs'}   />
       </Banner>
-      <CardList>Popular Categories</CardList>
+      <CardList>{locale === 'id' ? 'Kategori Populer' : 'Popular Categories'}</CardList>
       <Footer />
     </>
   );

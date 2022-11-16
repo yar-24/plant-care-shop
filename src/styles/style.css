@@ -134,6 +134,7 @@ nav ul li button:hover {
 
 .input-register h3,
 .forgot-password h3 {
+  padding-top: 15px;
   margin-left: 50px;
   font-family: "Inter";
   font-style: normal;
@@ -165,6 +166,7 @@ nav ul li button:hover {
   margin-left: 10px;
   padding: 16px 4%;
   font-size: 17px;
+  font-weight: 600;
 }
 
 .forgot-password .button2:hover {
@@ -279,6 +281,13 @@ a {
   .plant-img {
     width: 300px;
   }
+}
+
+@media screen and (max-width : 1050px) {
+
+.input-register button {
+  width: 19%;
+}
 }
 
 @media screen and (max-width : 1000px) {

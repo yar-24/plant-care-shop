@@ -8,8 +8,11 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { Checkbox, FormControlLabel, Typography } from "@mui/material";
 import styled from "styled-components";
+import LocaleContext from "../contexts/LocaleContext";
 
 export default function Filter() {
+  const { locale } = React.useContext(LocaleContext);
+
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
@@ -75,7 +78,7 @@ export default function Filter() {
 
             }}
           >
-            Filter
+            {locale === 'id' ? 'Pilihan' : 'Filter'}
           </ListSubheader>
         }
       >
@@ -83,7 +86,7 @@ export default function Filter() {
         <ListItemText
             primary={
               <Typography variant="h6" component="h6">
-                Plant Tipe
+            {locale === 'id' ? 'Tipe Tumbuhan' : 'Plant Tipe'}
               </Typography>
             }
             sx={{
@@ -95,7 +98,7 @@ export default function Filter() {
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <ListItemButton>
-            <ListItemText primary="Flowering" />
+            <ListItemText primary={locale === 'id' ? 'Berbunga' : 'Flowering'}/>
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -103,7 +106,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Ferns" />
+            <ListItemText primary= {locale === 'id' ? 'Pakis' : 'Ferns'}/>
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -111,7 +114,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Cacti & succulents" />
+            <ListItemText primary={locale === 'id' ? 'Kaktus' : 'Cactus'} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -119,7 +122,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Palms & trees" />
+            <ListItemText primary={locale === 'id' ? 'Palem & pohon' : "Palms & trees"} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -127,7 +130,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Bamboo & grasses" />
+            <ListItemText primary={locale === 'id' ? 'Bambu & rumput' : "Bamboo & grasses"} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -139,7 +142,7 @@ export default function Filter() {
           <ListItemText
             primary={
               <Typography variant="h6" component="h5">
-                Environment
+                {locale === 'id' ? 'Lingkungan': 'Environment'}
               </Typography>
             }
             sx={{
@@ -151,7 +154,7 @@ export default function Filter() {
         </ListItemButton>
         <Collapse in={open2} timeout="auto" unmountOnExit>
           <ListItemButton>
-            <ListItemText primary="Indoor" />
+            <ListItemText primary={locale === 'id' ? 'Dalam ruangan' : "Indoor"} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -159,7 +162,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Outdoor" />
+          <ListItemText primary={locale === 'id' ? 'Luar ruangan' : "Outdoor"} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -171,7 +174,7 @@ export default function Filter() {
           <ListItemText
             primary={
               <Typography variant="h6" component="h5">
-                Plant Height
+                {locale === 'id' ? 'Tinggi' : 'Plant Height' }
               </Typography>
             }
             sx={{
@@ -183,7 +186,7 @@ export default function Filter() {
         </ListItemButton>
         <Collapse in={open3} timeout="auto" unmountOnExit>
           <ListItemButton>
-            <ListItemText primary="Tall / 1m-2.8m" />
+            <ListItemText primary={locale === 'id' ? 'Tinggi / 1m-2.8m' : "Tall / 1m-2.8m"} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -191,7 +194,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Medium / 50cm-1m" />
+            <ListItemText primary={locale === 'id' ? 'Sedang / 50cm-1m' : "Medium / 50cm-1m" }/>
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -199,7 +202,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Small / 15-50cm" />
+            <ListItemText primary={locale === 'id' ? 'Kecil / 15-50cm' : "Small / 15-50cm" } />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -207,7 +210,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Tiny / 0-15cm" />
+            <ListItemText primary={locale === 'id' ? 'Mungil / 0-15cm' : "Tiny / 0-15cm"} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -219,7 +222,7 @@ export default function Filter() {
           <ListItemText
             primary={
               <Typography variant="h6" component="h5">
-                Benefit
+                {locale === 'id' ? 'Manfaat' : 'Benefit'}
               </Typography>
             }
             sx={{
@@ -231,7 +234,7 @@ export default function Filter() {
         </ListItemButton>
         <Collapse in={open4} timeout="auto" unmountOnExit>
           <ListItemButton>
-            <ListItemText primary="Air purifier" />
+            <ListItemText primary={locale === 'id' ? 'Pembersih udara' : "Air purifier"} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -239,15 +242,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Easy care" />
-            <FormControlLabel
-              value="start"
-              control={<Checkbox />}
-              labelPlacement="start"
-            />
-          </ListItemButton>
-          <ListItemButton>
-            <ListItemText primary="Child and pet friendly" />
+            <ListItemText primary={locale === 'id' ? 'Perawatan mudah' : "Easy care"} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -259,7 +254,7 @@ export default function Filter() {
           <ListItemText
             primary={
               <Typography variant="h6" component="h5">
-                Product tipe
+                {locale === 'id' ? 'Tipe Produk' : 'Product tipe'}
               </Typography>
             }
             sx={{
@@ -271,7 +266,7 @@ export default function Filter() {
         </ListItemButton>
         <Collapse in={open5} timeout="auto" unmountOnExit>
           <ListItemButton>
-            <ListItemText primary="Pots" />
+            <ListItemText primary={locale === 'id' ? 'Pot' : "Pots"} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -279,7 +274,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Plants " />
+            <ListItemText primary={locale === 'id' ? 'Tanaman' : "Plants "} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -287,7 +282,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Bundles " />
+            <ListItemText primary={locale === 'id' ? 'Kumpulan' : "Bundles "} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -295,7 +290,7 @@ export default function Filter() {
             />
           </ListItemButton>
           <ListItemButton>
-            <ListItemText primary="Tools & accessories " />
+            <ListItemText primary={locale === 'id' ? 'Aksesoris' : "Tools & accessories "} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}
@@ -307,7 +302,7 @@ export default function Filter() {
           <ListItemText
             primary={
               <Typography variant="h6" component="h5">
-                Prices
+                {locale === 'id' ? 'Harga' : 'Prices'}
               </Typography>
             }
             sx={{
@@ -347,7 +342,7 @@ export default function Filter() {
           <ListItemText
             primary={
               <Typography variant="h6" component="h5">
-                Sale
+               {locale === 'id' ? 'Obral' : 'Sale'}
               </Typography>
             }
             sx={{
@@ -359,7 +354,7 @@ export default function Filter() {
         </ListItemButton>
         <Collapse in={open7} timeout="auto" unmountOnExit>
           <ListItemButton>
-            <ListItemText primary="Discounted items" />
+            <ListItemText primary={locale === 'id' ? 'Item diskon' : "Discounted items"} />
             <FormControlLabel
               value="start"
               control={<Checkbox />}

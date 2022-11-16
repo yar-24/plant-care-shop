@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { BgBannerServices } from "../images/img";
 import { fonts } from "../utils";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Container = styled.div`
   display: flex;
@@ -28,11 +29,13 @@ const Text = styled.h2`
 `;
 
 const BannerServices = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   return (
     <Container>
       <Wrapper>
         <Text style={{ padding: '15px' }}>
-          Plants can have a massive impact on how a space feels and looks
+        {locale === 'id' ? 'Tanaman dapat memiliki dampak besar pada bagaimana ruang terasa dan terlihat' : 'Plants can have a massive impact on how a space feels and looks'}
         </Text>
       </Wrapper>
     </Container>

@@ -7,11 +7,15 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import { TextField } from "@mui/material";
 import LoadingBtn from "../components/kecil/LoadingBtn";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Forpas = styled.div`
   font-size: 13px;
   display: grid;
   margin: 75px 100px 40px 100px;
+  grid-template-columns: 1fr;
+  grid-column-gap: 25px;
+  grid-row-gap: 20px;
 
   @media (max-width: 725px) {
     margin: 30px auto;
@@ -20,6 +24,8 @@ const Forpas = styled.div`
 `;
 
 const ResetPassword = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   const [formData, setFormData] = useState({
     password: "",
     password2: "",
@@ -70,14 +76,14 @@ const ResetPassword = () => {
   return (
     <div className="forgot-password">
       <form onSubmit={onSubmit}>
-        <h2>Reset Password Page</h2>
-        <h3>Enter your new password</h3>
+        <h2>{locale === 'id' ? 'Halaman Atur Ulang Kata Sandi' : 'Reset Password Page'}</h2>
+        <h3>{locale === 'id' ? 'Masukkan kata sandi baru anda' : 'Enter your new password'}</h3>
         <Forpas>
           <TextField
             id="password"
             color="success"
             type="password"
-            label="Password"
+            label={locale === 'id' ? 'Kata Sandi' : "Password"}
             name="password"
             value={password}
             onChange={onChange}
@@ -86,13 +92,13 @@ const ResetPassword = () => {
             id="password2"
             color="success"
             type="password2"
-            label="Password2"
+            label={locale === 'id' ? 'Kata Sandi 2' : "Password 2"}
             name="password2"
             value={password2}
             onChange={onChange}
           />
         </Forpas>
-        <LoadingBtn label="Submit" loading={isLoading} />
+        <LoadingBtn label={locale === 'id' ? 'Kirim' : "Submit"} loading={isLoading} />
       </form>
     </div>
   );
