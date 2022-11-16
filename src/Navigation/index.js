@@ -11,11 +11,11 @@ import {
   DetailProduct,
   Cart,
   ResetPassword,
-  DetailServices
+  DetailServices,
+  WriteServices
 } from "../pages";
 import Appbar from "../components/Appbar";
 import Toast from "../components/kecil/Toast";
-import EditBlogServices from "../pages/EditBlogServices";
 
 
 const Navigation = () => {
@@ -35,7 +35,7 @@ const Navigation = () => {
             <Route element={<ForgotPassword/>} path="/forgot-password"/>
             <Route element={<ResetPassword />} path="/reset-password" />
             <Route element={<Cart />} path="/cart" />
-            <Route element={<EditBlogServices/>} path="/edit-blog-service" />
+            <Route element={<WriteServices/>} path="/write-service" />
         </Routes>
     </>
   );

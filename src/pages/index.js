@@ -10,6 +10,7 @@ import DetailProduct from "./DetailProduct";
 import ResetPassword from "./ResetPassword";
 import DetailServices from "./DetailServices";
 import BlogDetailServices from "../components/BlogDetailServices";
+import WriteServices from "./WriteServices";
 
 export {
   Home,
@@ -24,4 +25,5 @@ export {
   ResetPassword,
   DetailServices,
   BlogDetailServices,
+  WriteServices
 };

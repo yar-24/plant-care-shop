@@ -157,7 +157,7 @@ function DrawerAppBar(props) {
   const navigate = useNavigate()
 
   const onNavigate = () => {
-    navigate("/edit-blog-service")
+    navigate("/write-service")
   }
 
   return (

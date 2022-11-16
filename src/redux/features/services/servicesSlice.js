@@ -1,21 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import productService from './productService'
+import servicesService from './servicesService'
 
 const initialState = {
-  products: [],
+  services: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: '',
 }
 
-// Create new product
-export const createProduct = createAsyncThunk(
-  'products/create',
-  async (productData, thunkAPI) => {
+// Create new service
+export const createService = createAsyncThunk(
+  'services/create',
+  async (serviceData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await productService.createProduct(productData, token)
+      console.log(token)
+      return await servicesService.createService(serviceData, token)
     } catch (error) {
       const message =
         (error.response &&
@@ -28,12 +29,12 @@ export const createProduct = createAsyncThunk(
   }
 )
 
-// Get product
-export const getProduct = createAsyncThunk(
-  'products/get',
-  async (productId, productData, thunkAPI) => {
+// Get service
+export const getService = createAsyncThunk(
+  'services/get',
+  async (serviceId, serviceData, thunkAPI) => {
     try {
-      return await productService.getProduct(productId, productData)
+      return await servicesService.getService(serviceId, serviceData)
     } catch (error) {
       const message =
         (error.response &&
@@ -46,12 +47,12 @@ export const getProduct = createAsyncThunk(
   }
 )
 
-// Get products
-export const getProducts = createAsyncThunk(
-  'products/gets',
+// Get services
+export const getServices = createAsyncThunk(
+  'services/gets',
   async (_, thunkAPI) => {
     try {
-      return await productService.getProducts()
+      return await servicesService.getServices()
     } catch (error) {
       const message =
         (error.response &&
@@ -65,12 +66,12 @@ export const getProducts = createAsyncThunk(
 )
 
 // Delete user goal
-export const deleteProduct = createAsyncThunk(
-  'products/delete',
-  async (productId, thunkAPI) => {
+export const deleteservice = createAsyncThunk(
+  'services/delete',
+  async (serviceId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await productService.deleteProduct(productId, token)
+      return await servicesService.deleteService(serviceId, token)
     } catch (error) {
       const message =
         (error.response &&
@@ -83,13 +84,13 @@ export const deleteProduct = createAsyncThunk(
   }
 )
 
-// Update Product
-export const updateProduct = createAsyncThunk(
-  'products/update',
-  async (productData, productId, thunkAPI) => {
+// Update service
+export const updateService = createAsyncThunk(
+  'services/update',
+  async (serviceData, serviceId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await productService.updateProduct(productData, productId, token)
+      return await servicesService.updateService(serviceData, serviceId, token)
     } catch (error) {
       const message =
         (error.response &&
@@ -102,85 +103,80 @@ export const updateProduct = createAsyncThunk(
   }
 )
 
-export const productSlice = createSlice({
-  name: 'products',
+export const serviceSlice = createSlice({
+  name: 'service',
   initialState,
   reducers: {
-    reset: (state) => {
-        state.isLoading = false;
-        state.isSuccess = false;
-        state.isError = false;
-        state.message = "";
-      },
+    reset: (state) => initialState
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createProduct.pending, (state) => {
+      .addCase(createService.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(createProduct.fulfilled, (state, action) => {
+      .addCase(createService.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.products.push(action.payload)
+        state.services.push(action.payload)
       })
-      .addCase(createProduct.rejected, (state, action) => {
+      .addCase(createService.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
       })
-      .addCase(getProduct.pending, (state) => {
+      .addCase(getService.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(getProduct.fulfilled, (state, action) => {
+      .addCase(getService.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.products = action.payload
+        state.services = action.payload
       })
-      .addCase(getProduct.rejected, (state, action) => {
+      .addCase(getService.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
       })
-      .addCase(getProducts.pending, (state) => {
+      .addCase(getServices.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(getProducts.fulfilled, (state, action) => {
+      .addCase(getServices.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.products = action.payload
+        state.services = action.payload
       })
-      .addCase(getProducts.rejected, (state, action) => {
+      .addCase(getServices.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
       })
-      .addCase(deleteProduct.pending, (state) => {
+      .addCase(deleteservice.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(deleteProduct.fulfilled, (state, action) => {
+      .addCase(deleteservice.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.products = state.products.filter(
-          (product) => product._id !== action.payload.productId
+        state.services = state.services.filter(
+          (service) => service._id !== action.payload.serviceId
         )
       })
-      .addCase(deleteProduct.rejected, (state, action) => {
+      .addCase(deleteservice.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
       })
-      .addCase(updateProduct.pending, (state) => {
+      .addCase(updateService.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(updateProduct.fulfilled, (state, action) => {
+      .addCase(updateService.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.products = state.products.filter(
-          (product) => product._id !== action.payload.productId
+        state.services = state.services.filter(
+          (service) => service._id !== action.payload.serviceId
         )
-        state.products.push(action.payload)
+        state.services.push(action.payload)
       })
-      .addCase(updateProduct.rejected, (state, action) => {
+      .addCase(updateService.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
@@ -188,5 +184,5 @@ export const productSlice = createSlice({
   },
 })
 
-export const { reset } = productSlice.actions
-export default productSlice.reducer
+export const { reset } = serviceSlice.actions
+export default serviceSlice.reducer

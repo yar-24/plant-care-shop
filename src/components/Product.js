@@ -29,8 +29,6 @@ const Product = () => {
       });
   }, [dispatch]);
 
-  console.log(products)
-
   return (
     <>
       <h2 className="title-product">All Product</h2>

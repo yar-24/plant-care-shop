@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import HeroPlantCare from "../components/HeroPlantCare";
 import Banner from "../components/Banner";
 import { Typography } from "@mui/material";
@@ -6,8 +6,25 @@ import { colors, fonts } from "../utils";
 import PlantCareList from "../components/PlantCareList";
 import BannerFreeOngkir from "../components/BannerFreeOngkir";
 import Footer from "../components/Footer";
+import { useDispatch } from "react-redux";
+import { getServices } from "../redux/features/services/servicesSlice";
 
 const PlantCare = () => {
+const [planeCare, setPlantCare] = useState([])
+
+const dispacth = useDispatch()
+
+useEffect(() => {
+  dispacth(getServices())
+  .then((res)=>{
+    setPlantCare(res)
+  }).catch((err) => {
+    console.log(err)
+  })
+},[dispacth])
+
+console.log(planeCare);
+
   return (
     <>
       <HeroPlantCare />
