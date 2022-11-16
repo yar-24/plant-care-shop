@@ -27,7 +27,7 @@ const HeroServices = () => {
           <Typography variant="body1" sx={{ fontFamily: fonts.inter, lineHeight: 2 }} gutterBottom>
           {locale === 'id' ? 'Setelah Anda memutuskan tanaman Anda, dapatkan anda dan teman baru anda beberapa pot dan dudukan tanaman untuk membantu mereka tampil terbaik. Percayakan dekorasi rumah anda kepada kami' : 'Once you`ve decided on your plants, get your and your new pals some pots and plant stands to help them look their best. Entrust us with the decoration of your home'}
           </Typography>
-          <CustomButton size="large" sx={{ alignSelf: "flex-start" }}>
+          <CustomButton size="large" sx={{ alignSelf: "flex-start", my: 4, px: 4, py: 2 }}>
           {locale === 'id' ? 'Hiasi rumahmu sekarang' : 'Decorate your home now'}
           </CustomButton>
         </Stack>

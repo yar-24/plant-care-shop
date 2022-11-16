@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Container, Stack } from "@mui/material";
 import Swal from "sweetalert2";
 import { getProducts } from "../redux/features/products/productSlice";
 import CardItem from "./CardItem";
@@ -37,23 +38,25 @@ const Product = () => {
   return (
     <>
       <h2 className="title-product">{locale === 'id' ? 'Semua Produk' : 'All Product'}</h2>
-      <div className="shop">
+      <Container fixed>
         <Filter />
-        {products.map((product, index) => (
-          <div className="product" key={index}>
-            {isLoading ? (
-              <CardItem
-                nameProduct={product.namePlant}
-                imgProduct={`${product.idImageProduct}`}
-                priceProduct={product.price}
-                idProduct={product._id}
-              />
-            ) : (
-              <SkeletonCardItem />
-            )}
-          </div>
-        ))}
-      </div>
+        <Stack>
+          {products.map((product, index) => (
+            <div className="product" key={index}>
+              {isLoading ? (
+                <CardItem
+                  nameProduct={product.namePlant}
+                  imgProduct={`${product.idImageProduct}`}
+                  priceProduct={product.price}
+                  idProduct={product._id}
+                />
+              ) : (
+                <SkeletonCardItem />
+              )}
+            </div>
+          ))}
+        </Stack>
+      </Container>
     </>
   );
 };

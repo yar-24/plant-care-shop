@@ -9,9 +9,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import LocaleContext from "../contexts/LocaleContext";
+import { Link } from "react-router-dom";
 
 const CardContainer = styled(Card)`
-  /* max-width: 241px; */
+  max-width: 241px;
   border-radius: 0;
   background-color: #cedfd9;
   width: max-content ;
@@ -65,7 +66,7 @@ const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
         <ActionButton bgcolor={colors.white} txcolor="#000" size="small">
           <FaShoppingCart />
         </ActionButton>
-        <ActionButton bgcolor={colors.secondary} txcolor={colors.white} size="small" onClick={onDetailproduct}>
+        <ActionButton component={Link} to={`/detail-product/${idProduct}`} bgcolor={colors.secondary} txcolor={colors.white} size="small">
         {locale === 'id' ? 'Lihat Lainya' : 'See More'}
         </ActionButton>
       </CardActionsContainer>

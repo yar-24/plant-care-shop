@@ -6,6 +6,7 @@ import { fonts } from "../utils/";
 import { PlantCareHero } from "../images/img";
 import { useNavigate } from "react-router-dom";
 import LocaleContext from "../contexts/LocaleContext";
+import { Link } from "react-router-dom";
 
 const HeroImage = styled("img")`
   width: 100%;
@@ -52,8 +53,9 @@ const HeroPlantCare = () => {
           </Typography>
           <CustomButton
             size="large"
-            sx={{ alignSelf: "flex-end" }}
-            onClick={onNavigate}
+            component={Link}
+            to={'/detail-services'}
+            sx={{ alignSelf: "flex-end", my: 4, px: 4, py: 2 }}
           >
             {locale === 'id' ? 'Baca Selengkapnya' : 'Read More'}
           </CustomButton>
