@@ -8,6 +8,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import LocaleContext from "../contexts/LocaleContext";
 
 const CardContainer = styled(Card)`
   /* max-width: 241px; */
@@ -45,6 +46,7 @@ const ActionButton = styled(Button)`
   }
 `;
 const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
+  const { locale } = React.useContext(LocaleContext);
 
   const navigate = useNavigate()
 
@@ -57,14 +59,14 @@ const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
       <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${imgProduct}`} alt="green iguana" />
       <CardContent>
         <PlantTitleText>{nameProduct}</PlantTitleText>
-        <PlantPriceText mt={3}>From Rp{priceProduct}</PlantPriceText>
+        <PlantPriceText mt={3}>{locale === 'id' ? 'Dari' : 'From'} Rp{priceProduct}</PlantPriceText>
       </CardContent>
       <CardActionsContainer>
         <ActionButton bgcolor={colors.white} txcolor="#000" size="small">
           <FaShoppingCart />
         </ActionButton>
         <ActionButton bgcolor={colors.secondary} txcolor={colors.white} size="small" onClick={onDetailproduct}>
-          See More
+        {locale === 'id' ? 'Lihat Lainya' : 'See More'}
         </ActionButton>
       </CardActionsContainer>
     </CardContainer>

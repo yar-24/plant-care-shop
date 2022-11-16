@@ -4,9 +4,12 @@ import Swal from "sweetalert2";
 import { getProducts } from "../redux/features/products/productSlice";
 import CardItem from "./CardItem";
 import Filter from "./Filter";
+import LocaleContext from "../contexts/LocaleContext";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
 
+
 const Product = () => {
+  const { locale } = React.useContext(LocaleContext);
   const [products, setproducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,7 +36,7 @@ const Product = () => {
 
   return (
     <>
-      <h2 className="title-product">All Product</h2>
+      <h2 className="title-product">{locale === 'id' ? 'Semua Produk' : 'All Product'}</h2>
       <div className="shop">
         <Filter />
         {products.map((product, index) => (

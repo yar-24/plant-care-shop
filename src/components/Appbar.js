@@ -27,9 +27,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { colors, fonts } from "../utils";
 import Swal from "sweetalert2";
 import { logout, reset } from "../redux/features/auth/authSlice";
-import { ExpandLess, ExpandMore} from "@mui/icons-material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import InboxIcon from '@mui/icons-material/Inbox';
-
+import { LocaleConsumer } from '../contexts/LocaleContext';
 
 const drawerWidth = 240;
 const navItems = [
@@ -60,7 +60,7 @@ function DrawerAppBar(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  const { user, isLoading} = useSelector(
+  const { user, isLoading } = useSelector(
     (state) => state.auth
   );
 
@@ -131,7 +131,7 @@ function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        Plant and Care Shop
+       Breath
       </Typography>
       <Divider />
       <List>
@@ -161,6 +161,10 @@ function DrawerAppBar(props) {
   }
 
   return (
+    <LocaleConsumer>
+    {
+      ({ locale, toggleLocale}) => {
+        return (
     <>
       <AppBar component="nav" sx={{ background: "#e5f7f0", color: "#009e72" }}>
         <Container fixed>
@@ -191,7 +195,7 @@ function DrawerAppBar(props) {
               </Typography>
             </Link>
             <Box sx={{ display: "flex" }}>
-              <Box sx={{ display: { xs: "none", md: "flex" }, marginRight: 4 }}>
+              <Box sx={{ display: { xs: "none", md: "flex" }, marginRight: 1 }}>
                 {navItems.map((item, index) => (
                   <NavLink key={index} to={item.link}>
                     {item.name}
@@ -202,7 +206,7 @@ function DrawerAppBar(props) {
                 {user ? (
                   <LoginLink onClick={onLogout}>Logout</LoginLink>
                 ) : (
-                  <LoginLink to="/login">Login</LoginLink>
+                  <LoginLink to="/login">{locale === 'id' ? 'Masuk' : 'Login'}</LoginLink>
                 )}
                 <IconButton
                   size="medium"
@@ -230,6 +234,7 @@ function DrawerAppBar(props) {
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   style={{ color: "black" }}
+                  onClick={toggleLocale}
                 >
                   <BsTranslate />
                 </IconButton>
@@ -247,23 +252,23 @@ function DrawerAppBar(props) {
                   </IconButton>
                 ) : null}
               </Box>
-              {user ? 
-              <Popper id={id} open={open} anchorEl={anchorEl}>
-                <Box
-                  sx={{ border: `1px solid ${colors.secondary}`, mt: 2, bgcolor: "background.paper" }}
-                >
-                  <List>
-                    <ListItem disablePadding>
-                      <ListItemButton onClick={onNavigate}>
-                        <ListItemIcon>
-                          <InboxIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Edit Blog" />
-                      </ListItemButton>
-                    </ListItem>
-                  </List>
-                </Box>
-              </Popper>: null}
+              {user ?
+                <Popper id={id} open={open} anchorEl={anchorEl}>
+                  <Box
+                    sx={{ border: `1px solid ${colors.secondary}`, mt: 2, bgcolor: "background.paper" }}
+                  >
+                    <List>
+                      <ListItem disablePadding>
+                        <ListItemButton onClick={onNavigate}>
+                          <ListItemIcon>
+                            <InboxIcon />
+                          </ListItemIcon>
+                          <ListItemText primary="Edit Blog" />
+                        </ListItemButton>
+                      </ListItem>
+                    </List>
+                  </Box>
+                </Popper> : null}
             </Box>
           </Toolbar>
         </Container>
@@ -290,7 +295,11 @@ function DrawerAppBar(props) {
       </Box>
       <Box component="main" sx={{ p: 4 }}></Box>
     </>
+    )
+        }
+      }
+    </LocaleConsumer>
   );
-}
+};
 
 export default DrawerAppBar;

@@ -3,41 +3,43 @@ import { BsFillTelephoneFill, BsInstagram, BsTwitter, BsFacebook } from "react-i
 import { BiTime } from "react-icons/bi";
 import { HiLocationMarker } from "react-icons/hi"
 import { MdEmail } from "react-icons/md";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Footer = () => {
+  const { locale } = React.useContext(LocaleContext);
+
     return (
         <footer class="footer">
             <div class="container">
                 <div class="row">
                     <div class="footer-col">
-                        <h4>About</h4>
+                        <h4>{locale === 'id' ? 'Tentang' : 'About'}</h4>
                         <ul>
-                            <li><a href="/">About Breath</a></li>
-                            <li><a href="/shop">Shop</a></li>
-                            <li><a href="/plant-care">Plant Care</a></li>
-                            <li><a href="/services">Services</a></li>
+                            <li><a href="/">{locale === 'id' ? 'Tentang Breath' : 'About Breath'}</a></li>
+                            <li><a href="/shop">{locale === 'id' ? 'Belanja' : 'Shop'}</a></li>
+                            <li><a href="/plant-care">{locale === 'id' ? 'Perawatan Tanaman' : 'Plant Care'}</a></li>
+                            <li><a href="/services">{locale === 'id' ? 'Layanan' : 'Services'}</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>Terms</h4>
+                        <h4>{locale === 'id' ? 'Ketentuan' : 'Terms'}</h4>
                         <ul>
-                            <li><a href="/">Terms of Service</a></li>
-                            <li><a href="/">Privacy Policy</a></li>
-                            <li><a href="/">Return and Delivery</a></li>
-                            <li><a href="/">Cookies</a></li>
+                            <li><a href="/">{locale === 'id' ? 'Ketentuan Layanan' : 'Terms of Service'}</a></li>
+                            <li><a href="/">{locale === 'id' ? 'Kebijakan Privasi' : 'Privacy Policy'}</a></li>
+                            <li><a href="/">{locale === 'id' ? 'Pengembalian dan Pengiriman' : 'Return and Delivery'}</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>Contacts</h4>
+                        <h4>{locale === 'id' ? 'Kontak' : 'Contacts'}</h4>
                         <ul>
                             <li><a href="/"><HiLocationMarker/> Jakarta, Soekarno Hatta No. 13</a></li>
                             <li><a href="/"><BsFillTelephoneFill/> 082050123458</a></li>
-                            <li><a href="/"><BiTime/> Business Hours: 08:00 - 24:00</a></li>
+                            <li><a href="/"><BiTime/>{locale === 'id' ? ' Jam Buka' : ' Business Hours:'} 08:00 - 24:00</a></li>
                             <li><a href="/"><MdEmail/> breath@gmail.com</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>follow us</h4>
+                        <h4>{locale === 'id' ? 'Ikuti Kami' : 'Follow us'}</h4>
                         <div class="social-links">
                             <a href="/"><BsFacebook/></a>
                             <a href="/"><BsTwitter/></a>

@@ -5,12 +5,15 @@ import CustomButton from "./CustomButton";
 import { fonts } from "../utils/";
 import { PlantCareHero } from "../images/img";
 import { useNavigate } from "react-router-dom";
+import LocaleContext from "../contexts/LocaleContext";
 
 const HeroImage = styled("img")`
   width: 100%;
 `;
 
 const HeroPlantCare = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   const navigate = useNavigate();
 
   const onNavigate = () => {
@@ -31,31 +34,28 @@ const HeroPlantCare = () => {
             sx={{ fontFamily: fonts.comfortaa, fontWeight: 700 }}
             gutterBottom
           >
-            How to care for your houseplants in summer
+            {locale === 'id' ? 'Cara merawat tanaman hias anda di musim panas' : 'How to care for your houseplants in summer'}
           </Typography>
           <Typography
             variant="body1"
             sx={{ fontFamily: fonts.inter, lineHeight: 2 }}
             gutterBottom
           >
-            Summer is a great time for indoor plants, but it’s also the timethey
-            need the most attention. Give them the best summer ever.
+             {locale === 'id' ? 'Musim panas adalah waktu yang tepat untuk tanaman dalam ruangan, tetapi ini juga waktu yang paling membutuhkan perhatian. Beri mereka musim panas terbaik yang pernah ada.' : 'Summer is a great time for indoor plants, but it’s also the timethey need the most attention. Give them the best summer ever.'}
           </Typography>
           <Typography
             variant="body1"
             sx={{ fontFamily: fonts.inter, lineHeight: 2 }}
             gutterBottom
           >
-            We’re in the hottest, sunniest months of the year (hopefully). That
-            means great growing conditions for your plants, as long as they’re
-            kept well watered. Here’s how to help them enjoy summer.
+            {locale === 'id' ? 'Kami berada di bulan-bulan terpanas dan tercerah dalam setahun (semoga). Itu berarti kondisi pertumbuhan yang bagus untuk tanaman anda, asalkan disiram dengan baik. Inilah cara membantu mereka menikmati musim panas.' : 'We’re in the hottest, sunniest months of the year (hopefully). That means great growing conditions for your plants, as long as they’re kept well watered. Here’s how to help them enjoy summer.'}
           </Typography>
           <CustomButton
             size="large"
             sx={{ alignSelf: "flex-end" }}
             onClick={onNavigate}
           >
-            Read More
+            {locale === 'id' ? 'Baca Selengkapnya' : 'Read More'}
           </CustomButton>
         </Stack>
         <Box sx={{ flex: 2 }}>

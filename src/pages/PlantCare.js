@@ -6,8 +6,11 @@ import { colors, fonts } from "../utils";
 import PlantCareList from "../components/PlantCareList";
 import BannerFreeOngkir from "../components/BannerFreeOngkir";
 import Footer from "../components/Footer";
+import LocaleContext from "../contexts/LocaleContext";
 
 const PlantCare = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   return (
     <>
       <HeroPlantCare />
@@ -22,7 +25,7 @@ const PlantCare = () => {
           }}
           gutterBottom
         >
-          Plant Care
+          {locale === 'id' ? 'Perawatan Tanaman' : 'Plant Care'}
         </Typography>
         <Typography
           variant="h4"
@@ -30,7 +33,7 @@ const PlantCare = () => {
           sx={{ fontFamily: fonts.inter, lineHeight: 2, color: colors.white}}
           gutterBottom
         >
-          Tips, tricks, and plant guides to make plant care downright easy.
+          {locale === 'id' ? 'Kiat, trik, dan panduan untuk membuat perawatan tanaman benar-benar mudah.' : 'Tips, tricks, and plant guides to make plant care downright easy.'}
         </Typography>
       </Banner>
       <PlantCareList/>

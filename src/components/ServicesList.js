@@ -4,8 +4,11 @@ import { ServicesList1, ServicesList2, ServicesList3, ServicesList4, ServicesLis
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ServicesItem from "./ServicesItem";
+import LocaleContext from "../contexts/LocaleContext";
 
 const ServicesList = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -54,11 +57,11 @@ const ServicesList = () => {
           sliderClass=""
           slidesToSlide={1}
           swipeable>
-          <ServicesItem title="The New Plant Parent" image={ServicesList1} />
-          <ServicesItem title="The New Plant Parent" image={ServicesList2} />
-          <ServicesItem title="The New Plant Parent" image={ServicesList3} />
-          <ServicesItem title="The New Plant Parent" image={ServicesList4} />
-          <ServicesItem title="The New Plant Parent" image={ServicesList5} />
+          <ServicesItem title={locale === 'id' ? 'Induk Tumbuhan Baru' : "The New Plant Parent"} image={ServicesList1} />
+          <ServicesItem title={locale === 'id' ? 'Induk Tumbuhan Baru' : "The New Plant Parent"} image={ServicesList2} />
+          <ServicesItem title={locale === 'id' ? 'Induk Tumbuhan Baru' : "The New Plant Parent"} image={ServicesList3} />
+          <ServicesItem title={locale === 'id' ? 'Induk Tumbuhan Baru' : "The New Plant Parent"} image={ServicesList4} />
+          <ServicesItem title={locale === 'id' ? 'Induk Tumbuhan Baru' : "The New Plant Parent"} image={ServicesList5} />
         </Carousel>
       </Box>
     </Container>

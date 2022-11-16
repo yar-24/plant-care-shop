@@ -6,6 +6,7 @@ import { colors, fonts } from "../utils";
 import { ShoppingCart } from "@mui/icons-material";
 import CustomButton from "./CustomButton";
 import { Cart1, Cart2, Cart3 } from "../images/img";
+import LocaleContext from "../contexts/LocaleContext";
 
 const CartListContainer = styled(Container)`
   margin-top: 60px;
@@ -35,6 +36,8 @@ const ListHarga = ({ textHarga, totalHarga }) => {
 };
 
 const CartList = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   return (
     <CartListContainer>
       <Typography
@@ -42,7 +45,7 @@ const CartList = () => {
         component="h1"
         sx={{ fontFamily: fonts.comfortaa }}
       >
-        Your bag
+        {locale === 'id' ? 'Keranjang anda' : 'Your bag'}
       </Typography>
       <CartItem
         src={Cart1}
@@ -51,9 +54,9 @@ const CartList = () => {
       />
       <CartItem src={Cart2} name="Cactus" height="40-50 cm" price="30" />
       <CartItem src={Cart3} name="Snake plant" height="70-80 cm" price="40" />
-      <ListHarga textHarga="Subtotal" totalHarga="$100" />
-      <ListHarga textHarga="Delivery" totalHarga="Free" />
-      <ListHarga textHarga="Total" totalHarga="$100" />
+      <ListHarga textHarga="Subtotal" totalHarga="100k" />
+      <ListHarga textHarga= {locale === 'id' ? 'Pengiriman' : 'Delivery'} totalHarga="Free" />
+      <ListHarga textHarga="Total" totalHarga="100k" />
       <Box
         sx={{
           display: "flex",
@@ -67,7 +70,7 @@ const CartList = () => {
           size="large"
           sx={{ alignSelf: "center", width: "50%", fontSize: "20px" }}
         >
-          Place Order
+           {locale === 'id' ? 'Pesan Sekarang' : 'Place Order'}
         </CustomButton>
       </Box>
     </CartListContainer>

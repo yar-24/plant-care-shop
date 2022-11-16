@@ -5,8 +5,11 @@ import BannerFreeOngkir from "../components/BannerFreeOngkir";
 import CardList from "../components/CardList";
 import { Photo, Photo1, Photo2, Photo3, Photo4 } from "../images/img";
 import ProductDetail from '../components/ProductDetail';
+import LocaleContext from "../contexts/LocaleContext";
 
 const DetailProduct = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   return (
     <>
     <div className='detail-product'>
@@ -21,7 +24,7 @@ const DetailProduct = () => {
 
     <ProductDetail/>
     <BannerFreeOngkir/>
-    <CardList>You Might Like</CardList>
+    <CardList>{locale === 'id' ? 'Mungkin Anda Sukai' : 'You Might Like'}</CardList>
 
     <Footer/>
     </>
