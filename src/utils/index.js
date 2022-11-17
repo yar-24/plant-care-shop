@@ -34,3 +34,8 @@ export const tablet = (props) => {
 export const axiosInstance = axios.create({
     baseURL : "https://plant-care-shop-api.herokuapp.com/v2"
 })
+
+export const getText = (html) =>{
+  const doc = new DOMParser().parseFromString(html, "text/html")
+  return doc.body.textContent
+}

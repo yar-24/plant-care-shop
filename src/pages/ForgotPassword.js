@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { axiosInstance } from "../utils";
 import LoadingBtn from "../components/kecil/LoadingBtn";
 import { useSelector } from "react-redux";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Forpas = styled.div`
   font-size: 13px;
@@ -19,6 +20,8 @@ const Forpas = styled.div`
 `;
 
 const ForgotPassword = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   const [formData, setFormData] = useState({
     email: "",
   });
@@ -62,23 +65,23 @@ const ForgotPassword = () => {
   return (
     <div className="forgot-password">
       <form onSubmit={onSubmit}>
-        <h2>Forgot Password Page</h2>
-        <h3>Reset your password</h3>
-        <p>We will send you an email to reset your password</p>
+        <h2>{locale === 'id' ? 'Halaman Lupa Kata Sandi' : 'Forgot Password Page'}</h2>
+        <h3>{locale === 'id' ? 'Reset password anda' : 'Reset your password'}</h3>
+        <p>{locale === 'id' ? 'Kami akan mengirimkan email untuk mengatur ulang kata sandi anda' : 'We will send you an email to reset your password'}</p>
         <Forpas>
           <TextField
             id="email"
             color="success"
             type="email"
-            label="Email"
+            label={locale === 'id' ? 'Surel' : 'Email'}
             name="email"
             value={email}
             onChange={onChange}
           />
         </Forpas>
-        <LoadingBtn className="button" label="Submit" loading={isLoading} />
+        <LoadingBtn className="button" label={locale === 'id' ? 'Kirim' : 'Submit'} loading={isLoading} />
         <Link className="button2" to="/login">
-          Cancel
+          {locale === 'id' ? 'Batal' : 'Cancel'}
         </Link>
       </form>
     </div>

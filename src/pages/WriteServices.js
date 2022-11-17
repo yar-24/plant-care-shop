@@ -40,7 +40,7 @@ const WriteServices = () => {
     data.append("image", image);
     data.append("title", title);
     data.append("desc", value);
-    // data.append("title", title)
+    data.append("category", category)
     dispatch(createService(data))
     .then((res) => {
       console.log(res);
@@ -83,6 +83,7 @@ const WriteServices = () => {
             <div className="editorContainer">
               <ReactQuill
                 className="editor"
+                placeholder={"Start Posting Something..."}
                 theme="snow"
                 value={value}
                 onChange={setValue}
@@ -123,23 +124,21 @@ const WriteServices = () => {
                   name="radio-buttons-group"
                 >
                   <FormControlLabel
-                    value="female"
+                    value="service"
                     control={<Radio />}
-                    label="Female"
+                    label="Service"
                     onChange={(e) => setCategory(e.target.value)}
                   />
                   <FormControlLabel
-                    value="male"
+                    value="plantCare"
                     control={<Radio />}
-                    label="Male"
-                    componentsProps={category === "Male"}
+                    label="Plant Care"
                     onChange={(e) => setCategory(e.target.value)}
                   />
                   <FormControlLabel
                     value="other"
                     control={<Radio />}
                     label="Other"
-                    componentsProps={category === "Other"}
                     onChange={(e) => setCategory(e.target.value)}
                   />
                 </RadioGroup>

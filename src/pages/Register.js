@@ -7,6 +7,7 @@ import { TextField } from "@mui/material";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import LoadingBtn from "../components/kecil/LoadingBtn";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Regis = styled.div`
   font-size: 13px;
@@ -26,6 +27,8 @@ const Regis = styled.div`
 `;
 
 const Register = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -84,14 +87,14 @@ const Register = () => {
   return (
     <div className="input-register">
       <form onSubmit={onSubmit}>
-        <h2>Register Page</h2>
-        <h3>Create Account</h3>
+        <h2>{locale === 'id' ? 'Halaman Daftar' : 'Register Page'}</h2>
+        <h3>{locale === 'id' ? 'Buat Akun' : 'Create Account'}</h3>
         <Regis>
           <TextField
             id="firstname"
             color="success"
             type="text"
-            label="First Name"
+            label={locale === 'id' ? 'Nama Awal' : 'First Name'}
             name="firstname"
             value={firstname}
             onChange={onChange}
@@ -100,7 +103,7 @@ const Register = () => {
             id="lastname"
             color="success"
             type="text"
-            label="Last Name"
+            label={locale === 'id' ? 'Nama Terakhir' : 'Last Name'}
             name="lastname"
             value={lastname}
             onChange={onChange}
@@ -109,7 +112,7 @@ const Register = () => {
             id="email"
             color="success"
             type="email"
-            label="Email"
+            label={locale === 'id' ? 'Surel' : 'Email'}
             name="email"
             value={email}
             onChange={onChange}
@@ -118,18 +121,18 @@ const Register = () => {
             id="password"
             color="success"
             type="password"
-            label="Password"
+            label={locale === 'id' ? 'Kata Sandi' : 'Password'}
             name="password"
             value={password}
             onChange={onChange}
           />
         </Regis>
-        <LoadingBtn label="Create" loading={isLoading} />
+        <LoadingBtn label={locale === 'id' ? 'Buat Akun' : 'Create'} loading={isLoading} />
       </form>
       <p>
-        Returning customer?{" "}
+        {locale === 'id' ? 'Pelanggan kembali?' : 'Returning customer?'}{" "}
         <Link to="/login" className="link">
-          <strong>Sign in</strong>
+          <strong>{locale === 'id' ? 'Masuk' : 'Sign in'}</strong>
         </Link>
       </p>
     </div>

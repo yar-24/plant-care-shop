@@ -7,6 +7,7 @@ import { TextField } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { toast } from "react-toastify";
 import LoadingBtn from "../components/kecil/LoadingBtn";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Log = styled.div`
   font-size: 13px;
@@ -24,6 +25,8 @@ const Log = styled.div`
 `;
 
 const Login = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -74,13 +77,13 @@ const Login = () => {
 
   return (
     <form className="input-login" onSubmit={onSubmit}>
-      <h2>Login Page</h2>
+      <h2>{locale === 'id' ? 'Halaman Masuk' : 'Login Page'}</h2>
       <Log>
         <TextField
           id="email"
           color="success"
           type="email"
-          label="Email"
+          label={locale === 'id' ? 'Surel' : 'Email'}
           name="email"
           value={email}
           onChange={onChange}
@@ -89,24 +92,24 @@ const Login = () => {
           id="password"
           color="success"
           type="password"
-          label="Password"
+          label={locale === 'id' ? 'Kata Sandi' : 'Password'}
           name="password"
           value={password}
           onChange={onChange}
         />
       </Log>
 
-      <LoadingBtn label="Login" loading={isLoading}/>
+      <LoadingBtn label={locale === 'id' ? 'Masuk' : 'Login'} loading={isLoading}/>
 
       <p>
-        New customer?{" "}
+        {locale === 'id' ? 'Kostumer baru?' : 'New customer?'}{" "}
         <Link to="/register" className="link">
-          <strong>Create account</strong>
+          <strong>{locale === 'id' ? 'Buat Akun' : 'Create account'}</strong>
         </Link>
       </p>
       <p>
         <Link to="/forgot-password" className="link">
-          <strong>Forgot your password</strong>
+          <strong>{locale === 'id' ? 'Lupa Kata Sandi' : 'Forgot your password'}</strong>
         </Link>
       </p>
     </form>

@@ -4,8 +4,11 @@ import PlantCareItem from "./PlantCareItem";
 import { PlantCare1, PlantCare2, PlantCare3, PlantCare4 } from "../images/img";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import LocaleContext from "../contexts/LocaleContext";
 
 const PlantCareList = () => {
+  const { locale } = React.useContext(LocaleContext);
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -54,10 +57,10 @@ const PlantCareList = () => {
           sliderClass=""
           slidesToSlide={1}
           swipeable>
-          <PlantCareItem title="Complete guide to watering" image={PlantCare1} />
-          <PlantCareItem title="Complete guide to watering" image={PlantCare2} />
-          <PlantCareItem title="Complete guide to watering" image={PlantCare3} />
-          <PlantCareItem title="Complete guide to watering" image={PlantCare4} />
+          <PlantCareItem title={locale === 'id' ? 'Panduan lengkap untuk penyiraman' : "Complete guide to watering"} image={PlantCare1} />
+          <PlantCareItem title={locale === 'id' ? 'Panduan lengkap untuk penyiraman' : "Complete guide to watering"} image={PlantCare2} />
+          <PlantCareItem title={locale === 'id' ? 'Panduan lengkap untuk penyiraman' : "Complete guide to watering"} image={PlantCare3} />
+          <PlantCareItem title={locale === 'id' ? 'Panduan lengkap untuk penyiraman' : "Complete guide to watering"} image={PlantCare4} />
         </Carousel>
       </Box>
     </Container>

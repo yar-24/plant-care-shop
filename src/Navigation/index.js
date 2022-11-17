@@ -16,11 +16,13 @@ import {
 } from "../pages";
 import Appbar from "../components/Appbar";
 import Toast from "../components/kecil/Toast";
+import ScrollToTop from "../components/ScrollToTop";
 
 
 const Navigation = () => {
   return (
     <>
+        <ScrollToTop/>
         <Appbar/>
         <Toast/>
         <Routes>
@@ -31,7 +33,7 @@ const Navigation = () => {
             <Route element={<PlantCare/>} path="/plant-care"/>
             <Route element={<Shop/>} path="/shop"/>
             <Route element={<DetailProduct/>} path="/detail-product/:id"/>
-            <Route element={<DetailServices/>} path="/detail-services"/>
+            <Route element={<DetailServices/>} path="/detail-services/:id"/>
             <Route element={<ForgotPassword/>} path="/forgot-password"/>
             <Route element={<ResetPassword />} path="/reset-password" />
             <Route element={<Cart />} path="/cart" />

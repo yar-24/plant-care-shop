@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { Container, Stack } from "@mui/material";
 import Swal from "sweetalert2";
 import { getProducts } from "../redux/features/products/productSlice";
 import CardItem from "./CardItem";
 import Filter from "./Filter";
+import LocaleContext from "../contexts/LocaleContext";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
 
+
 const Product = () => {
+  const { locale } = React.useContext(LocaleContext);
   const [products, setproducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,24 +35,26 @@ const Product = () => {
 
   return (
     <>
-      <h2 className="title-product">All Product</h2>
-      <div className="shop">
+      <h2 className="title-product">{locale === 'id' ? 'Semua Produk' : 'All Product'}</h2>
+      <Container fixed>
         <Filter />
-        {products.map((product, index) => (
-          <div className="product" key={index}>
-            {isLoading ? (
-              <CardItem
-                nameProduct={product.namePlant}
-                imgProduct={`${product.idImageProduct}`}
-                priceProduct={product.price}
-                idProduct={product._id}
-              />
-            ) : (
-              <SkeletonCardItem />
-            )}
-          </div>
-        ))}
-      </div>
+        <Stack>
+          {products.map((product, index) => (
+            <div className="product" key={index}>
+              {isLoading ? (
+                <CardItem
+                  nameProduct={product.namePlant}
+                  imgProduct={`${product.idImageProduct}`}
+                  priceProduct={product.price}
+                  idProduct={product._id}
+                />
+              ) : (
+                <SkeletonCardItem />
+              )}
+            </div>
+          ))}
+        </Stack>
+      </Container>
     </>
   );
 };

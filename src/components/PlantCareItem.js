@@ -8,9 +8,11 @@ import {
 } from "@mui/material";
 import { colors, fonts } from "../utils";
 import Tombol from "./kecil/Tombol";
-
+import LocaleContext from "../contexts/LocaleContext";
 
 const PlantCareItem = ({title, image}) => {
+  const { locale } = React.useContext(LocaleContext);
+
   return (
     <Card sx={{ maxWidth: 345, m: 1 }}>
       <CardContent sx={{backgroundColor: colors.hijau}}>
@@ -27,7 +29,7 @@ const PlantCareItem = ({title, image}) => {
           {title}
         </Typography>
         <CardActions sx={{justifyContent: 'flex-end', padding: 0}}>
-          <Tombol label="Read more" />
+          <Tombol label={locale === 'id' ? 'Baca Lainya' : 'Read More'}/>
         </CardActions>
       </CardContent>
       <CardMedia
