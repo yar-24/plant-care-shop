@@ -36,7 +36,7 @@ const Product = () => {
   return (
     <>
       <h2 className="title-product">{locale === 'id' ? 'Semua Produk' : 'All Product'}</h2>
-      <Container fixed>
+      <Container fixed sx={{ display: 'flex' }}>
         <Filter />
         <Stack>
           {products.map((product, index) => (
