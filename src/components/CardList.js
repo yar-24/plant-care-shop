@@ -11,7 +11,6 @@ import Swal from "sweetalert2";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
 
 const TitleText = styled(Typography)`
-  font-size: 32px;
   font-family: ${fonts.comfortaa};
   font-weight: 700;
   margin: 32px 0;
@@ -20,13 +19,13 @@ const CardList = ({ children }) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3,
+      items: 4,
+      slidesToSlide: 4,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 2,
+      items: 3,
+      slidesToSlide: 3,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -59,7 +58,7 @@ const CardList = ({ children }) => {
 
   return (
     <Container fixed>
-      <TitleText variant="h2">{children}</TitleText>
+      <TitleText variant="h5" component="h2">{children}</TitleText>
       <Stack my={5}>
         <Carousel
           additionalTransfrom={0}

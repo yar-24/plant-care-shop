@@ -57,7 +57,7 @@ const ProductInformation = ({product}) => {
           <Stack spacing={2} direction={{ xs: "column", md: "row" }}>
             {Array.isArray(plantHeight)
               ? plantHeight.map((item,index)=>(
-                <CustomButton size="small" key={index} sx={{my: 1, px: 4, py: 2, p: "10px", width: "max-content"}}>{item.centimeters}cm</CustomButton>
+                <CustomButton size="large" key={index} sx={{my: 1, px: 3, py: 2, width: "max-content"}}>{item.centimeters} cm</CustomButton>
               ))
             : null}
           </Stack>
@@ -82,7 +82,7 @@ const ProductInformation = ({product}) => {
             component="p"
             sx={{ fontFamily: fonts.comfortaa, fontWeight: 700 }}
             gutterBottom>
-               {locale === 'id' ? 'Dari' : 'From'} Rp{price} 
+              {locale === 'id' ? 'Mulai Dari' : 'From'} Rp{price} 
           </Typography>
             <CustomButton startIcon={<FaShoppingCart/>} size="medium" sx={{fontSize:18}}>  {locale === 'id' ? 'Tambahkan ke Keranjang' : 'Add To Bag'}</CustomButton>
         </Stack>

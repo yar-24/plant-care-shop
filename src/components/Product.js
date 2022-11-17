@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Container, Stack } from "@mui/material";
+import { Container, Grid, Stack } from "@mui/material";
 import Swal from "sweetalert2";
 import { getProducts } from "../redux/features/products/productSlice";
 import CardItem from "./CardItem";
@@ -36,23 +36,26 @@ const Product = () => {
   return (
     <>
       <h2 className="title-product">{locale === 'id' ? 'Semua Produk' : 'All Product'}</h2>
-      <Container fixed sx={{ display: 'flex' }}>
-        <Filter />
-        <Stack>
-          {products.map((product, index) => (
-            <div className="product" key={index}>
-              {isLoading ? (
-                <CardItem
-                  nameProduct={product.namePlant}
-                  imgProduct={`${product.idImageProduct}`}
-                  priceProduct={product.price}
-                  idProduct={product._id}
-                />
-              ) : (
-                <SkeletonCardItem />
-              )}
-            </div>
-          ))}
+      <Container fixed>
+        <Stack direction="row" spacing={{ xs: 2, md: 3 }}>
+          <Filter/>
+          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+            {products.map((product, index) => (
+                isLoading ? (
+                  <Grid item xs={2} sm={4} md={4} key={index}>
+                    <CardItem
+                      key={index}
+                      nameProduct={product.namePlant}
+                      imgProduct={`${product.idImageProduct}`}
+                      priceProduct={product.price}
+                      idProduct={product._id}
+                    />
+                  </Grid>
+                ) : (
+                  <SkeletonCardItem />
+                )
+            ))}
+          </Grid>
         </Stack>
       </Container>
     </>
