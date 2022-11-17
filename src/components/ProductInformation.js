@@ -5,6 +5,7 @@ import {FaShoppingCart} from "react-icons/fa";
 import { styled } from "@mui/material/styles";
 import { fonts } from '../utils';
 import CustomButton from './CustomButton';
+import LocaleContext from "../contexts/LocaleContext";
 
 const ProductImage = styled("img")`
   position: absolute;
@@ -29,6 +30,7 @@ const ImageContainer = styled(Box)`
 `;
 
 const ProductInformation = ({product}) => {
+  const { locale } = React.useContext(LocaleContext);
   const {imageProduct, namePlant, plantHeight, plantLight, care, price} = product;
   return (
     <Container fixed>
@@ -50,7 +52,7 @@ const ProductInformation = ({product}) => {
               sx={{ fontFamily: fonts.inter, lineHeight: 2 }}
               gutterBottom
             >
-              Choose plant height (cm)
+              {locale === 'id' ? 'Pilih tinggi tanaman (cm)' : 'Choose plant height (cm)'}
           </Typography>
           <Stack spacing={2} direction={{ xs: "column", md: "row" }}>
             {Array.isArray(plantHeight)
@@ -80,9 +82,9 @@ const ProductInformation = ({product}) => {
             component="p"
             sx={{ fontFamily: fonts.comfortaa, fontWeight: 700 }}
             gutterBottom>
-              From Rp{price} 
+               {locale === 'id' ? 'Dari' : 'From'} Rp{price} 
           </Typography>
-            <CustomButton startIcon={<FaShoppingCart/>} size="medium" sx={{fontSize:18}}>Add To Bag</CustomButton>
+            <CustomButton startIcon={<FaShoppingCart/>} size="medium" sx={{fontSize:18}}>  {locale === 'id' ? 'Tambahkan ke Keranjang' : 'Add To Bag'}</CustomButton>
         </Stack>
       </Stack>
     </Stack>

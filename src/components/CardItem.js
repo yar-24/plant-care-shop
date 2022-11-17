@@ -12,10 +12,11 @@ import LocaleContext from "../contexts/LocaleContext";
 import { Link } from "react-router-dom";
 
 const CardContainer = styled(Card)`
-  max-width: 241px;
+  /* max-width: 241px; */
   border-radius: 0;
   background-color: #cedfd9;
-  width: max-content ;
+  width: auto;
+  margin: 15px;
 `;
 const CardActionsContainer = styled("div")`
   display: flex;
@@ -63,10 +64,10 @@ const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
         <PlantPriceText mt={3}>{locale === 'id' ? 'Dari' : 'From'} Rp{priceProduct}</PlantPriceText>
       </CardContent>
       <CardActionsContainer>
-        <ActionButton bgcolor={colors.white} txcolor="#000" size="small">
-          <FaShoppingCart />
+        <ActionButton bgcolor={colors.white} txcolor="#000" size="large">
+          <FaShoppingCart style={{ width: '100%' }} />
         </ActionButton>
-        <ActionButton component={Link} to={`/detail-product/${idProduct}`} bgcolor={colors.secondary} txcolor={colors.white} size="small">
+        <ActionButton  style={{ fontSize: '14px' }} component={Link} to={`/detail-product/${idProduct}`} bgcolor={colors.secondary} txcolor={colors.white} size="large" >
         {locale === 'id' ? 'Lihat Lainya' : 'See More'}
         </ActionButton>
       </CardActionsContainer>
