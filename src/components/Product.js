@@ -33,8 +33,8 @@ const Product = () => {
       });
   }, [dispatch]);
 
-   const Container = styled.div`
-    margin: 40px;
+   const Layout = styled.div`
+    margin: 40px 80px 30px 80px;
     display: flex;
     height: fit-content;
 
@@ -49,7 +49,7 @@ const Product = () => {
   return (
     <>
       <h2 className="title-product">{locale === 'id' ? 'Semua Produk' : 'All Product'}</h2>
-      <Container fixed>
+      <Layout fixed>
         <Stack direction="row" spacing={{ xs: 2, md: 1 }}>
           <Filter/>
 
@@ -71,7 +71,7 @@ const Product = () => {
             ))}
           </Grid>
         </Stack>
-      </Container>
+      </Layout>
     </>
   );
 };

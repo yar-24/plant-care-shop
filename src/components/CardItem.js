@@ -60,8 +60,8 @@ const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
     <CardContainer>
       <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${imgProduct}`} alt="green iguana" />
       <CardContent>
-        <PlantTitleText>{nameProduct}</PlantTitleText>
-        <PlantPriceText mt={3}>{locale === 'id' ? 'Dari' : 'From'} Rp{priceProduct}</PlantPriceText>
+        <PlantTitleText style={{ textAlign: 'center' }}>{nameProduct}</PlantTitleText>
+        <PlantPriceText mt={2}>{locale === 'id' ? 'Dari' : 'From'} Rp.{priceProduct}</PlantPriceText>
       </CardContent>
       <CardActionsContainer>
         <ActionButton bgcolor={colors.white} txcolor="#000" size="large">
