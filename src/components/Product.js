@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Container, Grid, Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import Swal from "sweetalert2";
 import { getProducts } from "../redux/features/products/productSlice";
 import CardItem from "./CardItem";
 import Filter from "./Filter";
 import LocaleContext from "../contexts/LocaleContext";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
-
+import styled from "styled-components";
 
 const Product = () => {
   const { locale } = React.useContext(LocaleContext);
@@ -33,16 +33,30 @@ const Product = () => {
       });
   }, [dispatch]);
 
+   const Container = styled.div`
+    margin: 40px;
+    display: flex;
+    height: fit-content;
+
+    @media (max-width: 1200px) {
+      margin: 30px auto;
+    }
+    @media (max-width: 900px) {
+      margin: 20px auto;
+    }
+
+  `;
   return (
     <>
       <h2 className="title-product">{locale === 'id' ? 'Semua Produk' : 'All Product'}</h2>
       <Container fixed>
-        <Stack direction="row" spacing={{ xs: 2, md: 3 }}>
+        <Stack direction="row" spacing={{ xs: 2, md: 1 }}>
           <Filter/>
-          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+
+          <Grid style={{ height: 'fit-content' }} container spacing={{ xs: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }} >
             {products.map((product, index) => (
                 isLoading ? (
-                  <Grid item xs={2} sm={4} md={4} key={index}>
+                  <Grid item xs={4} sm={4} md={4} key={index}>
                     <CardItem
                       key={index}
                       nameProduct={product.namePlant}
