@@ -13,7 +13,8 @@ import SkeletonCardItem from "./kecil/SkeletonCardItem";
 const TitleText = styled(Typography)`
   font-family: ${fonts.comfortaa};
   font-weight: 700;
-  margin: 32px 0;
+  margin: 30px 0;
+  font-size: 30px;
 `;
 const CardList = ({ children }) => {
   const responsive = {

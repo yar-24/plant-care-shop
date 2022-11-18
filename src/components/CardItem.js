@@ -7,13 +7,16 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 import LocaleContext from "../contexts/LocaleContext";
 import { Link } from "react-router-dom";
 
 const CardContainer = styled(Card)`
+  /* max-width: 241px; */
   border-radius: 0;
   background-color: #cedfd9;
   width: auto;
+  margin: 15px;
 `;
 const CardActionsContainer = styled("div")`
   display: flex;
@@ -44,12 +47,17 @@ const ActionButton = styled(Button)`
     background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
   }
 `;
-
 const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
   const { locale } = React.useContext(LocaleContext);
 
+  const navigate = useNavigate()
+
+  const onDetailproduct = () => {
+    navigate(`/detail-product/${idProduct}`)
+  }
+
   return (
-    <CardContainer sx={{mx:2}}>
+    <CardContainer>
       <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${imgProduct}`} alt="green iguana" />
       <CardContent>
         <PlantTitleText>{nameProduct}</PlantTitleText>
@@ -57,10 +65,10 @@ const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
       </CardContent>
       <CardActionsContainer>
         <ActionButton bgcolor={colors.white} txcolor="#000" size="large">
-          <FaShoppingCart/>
+          <FaShoppingCart style={{ width: '100%' }} />
         </ActionButton>
-        <ActionButton component={Link} to={`/detail-product/${idProduct}`} bgcolor={colors.secondary} txcolor={colors.white} size="large" >
-        {locale === 'id' ? 'Lihat Lainnya' : 'See More'}
+        <ActionButton  style={{ fontSize: '14px' }} component={Link} to={`/detail-product/${idProduct}`} bgcolor={colors.secondary} txcolor={colors.white} size="large" >
+        {locale === 'id' ? 'Lihat Lainya' : 'See More'}
         </ActionButton>
       </CardActionsContainer>
     </CardContainer>

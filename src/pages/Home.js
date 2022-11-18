@@ -30,7 +30,7 @@ const Home = () => {
         </Title>
         <Tombol label={locale === 'id' ? 'Baca blog lainnya' : 'Read more blogs'}   />
       </Banner>
-      <CardList>{locale === 'id' ? 'Kategori Populer' : 'Popular Categories'}</CardList>
+      <CardList >{locale === 'id' ? 'Kategori Populer' : 'Popular Categories'}</CardList>
       <Footer />
     </>
   );
