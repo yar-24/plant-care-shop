@@ -8,7 +8,6 @@ import Filter from "./Filter";
 import LocaleContext from "../contexts/LocaleContext";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
 import styled from "styled-components";
-import { mobile } from "../utils";
 
 const Product = () => {
   const { locale } = React.useContext(LocaleContext);
@@ -19,26 +18,25 @@ const Product = () => {
 
   useEffect(() => {
     dispatch(getProducts())
-      .then((res) => {
-        const data = res.payload.products;
-        setproducts(data);
-        setIsLoading(true);
-      })
+    .then((res) => {
+      const data = res.payload.products;
+      setproducts(data);
+      setIsLoading(true);
+    })
       .catch((err) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-          footer: err,
-        });
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: err
+        })
       });
   }, [dispatch]);
 
-  const Container = styled.div`
-    margin: 40px;
+   const Layout = styled.div`
+    margin: 40px 80px 30px 80px;
     display: flex;
     height: fit-content;
-
     @media (max-width: 1200px) {
       margin: 30px auto;
     }
@@ -48,36 +46,29 @@ const Product = () => {
   `;
   return (
     <>
-      <h2 className="title-product">
-        {locale === "id" ? "Semua Produk" : "All Product"}
-      </h2>
-      <Container fixed>
+      <h2 className="title-product">{locale === 'id' ? 'Semua Produk' : 'All Product'}</h2>
+      <Layout fixed>
         <Stack direction="row" spacing={{ md: 1 }}>
-          <Filter />
-          <Grid
-            style={{ height: "fit-content" }}
-            container
-            spacing={{ xs: 1, md: 1 }}
-            columns={{ xs: 4, sm: 8, md: 12 }}
-          >
-            {products.map((product, index) =>
-              isLoading ? (
-                <Grid item xs={4} sm={4} md={4} key={index}>
-                  <CardItem
-                    key={index}
-                    nameProduct={product.namePlant}
-                    imgProduct={`${product.idImageProduct}`}
-                    priceProduct={product.price}
-                    idProduct={product._id}
-                  />
-                </Grid>
-              ) : (
-                <SkeletonCardItem />
-              )
-            )}
+          <Filter/>
+          <Grid style={{ height: 'fit-content' }} container spacing={{ xs: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }} >
+            {products.map((product, index) => (
+                isLoading ? (
+                  <Grid item xs={4} sm={4} md={4} key={index}>
+                    <CardItem
+                      key={index}
+                      nameProduct={product.namePlant}
+                      imgProduct={`${product.idImageProduct}`}
+                      priceProduct={product.price}
+                      idProduct={product._id}
+                    />
+                  </Grid>
+                ) : (
+                  <SkeletonCardItem />
+                )
+            ))}
           </Grid>
         </Stack>
-      </Container>
+      </Layout>
     </>
   );
 };

@@ -31,14 +31,14 @@ export default function ProductDetail() {
       component="nav"
       aria-labelledby="nested-list-subheader"
     >
-      <ListItem sx={{ width: '85%', margin: 'auto', display: 'block', marginBottom:'50px' }}>
-        <ListItemButton onClick={handleClick}>
+      <ListItem sx={{ width: '90%', margin: 'auto', display: 'block', marginBottom:'50px' }}>
+        <ListItemButton onClick={handleClick} >
           <p className='title-detail'>{locale === 'id' ? 'Tanaman / Bunga ' : 'Plant / Flower Like'}</p>
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ pl: 4 }} style={{ backgroundColor: '#9ed7c1' }}>
               <ListItemText>
                 <h3>{locale === 'id' ? 'Tanaman / Bunga ' : 'Plant / Flower Like'}</h3>
                 <p>Bunga matahari (Helianthus annuus L.) adalah tumbuhan semusim dari suku kenikir-kenikiran (Asteraceae) yang populer, baik sebagai
@@ -54,7 +54,7 @@ export default function ProductDetail() {
         </ListItemButton>
         <Collapse in={open2} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ pl: 4 }} style={{ backgroundColor: '#9ed7c1' }}>
               <ListItemText>
                 <h3>{locale === 'id' ? 'Fakta Cepat' : 'Quick Facts'}</h3>
                 <p>1. Tidak Semua Bunga Matahari Berwarna Kuning</p>
@@ -70,7 +70,7 @@ export default function ProductDetail() {
         </ListItemButton>
         <Collapse in={open3} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
+            <ListItemButton sx={{ pl: 4 }} style={{ backgroundColor: '#9ed7c1' }}>
               <ListItemText>
                 <h3>{locale === 'id' ? 'Tentang' : 'About'}</h3>
                 <p>Bunga matahari adalah tumbuhan semusim dari suku kenikir-kenikiran yang populer, baik sebagai tanaman hias maupun tanaman

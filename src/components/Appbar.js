@@ -157,7 +157,7 @@ function DrawerAppBar(props) {
   const navigate = useNavigate()
 
   const onNavigate = () => {
-    navigate("/write-service")
+    navigate("/home-write")
   }
 
   return (

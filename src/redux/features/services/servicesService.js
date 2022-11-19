@@ -60,7 +60,7 @@ const updateService =  async (servicesData, servicesId, token) => {
   }
 
   const response = await axiosInstance
-  .put(`/servicess/${servicesId}`, servicesData, config)
+  .put(`/services/${servicesId}`, servicesData, config)
   
   if (response.data) {
     localStorage.setItem('service', JSON.stringify(response.data))

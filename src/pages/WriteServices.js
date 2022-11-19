@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import {
   Box,
@@ -14,8 +14,17 @@ import { Stack } from "@mui/system";
 import { styled } from "@mui/material/styles";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useDispatch } from "react-redux";
-import { createService } from "../redux/features/services/servicesSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createService,
+  getService,
+  updateService,
+} from "../redux/features/services/servicesSlice";
+import EditorToolbar, {
+  modules,
+  formats,
+} from "../components/kecil/EditorToolbar";
+import Swal from "sweetalert2";
 
 const Image = styled("img")`
   width: 250px;
@@ -23,32 +32,74 @@ const Image = styled("img")`
 `;
 
 const WriteServices = () => {
-  const state = useLocation().state;
-  const [value, setValue] = useState(state?.title || "");
-  const [title, setTitle] = useState(state?.desc || "");
+  const [desc, setDesc] = useState("");
+  const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
-  const [category, setCategory] = useState(state?.cat || "");
+  const [category, setCategory] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [service, setService] = useState({});
 
+  const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleClick = async () => {
+  useEffect(() => {
+    if (id) {
+      setIsUpdate(true);
+      dispatch(getService(id))
+        .then((res) => {
+          setService(res.payload.service);
+        })
+        .catch((err) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: err,
+          });
+        });
+    }
+  }, [id, dispatch]);
 
+  useEffect(() => {
+    if (isUpdate) {
+      setDesc(service.desc);
+      setTitle(service.title);
+      setImagePreview(
+        `https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${service.idImage}`
+      );
+      setCategory(service.category);
+    }
+  }, [service, isUpdate]);
+
+  const handleClick = async () => {
     const data = new FormData();
 
     data.append("image", image);
     data.append("title", title);
-    data.append("desc", value);
-    data.append("category", category)
-    dispatch(createService(data))
-    .then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.log(err)
-    })
+    data.append("desc", desc);
+    data.append("category", category);
 
-  };
+    if(isUpdate){
+      dispatch(updateService(data))
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else{
+
+      dispatch(createService(data))
+      .then(() => {
+        navigate("/plant-care");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    };
+  }
 
   const onImage = (e) => {
     const file = e.target.files[0];
@@ -77,16 +128,22 @@ const WriteServices = () => {
             </label>
             <input
               type="text"
+              value={title}
               placeholder="Title"
               onChange={(e) => setTitle(e.target.value)}
             />
-            <div className="editorContainer">
+            <div className="form-write">
+              <label className="font-desc">
+                Description <span className="required"> * </span>{" "}
+              </label>
+              <EditorToolbar toolbarId={"t1"} />
               <ReactQuill
-                className="editor"
-                placeholder={"Start Posting Something..."}
                 theme="snow"
-                value={value}
-                onChange={setValue}
+                value={desc}
+                onChange={setDesc}
+                placeholder={"Write something awesome..."}
+                modules={modules("t1")}
+                formats={formats}
               />
             </div>
           </div>

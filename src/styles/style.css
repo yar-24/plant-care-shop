@@ -200,7 +200,7 @@ nav ul li button:hover {
 
 .services h2, h3 {
   font-family: "Comfortaa";
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 .services .kolom {
@@ -209,8 +209,8 @@ nav ul li button:hover {
 }
 
 .deskripsi2{
-  word-spacing: 2px;
   font-size: 18px;
+  text-align: justify;
 }
 
 .services img {
@@ -245,6 +245,7 @@ a {
   height: auto;
   font-family: 'Comfortaa';
   color: #009e72;
+  font-weight: 700;
   display: block;
   margin: 0px;
 }
@@ -261,6 +262,15 @@ a {
 .shop{
   display: flex;
 }
+
+.form-write label{
+  margin-bottom: 20px;
+}
+
+.title__homewrite{
+  margin-bottom: 20px;
+}
+
 
 /* RESPONSIF */
 
@@ -329,6 +339,12 @@ a {
 
   .title {
     font-size: 25px;
+  }
+}
+
+@media(max-width: 650px) {
+  .photos {
+    width: 95%;
   }
 }
 

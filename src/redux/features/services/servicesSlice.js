@@ -87,9 +87,11 @@ export const deleteservice = createAsyncThunk(
 // Update service
 export const updateService = createAsyncThunk(
   'services/update',
-  async (serviceData, serviceId, thunkAPI) => {
+  async (serviceData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
+      const serviceId = thunkAPI.getState().services.services.service._id
+      console.log(serviceId)
       return await servicesService.updateService(serviceData, serviceId, token)
     } catch (error) {
       const message =

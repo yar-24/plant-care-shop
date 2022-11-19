@@ -11,6 +11,7 @@ import ResetPassword from "./ResetPassword";
 import DetailServices from "./DetailServices";
 import BlogDetailServices from "../components/BlogDetailServices";
 import WriteServices from "./WriteServices";
+import HomeWrite from './HomeWrite'
 
 export {
   Home,
@@ -25,5 +26,6 @@ export {
   ResetPassword,
   DetailServices,
   BlogDetailServices,
-  WriteServices
+  WriteServices,
+  HomeWrite
 };

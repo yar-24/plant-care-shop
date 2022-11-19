@@ -12,7 +12,8 @@ import {
   Cart,
   ResetPassword,
   DetailServices,
-  WriteServices
+  WriteServices,
+  HomeWrite,
 } from "../pages";
 import Appbar from "../components/Appbar";
 import Toast from "../components/kecil/Toast";
@@ -37,7 +38,9 @@ const Navigation = () => {
             <Route element={<ForgotPassword/>} path="/forgot-password"/>
             <Route element={<ResetPassword />} path="/reset-password" />
             <Route element={<Cart />} path="/cart" />
-            <Route element={<WriteServices/>} path="/write-service" />
+            <Route element={<HomeWrite/>} path="/home-write" />
+            <Route element={<WriteServices/>} path="/write" />
+            <Route element={<WriteServices/>} path="/edit/:id" />
         </Routes>
     </>
   );
