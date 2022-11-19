@@ -57,6 +57,7 @@ export default function Filter() {
       width: 170px;
       font-size: 20px;
       margin: 10px 0px 10px 10px;
+      display:none ;
     }
   `;
 
