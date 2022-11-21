@@ -80,7 +80,14 @@
         align-items: center;
         gap: 2px;
         color: teal;
+        margin: 10px 0px;
       }
     }
+  }
+}
+
+@media screen and (max-width : 725px) {
+  .add{
+   flex-direction: column;
   }
 }

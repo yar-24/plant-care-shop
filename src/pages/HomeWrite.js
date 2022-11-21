@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getServices } from "../redux/features/services/servicesSlice";
+import {
+  deleteService,
+  getServices,
+} from "../redux/features/services/servicesSlice";
 import {
   Box,
   Button,
@@ -10,15 +13,16 @@ import {
   CardContent,
   CardMedia,
   Container,
+  Grid,
   Stack,
   Typography,
 } from "@mui/material";
 import CustomButton from "../components/CustomButton";
-import { getText } from "../utils";
+import { getText, truncate } from "../utils";
+import Swal from "sweetalert2";
 
 function HomeWrite() {
   const [allPost, setAllPost] = useState([]);
-  const [post, setPost] = useState({});
 
   const { user } = useSelector((state) => state.auth);
 
@@ -32,12 +36,29 @@ function HomeWrite() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [dispatch]);
 
-  const userWrite = allPost.filter((post) => post.user !== user._id);
+  const userWrite = allPost.filter((post) => post.user === user._id);
 
-  const handleDelete = () => {
-    console.log("dlete");
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#009E72",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          "Deleted!",
+          "Your file has been deleted.",
+          "success",
+          dispatch(deleteService(id))
+        );
+      }
+    });
   };
 
   return (
@@ -51,47 +72,59 @@ function HomeWrite() {
             Create Now
           </CustomButton>
         </Box>
-        {userWrite.map((item, index) => (
-          <Card sx={{ maxWidth: 345 }} key={index}>
-            <CardMedia
-              component="img"
-              height="140"
-              image={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${item.idImage}`}
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {item.title}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {getText(item.desc.slice(0, 150))}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button
-                variant="contained"
-                color="success"
-                component={Link}
-                to={`/edit/${item._id}`}
-                state={post}
-                size="small"
-              >
-                Edit
-              </Button>
-              <Button
-                variant="outline"
-                component={Link}
-                to={`/detail-services/${item._id}`}
-                size="small"
-              >
-                Lihat
-              </Button>
-              <Button color="error" onClick={handleDelete} size="small">
-                Delete
-              </Button>
-            </CardActions>
-          </Card>
-        ))}
+        <Grid
+          container
+          spacing={{md: 1 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          direction="row"
+        >
+          {userWrite.map((item, index) => (
+            <Grid item xs={4} sm={4} md={4} key={index}>
+              <Card sx={{ maxWidth: 345, m: 2 }}>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${item.idImage}`}
+                  alt="green iguana"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {item.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    { getText(truncate(item.desc, 150))}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    variant="contained"
+                    color="success"
+                    component={Link}
+                    to={`/edit/${item._id}`}
+                    size="small"
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    variant="outline"
+                    component={Link}
+                    to={`/detail-services/${item._id}`}
+                    size="small"
+                  >
+                    Lihat
+                  </Button>
+                  <Button
+                    color="error"
+                    onClick={(e) => handleDelete(item._id)}
+                    size="small"
+                  >
+                    Delete
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       </Stack>
     </Container>
   );

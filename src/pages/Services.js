@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import BannerFreeOngkir from "../components/BannerFreeOngkir";
 import BannerServices from "../components/BannerServices";
 import Footer from "../components/Footer";
 import HeroServices from "../components/HeroServices";
 import ServicesList from "../components/ServicesList";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Services = () => {
+  const { locale } = useContext(LocaleContext);
   return (
     <>
       <BannerServices />
       <HeroServices />
       <BannerFreeOngkir/>
-      <ServicesList/>
+      <ServicesList>{locale === 'id' ? 'Mungkin Anda sukai' : 'You might like'}</ServicesList>
       <Footer/>
     </>
   );

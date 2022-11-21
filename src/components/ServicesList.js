@@ -1,13 +1,22 @@
-import { Container, Box } from "@mui/material";
-import React from "react";
-import { ServicesList1, ServicesList2, ServicesList3, ServicesList4, ServicesList5 } from "../images/img";
+import React, { useEffect, useState } from "react";
+import { Container, Box, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ServicesItem from "./ServicesItem";
-import LocaleContext from "../contexts/LocaleContext";
+import { fonts } from "../utils";
+import { useDispatch } from "react-redux";
+import { getServices } from "../redux/features/services/servicesSlice";
 
-const ServicesList = () => {
-  const { locale } = React.useContext(LocaleContext);
+const ServicesList = ({ children }) => {
+  const [services, setServices] = useState([]);
+
+  const TitleText = styled(Typography)`
+    font-family: ${fonts.comfortaa};
+    font-weight: 700;
+    margin: 30px 0;
+    font-size: 24px;
+  `;
 
   const responsive = {
     desktop: {
@@ -27,8 +36,27 @@ const ServicesList = () => {
     },
   };
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getServices())
+      .then((res) => {
+        setServices(res.payload.services);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [dispatch]);
+
+  const otherServices = services.filter(
+    (otherPost) => otherPost.category === "other"
+  );
+
   return (
     <Container fixed>
+      <TitleText variant="h5" component="h2">
+        {children}
+      </TitleText>
       <Box my={5}>
         <Carousel
           additionalTransfrom={0}
@@ -56,12 +84,16 @@ const ServicesList = () => {
           showDots={false}
           sliderClass=""
           slidesToSlide={1}
-          swipeable>
-          <ServicesItem title={locale === 'id' ? 'Induk Tumbuhan Baru' : "The New Plant Parent"} image={ServicesList1} />
-          <ServicesItem title={locale === 'id' ? 'Induk Tumbuhan Baru' : "The New Plant Parent"} image={ServicesList2} />
-          <ServicesItem title={locale === 'id' ? 'Induk Tumbuhan Baru' : "The New Plant Parent"} image={ServicesList3} />
-          <ServicesItem title={locale === 'id' ? 'Induk Tumbuhan Baru' : "The New Plant Parent"} image={ServicesList4} />
-          <ServicesItem title={locale === 'id' ? 'Induk Tumbuhan Baru' : "The New Plant Parent"} image={ServicesList5} />
+          swipeable
+        >
+          {otherServices.map((item, index) => (
+            <ServicesItem
+              key={index}
+              title={item.title}
+              image={item.idImage}
+              id={item._id}
+            />
+          ))}
         </Carousel>
       </Box>
     </Container>

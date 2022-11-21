@@ -1,13 +1,14 @@
 import { Container, Box } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PlantCareItem from "./PlantCareItem";
-import { PlantCare1, PlantCare2, PlantCare3, PlantCare4 } from "../images/img";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import LocaleContext from "../contexts/LocaleContext";
+import { useDispatch } from "react-redux";
+import { getServices } from "../redux/features/services/servicesSlice";
+
 
 const PlantCareList = () => {
-  const { locale } = React.useContext(LocaleContext);
+  const [services, setServices] = useState([]);
 
   const responsive = {
     desktop: {
@@ -26,6 +27,20 @@ const PlantCareList = () => {
       slidesToSlide: 1, // optional, default to 1.
     },
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getServices())
+      .then((res) => {
+        setServices(res.payload.services);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [dispatch]);
+
+const careServices = services.filter((carePost) => carePost.category === "care" );
 
   return (
     <Container fixed>
@@ -56,11 +71,16 @@ const PlantCareList = () => {
           showDots={false}
           sliderClass=""
           slidesToSlide={1}
-          swipeable>
-          <PlantCareItem title={locale === 'id' ? 'Panduan lengkap untuk penyiraman' : "Complete guide to watering"} image={PlantCare1} />
-          <PlantCareItem title={locale === 'id' ? 'Panduan lengkap untuk penyiraman' : "Complete guide to watering"} image={PlantCare2} />
-          <PlantCareItem title={locale === 'id' ? 'Panduan lengkap untuk penyiraman' : "Complete guide to watering"} image={PlantCare3} />
-          <PlantCareItem title={locale === 'id' ? 'Panduan lengkap untuk penyiraman' : "Complete guide to watering"} image={PlantCare4} />
+          swipeable
+        >
+          {careServices.map((item, index) => (
+            <PlantCareItem
+              key={index}
+              title={item.title}
+              image={item.idImage}
+              id={item._id}
+            />
+          ))}
         </Carousel>
       </Box>
     </Container>

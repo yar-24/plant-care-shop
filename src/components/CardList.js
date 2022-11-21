@@ -14,7 +14,7 @@ const TitleText = styled(Typography)`
   font-family: ${fonts.comfortaa};
   font-weight: 700;
   margin: 30px 0;
-  font-size: 30px;
+  font-size: 24px;
 `;
 const CardList = ({ children }) => {
   const responsive = {
