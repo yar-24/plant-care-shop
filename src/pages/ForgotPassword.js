@@ -1,90 +1,70 @@
-import { TextField } from "@mui/material";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Container, Typography } from "@mui/material";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import styled from "styled-components";
-import { axiosInstance } from "../utils";
-import LoadingBtn from "../components/kecil/LoadingBtn";
-import { useSelector } from "react-redux";
+// import styled from "styled-components";
+import ForgotPasswordInput from "../components/ForgotPasswordInput";
 import LocaleContext from "../contexts/LocaleContext";
+import { forgot } from "../redux/features/auth/authSlice";
+import { axiosInstance } from "../utils";
 
-const Forpas = styled.div`
-  font-size: 13px;
-  display: grid;
-  margin: 75px 100px 40px 100px;
+// const Forpas = styled.div`
+//   font-size: 13px;
+//   display: grid;
+//   margin: 75px 100px 40px 100px;
 
-  @media (max-width: 725px) {
-    margin: 30px auto;
-    padding-right: 50px;
-  }
-`;
+//   @media (max-width: 725px) {
+//     margin: 30px auto;
+//     padding-right: 50px;
+//   }
+// `;
 
 const ForgotPassword = () => {
   const { locale } = React.useContext(LocaleContext);
+  const dispatch = useDispatch();
 
-  const [formData, setFormData] = useState({
-    email: "",
-  });
-
-  const { email } = formData;
-  const { isLoading } = useSelector((state) => state.auth);
-
-  const onChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
+  const onForgotPassword = ({email}) => {
     const userData = {
       email,
     };
-
     if (!email) {
       toast.warning("Please input email!!");
     } else {
-      axiosInstance
-        .post("/users/forgot-password", userData)
-        .then((res) => {
-          const pesan = res.data.message;
-          if (pesan === "Email tidak ditemukan") {
-            toast.error(pesan);
-          } else {
-            toast.success(pesan);
-          }
-        })
-        .catch((err) => {
-          toast.error(err);
-        });
+      dispatch(forgot(userData))
+      // axiosInstance
+      //   .post("/users/forgot-password", userData)
+      //   .then((res) => {
+      //     const pesan = res.data.message;
+      //     console.log(pesan)
+      //     if (pesan === "Email tidak ditemukan") {
+      //       toast.error(pesan);
+      //     } else {
+      //       toast.success(pesan);
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     toast.error(err);
+      //   });
     }
   };
 
   return (
-    <div className="forgot-password">
-      <form onSubmit={onSubmit}>
-        <h2>{locale === 'id' ? 'Halaman Lupa Kata Sandi' : 'Forgot Password Page'}</h2>
-        <h3>{locale === 'id' ? 'Reset password anda' : 'Reset your password'}</h3>
-        <p>{locale === 'id' ? 'Kami akan mengirimkan email untuk mengatur ulang kata sandi anda' : 'We will send you an email to reset your password'}</p>
-        <Forpas>
-          <TextField
-            id="email"
-            color="success"
-            type="email"
-            label={locale === 'id' ? 'Surel' : 'Email'}
-            name="email"
-            value={email}
-            onChange={onChange}
-          />
-        </Forpas>
-        <LoadingBtn className="button" label={locale === 'id' ? 'Kirim' : 'Submit'} loading={isLoading} />
-        <Link className="button2" to="/login">
-          {locale === 'id' ? 'Batal' : 'Cancel'}
-        </Link>
-      </form>
-    </div>
+    <Container fixed sx={{ my: 4 }}>
+      <Typography variant="h4" component="h2" gutterBottom>
+        {locale === "id" ? "Halaman Lupa Kata Sandi" : "Forgot Password Page"}
+      </Typography>
+      <Typography variant="h5" component="h3" gutterBottom>
+        {locale === "id" ? "Reset password anda" : "Reset your password"}
+      </Typography>
+      <Typography variant="body1" component="p" gutterBottom>
+        {locale === "id"
+          ? "Kami akan mengirimkan email untuk mengatur ulang kata sandi anda"
+          : "We will send you an email to reset your password"}
+      </Typography>
+      <ForgotPasswordInput forgotPassword={onForgotPassword} />
+    </Container>
+    // <div className="forgot-password">
+    // </div>
   );
 };
 

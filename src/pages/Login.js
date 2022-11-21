@@ -99,7 +99,7 @@ const Login = () => {
         />
       </Log>
 
-      <LoadingBtn label={locale === 'id' ? 'Masuk' : 'Login'} loading={isLoading}/>
+      <LoadingBtn loading={isLoading}>{locale === 'id' ? 'Masuk' : 'Login'} </LoadingBtn>
 
       <p>
         {locale === 'id' ? 'Kostumer baru?' : 'New customer?'}{" "}

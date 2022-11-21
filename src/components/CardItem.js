@@ -7,16 +7,13 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
 import LocaleContext from "../contexts/LocaleContext";
 import { Link } from "react-router-dom";
 
 const CardContainer = styled(Card)`
-  /* max-width: 241px; */
   border-radius: 0;
   background-color: #cedfd9;
-  width: auto;
-  margin: 15px;
+  // width: auto;
 `;
 const CardActionsContainer = styled("div")`
   display: flex;
@@ -49,15 +46,8 @@ const ActionButton = styled(Button)`
 `;
 const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
   const { locale } = React.useContext(LocaleContext);
-
-  const navigate = useNavigate()
-
-  const onDetailproduct = () => {
-    navigate(`/detail-product/${idProduct}`)
-  }
-
   return (
-    <CardContainer>
+    <CardContainer sx={{mx:2}}>
       <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${imgProduct}`} alt="green iguana" />
       <CardContent>
         <PlantTitleText style={{ textAlign: 'center' }}>{nameProduct}</PlantTitleText>
@@ -65,9 +55,9 @@ const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
       </CardContent>
       <CardActionsContainer>
         <ActionButton bgcolor={colors.white} txcolor="#000" size="large">
-          <FaShoppingCart style={{ width: '100%' }} />
+          <FaShoppingCart/>
         </ActionButton>
-        <ActionButton  style={{ fontSize: '14px' }} component={Link} to={`/detail-product/${idProduct}`} bgcolor={colors.secondary} txcolor={colors.white} size="large" >
+        <ActionButton component={Link} to={`/detail-product/${idProduct}`} bgcolor={colors.secondary} txcolor={colors.white} size="large" >
         {locale === 'id' ? 'Lihat Lainya' : 'See More'}
         </ActionButton>
       </CardActionsContainer>
