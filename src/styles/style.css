@@ -194,18 +194,27 @@ nav ul li button:hover {
 .services {
   margin: 25px 0px 25px 0px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: "Inter";
   width: 100%;
 }
 
 .services h2, h3 {
   font-family: "Comfortaa";
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .services .kolom {
-  margin-left: 15px;
-  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  margin-top: 30px;
+}
+
+.kolom h2{
+  text-align: center;
 }
 
 .deskripsi2{
@@ -448,6 +457,9 @@ ul {
 
 /*responsive*/
 @media(max-width: 767px) {
+  .services .kolom {
+    width: 100%;
+  }
   .footer-col {
      width: 50%;
     display: grid;

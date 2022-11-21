@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import HeroPlantCare from "../components/HeroPlantCare";
 import Banner from "../components/Banner";
 import { Typography } from "@mui/material";
-import { colors, fonts, getText } from "../utils";
+import { colors, fonts } from "../utils";
 import PlantCareList from "../components/PlantCareList";
 import BannerFreeOngkir from "../components/BannerFreeOngkir";
 import Footer from "../components/Footer";
@@ -10,10 +10,10 @@ import { useDispatch } from "react-redux";
 import { getServices } from "../redux/features/services/servicesSlice";
 import LocaleContext from "../contexts/LocaleContext";
 import SkeletonBannerPlantCare from "../components/kecil/SkeletonBannerPlantCare";
+import CardList from "../components/CardList";
 
 const PlantCare = () => {
   const { locale } = useContext(LocaleContext);
-  const [plantCare, setPlantCare] = useState([]);
   const [heroPlantCare, setHeroPlantCare] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,7 +22,6 @@ const PlantCare = () => {
   useEffect(() => {
     dispacth(getServices())
       .then((res) => {
-        setPlantCare(res);
         setHeroPlantCare(res.payload.services[0]);
         setIsLoading(true);
       })
@@ -30,8 +29,6 @@ const PlantCare = () => {
         console.log(err);
       });
   }, [dispacth]);
-
-  console.log(plantCare);
 
   return (
     <>
@@ -67,6 +64,7 @@ const PlantCare = () => {
       </Banner>
       <PlantCareList />
       <BannerFreeOngkir />
+      <CardList >{locale === 'id' ? 'Mungkin Anda sukai' : 'You might like'}</CardList>
       <Footer />
     </>
   );

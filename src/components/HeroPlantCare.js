@@ -4,7 +4,6 @@ import { styled } from "@mui/material/styles";
 import CustomButton from "./CustomButton";
 import { fonts } from "../utils/";
 import { PlantCareHero } from "../images/img";
-import { useNavigate } from "react-router-dom";
 import LocaleContext from "../contexts/LocaleContext";
 import { Link } from "react-router-dom";
 

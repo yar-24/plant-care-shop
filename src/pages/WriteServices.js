@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import moment from "moment";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   Box,
   Container,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import { styled } from "@mui/material/styles";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import {
   createService,
   getService,
@@ -25,6 +19,7 @@ import EditorToolbar, {
   formats,
 } from "../components/kecil/EditorToolbar";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const Image = styled("img")`
   width: 250px;
@@ -81,25 +76,54 @@ const WriteServices = () => {
     data.append("desc", desc);
     data.append("category", category);
 
-    if(isUpdate){
-      dispatch(updateService(data))
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    } else{
-
-      dispatch(createService(data))
-      .then(() => {
-        navigate("/plant-care");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    };
-  }
+    if (!image || !title || !desc || !category) {
+      toast.warning("Enter all fields");
+    } else {
+      if (isUpdate) {
+        Swal.fire({
+          title: "Are you sure update this?",
+          text: "You will modify this blog!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#009E72",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, update it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              "Updated!",
+              "Your blog has been updated.",
+              "success",
+              dispatch(updateService(data)).then((res) => {
+                navigate("/plant-care");
+              })
+            );
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Are you sure save this?",
+          text: "You will save this blog!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#009E72",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, save it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              "Saved!",
+              "Your blog has been saved.",
+              "success",
+              dispatch(createService(data)).then(() => {
+                navigate("/plant-care");
+              })
+            );
+          }
+        });
+      }
+    }
+  };
 
   const onImage = (e) => {
     const file = e.target.files[0];
@@ -119,8 +143,6 @@ const WriteServices = () => {
               style={{ display: "none" }}
               type="file"
               id="file"
-              name=""
-              multiple
               onChange={(e) => onImage(e)}
             />
             <label className="file" htmlFor="file">
@@ -171,35 +193,51 @@ const WriteServices = () => {
               </Box>
             </div>
             <div className="item">
-              <FormControl>
-                <FormLabel id="demo-radio-buttons-group-label">
-                  Category
-                </FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue="female"
-                  name="radio-buttons-group"
-                >
-                  <FormControlLabel
-                    value="service"
-                    control={<Radio />}
-                    label="Service"
-                    onChange={(e) => setCategory(e.target.value)}
-                  />
-                  <FormControlLabel
-                    value="plantCare"
-                    control={<Radio />}
-                    label="Plant Care"
-                    onChange={(e) => setCategory(e.target.value)}
-                  />
-                  <FormControlLabel
-                    value="other"
-                    control={<Radio />}
-                    label="Other"
-                    onChange={(e) => setCategory(e.target.value)}
-                  />
-                </RadioGroup>
-              </FormControl>
+              <h1>Category</h1>
+              <div className="cat">
+                <input
+                  type="radio"
+                  checked={category === "plant"}
+                  name="cat"
+                  value="plant"
+                  id="plant"
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <label htmlFor="plant">Plant</label>
+              </div>
+              <div className="cat">
+                <input
+                  type="radio"
+                  checked={category === "care"}
+                  name="cat"
+                  value="care"
+                  id="care"
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <label htmlFor="care">Care</label>
+              </div>
+              <div className="cat">
+                <input
+                  type="radio"
+                  checked={category === "shop"}
+                  name="cat"
+                  value="shop"
+                  id="shop"
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <label htmlFor="shop">Shop</label>
+              </div>
+              <div className="cat">
+                <input
+                  type="radio"
+                  checked={category === "other"}
+                  name="cat"
+                  value="other"
+                  id="other"
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <label htmlFor="other">Other</label>
+              </div>
             </div>
           </div>
         </div>

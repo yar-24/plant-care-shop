@@ -15,7 +15,6 @@ export const createService = createAsyncThunk(
   async (serviceData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      console.log(token)
       return await servicesService.createService(serviceData, token)
     } catch (error) {
       const message =
@@ -66,7 +65,7 @@ export const getServices = createAsyncThunk(
 )
 
 // Delete user goal
-export const deleteservice = createAsyncThunk(
+export const deleteService = createAsyncThunk(
   'services/delete',
   async (serviceId, thunkAPI) => {
     try {
@@ -91,7 +90,6 @@ export const updateService = createAsyncThunk(
     try {
       const token = thunkAPI.getState().auth.user.token
       const serviceId = thunkAPI.getState().services.services.service._id
-      console.log(serviceId)
       return await servicesService.updateService(serviceData, serviceId, token)
     } catch (error) {
       const message =
@@ -119,7 +117,7 @@ export const serviceSlice = createSlice({
       .addCase(createService.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.services.push(action.payload)
+        state.services = action.payload
       })
       .addCase(createService.rejected, (state, action) => {
         state.isLoading = false
@@ -152,17 +150,15 @@ export const serviceSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
-      .addCase(deleteservice.pending, (state) => {
+      .addCase(deleteService.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(deleteservice.fulfilled, (state, action) => {
+      .addCase(deleteService.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.services = state.services.filter(
-          (service) => service._id !== action.payload.serviceId
-        )
+        state.services = action.payload
       })
-      .addCase(deleteservice.rejected, (state, action) => {
+      .addCase(deleteService.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
@@ -173,10 +169,7 @@ export const serviceSlice = createSlice({
       .addCase(updateService.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.services = state.services.filter(
-          (service) => service._id !== action.payload.serviceId
-        )
-        state.services.push(action.payload)
+        state.services = action.payload
       })
       .addCase(updateService.rejected, (state, action) => {
         state.isLoading = false

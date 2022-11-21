@@ -46,11 +46,12 @@ const ActionButton = styled(Button)`
 `;
 const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
   const { locale } = React.useContext(LocaleContext);
+ 
   return (
     <CardContainer sx={{mx:2}}>
       <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${imgProduct}`} alt="green iguana" />
       <CardContent>
-        <PlantTitleText style={{ textAlign: 'center' }}>{nameProduct}</PlantTitleText>
+        <PlantTitleText>{nameProduct}</PlantTitleText>
         <PlantPriceText mt={2}>{locale === 'id' ? 'Dari' : 'From'} Rp.{priceProduct}</PlantPriceText>
       </CardContent>
       <CardActionsContainer>
