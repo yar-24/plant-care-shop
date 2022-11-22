@@ -5,6 +5,7 @@ import { PlantHero } from "../images/img";
 import Tombol from "./kecil/Tombol";
 import { Container, Stack, Box, Typography } from "@mui/material";
 import LocaleContext from "../contexts/LocaleContext";
+import { Link } from "react-router-dom";
 
 const Right = styled(Box)`
   display: flex;
@@ -92,7 +93,7 @@ const Hero = () => {
           >
             {locale === 'id' ? 'Nafas membantu anda menemukan tanaman terbaik untuk ruang anda, mengirimkannya ke pintu anda dan membantu anda merawatnya.' : 'Breath helps you discover the best plants for your space, delivers them to your door and helps you look after them.'}
           </Typography>
-          <Tombol
+          <Tombol component={Link} to={`/shop`}
             label= {locale === 'id' ? 'Temukan Tanaman' : "Discover The Plants"}
           />
         </Box>

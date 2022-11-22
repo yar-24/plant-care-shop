@@ -7,6 +7,7 @@ import { fonts } from "../utils";
 import Tombol from "../components/kecil/Tombol";
 import Footer from "../components/Footer";
 import LocaleContext from "../contexts/LocaleContext";
+import { Link } from "react-router-dom";
 
 const Title = styled.h1`
   font-family: ${fonts.inter};
@@ -28,7 +29,7 @@ const Home = () => {
         <Title className="title">
         {locale === 'id' ? 'Kiat, trik, dan panduan untuk membuat perawatan tanaman benar-benar mudah' : 'Tips, tricks, and plant guides to make plant care downright easy'}
         </Title>
-        <Tombol label={locale === 'id' ? 'Baca blog lainnya' : 'Read more blogs'}   />
+        <Tombol component={Link} to={`/plant-care`} label={locale === 'id' ? 'Baca blog lainnya' : 'Read more blogs'}   />
       </Banner>
       <CardList >{locale === 'id' ? 'Kategori Populer' : 'Popular Categories'}</CardList>
       <Footer />
