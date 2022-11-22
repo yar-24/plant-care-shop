@@ -48,7 +48,7 @@ const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
   const { locale } = React.useContext(LocaleContext);
  
   return (
-    <CardContainer sx={{mx:2, mt: 4}}>
+    <CardContainer>
       <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${imgProduct}`} alt="green iguana" />
       <CardContent>
         <PlantTitleText>{nameProduct}</PlantTitleText>

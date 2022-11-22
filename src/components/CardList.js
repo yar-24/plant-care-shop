@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import { Typography, Container, Stack } from "@mui/material";
+import { Typography, Container, Stack, Box } from "@mui/material";
 import CardItem from "./CardItem";
 import { fonts } from "../utils";
 import Carousel from "react-multi-carousel";
@@ -99,10 +99,10 @@ const CardList = ({ children }) => {
           swipeable
         >
           {filterProducts.map((product, index) => (
+            <Box sx={{mx:2}} key={index}>{
             // <Box >
               isLoading ? (
                 <CardItem
-                  key={index}
                   nameProduct={product.namePlant}
                   imgProduct={`${product.idImageProduct}`}
                   priceProduct={product.price}
@@ -111,7 +111,8 @@ const CardList = ({ children }) => {
               ) : (
                 <SkeletonCardItem />
               )
-            // </Box>
+            }
+            </Box>
           ))}
         </Carousel>
       </Stack>

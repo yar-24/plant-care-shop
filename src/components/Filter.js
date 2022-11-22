@@ -43,28 +43,28 @@ export default function Filter() {
     setOpen7(!open7);
   };
 
-  const Container = styled.div`
-    width: 19%;
-    background-color: #fff;
-    margin: 10px 10px 30px 30px;
-    display: block;
-    height: fit-content;
+  // const Container = styled.div`
+  //   width: 19%;
+  //   background-color: #fff;
+  //   margin: 10px 10px 30px 30px;
+  //   display: block;
+  //   height: fit-content;
 
-    @media (max-width: 1000px) {
-      width: 30%;
-    }
-    @media (max-width: 600px) {
-      width: 170px;
-      font-size: 20px;
-      margin: 10px 0px 10px 10px;
-      display:none ;
-    }
-  `;
+  //   @media (max-width: 1000px) {
+  //     width: 30%;
+  //   }
+  //   @media (max-width: 600px) {
+  //     width: 170px;
+  //     font-size: 20px;
+  //     margin: 10px 0px 10px 10px;
+  //     display:none ;
+  //   }
+  // `;
 
+  // <Container>
   return (
-    <Container>
       <List
-        sx={{ width: '100%', maxWidth: 300, bgcolor: "background.paper", display:'block' }}
+        sx={{ bgcolor: "background.paper", display:{xs:'none',sm:'block'}, alignSelf:'flex-start'}}
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader
@@ -364,6 +364,6 @@ export default function Filter() {
           </ListItemButton>
         </Collapse>
       </List>
-    </Container>
   );
+  // </Container>
 }
