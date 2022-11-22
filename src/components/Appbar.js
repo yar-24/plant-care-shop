@@ -29,7 +29,7 @@ import { logout, reset } from "../redux/features/auth/authSlice";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import InboxIcon from '@mui/icons-material/Inbox';
 import { LocaleConsumer } from '../contexts/LocaleContext';
-import Search from "./Search";
+import Search from "./kecil/Search";
 
 const drawerWidth = 240;
 const navItems = [

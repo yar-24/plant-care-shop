@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Stack, Box, Typography } from "@mui/material";
 import {TiWeatherPartlySunny} from "react-icons/ti";
 import {FaShoppingCart} from "react-icons/fa";
@@ -6,6 +6,7 @@ import { styled } from "@mui/material/styles";
 import { fonts } from '../utils';
 import CustomButton from './CustomButton';
 import LocaleContext from "../contexts/LocaleContext";
+import { useCart } from "react-use-cart";
 
 const ProductImage = styled("img")`
   position: absolute;
@@ -30,8 +31,10 @@ const ImageContainer = styled(Box)`
 `;
 
 const ProductInformation = ({product}) => {
+  const { addItem } = useCart();
   const { locale } = React.useContext(LocaleContext);
   const {imageProduct, namePlant, plantHeight, plantLight, care, price} = product;
+
   return (
     <Container fixed>
     <Stack spacing={6} my={4} direction={{ xs: "column", md: "row" }}>
@@ -84,7 +87,7 @@ const ProductInformation = ({product}) => {
             gutterBottom>
               {locale === 'id' ? 'Mulai Dari' : 'From'} Rp{price} 
           </Typography>
-            <CustomButton startIcon={<FaShoppingCart/>} size="medium" sx={{fontSize:18}}>  {locale === 'id' ? 'Tambahkan ke Keranjang' : 'Add To Bag'}</CustomButton>
+            <CustomButton startIcon={<FaShoppingCart/>} onClick={() => addItem(product)} size="medium" sx={{fontSize:18}}>  {locale === 'id' ? 'Tambahkan ke Keranjang' : 'Add To Bag'}</CustomButton>
         </Stack>
       </Stack>
     </Stack>

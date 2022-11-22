@@ -44,7 +44,7 @@ const ActionButton = styled(Button)`
     background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
   }
 `;
-const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
+const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct, onAddCart}) => {
   const { locale } = React.useContext(LocaleContext);
  
   return (
@@ -56,7 +56,7 @@ const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
       </CardContent>
       <CardActionsContainer>
         <ActionButton bgcolor={colors.white} txcolor="#000" size="large">
-          <FaShoppingCart/>
+          <FaShoppingCart onClick={onAddCart}/>
         </ActionButton>
         <ActionButton component={Link} to={`/detail-product/${idProduct}`} bgcolor={colors.secondary} txcolor={colors.white} size="large" >
         {locale === 'id' ? 'Lihat Lainya' : 'See More'}

@@ -8,8 +8,10 @@ import Filter from "./Filter";
 import LocaleContext from "../contexts/LocaleContext";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
 import styled from "styled-components";
+import {useCart } from "react-use-cart";
 
 const Product = () => {
+  const { addItem } = useCart();
   const { locale } = React.useContext(LocaleContext);
   const [products, setproducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +34,8 @@ const Product = () => {
         })
       });
   }, [dispatch]);
+
+  console.log(products)
 
    const Layout = styled.div`
     margin: 40px 80px 30px 80px;
@@ -61,6 +65,7 @@ const Product = () => {
                       imgProduct={`${product.idImageProduct}`}
                       priceProduct={product.price}
                       idProduct={product._id}
+                      onAddCart={() => addItem(product)}
                     />
                   </Grid>
                 ) : (
