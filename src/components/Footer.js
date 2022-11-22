@@ -9,10 +9,10 @@ const Footer = () => {
   const { locale } = React.useContext(LocaleContext);
 
     return (
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col">
+        <footer className="footer">
+            <div className="container">
+                <div className="row">
+                    <div className="footer-col">
                         <h4>{locale === 'id' ? 'Tentang' : 'About'}</h4>
                         <ul>
                             <li><a href="/">{locale === 'id' ? 'Tentang Breath' : 'About Breath'}</a></li>
@@ -21,7 +21,7 @@ const Footer = () => {
                             <li><a href="/services">{locale === 'id' ? 'Layanan' : 'Services'}</a></li>
                         </ul>
                     </div>
-                    <div class="footer-col">
+                    <div className="footer-col">
                         <h4>{locale === 'id' ? 'Ketentuan' : 'Terms'}</h4>
                         <ul>
                             <li><a href="/">{locale === 'id' ? 'Ketentuan Layanan' : 'Terms of Service'}</a></li>
@@ -29,7 +29,7 @@ const Footer = () => {
                             <li><a href="/">{locale === 'id' ? 'Pengembalian dan Pengiriman' : 'Return and Delivery'}</a></li>
                         </ul>
                     </div>
-                    <div class="footer-col">
+                    <div className="footer-col">
                         <h4>{locale === 'id' ? 'Kontak' : 'Contacts'}</h4>
                         <ul>
                             <li><a href="/"><HiLocationMarker/> Jakarta, Soekarno Hatta No. 13</a></li>
@@ -38,9 +38,9 @@ const Footer = () => {
                             <li><a href="/"><MdEmail/> breath@gmail.com</a></li>
                         </ul>
                     </div>
-                    <div class="footer-col">
+                    <div className="footer-col">
                         <h4>{locale === 'id' ? 'Ikuti Kami' : 'Follow us'}</h4>
-                        <div class="social-links">
+                        <div className="social-links">
                             <a href="/"><BsFacebook/></a>
                             <a href="/"><BsTwitter/></a>
                             <a href="/"><BsInstagram/></a>

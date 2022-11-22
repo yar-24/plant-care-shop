@@ -19,7 +19,6 @@ import {
 import { styled } from "@mui/material/styles";
 import {
   BsFillCartFill,
-  BsSearch,
   BsTranslate,
 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,6 +29,7 @@ import { logout, reset } from "../redux/features/auth/authSlice";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import InboxIcon from '@mui/icons-material/Inbox';
 import { LocaleConsumer } from '../contexts/LocaleContext';
+import Search from "./Search";
 
 const drawerWidth = 240;
 const navItems = [
@@ -51,7 +51,7 @@ const navItems = [
   },
 ];
 
-function DrawerAppBar(props) {
+function DrawerAppBar (props)  {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -215,7 +215,7 @@ function DrawerAppBar(props) {
                   aria-haspopup="true"
                   style={{ color: "black" }}
                 >
-                  <BsSearch />
+                  <Search />
                 </IconButton>
                 <IconButton
                   size="medium"
