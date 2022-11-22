@@ -18,9 +18,12 @@ import {
 import Appbar from "../components/Appbar";
 import Toast from "../components/kecil/Toast";
 import ScrollToTop from "../components/ScrollToTop";
+import { useSelector } from "react-redux";
 
 
 const Navigation = () => {
+
+  const { user} = useSelector((state) => state.auth);
   return (
     <>
         <ScrollToTop/>
@@ -38,9 +41,9 @@ const Navigation = () => {
             <Route element={<ForgotPassword/>} path="/forgot-password"/>
             <Route element={<ResetPassword />} path="/reset-password" />
             <Route element={<Cart />} path="/cart" />
-            <Route element={<HomeWrite/>} path="/home-write" />
-            <Route element={<WriteServices/>} path="/write" />
-            <Route element={<WriteServices/>} path="/edit/:id" />
+            <Route element={user? <HomeWrite/> : <Home/>} path="/home-write" />
+            <Route element={user? <WriteServices/> : <Home/>} path="/write" />
+            <Route element={user? <WriteServices/> : <Home/>} path="/edit/:id" />
         </Routes>
     </>
   );
