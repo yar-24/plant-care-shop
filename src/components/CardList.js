@@ -13,28 +13,28 @@ import SkeletonCardItem from "./kecil/SkeletonCardItem";
 const TitleText = styled(Typography)`
   font-family: ${fonts.comfortaa};
   font-weight: 700;
-  margin: 30px 0;
-  font-size: 24px;
+  margin: 32px 0;
 `;
+
 const CardList = ({ children }) => {
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 1200 },
       items: 4,
       slidesToSlide: 4,
     },
-    tablet1: {
-    breakpoint: { max: 1200, min: 900 },
+    laptop: {
+      breakpoint: { max: 1200, min: 900 },
       items: 3,
       slidesToSlide: 3,
     },
-    tablet2: {
-      breakpoint: { max: 900, min: 550 },
+    tablet: {
+      breakpoint: { max: 900, min: 480 },
       items: 2,
       slidesToSlide: 2,
     },
     mobile: {
-      breakpoint: { max: 550, min: 0 },
+      breakpoint: { max: 480, min: 0 },
       items: 1,
       slidesToSlide: 1,
     },
@@ -63,9 +63,9 @@ const CardList = ({ children }) => {
   }, [dispatch]);
 
   return (
-    <Container fixed>
-      <TitleText variant="h5" component="h2">{children}</TitleText>
-      <Stack my={5}>
+    <Container sx={{padding:0}} disableGutters fixed>
+      <TitleText sx={{px:3}} variant="h5" component="h2">{children}</TitleText>
+      <Stack mx={1} my={5}>
         <Carousel
           additionalTransfrom={0}
           arrows
@@ -95,9 +95,10 @@ const CardList = ({ children }) => {
           swipeable
         >
           {products.map((product, index) => (
-            <Box key={index}>
-              {isLoading ? (
+            // <Box >
+              isLoading ? (
                 <CardItem
+                  key={index}
                   nameProduct={product.namePlant}
                   imgProduct={`${product.idImageProduct}`}
                   priceProduct={product.price}
@@ -105,8 +106,8 @@ const CardList = ({ children }) => {
                 />
               ) : (
                 <SkeletonCardItem />
-              )}
-            </Box>
+              )
+            // </Box>
           ))}
         </Carousel>
       </Stack>

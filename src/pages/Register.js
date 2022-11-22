@@ -127,7 +127,7 @@ const Register = () => {
             onChange={onChange}
           />
         </Regis>
-        <LoadingBtn label={locale === 'id' ? 'Buat Akun' : 'Create'} loading={isLoading} />
+        <LoadingBtn loading={isLoading}>{locale === 'id' ? 'Buat Akun' : 'Create'}</LoadingBtn>
       </form>
       <p>
         {locale === 'id' ? 'Pelanggan kembali?' : 'Returning customer?'}{" "}
