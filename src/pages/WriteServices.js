@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  Box,
-  Container,
-} from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { Stack } from "@mui/system";
 import { styled } from "@mui/material/styles";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   createService,
   getService,
@@ -20,6 +17,7 @@ import EditorToolbar, {
 } from "../components/kecil/EditorToolbar";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import LoadingBtn from "../components/kecil/LoadingBtn";
 
 const Image = styled("img")`
   width: 250px;
@@ -34,6 +32,7 @@ const WriteServices = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [isUpdate, setIsUpdate] = useState(false);
   const [service, setService] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -90,14 +89,15 @@ const WriteServices = () => {
           confirmButtonText: "Yes, update it!",
         }).then((result) => {
           if (result.isConfirmed) {
-            Swal.fire(
-              "Updated!",
-              "Your blog has been updated.",
-              "success",
-              dispatch(updateService(data)).then((res) => {
-                navigate("/plant-care");
-              })
-            );
+            setIsLoading(true);
+            dispatch(updateService(data)).then(() => {
+              Swal.fire(
+                "Updated!",
+                "Your blog has been updated.",
+                "success",
+                navigate("/plant-care")
+              );
+            });
           }
         });
       } else {
@@ -111,14 +111,15 @@ const WriteServices = () => {
           confirmButtonText: "Yes, save it!",
         }).then((result) => {
           if (result.isConfirmed) {
-            Swal.fire(
-              "Saved!",
-              "Your blog has been saved.",
-              "success",
-              dispatch(createService(data)).then(() => {
-                navigate("/plant-care");
-              })
-            );
+            setIsLoading(true);
+            dispatch(createService(data)).then(() => {
+              Swal.fire(
+                "Saved!",
+                "Your blog has been saved.",
+                "success",
+                navigate("/plant-care")
+                )
+            });
           }
         });
       }
@@ -187,8 +188,9 @@ const WriteServices = () => {
                   <b>Visibility: </b> Public
                 </span>
                 <div className="buttons">
-                  <button>Save as a draft</button>
-                  <button onClick={handleClick}>Publish</button>
+                  <LoadingBtn onClick={handleClick} loading={isLoading}>
+                    Publish
+                  </LoadingBtn>
                 </div>
               </Box>
             </div>

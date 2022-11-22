@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Box, Typography, Skeleton } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -7,9 +7,11 @@ import ServicesItem from "./ServicesItem";
 import { fonts } from "../utils";
 import { useDispatch } from "react-redux";
 import { getServices } from "../redux/features/services/servicesSlice";
+import { useParams } from "react-router-dom";
 
 const ServicesList = ({ children }) => {
   const [services, setServices] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const TitleText = styled(Typography)`
     font-family: ${fonts.comfortaa};
@@ -37,20 +39,20 @@ const ServicesList = ({ children }) => {
   };
 
   const dispatch = useDispatch();
+  const { id } = useParams();
 
   useEffect(() => {
     dispatch(getServices())
-      .then((res) => {
-        setServices(res.payload.services);
+    .then((res) => {
+      setServices(res.payload.services);
+      setIsLoading(true);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [dispatch]);
 
-  const otherServices = services.filter(
-    (otherPost) => otherPost.category === "other"
-  );
+  const otherServices = services.filter((otherPost) => otherPost._id !== id);
 
   return (
     <Container fixed>
@@ -87,12 +89,17 @@ const ServicesList = ({ children }) => {
           swipeable
         >
           {otherServices.map((item, index) => (
-            <ServicesItem
-              key={index}
-              title={item.title}
-              image={item.idImage}
-              id={item._id}
-            />
+            isLoading ? (
+              
+              <ServicesItem
+                key={index}
+                title={item.title}
+                image={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${item.idImage}`}
+                id={item._id}
+              />
+            ) : (
+              <Skeleton variant="rectangular" animation="wave" width={300} height={300} />
+            )
           ))}
         </Carousel>
       </Box>

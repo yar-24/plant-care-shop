@@ -44,13 +44,14 @@ const Product = () => {
       margin: 20px auto;
     }
   `;
+
   return (
     <>
       <h2 className="title-product">{locale === 'id' ? 'Semua Produk' : 'All Product'}</h2>
       <Layout fixed>
         <Stack direction="row" spacing={{ md: 1 }}>
           <Filter/>
-          <Grid style={{ height: 'fit-content' }} container spacing={{ xs: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }} >
+          <Grid style={{ height: 'fit-content' }} container spacing={{ xs: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}  >
             {products.map((product, index) => (
                 isLoading ? (
                   <Grid item xs={4} sm={4} md={4} key={index}>

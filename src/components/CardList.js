@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import { Typography, Container, Stack, Box } from "@mui/material";
+import { Typography, Container, Stack } from "@mui/material";
 import CardItem from "./CardItem";
 import { fonts } from "../utils";
 import Carousel from "react-multi-carousel";
@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { getProducts } from "../redux/features/products/productSlice";
 import Swal from "sweetalert2";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
+import { useParams } from "react-router-dom";
 
 const TitleText = styled(Typography)`
   font-family: ${fonts.comfortaa};
@@ -44,6 +45,7 @@ const CardList = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
+  const {id} = useParams()
 
   useEffect(() => {
     dispatch(getProducts())
@@ -61,6 +63,8 @@ const CardList = ({ children }) => {
         });
       });
   }, [dispatch]);
+  
+  const filterProducts = products.filter((product) => product._id !== id)
 
   return (
     <Container sx={{padding:0}} disableGutters fixed>
@@ -94,7 +98,7 @@ const CardList = ({ children }) => {
           slidesToSlide={1}
           swipeable
         >
-          {products.map((product, index) => (
+          {filterProducts.map((product, index) => (
             // <Box >
               isLoading ? (
                 <CardItem

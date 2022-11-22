@@ -41,7 +41,7 @@ const navigasi = useNavigate()
       <CardMedia
         component="img"
         height="250"
-        src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${image}`}
+        src={image}
         alt="green iguana"
       />
       <CardActions sx={{ justifyContent: 'flex-end', marginLeft: '180px auto', position: 'fixed', top: '260px', padding: '10px' }}>

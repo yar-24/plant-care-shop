@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 const CardContainer = styled(Card)`
   border-radius: 0;
   background-color: #cedfd9;
-  // width: auto;
+  /* width: auto; */
 `;
 const CardActionsContainer = styled("div")`
   display: flex;
@@ -48,7 +48,7 @@ const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct}) => {
   const { locale } = React.useContext(LocaleContext);
  
   return (
-    <CardContainer sx={{mx:2}}>
+    <CardContainer sx={{mx:2, mt: 4}}>
       <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${imgProduct}`} alt="green iguana" />
       <CardContent>
         <PlantTitleText>{nameProduct}</PlantTitleText>
