@@ -18,6 +18,12 @@ const ContainerHarga = styled(Box)`
   border-bottom: 1px solid ${colors.secondary};
   padding: 20px 0px;
 `;
+
+const Button = styled(CustomButton)`
+@media (max-width: 600px) {
+ width: 80% ;
+}
+`
 const ListHarga = ({ textHarga, totalHarga }) => {
   return (
     <ContainerHarga>
@@ -65,13 +71,13 @@ const CartList = () => {
           margin: "20px 0px",
         }}
       >
-        <CustomButton
+        <Button
           startIcon={<ShoppingCart />}
           size="large"
           sx={{ alignSelf: "center", width: "50%", fontSize: "20px" }}
         >
            {locale === 'id' ? 'Pesan Sekarang' : 'Place Order'}
-        </CustomButton>
+        </Button>
       </Box>
     </CartListContainer>
   );

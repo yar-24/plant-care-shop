@@ -6,18 +6,6 @@ import { toast } from "react-toastify";
 import ForgotPasswordInput from "../components/ForgotPasswordInput";
 import LocaleContext from "../contexts/LocaleContext";
 import { forgot } from "../redux/features/auth/authSlice";
-import { axiosInstance } from "../utils";
-
-// const Forpas = styled.div`
-//   font-size: 13px;
-//   display: grid;
-//   margin: 75px 100px 40px 100px;
-
-//   @media (max-width: 725px) {
-//     margin: 30px auto;
-//     padding-right: 50px;
-//   }
-// `;
 
 const ForgotPassword = () => {
   const { locale } = React.useContext(LocaleContext);
@@ -31,20 +19,6 @@ const ForgotPassword = () => {
       toast.warning("Please input email!!");
     } else {
       dispatch(forgot(userData))
-      // axiosInstance
-      //   .post("/users/forgot-password", userData)
-      //   .then((res) => {
-      //     const pesan = res.data.message;
-      //     console.log(pesan)
-      //     if (pesan === "Email tidak ditemukan") {
-      //       toast.error(pesan);
-      //     } else {
-      //       toast.success(pesan);
-      //     }
-      //   })
-      //   .catch((err) => {
-      //     toast.error(err);
-      //   });
     }
   };
 
@@ -63,8 +37,6 @@ const ForgotPassword = () => {
       </Typography>
       <ForgotPasswordInput forgotPassword={onForgotPassword} />
     </Container>
-    // <div className="forgot-password">
-    // </div>
   );
 };
 

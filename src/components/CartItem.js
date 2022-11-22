@@ -8,21 +8,42 @@ const Container = styled.div`
   display: flex;
   border: 1px solid ${colors.secondary};
   margin-top: 50px ;
+
+  @media (max-width: 600px) {
+    margin-top: 30px ;
+  }
 `;
 
 const Left = styled.div`
   width: 50%;
   display: flex;
+ 
 `;
 
 const Image = styled.img`
   width: 192px;
   height: 188px;
   margin: 20px 40px 20px 40px;
+
+  @media (max-width: 1000px) {
+    width: 152px;
+    height: 148px;
+  }
+
+  @media (max-width: 600px) {
+    width: 102px;
+    height: 98px;
+    margin: 10px 20px 10px 20px;
+
+  }
 `;
 
 const ContainerText = styled.div`
     margin-top: 30px ;
+    /* margin: auto; */
+    @media (max-width: 600px) {
+    margin: auto;
+  }
 `;
 
 const NamePlant = styled.h4`
@@ -39,23 +60,40 @@ const Right = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-right: 50px;
+  @media (max-width: 600px) {
+    flex-direction: column ;
+    justify-content: center ;
+    align-items: flex-end ;
+    margin-right: 20px ;
+  }
 `;
 
 const ContainerJumlah = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 20%;
-  padding: 2px;
+  width: 100px;
+  height: 50px ;
   background-color: ${colors.grey};
+  @media (max-width: 600px) {
+    width: 80px;
+    height: 40px ;
+  }
 `;
 const CounterBtn = styled.button`
+  display: flex ;
+  justify-content: center ;
+  align-items: center ;
   width: 30px;
   height: 30px;
   font-size: 20px;
   border: 2px solid black;
   background-color: transparent ;
   cursor: pointer;
+  @media (max-width: 600px) {
+    width: 20px ;
+    height: 20px ;
+  }
 `;
 const Angka = styled.p`
     font-weight: bold ;
@@ -67,6 +105,13 @@ const ContainerHarga = styled.div`
   justify-content: space-between ;
   width: 70px ;
   margin-left: 50px;
+
+  @media (max-width: 725px) {
+  margin-left: 20px;
+  }
+  @media (max-width: 550px) {
+  margin-left: 15px;
+  }
 `;
 
 const Harga = styled.p`

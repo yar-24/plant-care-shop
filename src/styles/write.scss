@@ -58,21 +58,6 @@
       .buttons{
         display: flex;
         justify-content: space-between;
-
-        :first-child{
-          cursor: pointer;
-          color: teal;
-          background-color: white;
-          border: 1px solid teal;
-          padding: 3px 5px;
-        }
-        :last-child{
-          cursor: pointer;
-          color: white;
-          background-color: teal;
-          border: 1px solid teal;
-          padding: 3px 5px;
-        }
       }
 
       .cat{
@@ -80,7 +65,14 @@
         align-items: center;
         gap: 2px;
         color: teal;
+        margin: 10px 0px;
       }
     }
+  }
+}
+
+@media screen and (max-width : 725px) {
+  .add{
+   flex-direction: column;
   }
 }
