@@ -8,21 +8,42 @@ const Container = styled.div`
   display: flex;
   border: 1px solid ${colors.secondary};
   margin-top: 50px ;
+
+  @media (max-width: 600px) {
+    margin-top: 30px ;
+  }
 `;
 
 const Left = styled.div`
   width: 50%;
   display: flex;
+ 
 `;
 
 const Image = styled.img`
   width: 192px;
   height: 188px;
   margin: 20px 40px 20px 40px;
+
+  @media (max-width: 1000px) {
+    width: 152px;
+    height: 148px;
+  }
+
+  @media (max-width: 600px) {
+    width: 102px;
+    height: 98px;
+    margin: 10px 20px 10px 20px;
+
+  }
 `;
 
 const ContainerText = styled.div`
     margin-top: 30px ;
+    /* margin: auto; */
+    @media (max-width: 600px) {
+    margin: auto;
+  }
 `;
 
 const NamePlant = styled.h4`
@@ -39,6 +60,7 @@ const Right = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-right: 50px;
+  
 `;
 
 const ContainerJumlah = styled.div`
@@ -67,6 +89,13 @@ const ContainerHarga = styled.div`
   justify-content: space-between ;
   width: 70px ;
   margin-left: 50px;
+
+  @media (max-width: 725px) {
+  margin-left: 20px;
+  }
+  @media (max-width: 550px) {
+  margin-left: 15px;
+  }
 `;
 
 const Harga = styled.p`
