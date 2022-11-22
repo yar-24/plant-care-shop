@@ -64,7 +64,7 @@ const CardList = ({ children }) => {
 
   return (
     <Container sx={{padding:0}} disableGutters fixed>
-      <TitleText sx={{px:3}} variant="h4" component="h2">{children}</TitleText>
+      <TitleText sx={{px:3}} variant="h5" component="h2">{children}</TitleText>
       <Stack mx={1} my={5}>
         <Carousel
           additionalTransfrom={0}
@@ -95,10 +95,9 @@ const CardList = ({ children }) => {
           swipeable
         >
           {products.map((product, index) => (
-            // <Box >
+            <Box sx={{mx:2}} key={index}>{
               isLoading ? (
                 <CardItem
-                  key={index}
                   nameProduct={product.namePlant}
                   imgProduct={`${product.idImageProduct}`}
                   priceProduct={product.price}
@@ -107,7 +106,8 @@ const CardList = ({ children }) => {
               ) : (
                 <SkeletonCardItem />
               )
-            // </Box>
+            }
+            </Box>
           ))}
         </Carousel>
       </Stack>
