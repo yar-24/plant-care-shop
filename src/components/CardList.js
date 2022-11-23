@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
-import { Typography, Container, Stack, Box } from "@mui/material";
-import CardItem from "./CardItem";
-import { fonts } from "../utils";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import { useDispatch } from "react-redux";
-import { getProducts } from "../redux/features/products/productSlice";
-import Swal from "sweetalert2";
-import SkeletonCardItem from "./kecil/SkeletonCardItem";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { styled } from '@mui/material/styles';
+import { Typography, Container, Stack, Box } from '@mui/material';
+import CardItem from './CardItem';
+import { fonts } from '../utils';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import { useDispatch } from 'react-redux';
+import { getProducts } from '../redux/features/products/productSlice';
+import Swal from 'sweetalert2';
+import SkeletonCardItem from './kecil/SkeletonCardItem';
+import { useParams } from 'react-router-dom';
 
 const TitleText = styled(Typography)`
   font-family: ${fonts.comfortaa};
@@ -45,7 +45,7 @@ const CardList = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
-  const {id} = useParams()
+  const { id } = useParams();
 
   useEffect(() => {
     dispatch(getProducts())
@@ -56,19 +56,21 @@ const CardList = ({ children }) => {
       })
       .catch((err) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
           footer: err,
         });
       });
   }, [dispatch]);
-  
-  const filterProducts = products.filter((product) => product._id !== id)
+
+  const filterProducts = products.filter((product) => product._id !== id);
 
   return (
-    <Container sx={{padding:0}} disableGutters fixed>
-      <TitleText sx={{px:3}} variant="h5" component="h2">{children}</TitleText>
+    <Container sx={{ padding: 0 }} disableGutters fixed>
+      <TitleText sx={{ px: 3 }} variant="h5" component="h2">
+        {children}
+      </TitleText>
       <Stack mx={1} my={5}>
         <Carousel
           additionalTransfrom={0}
@@ -96,24 +98,23 @@ const CardList = ({ children }) => {
           showDots={false}
           sliderClass=""
           slidesToSlide={1}
-          swipeable
-        >
-          {filterProducts.map((product, index) => (
-            <Box sx={{mx:2}} key={index}>{
-            // <Box >
-              isLoading ? (
-                <CardItem
-                  nameProduct={product.namePlant}
-                  imgProduct={`${product.idImageProduct}`}
-                  priceProduct={product.price}
-                  idProduct={product._id}
-                />
-              ) : (
-                <SkeletonCardItem />
-              )
-            }
-            </Box>
-          ))}
+          swipeable>
+          {(!isLoading ? Array.from(new Array(4)) : filterProducts).map(
+            (product, index) => (
+              <Box sx={{ mx: 2 }} key={index}>
+                {product ? (
+                  <CardItem
+                    nameProduct={product.namePlant}
+                    imgProduct={`${product.idImageProduct}`}
+                    priceProduct={product.price}
+                    idProduct={product._id}
+                  />
+                ) : (
+                  <SkeletonCardItem />
+                )}
+              </Box>
+            )
+          )}
         </Carousel>
       </Stack>
     </Container>
