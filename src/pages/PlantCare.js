@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
-import HeroPlantCare from "../components/HeroPlantCare";
-import Banner from "../components/Banner";
-import { Typography } from "@mui/material";
-import { colors, fonts } from "../utils";
-import PlantCareList from "../components/PlantCareList";
-import BannerFreeOngkir from "../components/BannerFreeOngkir";
-import Footer from "../components/Footer";
-import { useDispatch } from "react-redux";
-import { getServices } from "../redux/features/services/servicesSlice";
-import LocaleContext from "../contexts/LocaleContext";
-import SkeletonBannerPlantCare from "../components/kecil/SkeletonBannerPlantCare";
-import CardList from "../components/CardList";
+import React, { useState, useEffect, useContext } from 'react';
+import HeroPlantCare from '../components/HeroPlantCare';
+import Banner from '../components/Banner';
+import { Typography } from '@mui/material';
+import { colors, fonts } from '../utils';
+import PlantCareList from '../components/PlantCareList';
+import BannerFreeOngkir from '../components/BannerFreeOngkir';
+import Footer from '../components/Footer';
+import { useDispatch } from 'react-redux';
+import { getServices } from '../redux/features/services/servicesSlice';
+import LocaleContext from '../contexts/LocaleContext';
+import SkeletonBannerPlantCare from '../components/kecil/SkeletonBannerPlantCare';
+import CardList from '../components/CardList';
 
 const PlantCare = () => {
   const { locale } = useContext(LocaleContext);
@@ -35,7 +35,7 @@ const PlantCare = () => {
       {isLoading ? (
         <HeroPlantCare idService={heroPlantCare._id} />
       ) : (
-        <SkeletonBannerPlantCare/>
+        <SkeletonBannerPlantCare />
       )}
 
       <Banner>
@@ -47,24 +47,24 @@ const PlantCare = () => {
             lineHeight: 2,
             color: colors.white,
           }}
-          gutterBottom
-        >
-          {locale === "id" ? "Perawatan Tanaman" : "Plant Care"}
+          gutterBottom>
+          {locale === 'id' ? 'Perawatan Tanaman' : 'Plant Care'}
         </Typography>
         <Typography
           variant="h4"
           component="h3"
           sx={{ fontFamily: fonts.inter, lineHeight: 2, color: colors.white }}
-          gutterBottom
-        >
-          {locale === "id"
-            ? "Kiat, trik, dan panduan untuk membuat perawatan tanaman benar-benar mudah."
-            : "Tips, tricks, and plant guides to make plant care downright easy."}
+          gutterBottom>
+          {locale === 'id'
+            ? 'Kiat, trik, dan panduan untuk membuat perawatan tanaman benar-benar mudah.'
+            : 'Tips, tricks, and plant guides to make plant care downright easy.'}
         </Typography>
       </Banner>
       <PlantCareList />
       <BannerFreeOngkir />
-      <CardList >{locale === 'id' ? 'Mungkin Anda sukai' : 'You might like'}</CardList>
+      <CardList>
+        {locale === 'id' ? 'Mungkin Anda sukai' : 'You might like'}
+      </CardList>
       <Footer />
     </>
   );
