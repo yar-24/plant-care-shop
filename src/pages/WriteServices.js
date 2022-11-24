@@ -170,8 +170,8 @@ const WriteServices = () => {
               />
             </div>
           </div>
-          <div className="menu">
-            <div className="item">
+          <div className="menu" >
+            <div className="item" style={{ backgroundColor: '#9ed7c1' }}>
               <Box
                 sx={{
                   display: "flex",
@@ -194,7 +194,7 @@ const WriteServices = () => {
                 </div>
               </Box>
             </div>
-            <div className="item">
+            <div className="item"  style={{ backgroundColor: '#9ed7c1' }}>
               <h1>Category</h1>
               <div className="cat">
                 <input
