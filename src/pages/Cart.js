@@ -1,14 +1,12 @@
-import React from 'react'
-import CartList from '../components/CartList'
-import Footer from '../components/Footer'
+import React from 'react';
+import CartList from '../components/CartList';
 
 const Cart = () => {
   return (
     <>
-      <CartList/>
-      <Footer/>
+      <CartList />
     </>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

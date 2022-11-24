@@ -163,12 +163,12 @@ function DrawerAppBar(props) {
                     <Typography
                       variant="h6"
                       component="div"
+                      fontFamily={fonts.comfortaa}
+                      fontSize={32}
                       sx={{
                         display: {
                           xs: 'none',
                           md: 'block',
-                          fontFamily: 'Comfortaa',
-                          fontSize: '27px',
                         },
                       }}>
                       Breath

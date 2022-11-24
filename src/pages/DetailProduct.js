@@ -1,60 +1,74 @@
-/* eslint-disable jsx-a11y/alt-text */
-import React, { useEffect, useState } from 'react'
-import Footer from '../components/Footer';
-import BannerFreeOngkir from "../components/BannerFreeOngkir";
-import CardList from "../components/CardList";
-import ProductDetail from '../components/ProductDetail';
-import LocaleContext from "../contexts/LocaleContext";
-import ProductInformation from '../components/ProductInformation';
-import { getProduct } from '../redux/features/products/productSlice';
-import Swal from 'sweetalert2';
+import { Box, Container, Stack, styled } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import BannerFreeOngkir from '../components/BannerFreeOngkir';
+import CardList from '../components/CardList';
+import ProductDetail from '../components/ProductDetail';
+import ProductInformation from '../components/ProductInformation';
+import LocaleContext from '../contexts/LocaleContext';
+import { getProduct } from '../redux/features/products/productSlice';
 
 const DetailProduct = () => {
   const { locale } = React.useContext(LocaleContext);
   const [product, setProduct] = useState({});
-  const {id} = useParams();
-  
+  const { id } = useParams();
+
+  const ProductImage = styled('img')`
+    object-fit: cover;
+    max-width: 100%;
+    height: 100%;
+    vertical-align: middle;
+  `;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProduct(id))
-    .then((res) => {
-      const data = res.payload.product;
-      setProduct(data);
-    })
+      .then((res) => {
+        const data = res.payload.product;
+        setProduct(data);
+      })
       .catch((err) => {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'Something went wrong!',
-          footer: err
-        })
+          footer: err,
+        });
       });
   }, [id, dispatch]);
 
   return (
     <>
-    <ProductInformation product={product} />
-    <div className='detail-product'>
-        <div className='photos'>
+      <ProductInformation product={product} />
+      <Container fixed sx={{ my: 4 }}>
+        <Stack component="ul" direction="row" gap={{ xs: 1, sm: 2, md: 4 }}>
           {Array.isArray(product.images)
-            ? product.images.map((item)=>(
-            <img src={item.url} key={item.image_id} alt=''/>
-          ))
-          : null}
-        </div>
-    </div>
-
-    <ProductDetail/>
-    <BannerFreeOngkir/>
-    <CardList>{locale === 'id' ? 'Mungkin Anda Sukai' : 'You Might Like'}</CardList>
-
-    <Footer/>
+            ? product.images.map((item) => (
+                <Box component="li" sx={{ flex: 1 }}>
+                  <ProductImage
+                    src={`https://res.cloudinary.com/eundangdotcom/image/upload/${item.image_id}`}
+                    key={item.image_id}
+                    alt=""
+                  />
+                </Box>
+              ))
+            : null}
+        </Stack>
+      </Container>
+      <ProductDetail
+        namePlant={product.namePlant}
+        plantAbout={product.plantAbout}
+        plantLike={product.plantLike}
+      />
+      <BannerFreeOngkir />
+      <CardList>
+        {locale === 'id' ? 'Mungkin Anda Sukai' : 'You Might Like'}
+      </CardList>
     </>
-  )
-}
+  );
+};
 
-export default DetailProduct
-
+export default DetailProduct;
