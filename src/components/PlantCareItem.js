@@ -22,7 +22,7 @@ const navigasi = useNavigate()
 
   return (
     <Card sx={{ maxWidth: 345, m: 1 }}>
-      <CardContent sx={{backgroundColor: colors.hijau, minHeight: "100px"}}>
+      <CardContent sx={{backgroundColor: colors.hijau, minHeight: "160px"}}>
         <Typography
           gutterBottom
           variant="h5"
@@ -36,7 +36,7 @@ const navigasi = useNavigate()
           {title}
         </Typography>
         <CardActions sx={{justifyContent: 'flex-end', padding: 0}}>
-          <Tombol label={locale === 'id' ? 'Baca Lainya' : 'Read More'} onClick={(e) => onDetail(id)} />
+          <Tombol label={locale === 'id' ? 'Baca Lainya' : 'Read More'} onClick={() => onDetail(id)} />
         </CardActions>
       </CardContent>
       <CardMedia

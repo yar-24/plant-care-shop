@@ -1,81 +1,54 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Grid, Stack } from "@mui/material";
-import Swal from "sweetalert2";
-import { getProducts } from "../redux/features/products/productSlice";
+import { FormControl, Grid, MenuItem, Select } from "@mui/material";
+import { Stack } from "@mui/system";
+import React from "react";
+import { colors } from "../utils";
 import CardItem from "./CardItem";
-import Filter from "./Filter";
-import LocaleContext from "../contexts/LocaleContext";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
-import styled from "styled-components";
-import {useCart } from "react-use-cart";
 
-const Product = () => {
-  const { addItem } = useCart();
-  const { locale } = React.useContext(LocaleContext);
-  const [products, setproducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+const Product = ({ products, loading }) => {
+  const [Sort, setSort] = React.useState("");
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProducts())
-    .then((res) => {
-      const data = res.payload.products;
-      setproducts(data);
-      setIsLoading(true);
-    })
-      .catch((err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!',
-          footer: err
-        })
-      });
-  }, [dispatch]);
-
-  console.log(products)
-
-   const Layout = styled.div`
-    margin: 40px 80px 30px 80px;
-    display: flex;
-    height: fit-content;
-    @media (max-width: 1200px) {
-      margin: 30px auto;
-    }
-    @media (max-width: 900px) {
-      margin: 20px auto;
-    }
-  `;
+  const handleChange = (event) => {
+    setSort(event.target.value);
+  };
 
   return (
-    <>
-      <h2 className="title-product">{locale === 'id' ? 'Semua Produk' : 'All Product'}</h2>
-      <Layout fixed>
-        <Stack direction="row" spacing={{ md: 1 }}>
-          <Filter/>
-          <Grid style={{ height: 'fit-content' }} container spacing={{ xs: 1, md: 1 }} columns={{ xs: 4, sm: 8, md: 12 }}  >
-            {products.map((product, index) => (
-                isLoading ? (
-                  <Grid item xs={4} sm={4} md={4} key={index}>
-                    <CardItem
-                      key={index}
-                      nameProduct={product.namePlant}
-                      imgProduct={`${product.idImageProduct}`}
-                      priceProduct={product.price}
-                      idProduct={product._id}
-                      onAddCart={() => addItem(product)}
-                    />
-                  </Grid>
-                ) : (
-                  <SkeletonCardItem />
-                )
-            ))}
-          </Grid>
-        </Stack>
-      </Layout>
-    </>
+    <Stack spacing={1} sx={{flex:1}}>
+      <FormControl size="medium">
+        <Select
+          value={Sort}
+          sx={{alignSelf:"flex-end", backgroundColor: colors.white}}
+          onChange={handleChange}
+          color="success"
+          displayEmpty
+          inputProps={{ "aria-label": "Without label" }}>
+          <MenuItem value="">Sort by : Recommended</MenuItem>
+          <MenuItem value={20}>Sort by : Most Popular</MenuItem>
+          <MenuItem value={30}>Sort by : Price (high to low)</MenuItem>
+          <MenuItem value={30}>Sort by : Price (low to hight)</MenuItem>
+        </Select>
+      </FormControl>
+      <Grid
+        maxWidth="100%"
+        container
+        spacing={{ xs: 2,sm:3, md:2, lg:3 }}
+        columns={{ xs: 6, sm: 8, md: 12 }}>
+        {products.map((product, index) =>
+          loading ? (
+            <Grid item xs={6} sm={8} md={4} key={index}>
+              <CardItem
+                nameProduct={product.namePlant}
+                imgProduct={`${product.idImageProduct}`}
+                priceProduct={product.price}
+                idProduct={product._id}
+              />
+            </Grid>
+          ) : (
+            <SkeletonCardItem />
+          )
+        )}
+      </Grid>
+    </Stack>
   );
 };
 export default Product;
