@@ -34,6 +34,8 @@ const DetailProduct = () => {
       });
   }, [id, dispatch]);
 
+  console.log(product)
+
   return (
     <>
     <ProductInformation product={product} />
@@ -41,7 +43,7 @@ const DetailProduct = () => {
         <div className='photos'>
           {Array.isArray(product.images)
             ? product.images.map((item)=>(
-            <img src={item.url} key={item.image_id} alt=''/>
+            <img src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${item.image_id}`} key={item.image_id} alt=''/>
           ))
           : null}
         </div>

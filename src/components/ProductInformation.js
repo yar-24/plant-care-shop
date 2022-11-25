@@ -33,13 +33,13 @@ const ImageContainer = styled(Box)`
 const ProductInformation = ({product}) => {
   const { addItem } = useCart();
   const { locale } = React.useContext(LocaleContext);
-  const {imageProduct, namePlant, plantHeight, plantLight, care, price} = product;
+  const {idImageProduct, namePlant, plantHeight, plantLight, care, price} = product;
 
   return (
     <Container fixed>
     <Stack spacing={6} my={4} direction={{ xs: "column", md: "row" }}>
       <ImageContainer>
-        <ProductImage src={imageProduct} alt={namePlant}/>
+        <ProductImage src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${idImageProduct}`} alt={namePlant}/>
       </ImageContainer>
       <Stack sx={{flex:3}} justifyContent="space-between">
         <Box>

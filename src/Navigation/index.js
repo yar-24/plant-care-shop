@@ -19,23 +19,26 @@ import Appbar from "../components/Appbar";
 import Toast from "../components/kecil/Toast";
 import ScrollToTop from "../components/ScrollToTop";
 import { useSelector } from "react-redux";
+import {useCart } from "react-use-cart";
 
 
 const Navigation = () => {
+
+  const { addItem,totalUniqueItems } = useCart();
 
   const { user} = useSelector((state) => state.auth);
   return (
     <>
         <ScrollToTop/>
-        <Appbar/>
+        <Appbar totalUniqueItems={totalUniqueItems}/>
         <Toast/>
         <Routes>
-            <Route element={<Home/>} path="/"/>
+            <Route element={<Home addItem={addItem} />} path="/"/>
             <Route element={<Register/>} path="/register"/>
             <Route element={<Login/>} path="/login"/>
             <Route element={<Services/>} path="/services"/>
             <Route element={<PlantCare/>} path="/plant-care"/>
-            <Route element={<Shop/>} path="/shop"/>
+            <Route element={<Shop addItem={addItem}/>} path="/shop"/>
             <Route element={<DetailProduct/>} path="/detail-product/:id"/>
             <Route element={<DetailServices/>} path="/detail-services/:id"/>
             <Route element={<ForgotPassword/>} path="/forgot-password"/>

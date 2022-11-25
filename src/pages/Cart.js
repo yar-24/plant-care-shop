@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 const Cart = () => {
   return (
     <>
-      <CartList/>
+      <CartList />
       <Footer/>
     </>
   )

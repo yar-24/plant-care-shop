@@ -18,7 +18,7 @@ const Title = styled.h1`
   }
 `;
 
-const Home = () => {
+const Home = ({addItem}) => {
   const { locale } = React.useContext(LocaleContext);
 
   return (
@@ -30,7 +30,7 @@ const Home = () => {
         </Title>
         <Tombol label={locale === 'id' ? 'Baca blog lainnya' : 'Read more blogs'}   />
       </Banner>
-      <CardList >{locale === 'id' ? 'Kategori Populer' : 'Popular Categories'}</CardList>
+      <CardList addItem={addItem} >{locale === 'id' ? 'Kategori Populer' : 'Popular Categories'}</CardList>
       <Footer />
     </>
   );

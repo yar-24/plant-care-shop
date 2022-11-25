@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import LocaleContext from "../contexts/LocaleContext";
 import { Link } from "react-router-dom";
 
+
 const CardContainer = styled(Card)`
   border-radius: 0;
   background-color: #cedfd9;
@@ -44,21 +45,23 @@ const ActionButton = styled(Button)`
     background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
   }
 `;
-const CardItem = ({imgProduct, priceProduct, nameProduct, idProduct, onAddCart}) => {
+const CardItem = ({product, addItem}) => {
+  const {idImageProduct, price, namePlant, id} = product;
+
   const { locale } = React.useContext(LocaleContext);
- 
+
   return (
     <CardContainer>
-      <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${imgProduct}`} alt="green iguana" />
+      <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${idImageProduct}`} alt="green iguana" />
       <CardContent>
-        <PlantTitleText>{nameProduct}</PlantTitleText>
-        <PlantPriceText mt={2}>{locale === 'id' ? 'Dari' : 'From'} Rp.{priceProduct}</PlantPriceText>
+        <PlantTitleText>{namePlant}</PlantTitleText>
+        <PlantPriceText mt={2}>{locale === 'id' ? 'Dari' : 'From'} Rp.{price}</PlantPriceText>
       </CardContent>
       <CardActionsContainer>
-        <ActionButton bgcolor={colors.white} txcolor="#000" size="large">
-          <FaShoppingCart onClick={onAddCart}/>
+        <ActionButton bgcolor={colors.white} txcolor="#000" size="large" onClick={() => addItem(product)}>
+          <FaShoppingCart />
         </ActionButton>
-        <ActionButton component={Link} to={`/detail-product/${idProduct}`} bgcolor={colors.secondary} txcolor={colors.white} size="large" >
+        <ActionButton component={Link} to={`/detail-product/${id}`} bgcolor={colors.secondary} txcolor={colors.white} size="large" >
         {locale === 'id' ? 'Lihat Lainya' : 'See More'}
         </ActionButton>
       </CardActionsContainer>

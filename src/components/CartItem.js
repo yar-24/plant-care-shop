@@ -17,13 +17,16 @@ const Container = styled.div`
 const Left = styled.div`
   width: 50%;
   display: flex;
- 
+  @media (max-width: 600px) {
+    flex-direction: column ;
+  }
 `;
 
 const Image = styled.img`
   width: 192px;
   height: 188px;
   margin: 20px 40px 20px 40px;
+  object-fit: cover ;
 
   @media (max-width: 1000px) {
     width: 152px;
@@ -40,9 +43,8 @@ const Image = styled.img`
 
 const ContainerText = styled.div`
     margin-top: 30px ;
-    /* margin: auto; */
-    @media (max-width: 600px) {
-    margin: auto;
+   @media (max-width: 600px) {
+   margin: 10px 0px 10px 20px;
   }
 `;
 
@@ -59,12 +61,12 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-right: 50px;
+  padding-right: 50px;
   @media (max-width: 600px) {
     flex-direction: column ;
     justify-content: center ;
-    align-items: flex-end ;
-    margin-right: 20px ;
+    align-items: center;
+    padding-right: 20px ;
   }
 `;
 
@@ -103,46 +105,49 @@ const ContainerHarga = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between ;
-  width: 70px ;
+  width: max-content ;
   margin-left: 50px;
-
   @media (max-width: 725px) {
   margin-left: 20px;
   }
   @media (max-width: 550px) {
   margin-left: 15px;
+  margin-top:20px ;
   }
 `;
 
 const Harga = styled.p`
     font-weight: bold ;
     font-size: 1.2rem ;
-
+    margin-right: 20px ;
 `;
 
 const BtnDelete = styled(RiDeleteBinLine)`
 cursor: pointer;
 `
 
-const CartItem = ({src, name, height, price}) => {
+const CartItem = ({product, handleMinus, handlePlus,handleRemove, quantity }) => {
+
+  const {idImageProduct, namePlant, height, price} = product
+
   return (
     <Container>
       <Left>
-        <Image src={src} />
+        <Image src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${idImageProduct}`} />
         <ContainerText>
-          <NamePlant>{name}</NamePlant>
+          <NamePlant>{namePlant}</NamePlant>
           <HeightPlant>{height}</HeightPlant>
         </ContainerText>
       </Left>
       <Right>
         <ContainerJumlah>
-          <CounterBtn>-</CounterBtn>
-          <Angka>1</Angka>
-          <CounterBtn>+</CounterBtn>
+          <CounterBtn onClick={handleMinus}>-</CounterBtn>
+          <Angka>{quantity}</Angka>
+          <CounterBtn onClick={handlePlus}>+</CounterBtn>
         </ContainerJumlah>
         <ContainerHarga>
-          <Harga>${price}</Harga>
-          <BtnDelete size={20}  />
+          <Harga>Rp. {price}</Harga>
+          <BtnDelete onClick={handleRemove} size={20}  />
         </ContainerHarga>
       </Right>
     </Container>

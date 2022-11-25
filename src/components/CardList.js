@@ -17,7 +17,7 @@ const TitleText = styled(Typography)`
   margin: 32px 0;
 `;
 
-const CardList = ({ children }) => {
+const CardList = ({ children, addItem }) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1200 },
@@ -45,7 +45,7 @@ const CardList = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
-  const {id} = useParams()
+  const { id } = useParams();
 
   useEffect(() => {
     dispatch(getProducts())
@@ -63,12 +63,14 @@ const CardList = ({ children }) => {
         });
       });
   }, [dispatch]);
-  
-  const filterProducts = products.filter((product) => product._id !== id)
+
+  const filterProducts = products.filter((product) => product.id !== id);
 
   return (
-    <Container sx={{padding:0}} disableGutters fixed>
-      <TitleText sx={{px:3}} variant="h5" component="h2">{children}</TitleText>
+    <Container sx={{ padding: 0 }} disableGutters fixed>
+      <TitleText sx={{ px: 3 }} variant="h5" component="h2">
+        {children}
+      </TitleText>
       <Stack mx={1} my={5}>
         <Carousel
           additionalTransfrom={0}
@@ -98,22 +100,17 @@ const CardList = ({ children }) => {
           slidesToSlide={1}
           swipeable
         >
-          {filterProducts.map((product, index) => (
-            <Box sx={{mx:2}} key={index}>{
-            // <Box >
-              isLoading ? (
-                <CardItem
-                  nameProduct={product.namePlant}
-                  imgProduct={`${product.idImageProduct}`}
-                  priceProduct={product.price}
-                  idProduct={product._id}
-                />
-              ) : (
-                <SkeletonCardItem />
-              )
-            }
-            </Box>
-          ))}
+          {(!isLoading ? Array.from(new Array(4)) : filterProducts).map(
+            (product, index) => (
+              <Box sx={{ mx: 2 }} key={index}>
+                {product ? (
+                  <CardItem product={product} addItem={addItem} />
+                ) : (
+                  <SkeletonCardItem />
+                )}
+              </Box>
+            )
+          )}
         </Carousel>
       </Stack>
     </Container>

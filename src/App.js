@@ -7,6 +7,7 @@ import { LocaleProvider } from "./contexts/LocaleContext";
 import { CartProvider } from "react-use-cart";
 import "./styles/write.scss";
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,8 +21,9 @@ class App extends React.Component {
         toggleLocale: () => {
           this.setState((prevState) => {
             const newLocale =
-              prevState.localeContext.locale === "id" ? "en" : "id";
-            localStorage.setItem("locale", newLocale);
+
+              prevState.localeContext.locale === 'id' ? 'en' : 'id';
+            localStorage.setItem('locale', newLocale);
             return {
               localeContext: {
                 ...prevState.localeContext,
