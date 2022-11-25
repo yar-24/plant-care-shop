@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react';
-import HeroPlantCare from '../components/HeroPlantCare';
-import Banner from '../components/Banner';
 import { Typography } from '@mui/material';
-import { colors, fonts } from '../utils';
-import PlantCareList from '../components/PlantCareList';
-import BannerFreeOngkir from '../components/BannerFreeOngkir';
-import Footer from '../components/Footer';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getServices } from '../redux/features/services/servicesSlice';
-import LocaleContext from '../contexts/LocaleContext';
-import SkeletonBannerPlantCare from '../components/kecil/SkeletonBannerPlantCare';
+import Banner from '../components/Banner';
+import BannerFreeOngkir from '../components/BannerFreeOngkir';
 import CardList from '../components/CardList';
+import HeroPlantCare from '../components/HeroPlantCare';
+import SkeletonBannerPlantCare from '../components/kecil/SkeletonBannerPlantCare';
+import PlantCareList from '../components/PlantCareList';
+import LocaleContext from '../contexts/LocaleContext';
+import { getServices } from '../redux/features/services/servicesSlice';
+import { colors, fonts } from '../utils';
 
 const PlantCare = () => {
   const { locale } = useContext(LocaleContext);
@@ -65,7 +64,6 @@ const PlantCare = () => {
       <CardList>
         {locale === 'id' ? 'Mungkin Anda sukai' : 'You might like'}
       </CardList>
-      <Footer />
     </>
   );
 };

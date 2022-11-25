@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
-import BannerFreeOngkir from "../components/BannerFreeOngkir";
-import BannerServices from "../components/BannerServices";
-import Footer from "../components/Footer";
-import HeroServices from "../components/HeroServices";
-import ServicesList from "../components/ServicesList";
-import LocaleContext from "../contexts/LocaleContext";
+import React, { useContext } from 'react';
+import BannerFreeOngkir from '../components/BannerFreeOngkir';
+import BannerServices from '../components/BannerServices';
+import HeroServices from '../components/HeroServices';
+import ServicesList from '../components/ServicesList';
+import LocaleContext from '../contexts/LocaleContext';
 
 const Services = () => {
   const { locale } = useContext(LocaleContext);
@@ -12,9 +11,10 @@ const Services = () => {
     <>
       <BannerServices />
       <HeroServices />
-      <BannerFreeOngkir/>
-      <ServicesList>{locale === 'id' ? 'Mungkin Anda sukai' : 'You might like'}</ServicesList>
-      <Footer/>
+      <BannerFreeOngkir />
+      <ServicesList>
+        {locale === 'id' ? 'Mungkin Anda sukai' : 'You might like'}
+      </ServicesList>
     </>
   );
 };
