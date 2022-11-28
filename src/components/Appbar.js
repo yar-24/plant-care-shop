@@ -51,7 +51,7 @@ const navItems = [
 ];
 
 function DrawerAppBar(props) {
-  const { window } = props;
+  const { window, quantity } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -140,7 +140,7 @@ function DrawerAppBar(props) {
     navigate('/home-write');
   };
 
-  const quantity = useSelector(state=>state.cart.quantity)
+  // const quantity = useSelector(state=>state.cart.quantity)
 
   return (
     <LocaleConsumer>

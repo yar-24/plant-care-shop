@@ -4,7 +4,6 @@ import store from "./redux/store";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { LocaleProvider } from "./contexts/LocaleContext";
-import { CartProvider } from "react-use-cart";
 import "./styles/write.scss";
 
 
@@ -40,11 +39,9 @@ class App extends React.Component {
     return (
       <LocaleProvider value={this.state.localeContext}>
         <Provider store={store}>
-          <CartProvider>
             <Router>
               <Navigation />
             </Router>
-          </CartProvider>
         </Provider>
       </LocaleProvider>
     );

@@ -10,7 +10,7 @@ import ProductInformation from '../components/ProductInformation';
 import LocaleContext from '../contexts/LocaleContext';
 import { getProduct } from '../redux/features/products/productSlice';
 
-const DetailProduct = () => {
+const DetailProduct = ({addItem}) => {
   const { locale } = React.useContext(LocaleContext);
   const [product, setProduct] = useState({});
   const { id } = useParams();
@@ -40,11 +40,9 @@ const DetailProduct = () => {
       });
   }, [id, dispatch]);
 
-  console.log(product)
-
   return (
     <>
-      <ProductInformation product={product} />
+      <ProductInformation product={product} addItem={addItem}  />
       <Container fixed sx={{ my: 4 }}>
         <Stack component="ul" direction="row" gap={{ xs: 1, sm: 2, md: 4 }}>
           {Array.isArray(product.images)

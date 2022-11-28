@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { colors, fonts } from "../utils";
+import { colors, fonts, rupiah } from "../utils";
 import { RiDeleteBinLine } from "react-icons/ri";
 
 const Container = styled.div`
@@ -126,11 +126,10 @@ const BtnDelete = styled(RiDeleteBinLine)`
 cursor: pointer;
 `
 
-const CartItem = ({product, handleMinus, handlePlus,handleRemove, quantity }) => {
+const CartItem = ({product, handleAdd, handleRemove, handleDelete }) => {
 
-  const {idImageProduct, namePlant, height, price} = product
-
-  console.log(product)
+  const {idImageProduct, namePlant, height, price, quantity} = product
+    
 
   return (
     <Container>
@@ -143,13 +142,13 @@ const CartItem = ({product, handleMinus, handlePlus,handleRemove, quantity }) =>
       </Left>
       <Right>
         <ContainerJumlah>
-          <CounterBtn onClick={handleMinus}>-</CounterBtn>
+          <CounterBtn onClick={handleRemove}>-</CounterBtn>
           <Angka>{quantity}</Angka>
-          <CounterBtn onClick={handlePlus}>+</CounterBtn>
+          <CounterBtn onClick={handleAdd}>+</CounterBtn>
         </ContainerJumlah>
         <ContainerHarga>
-          <Harga>Rp. {price}</Harga>
-          <BtnDelete onClick={handleRemove} size={20}  />
+          <Harga>{rupiah(price)}</Harga>
+          <BtnDelete onClick={handleDelete} size={20}  />
         </ContainerHarga>
       </Right>
     </Container>

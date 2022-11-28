@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import { Typography, Container, Box } from "@mui/material";
 import CartItem from "./CartItem";
-import { colors, fonts } from "../utils";
+import { colors, fonts, rupiah } from "../utils";
 import { ShoppingCart } from "@mui/icons-material";
 import CustomButton from "./CustomButton";
-import { useCart } from "react-use-cart";
-import { useDispatch, useSelector } from "react-redux";
-import { updateUser } from "../redux/features/auth/authSlice";
 
 const CartListContainer = styled(Container)`
   margin-top: 60px;
@@ -36,32 +33,28 @@ const ListHarga = ({ textHarga, totalHarga }) => {
         {textHarga}
       </Typography>
       <Typography sx={{ marginRight: "50px", fontWeight: 600 }}>
-        Rp. {totalHarga}
+        {totalHarga}
       </Typography>
     </ContainerHarga>
   );
 };
 
-const CartList = ({locale, user}) => {
-  const [quantity, setQuantity] = useState(1);
-  const cart = useSelector((state) => state.cart);
+const CartList = ({
+  locale,
+  handleAddProduct,
+  handleRemoveProduct,
+  handleDeleteProduct,
+  cartItems,
+}) => {
 
-  const handleQuantity = (type) => {
-    if (type === "dec") {
-      quantity > 1 && setQuantity(quantity - 1);
-    } else if(type === "inc") {
-      setQuantity(quantity + 1);
-    }else{
-      setQuantity(quantity * 0)
-    }
-  };
-
-  console.log(cart)
+  const subTotal = cartItems.reduce(
+    (price, item) => price + item.quantity * item.price,0
+  );
 
 
   return (
     <>
-      {/* {totalUniqueItems === 0 ? (
+      {cartItems.length === 0 ? (
         <CartListContainer>
           <Box pb={10}>
             <Typography
@@ -73,49 +66,49 @@ const CartList = ({locale, user}) => {
             </Typography>
           </Box>
         </CartListContainer>
-      ) : ( */}
-        <CartListContainer>
-          <Typography
-            variant="h4"
-            component="h1"
-            sx={{ fontFamily: fonts.comfortaa }}
-          >
-            {locale === "id" ? "Keranjang anda" : "Your bag"}
-          </Typography>
-          {cart.products.map((item, index) => (
-            <CartItem
-              key={index}
-              product={item.product}
-              handleMinus={() =>  handleQuantity("dec")}
-              handlePlus={() => handleQuantity("inc")}
-              handleRemove={() => handleQuantity("rem")}
-              quantity={cart.quantity}
-            />
-          ))}
-          <ListHarga textHarga="Subtotal" totalHarga="3000" />
-          <ListHarga
-            textHarga={locale === "id" ? "Pengiriman" : "Delivery"}
-            totalHarga="free"
+      ) : (
+      <CartListContainer>
+        <Typography
+          variant="h4"
+          component="h1"
+          sx={{ fontFamily: fonts.comfortaa }}
+        >
+          {locale === "id" ? "Keranjang anda" : "Your bag"}
+        </Typography>
+        {cartItems.map((item, index) => (
+          <CartItem
+            key={index}
+            product={item}
+            handleRemove={() => handleRemoveProduct(item)}
+            handleAdd={() => handleAddProduct(item)}
+            handleDelete={() => handleDeleteProduct(item)}
+            handleAddProduct={handleAddProduct}
           />
-          <ListHarga textHarga="Total" totalHarga="4000" />
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "20px 0px",
-            }}
+        ))}
+        <ListHarga textHarga="Subtotal" totalHarga={rupiah(subTotal)} />
+        <ListHarga
+          textHarga={locale === "id" ? "Pengiriman" : "Delivery"}
+          totalHarga={subTotal > 30000 ? "Free" : rupiah(13000)}
+        />
+        <ListHarga textHarga="Total" totalHarga={subTotal > 30000 ? rupiah(subTotal) : rupiah(subTotal + 13000)} />
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "20px 0px",
+          }}
+        >
+          <Button
+            startIcon={<ShoppingCart />}
+            size="large"
+            sx={{ alignSelf: "center", width: "50%", fontSize: "20px" }}
           >
-            <Button
-              startIcon={<ShoppingCart />}
-              size="large"
-              sx={{ alignSelf: "center", width: "50%", fontSize: "20px" }}
-            >
-              {locale === "id" ? "Pesan Sekarang" : "Place Order"}
-            </Button>
-          </Box>
-        </CartListContainer>
-      {/* )} */}
+            {locale === "id" ? "Pesan Sekarang" : "Place Order"}
+          </Button>
+        </Box>
+      </CartListContainer>
+      )}
     </>
   );
 };

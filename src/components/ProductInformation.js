@@ -6,7 +6,6 @@ import { styled } from "@mui/material/styles";
 import { fonts, rupiah } from "../utils";
 import CustomButton from "./CustomButton";
 import LocaleContext from "../contexts/LocaleContext";
-import { useCart } from "react-use-cart";
 
 const ProductImage = styled("img")`
   position: absolute;
@@ -30,8 +29,7 @@ const ImageContainer = styled(Box)`
   }
 `;
 
-const ProductInformation = ({ product }) => {
-  const { addItem } = useCart();
+const ProductInformation = ({ product, addItem }) => {
   const { locale } = React.useContext(LocaleContext);
   const { idImageProduct, namePlant, plantHeight, plantLight, care, price } =
     product;
