@@ -159,7 +159,7 @@ const WriteServices = () => {
               <label className="font-desc">
                 Description <span className="required"> * </span>{" "}
               </label>
-              <EditorToolbar toolbarId={"t1"} />
+              <EditorToolbar toolbarId={"t1"}/>
               <ReactQuill
                 theme="snow"
                 value={desc}
@@ -171,7 +171,7 @@ const WriteServices = () => {
             </div>
           </div>
           <div className="menu" >
-            <div className="item" style={{ backgroundColor: '#9ed7c1' }}>
+            <div className="item"  style={{ backgroundColor: '#9ed7c1', fontFamily:'Inter'}}>
               <Box
                 sx={{
                   display: "flex",
@@ -180,23 +180,23 @@ const WriteServices = () => {
                   justifyContent: "space-around",
                 }}
               >
-                <h1>Publish</h1>
-                <span>
-                  <b>Status: </b> Draft
+                <h1 style={{ textAlign: 'center'}} >Publish</h1>
+                <span style={{ fontSize:'13.5px', marginLeft: '20px' }}>
+                  <b>Status : </b> Draft
                 </span>
-                <span>
-                  <b>Visibility: </b> Public
+                <span  style={{ fontSize:'13.5px', marginLeft: '20px' }}>
+                  <b>Visibility : </b> Public
                 </span>
-                <div className="buttons">
-                  <LoadingBtn onClick={handleClick} loading={isLoading}>
+                <div className="buttons" style={{ marginLeft:'auto', marginRight:'auto' }} >
+                  <LoadingBtn onClick={handleClick} loading={isLoading} >
                     Publish
                   </LoadingBtn>
                 </div>
               </Box>
             </div>
-            <div className="item"  style={{ backgroundColor: '#9ed7c1' }}>
+            <div className="item"  style={{ backgroundColor: '#9ed7c1', textAlign: 'center', fontFamily:'Inter', padding:'20px'}}>
               <h1>Category</h1>
-              <div className="cat">
+              <div className="cat" style={{ marginLeft:'20px' }}>
                 <input
                   type="radio"
                   checked={category === "plant"}
@@ -205,9 +205,9 @@ const WriteServices = () => {
                   id="plant"
                   onChange={(e) => setCategory(e.target.value)}
                 />
-                <label htmlFor="plant">Plant</label>
+                <label htmlFor="plant"  style={{ fontSize:'13.5px' }}>Plant</label>
               </div>
-              <div className="cat">
+              <div className="cat" style={{ marginLeft:'20px' }}>
                 <input
                   type="radio"
                   checked={category === "care"}
@@ -216,9 +216,9 @@ const WriteServices = () => {
                   id="care"
                   onChange={(e) => setCategory(e.target.value)}
                 />
-                <label htmlFor="care">Care</label>
+                <label htmlFor="care"  style={{ fontSize:'13.5px' }}>Care</label>
               </div>
-              <div className="cat">
+              <div className="cat" style={{ marginLeft:'20px' }}>
                 <input
                   type="radio"
                   checked={category === "shop"}
@@ -227,9 +227,9 @@ const WriteServices = () => {
                   id="shop"
                   onChange={(e) => setCategory(e.target.value)}
                 />
-                <label htmlFor="shop">Shop</label>
+                <label htmlFor="shop"  style={{ fontSize:'13.5px' }}>Shop</label>
               </div>
-              <div className="cat">
+              <div className="cat" style={{ marginLeft:'20px' }}>
                 <input
                   type="radio"
                   checked={category === "other"}
@@ -238,7 +238,7 @@ const WriteServices = () => {
                   id="other"
                   onChange={(e) => setCategory(e.target.value)}
                 />
-                <label htmlFor="other">Other</label>
+                <label htmlFor="other"  style={{ fontSize:'13.5px' }}>Other</label>
               </div>
             </div>
           </div>
