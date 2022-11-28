@@ -26,9 +26,8 @@ import { logout, reset } from '../redux/features/auth/authSlice';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import InboxIcon from '@mui/icons-material/Inbox';
 import { LocaleConsumer } from '../contexts/LocaleContext';
-import Search from "./kecil/Search";
+import Search from './kecil/Search';
 import CustomButton from './CustomButton';
-
 
 const drawerWidth = 240;
 const navItems = [
@@ -149,7 +148,9 @@ function DrawerAppBar(props) {
           <>
             <AppBar
               component="nav"
-              sx={{ background: '#e5f7f0', color: '#009e72' }}>
+              sx={{
+                background: '#e5f7f0',
+              }}>
               <Container fixed>
                 <Toolbar
                   sx={{ justifyContent: 'space-between' }}
@@ -181,6 +182,7 @@ function DrawerAppBar(props) {
                     <Box
                       sx={{
                         display: { xs: 'none', md: 'flex' },
+                        alignItems: 'center',
                         marginRight: 1,
                       }}>
                       {navItems.map((item, index) => (
@@ -215,18 +217,35 @@ function DrawerAppBar(props) {
                           {locale === 'id' ? 'Masuk' : 'Login'}
                         </CustomButton>
                       )}
-                      <IconButton
-                        size="medium"
-                        style={{ color: 'black' }}>
+                      <IconButton size="medium" style={{ color: 'black' }}>
                         <Search />
                       </IconButton>
                       <IconButton
                         size="medium"
                         LinkComponent={Link}
                         to="/cart"
-                        style={{ color: 'black', position: "relative"}}>
+                        style={{ color: 'black', position: 'relative' }}>
                         <BsFillCartFill />
-                        <p style={{position: "absolute", color: "red", fontSize: "16px", right: 0, bottom: 0, borderRadius: "50%"}}>{quantity}</p>
+                        {quantity > 0 ? (
+                          <Typography
+                            variant="span"
+                            sx={{
+                              minWidth: '20px',
+                              minHeight: '20px',
+                              position: 'absolute',
+                              color: 'white',
+                              backgroundColor: 'red',
+                              fontSize: '14px',
+                              fontWeight: 700,
+                              textAlign: 'center',
+                              px: '4px',
+                              borderRadius: 16,
+                              right: 0,
+                              top: 0,
+                            }}>
+                            {quantity}
+                          </Typography>
+                        ) : null}
                       </IconButton>
                       <IconButton
                         size="medium"
