@@ -20,6 +20,16 @@ import {
 import CustomButton from "../components/CustomButton";
 import { getText, truncate } from "../utils";
 import Swal from "sweetalert2";
+import styled from "styled-components";
+
+const Font = styled.div`
+  @media (max-width: 600px) {
+    font-size: 13px;
+  }
+  @media (max-width: 475px) {
+    font-size: 10px;
+  }
+`;
 
 function HomeWrite() {
   const [allPost, setAllPost] = useState([]);
@@ -64,10 +74,12 @@ function HomeWrite() {
   return (
     <Container>
       <Stack direction="column" spacing={2} my={7}>
-        <Box sx={{ alignSelf: "center", mb: 5 }}>
+        <Box sx={{ alignSelf: "center", mb: 5, fontFamily: "Comfortaa" }}>
+        <Font>
           <h1 className="title__homewrite">
             Create <span> Your </span> blog for plant care
           </h1>
+          </Font>
           <CustomButton component={Link} to={"/write"}>
             Create Now
           </CustomButton>
@@ -106,7 +118,8 @@ function HomeWrite() {
                     Edit
                   </Button>
                   <Button
-                    variant="outline"
+                    variant="contained"
+                    color="info"
                     component={Link}
                     to={`/detail-services/${item._id}`}
                     size="small"
@@ -114,9 +127,11 @@ function HomeWrite() {
                     Lihat
                   </Button>
                   <Button
+                    variant="contained"
                     color="error"
                     onClick={(e) => handleDelete(item._id)}
                     size="small"
+                    style={{ marginLeft: '8px' }}
                   >
                     Delete
                   </Button>

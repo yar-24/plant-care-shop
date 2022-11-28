@@ -1,14 +1,13 @@
-import { Typography } from "@mui/material";
-import { Container, Stack } from "@mui/system";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import Swal from "sweetalert2";
-import Filter from "../components/Filter";
-import Footer from "../components/Footer";
-import Product from "../components/Product";
-import LocaleContext from "../contexts/LocaleContext";
-import { getProducts } from "../redux/features/products/productSlice";
-import { fonts } from "../utils";
+import { Typography } from '@mui/material';
+import { Container, Stack } from '@mui/system';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
+import Filter from '../components/Filter';
+import Product from '../components/Product';
+import LocaleContext from '../contexts/LocaleContext';
+import { getProducts } from '../redux/features/products/productSlice';
+import { fonts } from '../utils';
 
 const Shop = ({addItem}) => {
   const { locale } = React.useContext(LocaleContext);
@@ -26,9 +25,9 @@ const Shop = ({addItem}) => {
       })
       .catch((err) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
           footer: err,
         });
       });
@@ -43,14 +42,13 @@ const Shop = ({addItem}) => {
           component="h2"
           align="center"
           paddingY={4}>
-          {locale === "id" ? "Semua Produk" : "All Product"}
+          {locale === 'id' ? 'Semua Produk' : 'All Product'}
         </Typography>
         <Stack direction="row" spacing={{ md: 1 }}>
           <Filter/>
           <Product loading={isLoading} products={products} addItem={addItem} />
         </Stack>
       </Container>
-      <Footer />
     </>
   );
 };

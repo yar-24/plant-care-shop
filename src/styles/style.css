@@ -12,7 +12,7 @@ header {
   width: 100%;
   display: flex;
   line-height: 45px;
-  margin: 20px 0px 20px 0px;
+  /* margin: 20px 0px 20px 0px; */
 }
 
 .navbar {
@@ -234,29 +234,6 @@ a {
 
 .link {
   color: #009e72;
-}
-
-.photos {
-  width: 85%;
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  margin: auto;
-}
-
-.detail-product img {
-  width: 16%;
-  margin: 30px auto;
-}
-
-.title-detail{
-  font-size: 20px;
-  height: auto;
-  font-family: 'Comfortaa';
-  color: #009e72;
-  font-weight: 700;
-  display: block;
-  margin: 0px;
 }
 
 .title-product{

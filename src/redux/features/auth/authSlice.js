@@ -43,10 +43,9 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   }
 });
 
-
 //forgot-password
 export const forgot = createAsyncThunk(
-  'auth/forgot',
+  "auth/forgot",
   async (data, thunkAPI) => {
     try {
       return await authService.forgot(data);
@@ -60,13 +59,13 @@ export const forgot = createAsyncThunk(
       return thunkAPI.rejectWithValue(message);
     }
   }
-)
+);
 
 //reset-password
 export const resetPassword = createAsyncThunk(
-  'auth/resetPassword',
+  "auth/resetPassword",
   async (data, thunkAPI) => {
-    try {   
+    try {
       return await authService.resetPassword(data);
     } catch (error) {
       const message =
@@ -78,7 +77,27 @@ export const resetPassword = createAsyncThunk(
       return thunkAPI.rejectWithValue(message);
     }
   }
-)
+);
+
+// Update user
+export const updateUser = createAsyncThunk(
+  "auth/update",
+  async (userData, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      const userId = thunkAPI.getState().auth.user._id;
+      return await authService.updateUser(userData, userId, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 // Logout User
 export const logout = createAsyncThunk("auth/logout", async () => {
@@ -140,6 +159,19 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
       })
+      .addCase(updateUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
       .addCase(resetPassword.pending, (state) => {
         state.isLoading = true;
       })
@@ -152,8 +184,8 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      })
-  }
+      });
+  },
 });
 
 export const { reset } = authSlice.actions;

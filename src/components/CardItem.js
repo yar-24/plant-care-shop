@@ -1,14 +1,14 @@
-import React from "react";
-import { FaShoppingCart } from "react-icons/fa";
-import { styled } from "@mui/material/styles";
-import { colors, fonts } from "../utils/";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import LocaleContext from "../contexts/LocaleContext";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { FaShoppingCart } from 'react-icons/fa';
+import { styled } from '@mui/material/styles';
+import { colors, fonts, rupiah } from '../utils/';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import LocaleContext from '../contexts/LocaleContext';
+import { Link } from 'react-router-dom';
 
 
 const CardContainer = styled(Card)`
@@ -16,7 +16,7 @@ const CardContainer = styled(Card)`
   background-color: #cedfd9;
   /* width: auto; */
 `;
-const CardActionsContainer = styled("div")`
+const CardActionsContainer = styled('div')`
   display: flex;
   padding: 0;
   margin: 0;
@@ -45,6 +45,7 @@ const ActionButton = styled(Button)`
     background-image: linear-gradient(rgb(0 0 0/30%) 0 0);
   }
 `;
+
 const CardItem = ({product, addItem}) => {
   const {idImageProduct, price, namePlant, id} = product;
 
@@ -52,17 +53,29 @@ const CardItem = ({product, addItem}) => {
 
   return (
     <CardContainer>
-      <CardMedia component="img" height="235" src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${idImageProduct}`} alt="green iguana" />
+      <CardMedia
+        component="img"
+        height="235"
+        src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${idImageProduct}`}
+        alt="green iguana"
+      />
       <CardContent>
         <PlantTitleText>{namePlant}</PlantTitleText>
-        <PlantPriceText mt={2}>{locale === 'id' ? 'Dari' : 'From'} Rp.{price}</PlantPriceText>
+        <PlantPriceText mt={2}>
+          {locale === 'id' ? 'Dari' : 'From'} {rupiah(price)}
+        </PlantPriceText>
       </CardContent>
       <CardActionsContainer>
         <ActionButton bgcolor={colors.white} txcolor="#000" size="large" onClick={() => addItem(product)}>
           <FaShoppingCart />
         </ActionButton>
-        <ActionButton component={Link} to={`/detail-product/${id}`} bgcolor={colors.secondary} txcolor={colors.white} size="large" >
-        {locale === 'id' ? 'Lihat Lainya' : 'See More'}
+        <ActionButton
+          component={Link}
+          to={`/detail-product/${id}`}
+          bgcolor={colors.secondary}
+          txcolor={colors.white}
+          size="large">
+          {locale === 'id' ? 'Lihat Lainya' : 'See More'}
         </ActionButton>
       </CardActionsContainer>
     </CardContainer>

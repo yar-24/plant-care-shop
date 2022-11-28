@@ -130,6 +130,8 @@ const CartItem = ({product, handleMinus, handlePlus,handleRemove, quantity }) =>
 
   const {idImageProduct, namePlant, height, price} = product
 
+  console.log(product)
+
   return (
     <Container>
       <Left>

@@ -1,14 +1,38 @@
-import React from 'react'
-import CartList from '../components/CartList'
-import Footer from '../components/Footer'
+import React from "react";
+import { useSelector } from "react-redux";
+import CartList from "../components/CartList";
+import { styled } from "@mui/material/styles";
+import { Typography, Container, Box } from "@mui/material";
+import { fonts } from "../utils";
+import LocaleContext from "../contexts/LocaleContext";
+
+const CartListContainer = styled(Container)`
+  margin-top: 60px;
+`;
 
 const Cart = () => {
+  const { user } = useSelector((state) => state.auth);
+  const { locale } = React.useContext(LocaleContext);
+
   return (
     <>
-      <CartList />
-      <Footer/>
+      {user ? (
+        <CartList locale={locale} user={user} />
+      ) : (
+        <CartListContainer>
+          <Box pb={10}>
+            <Typography
+              variant="h4"
+              component="h1"
+              sx={{ fontFamily: fonts.comfortaa }}
+            >
+              {locale === "id" ? "Silahkan login terlebih dahulu" : "Please login first"}
+            </Typography>
+          </Box>
+        </CartListContainer>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

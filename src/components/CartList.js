@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import { Typography, Container, Box, Stack } from "@mui/material";
+import { Typography, Container, Box } from "@mui/material";
 import CartItem from "./CartItem";
 import { colors, fonts } from "../utils";
 import { ShoppingCart } from "@mui/icons-material";
 import CustomButton from "./CustomButton";
-import LocaleContext from "../contexts/LocaleContext";
 import { useCart } from "react-use-cart";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../redux/features/auth/authSlice";
 
 const CartListContainer = styled(Container)`
   margin-top: 60px;
@@ -41,34 +42,26 @@ const ListHarga = ({ textHarga, totalHarga }) => {
   );
 };
 
-const CartList = () => {
-  const [ongkir, setOngkir] = useState("");
-  const [totalPrice, setTotalPrice] = useState("");
-  const { locale } = React.useContext(LocaleContext);
+const CartList = ({locale, user}) => {
+  const [quantity, setQuantity] = useState(1);
+  const cart = useSelector((state) => state.cart);
 
-  const {
-    isEmpty,
-    cartTotal,
-    totalUniqueItems,
-    items,
-    updateItemQuantity,
-    removeItem,
-    emptyCart,
-    metadata,
-  } = useCart();
-
-  useEffect(() => {
-    if (cartTotal > 40000) {
-      setOngkir("Free");
-    } else {
-      setOngkir("13000");
-      setTotalPrice(cartTotal + ongkir);
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else if(type === "inc") {
+      setQuantity(quantity + 1);
+    }else{
+      setQuantity(quantity * 0)
     }
-  }, [cartTotal, ongkir]);
+  };
+
+  console.log(cart)
+
 
   return (
     <>
-      {totalUniqueItems === 0 ? (
+      {/* {totalUniqueItems === 0 ? (
         <CartListContainer>
           <Box pb={10}>
             <Typography
@@ -80,7 +73,7 @@ const CartList = () => {
             </Typography>
           </Box>
         </CartListContainer>
-      ) : (
+      ) : ( */}
         <CartListContainer>
           <Typography
             variant="h4"
@@ -89,22 +82,22 @@ const CartList = () => {
           >
             {locale === "id" ? "Keranjang anda" : "Your bag"}
           </Typography>
-          {items.map((item, index) => (
+          {cart.products.map((item, index) => (
             <CartItem
               key={index}
-              product={item}
-              handleMinus={() => updateItemQuantity(item.id, item.quantity - 1)}
-              handlePlus={() => updateItemQuantity(item.id, item.quantity + 1)}
-              handleRemove={() => removeItem(item.id)}
-              quantity={item.quantity}
+              product={item.product}
+              handleMinus={() =>  handleQuantity("dec")}
+              handlePlus={() => handleQuantity("inc")}
+              handleRemove={() => handleQuantity("rem")}
+              quantity={cart.quantity}
             />
           ))}
-          <ListHarga textHarga="Subtotal" totalHarga={cartTotal} />
+          <ListHarga textHarga="Subtotal" totalHarga="3000" />
           <ListHarga
             textHarga={locale === "id" ? "Pengiriman" : "Delivery"}
-            totalHarga={ongkir}
+            totalHarga="free"
           />
-          <ListHarga textHarga="Total" totalHarga={cartTotal + ongkir} />
+          <ListHarga textHarga="Total" totalHarga="4000" />
           <Box
             sx={{
               display: "flex",
@@ -122,7 +115,7 @@ const CartList = () => {
             </Button>
           </Box>
         </CartListContainer>
-      )}
+      {/* )} */}
     </>
   );
 };

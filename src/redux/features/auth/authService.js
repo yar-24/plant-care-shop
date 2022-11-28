@@ -44,6 +44,26 @@ const resetPassword = async (data, token) => {
   return response
 }
 
+//update product
+const updateUser =  async (userData, userId, token) => {
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  }
+
+  const response = await axiosInstance
+  .put(`/users/${userId}`, userData, config)
+  
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data))
+  }
+
+  return response.data
+}
+
 
 // Logout user
 const logout = () => {
@@ -55,7 +75,8 @@ const authService = {
   logout,
   login,
   forgot,
-  resetPassword
+  resetPassword,
+  updateUser
 }
 
 export default authService

@@ -10,6 +10,7 @@ import { getProducts } from "../redux/features/products/productSlice";
 import Swal from "sweetalert2";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
 import { useParams } from "react-router-dom";
+import { addProduct } from "../redux/features/cart/cartRedux";
 
 const TitleText = styled(Typography)`
   font-family: ${fonts.comfortaa};

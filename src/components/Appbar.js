@@ -51,7 +51,7 @@ const navItems = [
 ];
 
 function DrawerAppBar(props) {
-  const { window, totalUniqueItems } = props;
+  const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -140,6 +140,8 @@ function DrawerAppBar(props) {
     navigate('/home-write');
   };
 
+  const quantity = useSelector(state=>state.cart.quantity)
+
   return (
     <LocaleConsumer>
       {({ locale, toggleLocale }) => {
@@ -164,12 +166,12 @@ function DrawerAppBar(props) {
                     <Typography
                       variant="h6"
                       component="div"
+                      fontFamily={fonts.comfortaa}
+                      fontSize={32}
                       sx={{
                         display: {
                           xs: 'none',
                           md: 'block',
-                          fontFamily: 'Comfortaa',
-                          fontSize: '27px',
                         },
                       }}>
                       Breath
@@ -224,7 +226,7 @@ function DrawerAppBar(props) {
                         to="/cart"
                         style={{ color: 'black', position: "relative"}}>
                         <BsFillCartFill />
-                        <p style={{position: "absolute", color: "red", fontSize: "16px", right: 0, bottom: 0, borderRadius: "50%"}}>{totalUniqueItems}</p>
+                        <p style={{position: "absolute", color: "red", fontSize: "16px", right: 0, bottom: 0, borderRadius: "50%"}}>{quantity}</p>
                       </IconButton>
                       <IconButton
                         size="medium"

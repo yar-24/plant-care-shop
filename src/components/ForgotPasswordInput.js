@@ -1,16 +1,16 @@
-import { Stack, TextField } from "@mui/material";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import CustomButton from "../components/CustomButton";
-import LoadingBtn from "../components/kecil/LoadingBtn";
-import LocaleContext from "../contexts/LocaleContext";
-import { colors } from "../utils";
+import { Stack, TextField } from '@mui/material';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import CustomButton from '../components/CustomButton';
+import LoadingBtn from '../components/kecil/LoadingBtn';
+import LocaleContext from '../contexts/LocaleContext';
+import { colors } from '../utils';
 
 const ForgotPassword = ({ forgotPassword }) => {
   const { locale } = React.useContext(LocaleContext);
   const [formData, setFormData] = useState({
-    email: "",
+    email: '',
   });
 
   const { email } = formData;
@@ -34,11 +34,11 @@ const ForgotPassword = ({ forgotPassword }) => {
     <form onSubmit={onForgotPasswordHandler}>
       <TextField
         fullWidth
-        sx={{ my: 2 }}
+        sx={{ my: 3 }}
         id="email"
         color="success"
         type="email"
-        label={locale === "id" ? "Surel" : "Email"}
+        label={locale === 'id' ? 'Surel' : 'Email'}
         name="email"
         value={email}
         onChange={onEmailChange}
@@ -50,10 +50,10 @@ const ForgotPassword = ({ forgotPassword }) => {
             color: colors.white,
             px: 3,
             py: 2,
-            alignSelf: "center",
+            alignSelf: 'center',
           }}
           loading={isLoading}>
-          {locale === "id" ? "Kirim" : "Submit"}
+          {locale === 'id' ? 'Kirim' : 'Submit'}
         </LoadingBtn>
         <CustomButton
           component={Link}
@@ -61,17 +61,17 @@ const ForgotPassword = ({ forgotPassword }) => {
           sx={{
             backgroundColor: colors.white,
             color: colors.secondary,
-            alignSelf: "center",
+            alignSelf: 'center',
             px: 3,
             py: 2,
+            '&:hover': {
+              backgroundColor: colors.white,
+            },
           }}
           to="/login">
-          {locale === "id" ? "Batal" : "Cancel"}
+          {locale === 'id' ? 'Batal' : 'Cancel'}
         </CustomButton>
       </Stack>
-      {/* <Link className="button2" to="/login">
-          {locale === 'id' ? 'Batal' : 'Cancel'}
-        </Link> */}
     </form>
   );
 };
