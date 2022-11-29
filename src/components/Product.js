@@ -12,7 +12,7 @@ const Product = ({ products, loading, addItem }) => {
   };
 
   return (
-    <Stack spacing={1} sx={{ flex: 1 }}>
+    <Stack spacing={1} sx={{ flex: 8 }}>
       <FormControl size="medium">
         <Select
           value={Sort}
