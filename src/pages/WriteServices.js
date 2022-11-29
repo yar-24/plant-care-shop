@@ -232,6 +232,17 @@ const WriteServices = () => {
               <div className="cat" style={{ marginLeft:'20px' }}>
                 <input
                   type="radio"
+                  checked={category === "service"}
+                  name="cat"
+                  value="service"
+                  id="service"
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <label htmlFor="shop"  style={{ fontSize:'13.5px' }}>Service</label>
+              </div>
+              <div className="cat" style={{ marginLeft:'20px' }}>
+                <input
+                  type="radio"
                   checked={category === "other"}
                   name="cat"
                   value="other"

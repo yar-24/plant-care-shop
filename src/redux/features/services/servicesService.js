@@ -42,7 +42,7 @@ const getServices = async () => {
   };
 
   const response = await axiosInstance.get(
-    '/services',
+    '/services/?q=',
     config
   );
 

@@ -6,7 +6,7 @@ import {
   Typography,
   CardActions,
 } from "@mui/material";
-import { colors, fonts } from "../utils";
+import { colors, fonts, getText, truncate } from "../utils";
 import Tombol from "./kecil/Tombol";
 import LocaleContext from "../contexts/LocaleContext";
 import { useNavigate } from "react-router-dom";
@@ -34,7 +34,7 @@ const navigasi = useNavigate()
             fontSize: 20,
           }}
         >
-          {title}
+         {getText(truncate(title, 45))}
         </Typography>
       </CardContent>
 

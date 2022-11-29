@@ -6,7 +6,7 @@ import {
   Typography,
   CardActions,
 } from "@mui/material";
-import { colors, fonts } from "../utils";
+import { colors, fonts, getText, truncate } from "../utils";
 import Tombol from "./kecil/Tombol";
 import LocaleContext from "../contexts/LocaleContext";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ const navigasi = useNavigate()
             color: colors.white,
           }}
         >
-          {title}
+         {getText(truncate(title, 40))}
         </Typography>
         <CardActions sx={{justifyContent: 'flex-end', padding: 0}}>
           <Tombol label={locale === 'id' ? 'Baca Lainya' : 'Read More'} onClick={() => onDetail(id)} />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Banner from '../components/Banner';
 import CardList from '../components/CardList';
@@ -30,6 +31,8 @@ const Home = ({addItem}) => {
             : 'Tips, tricks, and plant guides to make plant care downright easy'}
         </Title>
         <Tombol
+        component={Link}
+        to={"/services"}
           label={locale === 'id' ? 'Baca blog lainnya' : 'Read more blogs'}
         />
       </Banner>

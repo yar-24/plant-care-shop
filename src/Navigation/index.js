@@ -14,13 +14,13 @@ import {
   DetailServices,
   WriteServices,
   HomeWrite,
+  NotResponding,
 } from "../pages";
 import Appbar from "../components/Appbar";
 import Toast from "../components/kecil/Toast";
 import ScrollToTop from "../components/ScrollToTop";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
-
 
 const Navigation = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -62,14 +62,9 @@ const Navigation = () => {
     if (ProductExist) {
       setCartItems(cartItems.filter((item) => item.id !== product.id));
     } else {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id !== product.id
-      
-        )
-      );
+      setCartItems(cartItems.map((item) => item.id !== product.id));
     }
-  }
+  };
 
   return (
     <>
@@ -89,7 +84,10 @@ const Navigation = () => {
             path="/plant-care"
           />
           <Route element={<Shop addItem={handleAddProduct} />} path="/shop" />
-          <Route element={<DetailProduct addItem={handleAddProduct} />} path="/detail-product/:id" />
+          <Route
+            element={<DetailProduct addItem={handleAddProduct} />}
+            path="/detail-product/:id"
+          />
           <Route element={<DetailServices />} path="/detail-services/:id" />
           <Route element={<ForgotPassword />} path="/forgot-password" />
           <Route element={<ResetPassword />} path="/reset-password" />
@@ -110,6 +108,7 @@ const Navigation = () => {
             element={user ? <WriteServices /> : <Home />}
             path="/edit/:id"
           />
+          <Route element={<NotResponding />} path="/*" />
         </Routes>
       </main>
       <Footer />

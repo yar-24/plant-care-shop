@@ -46,8 +46,8 @@ const DetailProduct = ({addItem}) => {
       <Container fixed sx={{ my: 4 }}>
         <Stack component="ul" direction="row" gap={{ xs: 1, sm: 2, md: 4 }}>
           {Array.isArray(product.images)
-            ? product.images.map((item) => (
-                <Box component="li" sx={{ flex: 1 }}>
+            ? product.images.map((item, index) => (
+                <Box component="li" sx={{ flex: 1 }} key={index}>
                   <ProductImage
                     src={`https://res.cloudinary.com/eundangdotcom/image/upload/${item.image_id}`}
                     key={item.image_id}
@@ -64,7 +64,7 @@ const DetailProduct = ({addItem}) => {
         plantLike={product.plantLike}
       />
       <BannerFreeOngkir />
-      <CardList>
+      <CardList addItem={addItem}>
         {locale === 'id' ? 'Mungkin Anda Sukai' : 'You Might Like'}
       </CardList>
     </>

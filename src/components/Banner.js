@@ -11,11 +11,11 @@ const Container = styled.div`
   background-image: url(${BgBanner});
   background-origin: border-box;
   background-size: cover;
-  background-position: 100%;
+  background-position: 10%;
   width: 100%;
   height: 300px;
   position: relative;
-  ${mobile({textAlign: "center"})}
+  ${mobile({textAlign: "center", backgroundPosition: "50%"})}
 `;
 
 const Banner = ({children, ...rest}) => {

@@ -6,11 +6,11 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { Checkbox, FormControlLabel, Typography } from '@mui/material';
+import { Checkbox, FormControlLabel } from '@mui/material';
 import LocaleContext from '../contexts/LocaleContext';
 import { colors, fonts } from '../utils';
 
-export default function Filter() {
+export default function Filter({products}) {
   const { locale } = React.useContext(LocaleContext);
 
   const [open, setOpen] = useState(true);

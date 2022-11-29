@@ -52,7 +52,7 @@ const ServicesList = ({ children }) => {
       });
   }, [dispatch]);
 
-  const otherServices = services.filter((otherPost) => otherPost._id !== id);
+  const otherServices = services.filter((otherPost) => otherPost.category !== "care" && otherPost._id !== id);
 
   return (
     <Container fixed>

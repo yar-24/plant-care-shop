@@ -45,7 +45,7 @@ const Shop = ({addItem}) => {
           {locale === 'id' ? 'Semua Produk' : 'All Product'}
         </Typography>
         <Stack direction="row" spacing={{ md: 1 }}>
-          <Filter/>
+          <Filter products={products}/>
           <Product loading={isLoading} products={products} addItem={addItem} />
         </Stack>
       </Container>

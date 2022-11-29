@@ -200,7 +200,12 @@ body {
   width: 100%;
 }
 
-.services h2, h3 {
+.title{
+  font-family: "Comfortaa";
+  margin: 20px 0px;
+}
+
+.kolom h2, h3 {
   font-family: "Comfortaa";
   margin-bottom: 10px;
 }
@@ -211,10 +216,6 @@ body {
   justify-content: center;
   width: 80%;
   margin-top: 30px;
-}
-
-.kolom h2{
-  text-align: center;
 }
 
 .deskripsi2{

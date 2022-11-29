@@ -160,7 +160,7 @@ function DrawerAppBar(props) {
                     aria-label="open drawer"
                     edge="start"
                     onClick={handleDrawerToggle}
-                    sx={{ mr: 2, display: { md: 'none' } }}>
+                    sx={{ mr: 2, display: { md: 'none' }, color: "black" }}>
                     <MenuIcon />
                   </IconButton>
                   <Link to="/" style={{ color: '#009e72' }}>

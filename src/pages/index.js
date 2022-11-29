@@ -12,6 +12,7 @@ import DetailServices from "./DetailServices";
 import BlogDetailServices from "../components/BlogDetailServices";
 import WriteServices from "./WriteServices";
 import HomeWrite from './HomeWrite'
+import NotResponding from "./NotResponding";
 
 export {
   Home,
@@ -27,5 +28,6 @@ export {
   DetailServices,
   BlogDetailServices,
   WriteServices,
-  HomeWrite
+  HomeWrite,
+  NotResponding
 };
