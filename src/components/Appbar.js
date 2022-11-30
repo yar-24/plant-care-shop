@@ -49,6 +49,7 @@ const navItems = [
   },
 ];
 
+
 function DrawerAppBar(props) {
   const { window, quantity } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -202,7 +203,7 @@ function DrawerAppBar(props) {
                             mx: 2,
                           }}
                           onClick={onLogout}>
-                          Logout
+                          {locale === 'id' ? 'Keluar' : 'Logout'}
                         </CustomButton>
                       ) : (
                         <CustomButton
