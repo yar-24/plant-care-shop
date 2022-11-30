@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { styled } from '@mui/material/styles';
-import { colors, fonts, rupiah } from '../utils/';
+import { colors, fonts, getText, rupiah, truncate } from '../utils/';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -60,7 +60,7 @@ const CardItem = ({product, addItem}) => {
         alt="green iguana"
       />
       <CardContent>
-        <PlantTitleText>{namePlant}</PlantTitleText>
+        <PlantTitleText>{getText(truncate(namePlant, 17))}</PlantTitleText>
         <PlantPriceText mt={2}>
           {locale === 'id' ? 'Dari' : 'From'} {rupiah(price)}
         </PlantPriceText>

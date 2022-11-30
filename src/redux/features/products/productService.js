@@ -47,29 +47,32 @@ const getProducts = async () => {
     },
   };
 
-  const response = await axiosInstance.get(
-    '/products',
-    config
-  );
+  const response = await axiosInstance.get("/products", config);
+
+  if (response.data) {
+    localStorage.setItem('products', JSON.stringify(response.data))
+  }
 
   return response.data;
 };
 
 //update product
-const updateProduct =  async (productData, productId, token) => {
-
+const updateProduct = async (productData, productId, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'multipart/form-data',
+      "Content-Type": "multipart/form-data",
     },
-  }
+  };
 
-  const response = await axiosInstance
-  .put(`/products/${productId}`, productData, config)
+  const response = await axiosInstance.put(
+    `/products/${productId}`,
+    productData,
+    config
+  );
 
-  return response.data
-}
+  return response.data;
+};
 
 // Delete product
 const deleteProduct = async (productId, token) => {
@@ -90,7 +93,7 @@ const productService = {
   getProduct,
   getProducts,
   updateProduct,
-  deleteProduct
-}
+  deleteProduct,
+};
 
-export default productService
+export default productService;

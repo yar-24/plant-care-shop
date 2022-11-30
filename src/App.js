@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Navigation from "./Navigation";
 import store from "./redux/store";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -9,6 +9,7 @@ import "./styles/write.scss";
 const App = () => {
   const [language, setLanguage] = useState("");
   const [cartItems, setCartItems] = useState([]);
+
 
   const localeContext = {
     locale: localStorage.getItem("locale") || "id",
@@ -64,10 +65,10 @@ const App = () => {
     }
   };
 
+
   return (
     <LocaleProvider value={localeContext}>
       <Provider store={store}>
-        {/* <ThemeProvider theme={theme}> */}
         <Router>
           <Navigation
             cartItems={cartItems}
@@ -77,7 +78,6 @@ const App = () => {
             handleDeleteProduct={handleDeleteProduct}
           />
         </Router>
-        {/* </ThemeProvider> */}
       </Provider>
     </LocaleProvider>
   );
