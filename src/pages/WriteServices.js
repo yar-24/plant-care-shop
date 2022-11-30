@@ -18,6 +18,7 @@ import EditorToolbar, {
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import LoadingBtn from "../components/kecil/LoadingBtn";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Image = styled("img")`
   width: 250px;
@@ -33,6 +34,7 @@ const WriteServices = () => {
   const [isUpdate, setIsUpdate] = useState(false);
   const [service, setService] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const { locale } = React.useContext(LocaleContext);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -147,24 +149,24 @@ const WriteServices = () => {
               onChange={(e) => onImage(e)}
             />
             <label className="file" htmlFor="file">
-              Upload Image
+            {locale === 'id' ? 'Unggah Foto' : 'Upload Image'}
             </label>
             <input
               type="text"
               value={title}
-              placeholder="Title"
+              placeholder={locale === 'id' ? 'Judul' : 'Title'}
               onChange={(e) => setTitle(e.target.value)}
             />
             <div className="form-write">
               <label className="font-desc">
-                Description <span className="required"> * </span>{" "}
+              {locale === 'id' ? 'Deskripsi' : 'Description'} <span className="required"> * </span>{" "}
               </label>
               <EditorToolbar toolbarId={"t1"}/>
               <ReactQuill
                 theme="snow"
                 value={desc}
                 onChange={setDesc}
-                placeholder={"Write something awesome..."}
+                placeholder={locale === 'id' ? 'Tulis sesuatu yang luar biasa...' : "Write something awesome..."}
                 modules={modules("t1")}
                 formats={formats}
               />
@@ -180,12 +182,12 @@ const WriteServices = () => {
                   justifyContent: "space-around",
                 }}
               >
-                <h1 style={{ textAlign: 'center'}} >Publish</h1>
+                <h1 style={{ textAlign: 'center'}} >{locale === 'id' ? 'Menerbitkan' : 'Publish'}</h1>
                 <span style={{ fontSize:'13.5px', marginLeft: '20px' }}>
-                  <b>Status : </b> Draft
+                  <b>Status : </b> {locale === 'id' ? 'Konsep' : 'Draft'}
                 </span>
                 <span  style={{ fontSize:'13.5px', marginLeft: '20px' }}>
-                  <b>Visibility : </b> Public
+                  <b>{locale === 'id' ? 'Visibilitas' : 'Visibility'} : </b> {locale === 'id' ? 'Publik' : 'Public'}
                 </span>
                 <div className="buttons" style={{ marginLeft:'auto', marginRight:'auto' }} >
                   <LoadingBtn onClick={handleClick} loading={isLoading} >
@@ -195,7 +197,7 @@ const WriteServices = () => {
               </Box>
             </div>
             <div className="item"  style={{ backgroundColor: '#9ed7c1', textAlign: 'center', fontFamily:'Inter', padding:'20px'}}>
-              <h1>Category</h1>
+              <h1>{locale === 'id' ? 'Kategori' : 'Category'}</h1>
               <div className="cat" style={{ marginLeft:'20px' }}>
                 <input
                   type="radio"
@@ -205,7 +207,7 @@ const WriteServices = () => {
                   id="plant"
                   onChange={(e) => setCategory(e.target.value)}
                 />
-                <label htmlFor="plant"  style={{ fontSize:'13.5px' }}>Plant</label>
+                <label htmlFor="plant"  style={{ fontSize:'13.5px' }}>{locale === 'id' ? 'Tumbuhan' : 'Plant'}</label>
               </div>
               <div className="cat" style={{ marginLeft:'20px' }}>
                 <input
@@ -216,7 +218,7 @@ const WriteServices = () => {
                   id="care"
                   onChange={(e) => setCategory(e.target.value)}
                 />
-                <label htmlFor="care"  style={{ fontSize:'13.5px' }}>Care</label>
+                <label htmlFor="care"  style={{ fontSize:'13.5px' }}>{locale === 'id' ? 'Perawatan' : 'Care'}</label>
               </div>
               <div className="cat" style={{ marginLeft:'20px' }}>
                 <input
@@ -227,7 +229,7 @@ const WriteServices = () => {
                   id="shop"
                   onChange={(e) => setCategory(e.target.value)}
                 />
-                <label htmlFor="shop"  style={{ fontSize:'13.5px' }}>Shop</label>
+                <label htmlFor="shop"  style={{ fontSize:'13.5px' }}>{locale === 'id' ? 'Belanja' : 'Shop'}</label>
               </div>
               <div className="cat" style={{ marginLeft:'20px' }}>
                 <input
@@ -238,7 +240,7 @@ const WriteServices = () => {
                   id="service"
                   onChange={(e) => setCategory(e.target.value)}
                 />
-                <label htmlFor="shop"  style={{ fontSize:'13.5px' }}>Service</label>
+                <label htmlFor="shop"  style={{ fontSize:'13.5px' }}>{locale === 'id' ? 'Layanan' : 'Service'}</label>
               </div>
               <div className="cat" style={{ marginLeft:'20px' }}>
                 <input
@@ -249,7 +251,7 @@ const WriteServices = () => {
                   id="other"
                   onChange={(e) => setCategory(e.target.value)}
                 />
-                <label htmlFor="other"  style={{ fontSize:'13.5px' }}>Other</label>
+                <label htmlFor="other"  style={{ fontSize:'13.5px' }}>{locale === 'id' ? 'Lainya' : 'Other'}</label>
               </div>
             </div>
           </div>

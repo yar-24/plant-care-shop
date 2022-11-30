@@ -21,6 +21,7 @@ import CustomButton from "../components/CustomButton";
 import { getText, truncate } from "../utils";
 import Swal from "sweetalert2";
 import styled from "styled-components";
+import LocaleContext from "../contexts/LocaleContext";
 
 const Font = styled.div`
   @media (max-width: 600px) {
@@ -33,6 +34,8 @@ const Font = styled.div`
 
 function HomeWrite() {
   const [allPost, setAllPost] = useState([]);
+
+  const { locale } = React.useContext(LocaleContext);
 
   const { user } = useSelector((state) => state.auth);
 
@@ -77,11 +80,11 @@ function HomeWrite() {
         <Box sx={{ alignSelf: "center", mb: 5, fontFamily: "Comfortaa" }}>
         <Font>
           <h1 className="title__homewrite">
-            Create <span> Your </span> blog for plant care
+          {locale === 'id' ? 'Buat blog anda untuk perawatan tanaman' : 'Create your blog for plant care'}
           </h1>
           </Font>
           <CustomButton component={Link} to={"/write"}>
-            Create Now
+          {locale === 'id' ? 'Buat Sekarang' : 'Create Now'}
           </CustomButton>
         </Box>
         <Grid
@@ -115,7 +118,7 @@ function HomeWrite() {
                     to={`/edit/${item._id}`}
                     size="small"
                   >
-                    Edit
+                     {locale === 'id' ? 'Sunting' : 'Edit'}
                   </Button>
                   <Button
                     variant="contained"
@@ -124,7 +127,7 @@ function HomeWrite() {
                     to={`/detail-services/${item._id}`}
                     size="small"
                   >
-                    Lihat
+                     {locale === 'id' ? 'Lihat' : 'See'}
                   </Button>
                   <Button
                     variant="contained"
@@ -133,7 +136,7 @@ function HomeWrite() {
                     size="small"
                     style={{ marginLeft: '8px' }}
                   >
-                    Delete
+                     {locale === 'id' ? 'Hapus' : 'Delete'}
                   </Button>
                 </CardActions>
               </Card>
