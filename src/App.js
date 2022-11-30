@@ -1,61 +1,86 @@
-import React from 'react';
-import Navigation from './Navigation';
-import store from './redux/store';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { LocaleProvider } from './contexts/LocaleContext';
-import './styles/write.scss';
-import { createTheme, ThemeProvider } from '@mui/material';
-import { colors } from './utils';
+import React, { useEffect, useState } from "react";
+import Navigation from "./Navigation";
+import store from "./redux/store";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import { LocaleProvider } from "./contexts/LocaleContext";
+import "./styles/write.scss";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: colors.secondary,
-    },
-  },
-});
+const App = () => {
+  const [language, setLanguage] = useState("");
+  const [cartItems, setCartItems] = useState([]);
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+  const localeContext = {
+    locale: localStorage.getItem("locale") || "id",
+    toggleLocale: () =>
+      setLanguage(() => {
+        const newLocale = localeContext.locale === "id" ? "en" : "id";
+        localStorage.setItem("locale", newLocale);
+        return {
+          localeContext: {
+            ...localeContext,
+            locale: newLocale,
+          },
+        };
+      }),
+  };
 
-    this.state = {
-      authedUser: null,
-      initializing: true,
+  const handleAddProduct = (product) => {
+    const ProductExist = cartItems.find((item) => item.id === product.id);
+    if (ProductExist) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === product.id
+            ? { ...ProductExist, quantity: ProductExist.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
+  };
 
-      localeContext: {
-        locale: localStorage.getItem('locale') || 'id',
-        toggleLocale: () => {
-          this.setState((prevState) => {
-            const newLocale =
-              prevState.localeContext.locale === 'id' ? 'en' : 'id';
-            localStorage.setItem('locale', newLocale);
-            return {
-              localeContext: {
-                ...prevState.localeContext,
-                locale: newLocale,
-              },
-            };
-          });
-        },
-      },
-    };
-  }
+  const handleRemoveProduct = (product) => {
+    const ProductExist = cartItems.find((item) => item.id === product.id);
+    if (ProductExist.quantity === 1) {
+      setCartItems(cartItems.filter((item) => item.id !== product.id));
+    } else {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === product.id
+            ? { ...ProductExist, quantity: ProductExist.quantity - 1 }
+            : item
+        )
+      );
+    }
+  };
 
-  render() {
-    return (
-      <LocaleProvider value={this.state.localeContext}>
-        <Provider store={store}>
-          <ThemeProvider theme={theme}>
-            <Router>
-              <Navigation />
-            </Router>
-          </ThemeProvider>
-        </Provider>
-      </LocaleProvider>
-    );
-  }
-}
+  const handleDeleteProduct = (product) => {
+    const ProductExist = cartItems.find((item) => item.id === product.id);
+    if (ProductExist) {
+      setCartItems(cartItems.filter((item) => item.id !== product.id));
+    } else {
+      setCartItems(cartItems.map((item) => item.id !== product.id));
+    }
+  };
+
+  return (
+    <LocaleProvider value={localeContext}>
+      <Provider store={store}>
+        {/* <ThemeProvider theme={theme}> */}
+        <Router>
+          <Navigation
+            cartItems={cartItems}
+            quantity={cartItems.length}
+            handleAddProduct={handleAddProduct}
+            handleRemoveProduct={handleRemoveProduct}
+            handleDeleteProduct={handleDeleteProduct}
+          />
+        </Router>
+        {/* </ThemeProvider> */}
+      </Provider>
+    </LocaleProvider>
+  );
+};
 
 export default App;

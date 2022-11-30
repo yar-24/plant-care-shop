@@ -22,55 +22,21 @@ import ScrollToTop from "../components/ScrollToTop";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
 
-const Navigation = () => {
-  const [cartItems, setCartItems] = useState([]);
-
+const Navigation = (props) => {
+  const {
+    quantity,
+    handleAddProduct,
+    cartItems,
+    handleRemoveProduct,
+    handleDeleteProduct,
+  } = props;
   const { user } = useSelector((state) => state.auth);
-
-  const handleAddProduct = (product) => {
-    const ProductExist = cartItems.find((item) => item.id === product.id);
-    if (ProductExist) {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id
-            ? { ...ProductExist, quantity: ProductExist.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
-  };
-
-  const handleRemoveProduct = (product) => {
-    const ProductExist = cartItems.find((item) => item.id === product.id);
-    if (ProductExist.quantity === 1) {
-      setCartItems(cartItems.filter((item) => item.id !== product.id));
-    } else {
-      setCartItems(
-        cartItems.map((item) =>
-          item.id === product.id
-            ? { ...ProductExist, quantity: ProductExist.quantity - 1 }
-            : item
-        )
-      );
-    }
-  };
-
-  const handleDeleteProduct = (product) => {
-    const ProductExist = cartItems.find((item) => item.id === product.id);
-    if (ProductExist) {
-      setCartItems(cartItems.filter((item) => item.id !== product.id));
-    } else {
-      setCartItems(cartItems.map((item) => item.id !== product.id));
-    }
-  };
 
   return (
     <>
       <ScrollToTop />
       <header>
-        <Appbar quantity={cartItems.length} />
+        <Appbar quantity={quantity} />
       </header>
       <Toast />
       <main>

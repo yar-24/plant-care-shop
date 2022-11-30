@@ -14,7 +14,7 @@ function Search({ keyword, keywordChange }) {
       title: "Halaman Pencarian",
       input: "text",
       inputAttributes: {
-        autocapitalize: "off",
+        autolowercase: "on",
       },
       showCancelButton: true,
       showLoaderOnConfirm: true,
