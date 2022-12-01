@@ -1,12 +1,12 @@
+import { createTheme, ThemeProvider } from '@mui/material';
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import LocaleContext from './contexts/LocaleContext';
 import Navigation from './Navigation';
 import store from './redux/store';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { LocaleProvider } from './contexts/LocaleContext';
 import './styles/write.scss';
 import { colors } from './utils';
-import { createTheme, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -17,23 +17,20 @@ const theme = createTheme({
 });
 
 const App = () => {
-  const [language, setLanguage] = useState('');
+  const [locale, setLanguage] = useState(
+    localStorage.getItem('locale') || 'en'
+  );
   const [cartItems, setCartItems] = useState([]);
 
-  const localeContext = {
-    locale: localStorage.getItem('locale') || 'id',
-    toggleLocale: () =>
-      setLanguage(() => {
-        const newLocale = localeContext.locale === 'id' ? 'en' : 'id';
-        localStorage.setItem('locale', newLocale);
-        return {
-          localeContext: {
-            ...localeContext,
-            locale: newLocale,
-          },
-        };
-      }),
+  const changeLocale = (newLocale) => {
+    localStorage.setItem('locale', newLocale);
+    setLanguage(newLocale);
   };
+
+  const localeContextValue = React.useMemo(
+    () => ({ locale, changeLocale }),
+    [locale]
+  );
 
   const handleAddProduct = (product) => {
     const ProductExist = cartItems.find((item) => item.id === product.id);
@@ -75,7 +72,7 @@ const App = () => {
   };
 
   return (
-    <LocaleProvider value={localeContext}>
+    <LocaleContext.Provider value={localeContextValue}>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Router>
@@ -89,7 +86,7 @@ const App = () => {
           </Router>
         </ThemeProvider>
       </Provider>
-    </LocaleProvider>
+    </LocaleContext.Provider>
   );
 };
 
