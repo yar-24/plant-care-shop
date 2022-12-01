@@ -1,22 +1,31 @@
-import React, { useState } from "react";
-import Navigation from "./Navigation";
-import store from "./redux/store";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
-import { LocaleProvider } from "./contexts/LocaleContext";
-import "./styles/write.scss";
+import React, { useState } from 'react';
+import Navigation from './Navigation';
+import store from './redux/store';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { LocaleProvider } from './contexts/LocaleContext';
+import './styles/write.scss';
+import { colors } from './utils';
+import { createTheme, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: colors.secondary,
+    },
+  },
+});
 
 const App = () => {
-  const [language, setLanguage] = useState("");
+  const [language, setLanguage] = useState('');
   const [cartItems, setCartItems] = useState([]);
 
-
   const localeContext = {
-    locale: localStorage.getItem("locale") || "id",
+    locale: localStorage.getItem('locale') || 'id',
     toggleLocale: () =>
       setLanguage(() => {
-        const newLocale = localeContext.locale === "id" ? "en" : "id";
-        localStorage.setItem("locale", newLocale);
+        const newLocale = localeContext.locale === 'id' ? 'en' : 'id';
+        localStorage.setItem('locale', newLocale);
         return {
           localeContext: {
             ...localeContext,
@@ -65,19 +74,20 @@ const App = () => {
     }
   };
 
-
   return (
     <LocaleProvider value={localeContext}>
       <Provider store={store}>
-        <Router>
-          <Navigation
-            cartItems={cartItems}
-            quantity={cartItems.length}
-            handleAddProduct={handleAddProduct}
-            handleRemoveProduct={handleRemoveProduct}
-            handleDeleteProduct={handleDeleteProduct}
-          />
-        </Router>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Navigation
+              cartItems={cartItems}
+              quantity={cartItems.length}
+              handleAddProduct={handleAddProduct}
+              handleRemoveProduct={handleRemoveProduct}
+              handleDeleteProduct={handleDeleteProduct}
+            />
+          </Router>
+        </ThemeProvider>
       </Provider>
     </LocaleProvider>
   );
