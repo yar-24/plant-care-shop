@@ -19,7 +19,14 @@ const Log = styled.div`
 
   @media (max-width: 725px) {
     margin: 30px auto;
-    padding-right: 50px;
+    padding-right: 40px;
+    padding-left: 30px;
+  }
+  @media (max-width: 600px) {
+    margin: 30px auto;
+    padding-right: 5px;
+    padding-left: 0px;
+
   }
 `;
 

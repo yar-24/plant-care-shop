@@ -18,10 +18,14 @@ const Regis = styled.div`
   grid-row-gap: 20px;
 
   @media (max-width: 725px) {
-    margin: 50px auto;
-    padding-right: 50px;
+    margin: 40px auto;
+    /* padding-right: 40px; */
+    /* padding-left: 30px; */
   }
   @media (max-width: 600px) {
+    margin: 30px auto;
+    padding-right: 5px;
+    padding-left: 0px;
     grid-template-columns: 1fr;
   }
 `;
