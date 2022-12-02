@@ -173,29 +173,6 @@ const WriteServices = () => {
             </div>
           </div>
           <div className="menu" >
-            <div className="item"  style={{ backgroundColor: '#9ed7c1', fontFamily:'Inter'}}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  height: "200px",
-                  justifyContent: "space-around",
-                }}
-              >
-                <h1 style={{ textAlign: 'center'}} >{locale === 'id' ? 'Menerbitkan' : 'Publish'}</h1>
-                <span style={{ fontSize:'13.5px', marginLeft: '20px' }}>
-                  <b>Status : </b> {locale === 'id' ? 'Konsep' : 'Draft'}
-                </span>
-                <span  style={{ fontSize:'13.5px', marginLeft: '20px' }}>
-                  <b>{locale === 'id' ? 'Visibilitas' : 'Visibility'} : </b> {locale === 'id' ? 'Publik' : 'Public'}
-                </span>
-                <div className="buttons" style={{ marginLeft:'auto', marginRight:'auto' }} >
-                  <LoadingBtn onClick={handleClick} loading={isLoading} >
-                    Publish
-                  </LoadingBtn>
-                </div>
-              </Box>
-            </div>
             <div className="item"  style={{ backgroundColor: '#9ed7c1', textAlign: 'center', fontFamily:'Inter', padding:'20px'}}>
               <h1>{locale === 'id' ? 'Kategori' : 'Category'}</h1>
               <div className="cat" style={{ marginLeft:'20px' }}>
@@ -253,6 +230,29 @@ const WriteServices = () => {
                 />
                 <label htmlFor="other"  style={{ fontSize:'13.5px' }}>{locale === 'id' ? 'Lainya' : 'Other'}</label>
               </div>
+            </div>
+            <div className="item"  style={{ backgroundColor: '#9ed7c1', fontFamily:'Inter'}}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "200px",
+                  justifyContent: "space-around",
+                }}
+              >
+                <h1 style={{ textAlign: 'center'}} >{locale === 'id' ? 'Menerbitkan' : 'Publish'}</h1>
+                <span style={{ fontSize:'13.5px', marginLeft: '20px' }}>
+                  <b>Status : </b> {locale === 'id' ? 'Konsep' : 'Draft'}
+                </span>
+                <span  style={{ fontSize:'13.5px', marginLeft: '20px' }}>
+                  <b>{locale === 'id' ? 'Visibilitas' : 'Visibility'} : </b> {locale === 'id' ? 'Publik' : 'Public'}
+                </span>
+                <div className="buttons" style={{ marginLeft:'auto', marginRight:'auto' }} >
+                  <LoadingBtn onClick={handleClick} loading={isLoading} >
+                    Publish
+                  </LoadingBtn>
+                </div>
+              </Box>
             </div>
           </div>
         </div>

@@ -17,7 +17,7 @@ const PlantCareItem = ({title, image, id}) => {
 const navigasi = useNavigate()
 
   const onDetail = (id) => {
-    navigasi(`/detail-services/${id}`);
+    navigasi(`/detail/${id}`);
   }
 
   return (

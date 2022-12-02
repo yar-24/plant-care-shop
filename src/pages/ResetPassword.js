@@ -58,6 +58,7 @@ const ResetPassword = () => {
       axiosInstance
         .post("users/reset-password?token=" + token, userData)
         .then((res) => {
+          console.log(res)
           Swal.fire({
             position: "center",
             icon: "success",
@@ -75,7 +76,7 @@ const ResetPassword = () => {
 
   return (
     <div className="forgot-password">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} >
         <h2>{locale === 'id' ? 'Halaman Atur Ulang Kata Sandi' : 'Reset Password Page'}</h2>
         <h3>{locale === 'id' ? 'Masukkan kata sandi baru anda' : 'Enter your new password'}</h3>
         <Forpas>
@@ -91,14 +92,14 @@ const ResetPassword = () => {
          <TextField
             id="password2"
             color="success"
-            type="password2"
+            type="password"
             label={locale === 'id' ? 'Kata Sandi 2' : "Password 2"}
             name="password2"
             value={password2}
             onChange={onChange}
           />
         </Forpas>
-        <LoadingBtn label={locale === 'id' ? 'Kirim' : "Submit"} loading={isLoading} />
+        <LoadingBtn loading={isLoading}>{locale === 'id' ? 'Kirim' : "Submit"}</LoadingBtn>
       </form>
     </div>
   );

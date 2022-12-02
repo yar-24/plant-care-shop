@@ -17,7 +17,7 @@ import {
   ListItemText,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { BsFillCartFill, BsTranslate } from 'react-icons/bs';
+import { BsFillCartFill, BsTranslate, BsSearch } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { colors, fonts } from '../utils';
@@ -26,7 +26,6 @@ import { logout, reset } from '../redux/features/auth/authSlice';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import InboxIcon from '@mui/icons-material/Inbox';
 import { LocaleConsumer } from '../contexts/LocaleContext';
-import Search from './kecil/Search';
 import CustomButton from './CustomButton';
 
 const drawerWidth = 240;
@@ -218,8 +217,9 @@ function DrawerAppBar(props) {
                           {locale === 'id' ? 'Masuk' : 'Login'}
                         </CustomButton>
                       )}
-                      <IconButton size="medium" style={{ color: 'black' }}>
-                        <Search />
+                      <IconButton size="medium" style={{ color: 'black' }} LinkComponent={Link}
+                        to="/search">
+                        <BsSearch />
                       </IconButton>
                       <IconButton
                         size="medium"

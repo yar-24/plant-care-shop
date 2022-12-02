@@ -12,7 +12,7 @@ const Services = () => {
       <BannerServices />
       <HeroServices />
       <BannerFreeOngkir />
-      <ServicesList>
+      <ServicesList category={"service"} >
         {locale === 'id' ? 'Mungkin Anda sukai' : 'You might like'}
       </ServicesList>
     </>

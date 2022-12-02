@@ -15,6 +15,7 @@ import {
   WriteServices,
   HomeWrite,
   NotResponding,
+  PageSearchBlog,
 } from "../pages";
 import Appbar from "../components/Appbar";
 import Toast from "../components/kecil/Toast";
@@ -30,6 +31,8 @@ const Navigation = (props) => {
     cartItems,
     handleRemoveProduct,
     handleDeleteProduct,
+    service,
+    isLoading
   } = props;
   const { user } = useSelector((state) => state.auth);
 
@@ -55,7 +58,7 @@ const Navigation = (props) => {
             element={<DetailProduct addItem={handleAddProduct} />}
             path="/detail-product/:id"
           />
-          <Route element={<DetailServices />} path="/detail-services/:id" />
+          <Route element={<DetailServices service={service} isLoading={isLoading} />} path="/detail/:id" />
           <Route element={<ForgotPassword />} path="/forgot-password" />
           <Route element={<ResetPassword />} path="/reset-password" />
           <Route
@@ -75,6 +78,7 @@ const Navigation = (props) => {
             element={user ? <WriteServices /> : <Home />}
             path="/edit/:id"
           />
+          <Route element={<PageSearchBlog/>} path="/search" />
           <Route element={<NotResponding />} path="/*" />
         </Routes>
       </main>

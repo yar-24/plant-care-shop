@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { getServices } from "../redux/features/services/servicesSlice";
 import { useParams } from "react-router-dom";
 
-const ServicesList = ({ children }) => {
+const ServicesList = ({ children, category }) => {
   const [services, setServices] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,16 +43,16 @@ const ServicesList = ({ children }) => {
 
   useEffect(() => {
     dispatch(getServices())
-    .then((res) => {
-      setServices(res.payload.services);
-      setIsLoading(true);
+      .then((res) => {
+        setServices(res.payload.services);
+        setIsLoading(true);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [dispatch]);
 
-  const otherServices = services.filter((otherPost) => otherPost.category !== "care" && otherPost._id !== id);
+  const otherServices = services.filter((otherPost) => otherPost.category === category && otherPost._id !== id);
 
   return (
     <Container fixed>
@@ -88,9 +88,8 @@ const ServicesList = ({ children }) => {
           slidesToSlide={1}
           swipeable
         >
-          {otherServices.map((item, index) => (
+          {otherServices.map((item, index) =>
             isLoading ? (
-              
               <ServicesItem
                 key={index}
                 title={item.title}
@@ -98,9 +97,14 @@ const ServicesList = ({ children }) => {
                 id={item._id}
               />
             ) : (
-              <Skeleton variant="rectangular" animation="wave" width={300} height={300} />
+              <Skeleton
+                variant="rectangular"
+                animation="wave"
+                width={300}
+                height={300}
+              />
             )
-          ))}
+          )}
         </Carousel>
       </Box>
     </Container>

@@ -224,8 +224,9 @@ body {
 }
 
 .services img {
-  width: 46%;
-  margin: auto;
+  width: 600px;
+  height: 400px;
+  object-fit: cover;
 }
 
 a {
@@ -284,8 +285,8 @@ a {
   }
 
   .services img {
-    width: 65%;
-    margin: auto;
+    width:100%;
+    height: 250px;
   }
 
   .input-register h2,

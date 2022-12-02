@@ -7,14 +7,13 @@ import LoadingBtn from '../components/kecil/LoadingBtn';
 import LocaleContext from '../contexts/LocaleContext';
 import { colors } from '../utils';
 
-const ForgotPassword = ({ forgotPassword }) => {
+const ForgotPassword = ({ forgotPassword, isLoading }) => {
   const { locale } = React.useContext(LocaleContext);
   const [formData, setFormData] = useState({
     email: '',
   });
 
   const { email } = formData;
-  const { isLoading } = useSelector((state) => state.auth);
 
   const onEmailChange = (e) => {
     setFormData((prevState) => ({
