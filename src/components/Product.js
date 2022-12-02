@@ -3,6 +3,13 @@ import React from "react";
 import { colors } from "../utils";
 import CardItem from "./CardItem";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
+import styled from "styled-components";
+
+const Layout = styled.div`
+  @media (max-width: 600px) {
+    padding-right: 18px;
+  }
+`;
 
 const Product = ({ products, loading, addItem }) => {
   const [Sort, setSort] = React.useState('');
@@ -12,6 +19,7 @@ const Product = ({ products, loading, addItem }) => {
   };
 
   return (
+    <Layout>
     <Stack spacing={1} sx={{ flex: 8 }}>
       <FormControl size="medium">
         <Select
@@ -52,6 +60,7 @@ const Product = ({ products, loading, addItem }) => {
         )}
       </Grid>
     </Stack>
+    </Layout>
   );
 };
 export default Product;
