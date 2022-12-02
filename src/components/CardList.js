@@ -17,7 +17,7 @@ const TitleText = styled(Typography)`
   margin: 32px 0;
 `;
 
-const CardList = ({ children, addItem }) => {
+const CardList = ({ children }) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1200 },
@@ -64,7 +64,7 @@ const CardList = ({ children, addItem }) => {
       });
   }, [dispatch]);
 
-  const filterProducts = products.filter((product) => product.id !== id);
+  const filterProducts = products.filter((product) => product._id !== id);
 
   return (
     <Container sx={{ padding: 0 }} disableGutters fixed>
@@ -104,7 +104,7 @@ const CardList = ({ children, addItem }) => {
             (product, index) => (
               <Box sx={{ mx: 2 }} key={index}>
                 {product ? (
-                  <CardItem product={product} addItem={addItem} />
+                  <CardItem product={product}/>
                 ) : (
                   <SkeletonCardItem />
                 )}

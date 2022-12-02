@@ -20,65 +20,39 @@ import {
 import Appbar from "../components/Appbar";
 import Toast from "../components/kecil/Toast";
 import ScrollToTop from "../components/ScrollToTop";
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Footer from "../components/Footer";
 
-
-const Navigation = (props) => {
-  const {
-    quantity,
-    handleAddProduct,
-    cartItems,
-    handleRemoveProduct,
-    handleDeleteProduct,
-    service,
-    isLoading
-  } = props;
+const Navigation = () => {
   const { user } = useSelector((state) => state.auth);
 
   return (
     <>
       <ScrollToTop />
       <header>
-        <Appbar quantity={quantity} />
+        <Appbar />
       </header>
       <Toast />
       <main>
         <Routes>
-          <Route element={<Home addItem={handleAddProduct} />} path="/" />
+          <Route element={<Home />} path="/" />
           <Route element={<Register />} path="/register" />
           <Route element={<Login />} path="/login" />
           <Route element={<Services />} path="/services" />
-          <Route
-            element={<PlantCare addItem={handleAddProduct} />}
-            path="/plant-care"
-          />
-          <Route element={<Shop addItem={handleAddProduct} />} path="/shop" />
-          <Route
-            element={<DetailProduct addItem={handleAddProduct} />}
-            path="/detail-product/:id"
-          />
-          <Route element={<DetailServices service={service} isLoading={isLoading} />} path="/detail/:id" />
+          <Route element={<PlantCare />} path="/plant-care" />
+          <Route element={<Shop />} path="/shop" />
+          <Route element={<DetailProduct />} path="/detail-product/:id" />
+          <Route element={<DetailServices />} path="/detail/:id" />
           <Route element={<ForgotPassword />} path="/forgot-password" />
           <Route element={<ResetPassword />} path="/reset-password" />
-          <Route
-            element={
-              <Cart
-                cartItems={cartItems}
-                handleAddProduct={handleAddProduct}
-                handleRemoveProduct={handleRemoveProduct}
-                handleDeleteProduct={handleDeleteProduct}
-              />
-            }
-            path="/cart"
-          />
+          <Route element={<Cart />} path="/cart" />
           <Route element={user ? <HomeWrite /> : <Home />} path="/home-write" />
           <Route element={user ? <WriteServices /> : <Home />} path="/write" />
           <Route
             element={user ? <WriteServices /> : <Home />}
             path="/edit/:id"
           />
-          <Route element={<PageSearchBlog/>} path="/search" />
+          <Route element={<PageSearchBlog />} path="/search" />
           <Route element={<NotResponding />} path="/*" />
         </Routes>
       </main>

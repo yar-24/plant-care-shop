@@ -52,3 +52,6 @@ export const axiosInstance = axios.create({
   // baseURL: 'https://plant-care-shop-api.herokuapp.com/v2',
   baseURL : "http://localhost:5000/v2"
 });
+
+
+export const getItemById = (products, itemId)  => products.some(product => product._id === itemId);

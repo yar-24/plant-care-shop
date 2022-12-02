@@ -53,18 +53,11 @@ const BlogDetailServices = ({ service, isLoading }) => {
       ) : (
         <Container>
           <Stack
-            my={10}
+            my={2}
             direction="column"
             justifyContent="center"
             alignItems="center"
-            spacing={3}
-          >
-            <Skeleton
-              variant="rectangular"
-              animation="wave"
-              height={300}
-              width={300}
-            />
+            spacing={2}>
             <Skeleton
               variant="text"
               animation="wave"
@@ -75,6 +68,11 @@ const BlogDetailServices = ({ service, isLoading }) => {
               <Skeleton variant="text" animation="wave" width={"60%"} />
               <Skeleton variant="text" animation="wave" />
               <Skeleton variant="text" animation="wave" width={"60%"} />
+              </Box>
+            <Box sx={{ width: '90%' }}>
+              <Skeleton variant="text" animation="wave" width={'60%'} />
+              <Skeleton variant="text" animation="wave" />
+              <Skeleton variant="text" animation="wave" width={'60%'} />
             </Box>
           </Stack>
         </Container>

@@ -9,7 +9,7 @@ import LocaleContext from '../contexts/LocaleContext';
 import { getProducts } from '../redux/features/products/productSlice';
 import { fonts } from '../utils';
 
-const Shop = ({addItem}) => {
+const Shop = () => {
   const { locale } = React.useContext(LocaleContext);
   const [products, setproducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,8 +45,8 @@ const Shop = ({addItem}) => {
           {locale === 'id' ? 'Semua Produk' : 'All Product'}
         </Typography>
         <Stack direction="row" spacing={{ md: 1 }}>
-          <Filter products={products}/>
-          <Product loading={isLoading} products={products} addItem={addItem} />
+          <Filter/>
+          <Product loading={isLoading} products={products} />
         </Stack>
       </Container>
     </>

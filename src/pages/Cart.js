@@ -10,7 +10,7 @@ const CartListContainer = styled(Container)`
   margin-top: 60px;
 `;
 
-const Cart = ({ handleAddProduct, handleRemoveProduct, handleDeleteProduct, cartItems }) => {
+const Cart = () => {
   const { user } = useSelector((state) => state.auth);
   const { locale } = React.useContext(LocaleContext);
   
@@ -21,10 +21,6 @@ const Cart = ({ handleAddProduct, handleRemoveProduct, handleDeleteProduct, cart
         <CartList
           locale={locale}
           user={user}
-          handleAddProduct={handleAddProduct}
-          handleRemoveProduct={handleRemoveProduct}
-          handleDeleteProduct={handleDeleteProduct}
-          cartItems={cartItems}
         />
       ) : (
         <CartListContainer>

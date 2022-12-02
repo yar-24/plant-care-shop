@@ -1,6 +1,5 @@
-import { Stack, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { Stack, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 import CustomButton from '../components/CustomButton';
 import LoadingBtn from '../components/kecil/LoadingBtn';
@@ -44,7 +43,7 @@ const ForgotPassword = ({ forgotPassword, isLoading }) => {
       />
       <Stack direction="row" my={1} spacing={2}>
         <LoadingBtn
-          size="large"
+          size="medium"
           sx={{
             color: colors.white,
             px: 3,
@@ -56,7 +55,7 @@ const ForgotPassword = ({ forgotPassword, isLoading }) => {
         </LoadingBtn>
         <CustomButton
           component={Link}
-          size="large"
+          size="medium"
           sx={{
             backgroundColor: colors.white,
             color: colors.secondary,

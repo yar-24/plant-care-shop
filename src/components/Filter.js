@@ -10,7 +10,7 @@ import { Checkbox, FormControlLabel } from '@mui/material';
 import LocaleContext from '../contexts/LocaleContext';
 import { colors, fonts } from '../utils';
 
-export default function Filter({products}) {
+export default function Filter() {
   const { locale } = React.useContext(LocaleContext);
 
   const [open, setOpen] = useState(true);
