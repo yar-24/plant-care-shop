@@ -123,9 +123,16 @@ body {
 }
 
 .input-register h2,
-.input-login h2,
-.forgot-password h2 {
+.input-login h2 {
   font-size: 35px;
+  margin-left: 50px;
+  font-family: "Comfortaa";
+  font-style: normal;
+  font-weight: 800;
+}
+
+.forgot-password h2 {
+  font-size: 32px;
   margin-left: 50px;
   font-family: "Comfortaa";
   font-style: normal;
@@ -187,6 +194,21 @@ body {
   margin-left: 100px;
 }
 
+.input-login input,
+.input-register input,
+.forgot-password input,
+.reset-password input {
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  display: block;
+  width: 100%;
+  padding: 20px;
+  background-color: #9ed7c1;
+  border: 5px #009e72;
+  color: black;
+
+}
+
 .forgot-password p {
   margin-left: 50px;
 }
@@ -218,7 +240,7 @@ body {
   margin-top: 30px;
 } */
 
-.deskripsi2{
+.deskripsi2 {
   font-size: 18px;
   text-align: justify;
 }
@@ -237,24 +259,24 @@ a {
   color: #009e72;
 }
 
-.title-product{
+.title-product {
   font-size: 30px;
   height: auto;
   font-family: 'Comfortaa';
   display: block;
-  margin: 40px 30px 25px 30px ;
+  margin: 40px 30px 25px 30px;
   text-align: center;
 }
 
-.shop{
+.shop {
   display: flex;
 }
 
-.form-write label{
+.form-write label {
   margin-bottom: 20px;
 }
 
-.title__homewrite{
+.title__homewrite {
   margin-bottom: 20px;
 }
 
@@ -269,9 +291,9 @@ a {
 
 @media screen and (max-width : 1050px) {
 
-.input-register button {
-  width: 19%;
-}
+  .input-register button {
+    width: 19%;
+  }
 }
 
 @media screen and (max-width : 725px) {
@@ -295,6 +317,16 @@ a {
     font-size: 30px;
   }
 
+  .reset-password h4{
+    margin: auto;
+    font-size: 30px;
+  }
+
+  .reset-password h3{
+    margin: 10px auto;
+    font-size: 20px;
+  }
+
   .input-register h3,
   .forgot-password h3 {
     margin: 10px auto;
@@ -302,16 +334,27 @@ a {
     font-size: 20px;
   }
 
-  .input-register button,
   .input-login button,
   .forgot-password button {
 
     margin: auto;
+    margin-left: 30px;
     width: auto;
+    font-size: 15px;
   }
 
-  .input-register p,
+  .input-register button{
+    margin: auto;
+    width: auto;
+    font-size: 15px;
+  }
+  
   .input-login p {
+    margin: 5px auto;
+    margin-left: 30px;
+  }
+
+  .input-register p{
     margin: 5px auto;
   }
 
@@ -327,6 +370,21 @@ a {
   .title {
     font-size: 25px;
   }
+
+  .input-login input,
+  .input-register input,
+  .forgot-password input,
+  .reset-password input  {
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    display: block;
+    width: 100%;
+    padding: 20px;
+    background-color: #9ed7c1;
+    border: 5px #009e72;
+    color: black;
+
+  }
 }
 
 @media(max-width: 650px) {
@@ -335,19 +393,65 @@ a {
   }
 }
 
-.input-login input,
-.input-register input,
-.forgot-password input {
-  font-size: 18px;
-  font-family: 'Inter', sans-serif;
-  display: block;
-  width: 100%;
-  padding: 20px;
-  background-color: #9ed7c1;
-  border: 5px #009e72;
-  color: black;
+
+@media(max-width: 600px) {
+
+  .input-login input,
+  .input-register input,
+  .forgot-password input,
+  .reset-password input  {
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    display: block;
+    width: 100%;
+    padding: 20px;
+    background-color: #9ed7c1;
+    border: 5px #009e72;
+    color: black;
+
+  }
+
+  .input-register h2,
+  .input-login h2,
+  .forgot-password h2 {
+    margin: auto;
+    font-size: 26px;
+  }
+
+  .reset-password h4 {
+    margin: auto;
+    font-size: 26px;
+  }
+
+  .input-register h3,
+  .forgot-password h3 {
+    margin: 10px auto;
+    padding-top: 10px;
+    font-size: 20px;
+  }
+
+  .reset-password h3 {
+    margin: 10px auto;
+    font-size: 20px;
+  }
+
+  .input-register button,
+  .input-login button,
+  .forgot-password button {
+    font-size: 15px;
+    margin: auto;
+    width: auto;
+  }
+
+  .input-register p,
+  .input-login p {
+    margin: 5px auto;
+
+  }
 
 }
+
+
 
 /* FOOTER */
 
@@ -436,28 +540,31 @@ ul {
 /*responsive*/
 @media(max-width: 767px) {
   .footer-col {
-     width: 50%;
+    width: 50%;
     display: grid;
     margin: auto;
   }
 }
 
 @media(max-width: 574px) {
-  .footer{
+  .footer {
     display: block;
     /* margin: 0px auto; */
     padding: 20px;
   }
+
   .footer-col {
     width: 50%;
     display: grid;
     /* text-align: center; */
     margin: auto;
   }
+
   .footer-col h4 {
     margin-top: 20px;
     margin-bottom: 15px;
   }
+
   .footer-col h4::before {
     text-align: center;
     margin: auto;

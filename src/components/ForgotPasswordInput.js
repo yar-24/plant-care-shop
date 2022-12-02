@@ -45,7 +45,7 @@ const ForgotPassword = ({ forgotPassword }) => {
       />
       <Stack direction="row" my={1} spacing={2}>
         <LoadingBtn
-          size="large"
+          size="medium"
           sx={{
             color: colors.white,
             px: 3,
@@ -57,7 +57,7 @@ const ForgotPassword = ({ forgotPassword }) => {
         </LoadingBtn>
         <CustomButton
           component={Link}
-          size="large"
+          size="medium"
           sx={{
             backgroundColor: colors.white,
             color: colors.secondary,
