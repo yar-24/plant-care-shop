@@ -213,33 +213,32 @@ body {
   margin-left: 50px;
 }
 
-.services {
+/* .services {
   margin: 25px 0px 25px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: "Inter";
   width: 100%;
-}
+} */
 
-.title {
+/* .title{
   font-family: "Comfortaa";
   margin: 20px 0px;
-}
+} */
 
-.kolom h2,
-h3 {
+/* .kolom h2, h3 {
   font-family: "Comfortaa";
   margin-bottom: 10px;
-}
+} */
 
-.services .kolom {
+/* .services .kolom {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 80%;
   margin-top: 30px;
-}
+} */
 
 .deskripsi2 {
   font-size: 18px;
@@ -540,10 +539,6 @@ ul {
 
 /*responsive*/
 @media(max-width: 767px) {
-  .services .kolom {
-    width: 100%;
-  }
-
   .footer-col {
     width: 50%;
     display: grid;

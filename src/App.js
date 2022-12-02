@@ -1,30 +1,36 @@
-import React, { useState } from "react";
-import Navigation from "./Navigation";
-import store from "./redux/store";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
-import { LocaleProvider } from "./contexts/LocaleContext";
-import "./styles/write.scss";
+import { createTheme, ThemeProvider } from '@mui/material';
+import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import LocaleContext from './contexts/LocaleContext';
+import Navigation from './Navigation';
+import store from './redux/store';
+import './styles/write.scss';
+import { colors } from './utils';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: colors.secondary,
+    },
+  },
+});
 
 const App = () => {
-  const [language, setLanguage] = useState("");
+  const [locale, setLanguage] = useState(
+    localStorage.getItem('locale') || 'en'
+  );
   const [cartItems, setCartItems] = useState([]);
 
-
-  const localeContext = {
-    locale: localStorage.getItem("locale") || "id",
-    toggleLocale: () =>
-      setLanguage(() => {
-        const newLocale = localeContext.locale === "id" ? "en" : "id";
-        localStorage.setItem("locale", newLocale);
-        return {
-          localeContext: {
-            ...localeContext,
-            locale: newLocale,
-          },
-        };
-      }),
+  const changeLocale = (newLocale) => {
+    localStorage.setItem('locale', newLocale);
+    setLanguage(newLocale);
   };
+
+  const localeContextValue = React.useMemo(
+    () => ({ locale, changeLocale }),
+    [locale]
+  );
 
   const handleAddProduct = (product) => {
     const ProductExist = cartItems.find((item) => item.id === product.id);
@@ -65,21 +71,22 @@ const App = () => {
     }
   };
 
-
   return (
-    <LocaleProvider value={localeContext}>
+    <LocaleContext.Provider value={localeContextValue}>
       <Provider store={store}>
-        <Router>
-          <Navigation
-            cartItems={cartItems}
-            quantity={cartItems.length}
-            handleAddProduct={handleAddProduct}
-            handleRemoveProduct={handleRemoveProduct}
-            handleDeleteProduct={handleDeleteProduct}
-          />
-        </Router>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Navigation
+              cartItems={cartItems}
+              quantity={cartItems.length}
+              handleAddProduct={handleAddProduct}
+              handleRemoveProduct={handleRemoveProduct}
+              handleDeleteProduct={handleDeleteProduct}
+            />
+          </Router>
+        </ThemeProvider>
       </Provider>
-    </LocaleProvider>
+    </LocaleContext.Provider>
   );
 };
 
