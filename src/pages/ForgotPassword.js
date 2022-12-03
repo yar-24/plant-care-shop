@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Container, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { toast } from "react-toastify";
-import styled from "styled-components";
-import ForgotPasswordInput from "../components/ForgotPasswordInput";
-import LocaleContext from "../contexts/LocaleContext";
-import { forgot } from "../redux/features/auth/authSlice";
+import { Container, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import styled from 'styled-components';
+import ForgotPasswordInput from '../components/ForgotPasswordInput';
+import LocaleContext from '../contexts/LocaleContext';
+import { forgot } from '../redux/features/auth/authSlice';
 
 const Forpas = styled.div`
   font-size: 13px;
@@ -37,12 +37,12 @@ const ForgotPassword = () => {
       email,
     };
     if (!email) {
-      toast.warning("Please input email!!");
+      toast.warning('Please input email!!');
     } else {
       dispatch(forgot(userData))
         .then((res) => {
           const pesan = res.payload.data.message;
-          if (pesan === "Email tidak ditemukan") {
+          if (pesan === 'Email tidak ditemukan') {
             toast.error(pesan);
           } else {
             toast.success(pesan);
@@ -50,41 +50,39 @@ const ForgotPassword = () => {
           }
         })
         .catch((err) => {
-          console.log("err");
+          console.log('err');
         });
     }
   };
 
   return (
-    <Forpas className="reset-password">
-      <Container>
-        <Typography
-          variant="h4"
-          component="h4"
-          gutterBottom
-          style={{ fontFamily: "Comfortaa", fontWeight: "800" }}
-        >
-          {locale === "id" ? "Halaman Lupa Kata Sandi" : "Forgot Password Page"}
-        </Typography>
-        <Typography
-          variant="h5"
-          component="h3"
-          gutterBottom
-          style={{ fontFamily: "Inter", fontWeight: "500" }}
-        >
-          {locale === "id" ? "Reset password anda" : "Reset your password"}
-        </Typography>
-        <Typography variant="body1" component="p" gutterBottom>
-          {locale === "id"
-            ? "Kami akan mengirimkan email untuk mengatur ulang kata sandi anda"
-            : "We will send you an email to reset your password"}
-        </Typography>
-        <ForgotPasswordInput
-          isLoading={isLoading}
-          forgotPassword={onForgotPassword}
-        />
-      </Container>
-    </Forpas>
+    // <Forpas className="reset-password">
+    <Container maxWidth="md" fixed sx={{ pt: 10 }}>
+      <Typography
+        variant="h4"
+        component="h4"
+        gutterBottom
+        style={{ fontFamily: 'Comfortaa', fontWeight: '800' }}>
+        {locale === 'id' ? 'Halaman Lupa Kata Sandi' : 'Forgot Password Page'}
+      </Typography>
+      <Typography
+        variant="h5"
+        component="h3"
+        gutterBottom
+        style={{ fontFamily: 'Inter', fontWeight: '500' }}>
+        {locale === 'id' ? 'Reset password anda' : 'Reset your password'}
+      </Typography>
+      <Typography variant="body1" component="p" gutterBottom>
+        {locale === 'id'
+          ? 'Kami akan mengirimkan email untuk mengatur ulang kata sandi anda'
+          : 'We will send you an email to reset your password'}
+      </Typography>
+      <ForgotPasswordInput
+        isLoading={isLoading}
+        forgotPassword={onForgotPassword}
+      />
+    </Container>
+    // </Forpas>
   );
 };
 

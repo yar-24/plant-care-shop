@@ -22,6 +22,7 @@ import Toast from '../components/kecil/Toast';
 import ScrollToTop from '../components/ScrollToTop';
 import { useSelector } from 'react-redux';
 import Footer from '../components/Footer';
+import { Box } from '@mui/material';
 
 const Navigation = () => {
   const { user } = useSelector((state) => state.auth);
@@ -33,7 +34,7 @@ const Navigation = () => {
         <Appbar />
       </header>
       <Toast />
-      <main>
+      <Box component="main" sx={{ pt: 8 }}>
         <Routes>
           <Route element={<Home />} path="/" />
           <Route element={<Register />} path="/register" />
@@ -55,7 +56,7 @@ const Navigation = () => {
           <Route element={<PageSearchBlog />} path="/search" />
           <Route element={<NotResponding />} path="/*" />
         </Routes>
-      </main>
+      </Box>
       <Footer />
     </>
   );
