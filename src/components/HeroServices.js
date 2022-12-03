@@ -45,7 +45,7 @@ const HeroServices = () => {
 
           <CustomButton
             component={Link}
-            to={"/detail/637b46cc14addc79392d77b3"}
+            to={"/blog/detail/637b46cc14addc79392d77b3"}
             size="large"
             sx={{ alignSelf: "flex-start", my: 4, px: 4, py: 2 }}
           >

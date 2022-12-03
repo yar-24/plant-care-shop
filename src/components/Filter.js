@@ -19,7 +19,7 @@ import { useFilter } from "../contexts/filterContext";
 export default function Filter() {
   const { locale } = React.useContext(LocaleContext);
 
-  const { filterDispatch, plantTipe, plantEnvironment, plantHeight, benefit, productTipe, price, sale} = useFilter();
+  const { filterDispatch, plantTipe, plantEnvironment, plantHeight, plantBenefit, productTipe, price, sale} = useFilter();
 
   const handleClearClick = () => {
     filterDispatch({
@@ -406,7 +406,7 @@ export default function Filter() {
             control={<Checkbox />}
             labelPlacement="start"
             onChange={(e) => handleBenefitChange(e, "airPurifier")}
-            checked={benefit.includes("airPurifier")}
+            checked={plantBenefit.includes("airPurifier")}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
@@ -423,7 +423,7 @@ export default function Filter() {
             control={<Checkbox />}
             labelPlacement="start"
             onChange={(e) => handleBenefitChange(e, "easyCare")}
-            checked={benefit.includes("easyCare")}
+            checked={plantBenefit.includes("easyCare")}
           />
         </ListItemButton>
       </Collapse>

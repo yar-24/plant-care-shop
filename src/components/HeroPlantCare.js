@@ -49,7 +49,7 @@ const HeroPlantCare = ({ idService }) => {
           <CustomButton
             size="large"
             LinkComponent={Link}
-            to={`/detail/${idService}`}
+            to={`/blog/detail/${idService}`}
             sx={{ alignSelf: 'flex-end', my: 4, px: 4, py: 2 }}>
             {locale === 'id' ? 'Baca Selengkapnya' : 'Read More'}
           </CustomButton>

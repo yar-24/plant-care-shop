@@ -47,7 +47,6 @@ const Product = ({ products, loading }) => {
               alignSelf: "flex-end",
               backgroundColor: colors.white,
               borderRadius: 0,
-              width: {xs: "60%", md: "30%"}
             }}
             onChange={handlePriceChange}
             color="success" 
@@ -55,7 +54,7 @@ const Product = ({ products, loading }) => {
             inputProps={{ "aria-label": "Without label" }}
             checked={sort === Sort}
           >
-            {/* <MenuItem value=""><em>Sort by : Recommended</em></MenuItem> */}
+            <MenuItem disabled value=""><em>Sort by : Recommended</em></MenuItem>
             {/* <MenuItem value={20}>Sort by : Most Popular</MenuItem> */}
             <MenuItem
               name="price"

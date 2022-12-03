@@ -9,7 +9,7 @@ import {
 import { colors, fonts, getText, truncate } from '../utils';
 import Tombol from './kecil/Tombol';
 import LocaleContext from '../contexts/LocaleContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const PlantCareItem = ({ title, image, id }) => {
   const { locale } = React.useContext(LocaleContext);
