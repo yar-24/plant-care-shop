@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import {
   Home,
   Login,
@@ -16,12 +16,12 @@ import {
   HomeWrite,
   NotResponding,
   PageSearchBlog,
-} from "../pages";
-import Appbar from "../components/Appbar";
-import Toast from "../components/kecil/Toast";
-import ScrollToTop from "../components/ScrollToTop";
-import { useSelector } from "react-redux";
-import Footer from "../components/Footer";
+} from '../pages';
+import Appbar from '../components/Appbar';
+import Toast from '../components/kecil/Toast';
+import ScrollToTop from '../components/ScrollToTop';
+import { useSelector } from 'react-redux';
+import Footer from '../components/Footer';
 
 const Navigation = () => {
   const { user } = useSelector((state) => state.auth);
@@ -42,7 +42,7 @@ const Navigation = () => {
           <Route element={<PlantCare />} path="/plant-care" />
           <Route element={<Shop />} path="/shop" />
           <Route element={<DetailProduct />} path="/detail-product/:id" />
-          <Route element={<DetailServices />} path="/detail/:id" />
+          <Route element={<DetailServices />} path="/blog/detail/:id" />
           <Route element={<ForgotPassword />} path="/forgot-password" />
           <Route element={<ResetPassword />} path="/reset-password" />
           <Route element={<Cart />} path="/cart" />

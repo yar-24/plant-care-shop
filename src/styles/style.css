@@ -245,11 +245,11 @@ body {
   text-align: justify;
 }
 
-.services img {
+/* .services img {
   width: 600px;
   height: 400px;
   object-fit: cover;
-}
+} */
 
 a {
   text-decoration: none;
@@ -306,10 +306,10 @@ a {
     text-align: center;
   }
 
-  .services img {
+  /* .services img {
     width:100%;
     height: 250px;
-  }
+  } */
 
   .input-register h2,
   .input-login h2,

@@ -11,13 +11,13 @@ import { getService } from '../redux/features/services/servicesSlice';
 const DetailServices = () => {
   const [service, setService] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const { locale } = useContext(LocaleContext);
   const { id } = useParams();
   const dispatch = useDispatch();
 
-
   useEffect(() => {
+    setIsLoading(false);
     dispatch(getService(id))
       .then((res) => {
         setService(res.payload.service);
@@ -25,9 +25,9 @@ const DetailServices = () => {
       })
       .catch((err) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
           footer: err,
         });
       });
@@ -37,7 +37,7 @@ const DetailServices = () => {
     <>
       <BlogDetailServices service={service} isLoading={isLoading} />
       <BannerFreeOngkir />
-      <ServicesList category={service.category} >
+      <ServicesList category={service.category}>
         {locale === 'id' ? 'Mungkin Anda sukai' : 'You might like'}
       </ServicesList>
     </>
