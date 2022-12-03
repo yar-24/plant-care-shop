@@ -8,7 +8,7 @@ import Product from '../components/Product';
 import { useFilter } from '../contexts/filterContext';
 import LocaleContext from '../contexts/LocaleContext';
 import { getProducts } from '../redux/features/products/productSlice';
-import { fonts, getProductsByBenefit, getProductsByEnv, getProductsByPlantHeight, getProductsByPlantTipe, getProductsByPriceSort, getProductsByProductTipe, getProductsBySale } from '../utils';
+import { fonts, getProductsByBenefit, getProductsByEnv, getProductsByPlantHeight, getProductsByPlantTipe, getProductsByPrice, getProductsByPriceSort, getProductsByProductTipe, getProductsBySale } from '../utils';
 
 const Shop = () => {
   const { locale } = React.useContext(LocaleContext);
@@ -34,14 +34,15 @@ const Shop = () => {
       });
   }, [dispatch]);
 
-  const { sort, plantTipe, plantEnvironment, benefit, productTipe, price, sale } = useFilter();
-  const filteredProductsByPrice = getProductsByPriceSort(products, sort);
-  const filteredProductsByPlantTipe = getProductsByPlantTipe(filteredProductsByPrice, plantTipe);
+  const { sort, plantTipe, plantEnvironment, plantHeight, plantBenefit, productTipe, price, sale } = useFilter();
+  const filteredProductsByPriceSort = getProductsByPriceSort(products, sort);
+  const filteredProductsByPlantTipe = getProductsByPlantTipe(filteredProductsByPriceSort, plantTipe);
   const filteredProductsByEnv = getProductsByEnv(filteredProductsByPlantTipe, plantEnvironment);
-  const filteredProductsByPlantHeight = getProductsByPlantHeight(filteredProductsByEnv, benefit);
-  const filteredProductsByBenefit = getProductsByBenefit(filteredProductsByPlantHeight, productTipe);
-  const filteredProductsByProductTipe = getProductsByProductTipe(filteredProductsByBenefit, price);
-  const filteredProductsBySale = getProductsBySale(filteredProductsByProductTipe, sale);
+  const filteredProductsByPlantHeight = getProductsByPlantHeight(filteredProductsByEnv, plantHeight);
+  const filteredProductsByBenefit = getProductsByBenefit(filteredProductsByPlantHeight, plantBenefit);
+  const filteredProductsByProductTipe = getProductsByProductTipe(filteredProductsByBenefit, productTipe);
+  const filteredProductsByPrice = getProductsByPrice(filteredProductsByProductTipe, price)
+  const filteredProductsBySale = getProductsBySale(filteredProductsByPrice, sale);
 
   return (
     <>

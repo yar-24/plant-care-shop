@@ -39,7 +39,7 @@ const Product = ({ products, loading }) => {
             borderRadius: 0,
           }}
           onChange={handlePriceChange}
-          color="success"
+          color="primary"
           inputProps={{ 'aria-label': 'Without label' }}
           checked={sort === Sort}>
           {/* <MenuItem value="">Sort by : Recommended</MenuItem> */}

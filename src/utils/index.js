@@ -68,7 +68,7 @@ export const getProductsByEnv = (products, plantEnvironments) => products.filter
 
 export const getProductsByPlantHeight = (products, plantHeights) => products.filter(product => plantHeights.length > 0 ? plantHeights.includes(product.plantHeight) : products); 
 
-export const getProductsByBenefit = (products, benefits) => products.filter(product => benefits.length > 0 ? benefits.includes(product.benefit) : products); 
+export const getProductsByBenefit = (products, benefits) => products.filter(product => benefits.length > 0 ? benefits.includes(product.plantBenefit) : products); 
 
 export const getProductsByProductTipe = (products, productTipes) => products.filter(product => productTipes.length > 0 ? productTipes.includes(product.productTipe) : products); 
 
