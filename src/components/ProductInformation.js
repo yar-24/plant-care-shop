@@ -3,9 +3,11 @@ import { Container, Stack, Box, Typography } from "@mui/material";
 import { TiWeatherPartlySunny } from "react-icons/ti";
 import { FaShoppingCart } from "react-icons/fa";
 import { styled } from "@mui/material/styles";
-import { fonts, rupiah } from "../utils";
+import { fonts, getItemById, rupiah } from "../utils";
 import CustomButton from "./CustomButton";
 import LocaleContext from "../contexts/LocaleContext";
+import { useCart } from "../contexts/cartContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductImage = styled("img")`
   position: absolute;
@@ -29,10 +31,27 @@ const ImageContainer = styled(Box)`
   }
 `;
 
-const ProductInformation = ({ product, addItem }) => {
+const ProductInformation = ({ product }) => {
   const { locale } = React.useContext(LocaleContext);
-  const { idImageProduct, namePlant, plantHeight, plantLight, care, price } =
+  const { cart, cartDispatch } = useCart();
+  const { _id, idImageProduct, namePlant, plantHeight, plantLight, care, price } =
     product;
+
+    const navigate = useNavigate();
+
+    const handleAddToCart = () => {
+      cartDispatch({
+        type: "ADD_TO_CART",
+        payload: product,
+      });
+      navigate("/cart");
+    };
+  
+    const handleGoToCart = () => {
+      navigate("/cart");
+    };
+  
+    const isItemInCart = getItemById(cart, _id);
 
   return (
     <Container fixed>
@@ -108,7 +127,7 @@ const ProductInformation = ({ product, addItem }) => {
               {locale === "id" ? "Mulai Dari" : "From"} {rupiah(price)}
             </Typography>
             <CustomButton
-              onClick={() => addItem(product)}
+               onClick={isItemInCart ? handleGoToCart : handleAddToCart}
               startIcon={<FaShoppingCart />}
               size="medium"
               sx={{ fontSize: 18 }}

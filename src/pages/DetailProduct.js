@@ -10,7 +10,7 @@ import ProductInformation from '../components/ProductInformation';
 import LocaleContext from '../contexts/LocaleContext';
 import { getProduct } from '../redux/features/products/productSlice';
 
-const DetailProduct = ({addItem}) => {
+const DetailProduct = () => {
   const { locale } = React.useContext(LocaleContext);
   const [product, setProduct] = useState({});
   const { id } = useParams();
@@ -42,7 +42,7 @@ const DetailProduct = ({addItem}) => {
 
   return (
     <>
-      <ProductInformation product={product} addItem={addItem}  />
+      <ProductInformation product={product}  />
       <Container fixed sx={{ my: 4 }}>
         <Stack component="ul" direction="row" gap={{ xs: 1, sm: 2, md: 4 }}>
           {Array.isArray(product.images)
@@ -64,7 +64,7 @@ const DetailProduct = ({addItem}) => {
         plantLike={product.plantLike}
       />
       <BannerFreeOngkir />
-      <CardList addItem={addItem}>
+      <CardList>
         {locale === 'id' ? 'Mungkin Anda Sukai' : 'You Might Like'}
       </CardList>
     </>
