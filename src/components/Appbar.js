@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react';
 import {
   AppBar,
   Box,
@@ -14,39 +14,39 @@ import {
   Toolbar,
   Typography,
   useScrollTrigger,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { BsFillCartFill, BsSearch } from "react-icons/bs";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import InboxIcon from "@mui/icons-material/Inbox";
-import MenuIcon from "@mui/icons-material/Menu";
-import { RiSettings3Line, RiSettings3Fill } from "react-icons/ri";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import LocaleContext from "../contexts/LocaleContext";
-import { logout, reset } from "../redux/features/auth/authSlice";
-import { colors, fonts } from "../utils";
-import CustomButton from "./CustomButton";
-import { useCart } from "../contexts/cartContext";
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { BsFillCartFill, BsSearch } from 'react-icons/bs';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import InboxIcon from '@mui/icons-material/Inbox';
+import MenuIcon from '@mui/icons-material/Menu';
+import { RiSettings3Line, RiSettings3Fill } from 'react-icons/ri';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import LocaleContext from '../contexts/LocaleContext';
+import { logout, reset } from '../redux/features/auth/authSlice';
+import { colors, fonts } from '../utils';
+import CustomButton from './CustomButton';
+import { useCart } from '../contexts/cartContext';
 
 const drawerWidth = 240;
 const navItems = [
   {
-    name: "Home",
-    link: "/",
+    name: 'Home',
+    link: '/',
   },
   {
-    name: "Shop",
-    link: "/shop",
+    name: 'Shop',
+    link: '/shop',
   },
   {
-    name: "Plant Care",
-    link: "/plant-care",
+    name: 'Plant Care',
+    link: '/plant-care',
   },
   {
-    name: "Services",
-    link: "/services",
+    name: 'Services',
+    link: '/services',
   },
 ];
 
@@ -81,19 +81,19 @@ function DrawerAppBar(props) {
 
   const onLogout = () => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "Do you have Logout!",
-      icon: "warning",
+      title: 'Are you sure?',
+      text: 'Do you have Logout!',
+      icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: colors.secondary,
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, logout it!",
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout it!',
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          "Logout!",
-          "Your account has been logout.",
-          "success",
+          'Logout!',
+          'Your account has been logout.',
+          'success',
           dispatch(logout()),
           dispatch(reset())
         );
@@ -116,29 +116,47 @@ function DrawerAppBar(props) {
 
   const DrawerListItem = styled(ListItem)`
     display: flex;
-    text-align: center;
   `;
 
   const DrawerLink = styled(Link)`
+    font-family: ${fonts.comfortaa};
+    font-weight: 700;
+    font-size: 18px;
     flex-grow: 1;
     padding: 16px;
   `;
 
   const drawer = (
-    <Box
-      onClick={handleDrawerToggle}
-      sx={{ textAlign: "center", background: "#e5f7f0" }}
-    >
-      <Typography variant="h6" sx={{ my: 2 }}>
+    <Box onClick={handleDrawerToggle}>
+      <Typography
+        variant="h6"
+        component="div"
+        color="primary"
+        fontFamily={fonts.comfortaa}
+        fontSize={32}
+        textAlign="center"
+        my={2}>
         Breath
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
-          <DrawerListItem key={item.name} disablePadding>
+          <DrawerListItem key={item.name}>
             <DrawerLink to={item.link}>{item.name}</DrawerLink>
           </DrawerListItem>
         ))}
+        <Divider />
+        {user ? (
+          <DrawerListItem onClick={onLogout}>
+            <DrawerLink>{locale === 'id' ? 'Keluar' : 'Logout'}</DrawerLink>
+          </DrawerListItem>
+        ) : (
+          <DrawerListItem>
+            <DrawerLink to="/login">
+              {locale === 'id' ? 'Masuk' : 'Login'}
+            </DrawerLink>
+          </DrawerListItem>
+        )}
       </List>
     </Box>
   );
@@ -155,7 +173,7 @@ function DrawerAppBar(props) {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? "simple-popper" : undefined;
+  const id = open ? 'simple-popper' : undefined;
 
   const handleLocaleClick = (event) => {
     setLocalePopover(localePopover ? null : event.currentTarget);
@@ -169,7 +187,7 @@ function DrawerAppBar(props) {
   const navigate = useNavigate();
 
   const onNavigate = () => {
-    navigate("/home-write");
+    navigate('/home-write');
   };
 
   return (
@@ -178,21 +196,19 @@ function DrawerAppBar(props) {
         <AppBar
           component="nav"
           sx={{
-            background: "#e5f7f0",
-          }}
-        >
+            background: '#e5f7f0',
+          }}>
           <Container fixed>
-            <Toolbar sx={{ justifyContent: "space-between" }} disableGutters>
+            <Toolbar sx={{ justifyContent: 'space-between' }} disableGutters>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { md: "none" }, color: "black" }}
-              >
+                sx={{ mr: 2, display: { md: 'none' }, color: 'black' }}>
                 <MenuIcon />
               </IconButton>
-              <Link to="/" style={{ color: "#009e72" }}>
+              <Link to="/" style={{ color: '#009e72' }}>
                 <Typography
                   variant="h6"
                   component="div"
@@ -200,89 +216,86 @@ function DrawerAppBar(props) {
                   fontSize={32}
                   sx={{
                     display: {
-                      xs: "none",
-                      md: "block",
+                      xs: 'none',
+                      md: 'block',
                     },
-                  }}
-                >
+                  }}>
                   Breath
                 </Typography>
               </Link>
-              <Box sx={{ display: "flex" }}>
+              <Box sx={{ display: 'flex' }}>
                 <Box
                   sx={{
-                    display: { xs: "none", md: "flex" },
-                    alignItems: "center",
+                    display: { xs: 'none', md: 'flex' },
+                    alignItems: 'center',
                     marginRight: 1,
-                  }}
-                >
+                  }}>
                   {navItems.map((item, index) => (
                     <NavLink key={index} to={item.link}>
                       {item.name}
                     </NavLink>
                   ))}
                 </Box>
-                <Box sx={{ display: "block" }}>
-                  {/* <LoginLink to="/login">{locale === 'id' ? 'Masuk' : 'Login'}</LoginLink> */}
+                <Box sx={{ display: 'block' }}>
                   {user ? (
                     <CustomButton
                       sx={{
-                        fontSize: "16px",
+                        display: { xs: 'none', md: 'initial' },
+                        fontSize: '16px',
                         borderRadius: 8,
                         fontFamily: fonts.comfortaa,
                         mx: 2,
+                        py: 1.5,
                       }}
-                      onClick={onLogout}
-                    >
-                      {locale === "id" ? "Keluar" : "Logout"}
+                      onClick={onLogout}>
+                      {locale === 'id' ? 'Keluar' : 'Logout'}
                     </CustomButton>
                   ) : (
                     <CustomButton
                       component={Link}
                       to="/login"
                       sx={{
-                        fontSize: "16px",
+                        display: { xs: 'none', md: 'initial' },
+                        fontSize: '16px',
                         borderRadius: 8,
                         fontFamily: fonts.comfortaa,
                         mx: 2,
-                      }}
-                    >
-                      {locale === "id" ? "Masuk" : "Login"}
+                        py: 1.5,
+                      }}>
+                      {locale === 'id' ? 'Masuk' : 'Login'}
                     </CustomButton>
                   )}
                   <IconButton
                     component={Link}
                     to="/search"
                     size="medium"
-                    style={{ color: "black" }}
-                  >
+                    style={{ color: 'black' }}>
                     <BsSearch />
                   </IconButton>
                   <IconButton
                     size="medium"
                     LinkComponent={Link}
                     to="/cart"
-                    style={{ color: "black", position: "relative" }}
-                  >
+                    style={{ color: 'black', position: 'relative' }}>
                     <BsFillCartFill />
                     {cart.length > 0 ? (
                       <Typography
                         variant="span"
                         sx={{
-                          minWidth: "20px",
-                          minHeight: "20px",
-                          position: "absolute",
-                          color: "white",
-                          backgroundColor: "red",
-                          fontSize: "14px",
+                          minWidth: '20px',
+                          minHeight: '20px',
+                          position: 'absolute',
+                          color: 'white',
+                          backgroundColor: 'red',
+                          fontSize: '14px',
                           fontWeight: 700,
-                          textAlign: "center",
-                          px: "4px",
+                          textAlign: 'center',
+                          lineHeight: 1.6,
+                          px: '4px',
                           borderRadius: 16,
                           right: 0,
                           top: 0,
-                        }}
-                      >
+                        }}>
                         {cart.length}
                       </Typography>
                     ) : null}
@@ -290,13 +303,12 @@ function DrawerAppBar(props) {
                   <IconButton
                     size="medium"
                     style={{
-                      color: "black",
+                      color: 'black',
                       fontFamily: fonts.comfortaa,
                       fontWeight: 700,
                       fontSize: 18,
                     }}
-                    onClick={handleLocaleClick}
-                  >
+                    onClick={handleLocaleClick}>
                     {locale.toUpperCase()}
                     {localePopover ? <ExpandLess /> : <ExpandMore />}
                   </IconButton>
@@ -306,36 +318,32 @@ function DrawerAppBar(props) {
                     onClose={handleLocaleClose}
                     disableScrollLock
                     anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "center",
+                      vertical: 'bottom',
+                      horizontal: 'center',
                     }}
                     transformOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                  >
+                      vertical: 'top',
+                      horizontal: 'center',
+                    }}>
                     <List
                       sx={{
                         border: `1px solid ${colors.secondary}`,
-                      }}
-                    >
+                      }}>
                       <ListItem disablePadding>
                         <ListItemButton
                           onClick={() => {
-                            changeLocale("en");
+                            changeLocale('en');
                             handleLocaleClose();
-                          }}
-                        >
+                          }}>
                           <ListItemText primary="English" />
                         </ListItemButton>
                       </ListItem>
                       <ListItem disablePadding>
                         <ListItemButton
                           onClick={() => {
-                            changeLocale("id");
+                            changeLocale('id');
                             handleLocaleClose();
-                          }}
-                        >
+                          }}>
                           <ListItemText primary="Indonesia" />
                         </ListItemButton>
                       </ListItem>
@@ -345,9 +353,8 @@ function DrawerAppBar(props) {
                     <IconButton
                       aria-describedby={id}
                       size="medium"
-                      style={{ color: "black" }}
-                      onClick={handleClick}
-                    >
+                      style={{ color: 'black' }}
+                      onClick={handleClick}>
                       {open ? <RiSettings3Fill /> : <RiSettings3Line />}
                     </IconButton>
                   ) : null}
@@ -359,22 +366,20 @@ function DrawerAppBar(props) {
                     onClose={handleClose}
                     disableScrollLock
                     anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "center",
+                      vertical: 'bottom',
+                      horizontal: 'center',
                     }}
                     transformOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                  >
+                      vertical: 'top',
+                      horizontal: 'center',
+                    }}>
                     <List sx={{ border: `1px solid ${colors.secondary}` }}>
                       <ListItem disablePadding>
                         <ListItemButton
                           onClick={() => {
                             onNavigate();
                             handleClose();
-                          }}
-                        >
+                          }}>
                           <InboxIcon />
                           <ListItemText sx={{ ml: 2 }} primary="Edit Blog" />
                         </ListItemButton>
@@ -387,27 +392,24 @@ function DrawerAppBar(props) {
           </Container>
         </AppBar>
       </ElevationScroll>
-      <Box component="nav">
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", md: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </Box>
-      <Box component="main" sx={{ p: 4 }}></Box>
+      <Drawer
+        container={container}
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: 'block', md: 'none' },
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            width: drawerWidth,
+            background: '#e5f7f0',
+          },
+        }}>
+        {drawer}
+      </Drawer>
     </>
   );
 }

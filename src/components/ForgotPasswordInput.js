@@ -32,9 +32,9 @@ const ForgotPassword = ({ forgotPassword, isLoading }) => {
     <form onSubmit={onForgotPasswordHandler}>
       <TextField
         fullWidth
-        sx={{ my: 3 }}
+        sx={{ my: 3, fieldset: { borderColor: colors.secondary } }}
         id="email"
-        color="success"
+        color="primary"
         type="email"
         label={locale === 'id' ? 'Surel' : 'Email'}
         name="email"
