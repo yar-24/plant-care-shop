@@ -5,9 +5,10 @@ import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import Filter from '../components/Filter';
 import Product from '../components/Product';
+import { useFilter } from '../contexts/filterContext';
 import LocaleContext from '../contexts/LocaleContext';
 import { getProducts } from '../redux/features/products/productSlice';
-import { fonts } from '../utils';
+import { fonts, getProductsByBenefit, getProductsByEnv, getProductsByPlantHeight, getProductsByPlantTipe, getProductsByPriceSort, getProductsByProductTipe, getProductsBySale } from '../utils';
 
 const Shop = () => {
   const { locale } = React.useContext(LocaleContext);
@@ -33,6 +34,15 @@ const Shop = () => {
       });
   }, [dispatch]);
 
+  const { sort, plantTipe, plantEnvironment, benefit, productTipe, price, sale } = useFilter();
+  const filteredProductsByPrice = getProductsByPriceSort(products, sort);
+  const filteredProductsByPlantTipe = getProductsByPlantTipe(filteredProductsByPrice, plantTipe);
+  const filteredProductsByEnv = getProductsByEnv(filteredProductsByPlantTipe, plantEnvironment);
+  const filteredProductsByPlantHeight = getProductsByPlantHeight(filteredProductsByEnv, benefit);
+  const filteredProductsByBenefit = getProductsByBenefit(filteredProductsByPlantHeight, productTipe);
+  const filteredProductsByProductTipe = getProductsByProductTipe(filteredProductsByBenefit, price);
+  const filteredProductsBySale = getProductsBySale(filteredProductsByProductTipe, sale);
+
   return (
     <>
       <Container fixed>
@@ -46,7 +56,7 @@ const Shop = () => {
         </Typography>
         <Stack direction="row" spacing={{ md: 1 }}>
           <Filter/>
-          <Product loading={isLoading} products={products} />
+          <Product loading={isLoading} products={filteredProductsBySale} />
         </Stack>
       </Container>
     </>

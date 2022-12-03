@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CartProvider } from "./contexts/cartContext";
+import { FilterProvider } from "./contexts/filterContext";
 import LocaleContext from "./contexts/LocaleContext";
 import Navigation from "./Navigation";
 import store from "./redux/store";
@@ -37,9 +38,11 @@ const App = () => {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CartProvider>
-            <Router>
-              <Navigation/>
-            </Router>
+            <FilterProvider>
+              <Router>
+                <Navigation />
+              </Router>
+            </FilterProvider>
           </CartProvider>
         </ThemeProvider>
       </Provider>

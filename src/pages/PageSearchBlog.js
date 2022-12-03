@@ -96,7 +96,7 @@ function PageSearchBlog() {
     setSearchParams({ keyword });
   }
 
-  const keys = ["title", "desc"];
+  const keys = ["title", "desc", "category"];
 
   const filteredContacts = allPost.filter((post) => {
     return keys.some((key)=> post[key].toLowerCase().includes(keyword.toLowerCase()));
@@ -119,7 +119,7 @@ function PageSearchBlog() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder="Search…"
+              placeholder="Search..."
               inputProps={{ "aria-label": "search" }}
               onChange={(e) => onKeywordChangeHandler(e.target.value)}
             />

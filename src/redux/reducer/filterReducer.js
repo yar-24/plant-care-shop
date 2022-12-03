@@ -11,30 +11,53 @@ export const filterReducer = (filterState, {type, payload}) => {
                 sort: payload
             }
         
-        case "SIZE":
+        case "PLANT_TIPE":
             return {
                 ...filterState,
-                size: payload.check ? [...filterState.size, payload.option] : (filterState.size.length > 0 ? filterState.size.filter(item => item !== payload.option) : [])
+                plantTipe: payload.check ? [...filterState.plantTipe, payload.option] : (filterState.plantTipe.length > 0 ? filterState.plantTipe.filter(item => item !== payload.option) : [])
             }
-        case "CATEGORY":
+        case "ENVIRONMENT":
             return {
                 ...filterState,
-                category: payload
+                plantEnvironment: payload.check ? [...filterState.plantEnvironment, payload.option] : (filterState.plantEnvironment.length > 0 ? filterState.plantEnvironment.filter(item => item !== payload.option) : [])
+            }
+        case "PLANT_HEIGHT":
+            return {
+                ...filterState,
+                plantHeight: payload.check ? [...filterState.plantHeight, payload.option] : (filterState.plantHeight.length > 0 ? filterState.plantHeight.filter(item => item !== payload.option) : [])
+            }
+        case "BENEFIT":
+            return {
+                ...filterState,
+                benefit: payload.check ? [...filterState.plantBenefit, payload.option] : (filterState.plantBenefit.length > 0 ? filterState.plantBenefit.filter(item => item !== payload.option) : [])
+            }
+        case "PRODUCT_TIPE":
+            return {
+                ...filterState,
+                productTipe: payload.check ? [...filterState.productTipe, payload.option] : (filterState.productTipe.length > 0 ? filterState.productTipe.filter(item => item !== payload.option) : [])
+            }
+        case "PRICE":
+            return {
+                ...filterState,
+                price: payload.check ? [...filterState.price, payload.option] : (filterState.price.length > 0 ? filterState.price.filter(item => item !== payload.option) : [])
+            }
+        case "SALE":
+            return {
+                ...filterState,
+                sale: payload.check ? [...filterState.sale, payload.option] : (filterState.sale.length > 0 ? filterState.sale.filter(item => item !== payload.option) : [])
             }
         
         case "CLEAR":
             return {
                 ...filterState,
                 sort: "",
-                brand: [],
-                category: "all",
-                size: []
-            }
-        
-        case "BRAND":
-            return {
-                ...filterState,
-                brand: payload.check ? [...filterState.brand, payload.option] : (filterState.brand.length > 0 ? filterState.brand.filter(item => item !== payload.option) : [])
+                plantTipe: [],
+                plantEnvironment: [],
+                plantHeight: [],
+                benefit: [],
+                productTipe: [],
+                price: [],
+                sale: []
             }
 
         default:

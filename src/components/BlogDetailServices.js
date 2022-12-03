@@ -46,7 +46,7 @@ const BlogDetailServices = ({ service, isLoading }) => {
                 fontFamily: fonts.comfortaa,
               }}
             >
-              Categoey: {category}
+              Category: {category}
             </Typography>
           </Box>
         </Container>
