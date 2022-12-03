@@ -245,7 +245,7 @@ function DrawerAppBar(props) {
                         borderRadius: 8,
                         fontFamily: fonts.comfortaa,
                         mx: 2,
-                        py: 1.5,
+                        py: 1,
                       }}
                       onClick={onLogout}>
                       {locale === 'id' ? 'Keluar' : 'Logout'}
