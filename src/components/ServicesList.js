@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Container, Box, Typography, Skeleton } from "@mui/material";
-import { styled } from "@mui/material/styles";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import ServicesItem from "./ServicesItem";
-import { fonts } from "../utils";
-import { useDispatch } from "react-redux";
-import { getServices } from "../redux/features/services/servicesSlice";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Container, Box, Typography, Skeleton } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import ServicesItem from './ServicesItem';
+import { fonts } from '../utils';
+import { useDispatch } from 'react-redux';
+import { getServices } from '../redux/features/services/servicesSlice';
+import { useParams } from 'react-router-dom';
 
 const ServicesList = ({ children, category }) => {
   const [services, setServices] = useState([]);
@@ -52,7 +52,9 @@ const ServicesList = ({ children, category }) => {
       });
   }, [dispatch]);
 
-  const otherServices = services.filter((otherPost) => otherPost.category === category && otherPost._id !== id);
+  const otherServices = services.filter(
+    (otherPost) => otherPost.category === category && otherPost._id !== id
+  );
 
   return (
     <Container fixed>
@@ -86,23 +88,25 @@ const ServicesList = ({ children, category }) => {
           showDots={false}
           sliderClass=""
           slidesToSlide={1}
-          swipeable
-        >
-          {otherServices.map((item, index) =>
-            isLoading ? (
-              <ServicesItem
-                key={index}
-                title={item.title}
-                image={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${item.idImage}`}
-                id={item._id}
-              />
-            ) : (
-              <Skeleton
-                variant="rectangular"
-                animation="wave"
-                width={300}
-                height={300}
-              />
+          swipeable>
+          {(!isLoading ? Array.from(new Array(3)) : otherServices).map(
+            (item, index) => (
+              <Box key={index}>
+                {item ? (
+                  <ServicesItem
+                    title={item.title}
+                    image={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${item.idImage}`}
+                    id={item._id}
+                  />
+                ) : (
+                  <Skeleton
+                    variant="rectangular"
+                    animation="wave"
+                    width={300}
+                    height={300}
+                  />
+                )}
+              </Box>
             )
           )}
         </Carousel>
