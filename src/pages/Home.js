@@ -11,7 +11,6 @@ import { fonts } from '../utils';
 const Title = styled.h1`
   font-family: ${fonts.inter};
   color: white;
-  letter-spacing: 1px;
   margin-bottom: 20px;
 
   @media (max-width: 1200px) {
@@ -25,14 +24,14 @@ const Home = ({addItem}) => {
     <>
       <Hero />
       <Banner alignItems={{ lg: 'end', xs: 'center' }} sx={{ m: 2 }}>
-        <Title className="title">
+        <Title>
           {locale === 'id'
             ? 'Kiat, trik, dan panduan untuk membuat perawatan tanaman benar-benar mudah'
             : 'Tips, tricks, and plant guides to make plant care downright easy'}
         </Title>
         <Tombol
         component={Link}
-        to={"/services"}
+        to={"/search"}
           label={locale === 'id' ? 'Baca blog lainnya' : 'Read more blogs'}
         />
       </Banner>

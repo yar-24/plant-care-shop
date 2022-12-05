@@ -154,7 +154,7 @@ function PageSearchBlog() {
                       variant="contained"
                       color="info"
                       component={Link}
-                      to={`/detail/${item._id}`}
+                      to={`/blog/detail/${item._id}`}
                       size="small"
                     >
                       {locale === "id" ? "Lihat" : "See"}

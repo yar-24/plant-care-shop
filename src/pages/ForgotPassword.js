@@ -2,30 +2,9 @@ import { Container, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import styled from 'styled-components';
 import ForgotPasswordInput from '../components/ForgotPasswordInput';
 import LocaleContext from '../contexts/LocaleContext';
 import { forgot } from '../redux/features/auth/authSlice';
-
-const Forpas = styled.div`
-  font-size: 13px;
-  display: grid;
-  margin: 75px 100px 40px 100px;
-  grid-template-columns: 1fr;
-  grid-column-gap: 25px;
-  grid-row-gap: 20px;
-
-  @media (max-width: 725px) {
-    margin: 50px auto;
-    padding-right: 40px;
-    padding-left: 30px;
-  }
-  @media (max-width: 600px) {
-    margin: 50px auto;
-    padding-right: 25px;
-    padding-left: 25px;
-  }
-`;
 
 const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
