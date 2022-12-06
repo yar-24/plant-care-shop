@@ -381,7 +381,7 @@ function DrawerAppBar(props) {
                             handleClose();
                           }}>
                           <InboxIcon />
-                          <ListItemText sx={{ ml: 2 }} primary="Edit Blog" />
+                          <ListItemText sx={{ ml: 2 }} primary={locale === 'id' ? 'Sunting Blog' : "Edit Blog"} />
                         </ListItemButton>
                       </ListItem>
                     </List>
