@@ -79,6 +79,28 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout }) {
             </List>
           </Collapse>
         </ListItem>
+        {/* <ListItem disablePadding sx={{ display: 'block' }}>
+          <ListItemButton disableGutters disableRipple onClick={handleClick2}>
+            <Typography
+              variant="h5"
+              component="h1"
+              paddingY={1}
+              fontFamily={fonts.comfortaa}
+              fontWeight={700}>
+              {locale === 'id' ? 'Fakta Cepat' : 'Quick Facts'}
+            </Typography>
+            {open2 ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={open2} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemText>
+                <p>1. Tidak Semua Bunga Matahari Berwarna Kuning</p>
+                <p>2. Terdapat Ribuan Bunga di Dalam Kepala Bunga Matahari</p>
+                <p>3. Biji Bunga Matahari Bermanfaat untuk Kesehatan</p>
+              </ListItemText>
+            </List>
+          </Collapse>
+        </ListItem> */}
         <ListItem disablePadding sx={{ display: 'block' }}>
           <ListItemButton disableGutters disableRipple onClick={handleClick3}>
             <Typography
