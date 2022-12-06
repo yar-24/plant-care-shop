@@ -134,7 +134,7 @@ function PageSearchBlog() {
           >
             {filteredContacts.map((item, index) => (
               <Grid item xs={4} sm={4} md={4} key={index}>
-                <Card sx={{ maxWidth: 345, m: 2 }}>
+                <Card sx={{ maxWidth: 345, m: 2 }} style={{ width: 'auto', height: 'auto', }}>
                   <CardMedia
                     component="img"
                     height="140"

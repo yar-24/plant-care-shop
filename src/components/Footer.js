@@ -32,10 +32,10 @@ const Footer = () => {
                     <div className="footer-col">
                         <h4>{locale === 'id' ? 'Kontak' : 'Contacts'}</h4>
                         <ul>
-                            <li><a href="/"><HiLocationMarker/> Jakarta, Soekarno Hatta No. 13</a></li>
-                            <li><a href="/"><BsFillTelephoneFill/> 082050123458</a></li>
-                            <li><a href="/"><BiTime/>{locale === 'id' ? ' Jam Buka' : ' Business Hours:'} 08:00 - 24:00</a></li>
-                            <li><a href="/"><MdEmail/> breath@gmail.com</a></li>
+                            <li><a><HiLocationMarker/> Jakarta, Soekarno Hatta No. 13</a></li>
+                            <li><a><BsFillTelephoneFill/> 082050123458</a></li>
+                            <li><a><BiTime/>{locale === 'id' ? ' Jam Buka' : ' Business Hours:'} 08:00 - 24:00</a></li>
+                            <li><a><MdEmail/> breath@gmail.com</a></li>
                         </ul>
                     </div>
                     <div className="footer-col">
