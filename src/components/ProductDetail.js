@@ -46,7 +46,7 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout }) {
               paddingY={1}
               fontFamily={fonts.comfortaa}
               fontWeight={700}>
-              {locale === 'id' ? `${namePlant} Like` : `${namePlant} Like`}
+              {locale === 'id' ? `${namePlant}` : `${namePlant} Like`}
             </Typography>
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
@@ -75,31 +75,6 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout }) {
                     </ListItemText>
                   ))
                 : null}
-              {/* </ListItemButton> */}
-            </List>
-          </Collapse>
-        </ListItem>
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton disableGutters disableRipple onClick={handleClick2}>
-            <Typography
-              variant="h5"
-              component="h1"
-              paddingY={1}
-              fontFamily={fonts.comfortaa}
-              fontWeight={700}>
-              {locale === 'id' ? 'Fakta Cepat' : 'Quick Facts'}
-            </Typography>
-            {open2 ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={open2} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              {/* <ListItemButton sx={{ pl: 4 }} style={{ backgroundColor: '#9ed7c1' }}> */}
-              <ListItemText>
-                {/* <h3>{locale === 'id' ? 'Fakta Cepat' : 'Quick Facts'}</h3> */}
-                <p>1. Tidak Semua Bunga Matahari Berwarna Kuning</p>
-                <p>2. Terdapat Ribuan Bunga di Dalam Kepala Bunga Matahari</p>
-                <p>3. Biji Bunga Matahari Bermanfaat untuk Kesehatan</p>
-              </ListItemText>
               {/* </ListItemButton> */}
             </List>
           </Collapse>
