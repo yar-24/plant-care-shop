@@ -4,13 +4,13 @@ import { filterReducer } from "../redux/reducer/filterReducer";
 const FilterContext = createContext();
 
 const FilterProvider = ({ children }) => {
-  const [{ sort, plantTipe, plantEnvironment, plantHeight, plantBenefit, productTipe, price, sale }, filterDispatch] = useReducer(
+  const [{ sort, plantTipe, plantEnvironment, plantSize, plantBenefit, productTipe, price, sale }, filterDispatch] = useReducer(
     filterReducer,
     {
       sort: "",
       plantTipe: [],
       plantEnvironment: [],
-      plantHeight: [],
+      plantSize: [],
       plantBenefit: [],
       productTipe: [],
       price: [],
@@ -20,7 +20,7 @@ const FilterProvider = ({ children }) => {
 
   return (
     <FilterContext.Provider
-      value={{ sort, plantTipe, plantEnvironment, plantHeight, plantBenefit, productTipe, price, sale, filterDispatch }}
+      value={{ sort, plantTipe, plantEnvironment, plantSize, plantBenefit, productTipe, price, sale, filterDispatch }}
     >
       {children}
     </FilterContext.Provider>

@@ -19,7 +19,7 @@ import { useFilter } from "../contexts/filterContext";
 export default function Filter() {
   const { locale } = React.useContext(LocaleContext);
 
-  const { filterDispatch, plantTipe, plantEnvironment, plantHeight, plantBenefit, productTipe, price, sale} = useFilter();
+  const { filterDispatch, plantTipe, plantEnvironment, plantSize, plantBenefit, productTipe, price, sale} = useFilter();
 
   const handleClearClick = () => {
     filterDispatch({
@@ -323,7 +323,7 @@ export default function Filter() {
             control={<Checkbox />}
             labelPlacement="start"
             onChange={(e) => handlePlantHeightChange(e, "tall")}
-            checked={plantHeight.includes("tall")}
+            checked={plantSize.includes("tall")}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
@@ -342,7 +342,7 @@ export default function Filter() {
             control={<Checkbox />}
             labelPlacement="start"
             onChange={(e) => handlePlantHeightChange(e, "medium")}
-            checked={plantHeight.includes("medium")}
+            checked={plantSize.includes("medium")}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
@@ -359,7 +359,7 @@ export default function Filter() {
             control={<Checkbox />}
             labelPlacement="start"
             onChange={(e) => handlePlantHeightChange(e, "small")}
-            checked={plantHeight.includes("small")}
+            checked={plantSize.includes("small")}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
@@ -376,7 +376,7 @@ export default function Filter() {
             control={<Checkbox />}
             labelPlacement="start"
             onChange={(e) => handlePlantHeightChange(e, "tiny")}
-            checked={plantHeight.includes("tiny")}
+            checked={plantSize.includes("tiny")}
           />
         </ListItemButton>
       </Collapse>
@@ -597,8 +597,8 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleSaleChange(e, "diskon")}
-            checked={sale.includes("diskon")}
+            onChange={(e) => handleSaleChange(e, "discount")}
+            checked={sale.includes("discount")}
           />
         </ListItemButton>
       </Collapse>

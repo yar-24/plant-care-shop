@@ -34,11 +34,11 @@ const Shop = () => {
       });
   }, [dispatch]);
 
-  const { sort, plantTipe, plantEnvironment, plantHeight, plantBenefit, productTipe, price, sale } = useFilter();
+  const { sort, plantTipe, plantEnvironment, plantSize, plantBenefit, productTipe, price, sale } = useFilter();
   const filteredProductsByPriceSort = getProductsByPriceSort(products, sort);
   const filteredProductsByPlantTipe = getProductsByPlantTipe(filteredProductsByPriceSort, plantTipe);
   const filteredProductsByEnv = getProductsByEnv(filteredProductsByPlantTipe, plantEnvironment);
-  const filteredProductsByPlantHeight = getProductsByPlantHeight(filteredProductsByEnv, plantHeight);
+  const filteredProductsByPlantHeight = getProductsByPlantHeight(filteredProductsByEnv, plantSize);
   const filteredProductsByBenefit = getProductsByBenefit(filteredProductsByPlantHeight, plantBenefit);
   const filteredProductsByProductTipe = getProductsByProductTipe(filteredProductsByBenefit, productTipe);
   const filteredProductsByPrice = getProductsByPrice(filteredProductsByProductTipe, price)

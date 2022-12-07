@@ -28,6 +28,8 @@ const Product = ({ products, loading }) => {
     });
   };
 
+  console.log(products);
+
   return (
     <Stack spacing={1} width="100%" flex={{ sm: 3, md: 8 }}>
       <FormControl fullWidth>
