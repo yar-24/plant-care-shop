@@ -66,13 +66,13 @@ const Product = ({ products, loading }) => {
         columnSpacing={{ xs: 0, sm: 3, md: 2, lg: 3 }}>
         {!loading ? (
           Array.from(new Array(6)).map((index) => (
-            <Grid item xs={12} sm={12} md={4} key={index}>
+            <Grid item key={index} xs={12} sm={12} md={4}>
               <SkeletonCardItem />
             </Grid>
           ))
         ) : products.length > 0 ? (
           products.map((product, index) => (
-            <Grid item xs={12} sm={12} md={4} key={index}>
+            <Grid item key={index} xs={12} sm={12} md={4}>
               <CardItem product={product} />
             </Grid>
           ))

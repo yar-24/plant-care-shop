@@ -7,22 +7,22 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { Container } from '@mui/system';
 import * as React from 'react';
+import { RiPlantLine } from 'react-icons/ri';
 import LocaleContext from '../contexts/LocaleContext';
 import { colors, fonts } from '../utils';
-import { RiPlantLine } from 'react-icons/ri';
 
 export default function ProductDetail({ namePlant, plantLike, plantAbout }) {
   const { locale } = React.useContext(LocaleContext);
   const [open, setOpen] = React.useState(false);
-  const [open2, setOpen2] = React.useState(false);
+  // const [open2, setOpen2] = React.useState(false);
   const [open3, setOpen3] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
   };
-  const handleClick2 = () => {
-    setOpen2(!open2);
-  };
+  // const handleClick2 = () => {
+  //   setOpen2(!open2);
+  // };
   const handleClick3 = () => {
     setOpen3(!open3);
   };
@@ -46,7 +46,7 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout }) {
               paddingY={1}
               fontFamily={fonts.comfortaa}
               fontWeight={700}>
-              {locale === 'id' ? `${namePlant}` : `${namePlant} Like`}
+              {locale === 'id' ? `Perawatan ${namePlant}` : `${namePlant} Like`}
             </Typography>
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>

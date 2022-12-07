@@ -9,6 +9,7 @@ import {
 } from 'react-icons/bs';
 import { HiLocationMarker } from 'react-icons/hi';
 import { MdEmail } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import LocaleContext from '../contexts/LocaleContext';
 import { fonts } from '../utils';
 
@@ -26,22 +27,22 @@ const Footer = () => {
             <h4>{locale === 'id' ? 'Tentang' : 'About'}</h4>
             <ul>
               <li>
-                <a href="/">
+                <Link to="/">
                   {locale === 'id' ? 'Tentang Breath' : 'About Breath'}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/shop">{locale === 'id' ? 'Belanja' : 'Shop'}</a>
+                <Link to="/shop">{locale === 'id' ? 'Belanja' : 'Shop'}</Link>
               </li>
               <li>
-                <a href="/plant-care">
+                <Link to="/plant-care">
                   {locale === 'id' ? 'Perawatan Tanaman' : 'Plant Care'}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/services">
+                <Link to="/services">
                   {locale === 'id' ? 'Layanan' : 'Services'}
-                </a>
+                </Link>
               </li>
             </ul>
           </Grid>
@@ -49,21 +50,21 @@ const Footer = () => {
             <h4>{locale === 'id' ? 'Ketentuan' : 'Terms'}</h4>
             <ul>
               <li>
-                <a href="/">
+                <Link to="/">
                   {locale === 'id' ? 'Ketentuan Layanan' : 'Terms of Service'}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/">
+                <Link to="/">
                   {locale === 'id' ? 'Kebijakan Privasi' : 'Privacy Policy'}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/">
+                <Link to="/">
                   {locale === 'id'
                     ? 'Pengembalian dan Pengiriman'
                     : 'Return and Delivery'}
-                </a>
+                </Link>
               </li>
             </ul>
           </Grid>
@@ -77,36 +78,36 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a>
+                <Link>
                   <BsFillTelephoneFill color="#006d4e" /> 082050123458
-                </a>
+                </Link>
               </li>
               <li>
-                <a>
+                <Link>
                   <BiTime color="#006d4e" />
                   {locale === 'id' ? ' Jam Buka' : ' Business Hours:'} 08:00 -
                   24:00
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/">
+                <Link to="/">
                   <MdEmail color="#006d4e" /> breath@gmail.com
-                </a>
+                </Link>
               </li>
             </ul>
           </Grid>
           <Grid item xs={12} sm={6} md={3} className="footer-col">
             <h4>{locale === 'id' ? 'Ikuti Kami' : 'Follow us'}</h4>
             <div className="social-links">
-              <a href="/">
+              <Link to="/">
                 <BsFacebook />
-              </a>
-              <a href="/">
+              </Link>
+              <Link to="/">
                 <BsTwitter />
-              </a>
-              <a href="/">
+              </Link>
+              <Link to="/">
                 <BsInstagram />
-              </a>
+              </Link>
             </div>
           </Grid>
         </Grid>
