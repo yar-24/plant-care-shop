@@ -49,7 +49,7 @@ export const truncate = (string, length, delimiter) => {
 };
 
 export const axiosInstance = axios.create({
-  baseURL: 'https://friendly-red-frock.cyclic.app//v2',
+  baseURL: 'https://friendly-red-frock.cyclic.app/v2',
   // baseURL : "http://localhost:5000/v2"
 });
 
