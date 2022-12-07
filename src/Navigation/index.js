@@ -34,7 +34,7 @@ const Navigation = () => {
         <Appbar />
       </header>
       <Toast />
-      <Box component="main" sx={{ pt: 8 }}>
+      <Box component="main" sx={{ pt: { xs: 7, md: 8 } }}>
         <Routes>
           <Route element={<Home />} path="/" />
           <Route element={<Register />} path="/register" />

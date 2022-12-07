@@ -7,7 +7,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useFilter } from '../contexts/filterContext';
 import LocaleContext from '../contexts/LocaleContext';
 import { colors, fonts } from '../utils';
@@ -15,7 +15,7 @@ import CardItem from './CardItem';
 import SkeletonCardItem from './kecil/SkeletonCardItem';
 
 const Product = ({ products, loading }) => {
-  const [Sort, setSort] = useState('htl');
+  const [Sort, setSort] = useState('');
 
   const { locale } = useContext(LocaleContext);
   const { filterDispatch, sort } = useFilter();
@@ -27,6 +27,15 @@ const Product = ({ products, loading }) => {
       payload: Sort === 'lth' ? 'htl' : 'lth',
     });
   };
+
+  useEffect(() => {
+    setSort('lth');
+    filterDispatch({
+      type: Sort === 'lth' ? 'LTH' : 'HTL',
+      payload: Sort === 'lth' ? 'htl' : 'lth',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Stack spacing={1} width="100%" flex={{ sm: 3, md: 8 }}>
@@ -44,11 +53,11 @@ const Product = ({ products, loading }) => {
           checked={sort === Sort}>
           {/* <MenuItem value="">Sort by : Recommended</MenuItem> */}
           {/* <MenuItem value={20}>Sort by : Most Popular</MenuItem> */}
-          <MenuItem name="price" value="htl">
-            Sort by : Price (high to low)
-          </MenuItem>
           <MenuItem name="price" value="lth">
             Sort by : Price (low to hight)
+          </MenuItem>
+          <MenuItem name="price" value="htl">
+            Sort by : Price (high to low)
           </MenuItem>
         </Select>
       </FormControl>
