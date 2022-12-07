@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Stack, Box, Typography } from "@mui/material";
+import { Container, Stack, Box, Typography, Skeleton } from "@mui/material";
 import { TiWeatherPartlySunny } from "react-icons/ti";
 import { FaShoppingCart } from "react-icons/fa";
 import { styled } from "@mui/material/styles";
@@ -31,27 +31,34 @@ const ImageContainer = styled(Box)`
   }
 `;
 
-const ProductInformation = ({ product }) => {
+const ProductInformation = ({ product, loading }) => {
   const { locale } = React.useContext(LocaleContext);
   const { cart, cartDispatch } = useCart();
-  const { _id, idImageProduct, namePlant, plantHeight, plantLight, care, price } =
-    product;
+  const {
+    _id,
+    idImageProduct,
+    namePlant,
+    plantHeight,
+    plantLight,
+    care,
+    price,
+  } = product;
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleAddToCart = () => {
-      cartDispatch({
-        type: "ADD_TO_CART",
-        payload: product,
-      });
-      navigate("/cart");
-    };
-  
-    const handleGoToCart = () => {
-      navigate("/cart");
-    };
-  
-    const isItemInCart = getItemById(cart, _id);
+  const handleAddToCart = () => {
+    cartDispatch({
+      type: "ADD_TO_CART",
+      payload: product,
+    });
+    navigate("/cart");
+  };
+
+  const handleGoToCart = () => {
+    navigate("/cart");
+  };
+
+  const isItemInCart = getItemById(cart, _id);
 
   return (
     <Container fixed>
@@ -61,22 +68,31 @@ const ProductInformation = ({ product }) => {
         direction={{ xs: "column", md: "row" }}
       >
         <ImageContainer>
-          <ProductImage
-            src={`https://res.cloudinary.com/eundangdotcom/image/upload/${idImageProduct}`}
-            alt={namePlant}
-          />
+          {loading ? (
+            <ProductImage
+              src={`https://res.cloudinary.com/eundangdotcom/image/upload/${idImageProduct}`}
+              alt={namePlant}
+            />
+          ) : (
+            <Skeleton variant="rectangular" animation="wave" height={"100%"} />
+          )}
         </ImageContainer>
         <Stack sx={{ flex: 3 }} spacing={4} justifyContent="space-between">
           <Box>
-            <Typography
-              variant="h5"
-              component="h1"
-              fontFamily={fonts.comfortaa}
-              fontWeight={700}
-              gutterBottom
-            >
-              {namePlant}
-            </Typography>
+            {loading ? (
+              <Typography
+                variant="h5"
+                component="h1"
+                fontFamily={fonts.comfortaa}
+                fontWeight={700}
+                gutterBottom
+              >
+                {namePlant}
+              </Typography>
+            ) : (
+              <Skeleton variant="text" width={"30%"} />
+            )}
+
             <Typography
               variant="body1"
               lineHeight={2}
@@ -100,34 +116,39 @@ const ProductInformation = ({ product }) => {
                   ))
                 : null}
             </Stack>
-            <Typography
-              variant="body1"
-              lineHeight={2}
-              fontFamily={fonts.inter}
-              gutterBottom
-            >
-              <TiWeatherPartlySunny /> {plantLight}
-            </Typography>
-            <Typography
+            {loading ? (
+              <Typography
+                variant="body1"
+                lineHeight={2}
+                fontFamily={fonts.inter}
+                gutterBottom
+              >
+                <TiWeatherPartlySunny /> {plantLight}
+              </Typography>
+            ) : (
+              <Skeleton animation="wave" variant="text" width={"20%"} />
+            )}
+            {loading ?  <Typography
               variant="body1"
               lineHeight={2}
               fontFamily={fonts.inter}
               gutterBottom
             >
               <TiWeatherPartlySunny /> {care}
-            </Typography>
+            </Typography>:<Skeleton animation="wave" variant="text" width={"20%"} />}
+           
           </Box>
-          <Stack>
-            <Typography
+          <Stack> {loading ? <Typography
               variant="h6"
               component="p"
               sx={{ fontFamily: fonts.comfortaa, fontWeight: 700 }}
               gutterBottom
             >
               {locale === "id" ? "Mulai Dari" : "From"} {rupiah(price)}
-            </Typography>
+            </Typography> : <Skeleton animation="wave" variant="text" width={"40%"} height={40} />}
+            
             <CustomButton
-               onClick={isItemInCart ? handleGoToCart : handleAddToCart}
+              onClick={isItemInCart ? handleGoToCart : handleAddToCart}
               startIcon={<FaShoppingCart />}
               size="medium"
               sx={{ fontSize: 18 }}

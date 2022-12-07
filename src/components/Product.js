@@ -51,8 +51,6 @@ const Product = ({ products, loading }) => {
           color="primary"
           inputProps={{ 'aria-label': 'Without label' }}
           checked={sort === Sort}>
-          {/* <MenuItem value="">Sort by : Recommended</MenuItem> */}
-          {/* <MenuItem value={20}>Sort by : Most Popular</MenuItem> */}
           <MenuItem name="price" value="lth">
             Sort by : Price (low to hight)
           </MenuItem>
