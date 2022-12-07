@@ -166,7 +166,7 @@ const WriteServices = () => {
                 theme="snow"
                 value={desc}
                 onChange={setDesc}
-                placeholder={locale === 'id' ? 'Tulis sesuatu yang luar biasa...' : "Write something awesome..."}
+                placeholder={locale === 'id' ? 'Tulis sesuatu yang luar biasa..' : "Write something awesome.."}
                 modules={modules("t1")}
                 formats={formats}
               />

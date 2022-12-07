@@ -83,6 +83,7 @@ const Product = ({ products, loading }) => {
             <Typography
               variant="body1"
               sx={{ fontFamily: fonts.inter, lineHeight: 2 }}
+              style={{ marginLeft: '30px' }}
               gutterBottom>
               {locale === 'id'
                 ? 'Tidak ada yang ditampilkan.'

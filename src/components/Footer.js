@@ -120,7 +120,7 @@ const Footer = () => {
           color="#000"
           fontWeight={400}
           fontFamily={fonts.inter}>
-          © 2022 'Nama web'. All Rights Reserved.
+          © 2022 Breath. All Rights Reserved.
         </Typography>
       </Container>
     </Box>
