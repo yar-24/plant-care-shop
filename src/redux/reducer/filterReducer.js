@@ -36,11 +36,6 @@ export const filterReducer = (filterState, {type, payload}) => {
                 ...filterState,
                 productTipe: payload.check ? [...filterState.productTipe, payload.option] : (filterState.productTipe.length > 0 ? filterState.productTipe.filter(item => item !== payload.option) : [])
             }
-        case "PRICE":
-            return {
-                ...filterState,
-                price: payload.check ? [...filterState.price, payload.option] : (filterState.price.length > 0 ? filterState.price.filter(item => item !== payload.option) : [])
-            }
         case "SALE":
             return {
                 ...filterState,
@@ -56,7 +51,6 @@ export const filterReducer = (filterState, {type, payload}) => {
                 plantSize: [],
                 plantBenefit: [],
                 productTipe: [],
-                price: [],
                 sale: []
             }
 

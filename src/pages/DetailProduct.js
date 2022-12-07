@@ -1,14 +1,14 @@
-import { Box, Container, Skeleton, Stack, styled } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import Swal from "sweetalert2";
-import BannerFreeOngkir from "../components/BannerFreeOngkir";
-import CardList from "../components/CardList";
-import ProductDetail from "../components/ProductDetail";
-import ProductInformation from "../components/ProductInformation";
-import LocaleContext from "../contexts/LocaleContext";
-import { getProduct } from "../redux/features/products/productSlice";
+import { Box, Container, Skeleton, Stack, styled } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import BannerFreeOngkir from '../components/BannerFreeOngkir';
+import CardList from '../components/CardList';
+import ProductDetail from '../components/ProductDetail';
+import ProductInformation from '../components/ProductInformation';
+import LocaleContext from '../contexts/LocaleContext';
+import { getProduct } from '../redux/features/products/productSlice';
 
 const DetailProduct = () => {
   const { locale } = React.useContext(LocaleContext);
@@ -16,7 +16,7 @@ const DetailProduct = () => {
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
-  const ProductImage = styled("img")`
+  const ProductImage = styled('img')`
     object-fit: cover;
     max-width: 100%;
     height: 100%;
@@ -26,6 +26,7 @@ const DetailProduct = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setLoading(false);
     dispatch(getProduct(id))
       .then((res) => {
         const data = res.payload.product;
@@ -34,9 +35,9 @@ const DetailProduct = () => {
       })
       .catch((err) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
           footer: err,
         });
       });
@@ -60,7 +61,10 @@ const DetailProduct = () => {
                     <Skeleton
                       variant="rectangular"
                       animation="wave"
-                      sx={{width: {md: 200, xs: 65 }, height:{md: 220, xs: 90}}}
+                      sx={{
+                        width: { md: 200, xs: 65 },
+                        height: { md: 220, xs: 90 },
+                      }}
                     />
                   )}
                 </Box>
@@ -75,7 +79,7 @@ const DetailProduct = () => {
       />
       <BannerFreeOngkir />
       <CardList>
-        {locale === "id" ? "Mungkin Anda Sukai" : "You Might Like"}
+        {locale === 'id' ? 'Mungkin Anda Sukai' : 'You Might Like'}
       </CardList>
     </>
   );

@@ -456,36 +456,37 @@ a {
 
 /* FOOTER */
 
-.container {
+/* .container {
   max-width: 1170px;
   margin: auto;
-}
+} */
 
-.row {
+/* .row {
   display: flex;
   flex-wrap: wrap;
-}
+} */
 
 ul {
   list-style: none;
 }
 
-.footer {
+/* .footer {
   background-color: #006d4e;
   padding: 70px 0;
   margin-top: 100px;
-}
+} */
 
-.footer-col {
+/* .footer-col {
   width: 25%;
   padding: 0 25px;
-}
+} */
 
 .footer-col h4 {
   font-size: 20px;
-  color: #ffffff;
+  color: #000;
+  /* color: #ffffff; */
   text-transform: capitalize;
-  margin-bottom: 35px;
+  margin-bottom: 32px;
   font-weight: 500;
   position: relative;
 }
@@ -495,7 +496,8 @@ ul {
   position: absolute;
   left: 0;
   bottom: -10px;
-  background-color: #9ed7c1;
+  /* background-color: #9ed7c1; */
+  background-color: #006d4e;
   height: 2px;
   box-sizing: border-box;
   width: 50px;
@@ -506,17 +508,18 @@ ul {
 }
 
 .footer-col ul li a {
-  font-size: 16.5px;
-  color: #ffffff;
+  font-size: 16px;
   text-decoration: none;
-  font-weight: 300;
-  color: #bbbbbb;
+  color: #000;
+  /* color: #ffffff; */
+  font-weight: 400;
   display: block;
   transition: all 0.3s ease;
 }
 
 .footer-col ul li a:hover {
-  color: #ffffff;
+  color: #121212;
+  /* color: #bbbbbb; */
   padding-left: 8px;
 }
 
@@ -524,46 +527,47 @@ ul {
   display: inline-block;
   height: 40px;
   width: 40px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   margin: 0 10px 10px 0;
   text-align: center;
   line-height: 40px;
   border-radius: 50%;
-  color: #ffffff;
+  color: #000;
+  /* color: #ffffff; */
   transition: all 0.5s ease;
 }
 
 .footer-col .social-links a:hover {
-  color: #24262b;
-  background-color: #ffffff;
+  color: #fff;
+  background-color: #000;
 }
 
 /*responsive*/
-@media(max-width: 767px) {
+/* @media(max-width: 767px) {
   .footer-col {
     width: 50%;
     display: grid;
     margin: auto;
   }
-}
+} */
 
 @media(max-width: 574px) {
-  .footer {
+  /* .footer {
     display: block;
-    /* margin: 0px auto; */
+    //margin: 0px auto;
     padding: 20px;
-  }
+  } */
 
-  .footer-col {
+  /* .footer-col {
     width: 50%;
     display: grid;
-    /* text-align: center; */
+    //text-align: center;
     margin: auto;
-  }
+  } */
 
   .footer-col h4 {
     margin-top: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 
   .footer-col h4::before {
