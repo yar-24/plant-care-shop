@@ -19,7 +19,7 @@ import { useFilter } from "../contexts/filterContext";
 export default function Filter() {
   const { locale } = React.useContext(LocaleContext);
 
-  const { filterDispatch, plantTipe, plantEnvironment, plantHeight, plantBenefit, productTipe, price, sale} = useFilter();
+  const { filterDispatch, plantTipe, plantEnvironment, plantSize, plantBenefit, productTipe, sale} = useFilter();
 
   const handleClearClick = () => {
     filterDispatch({
@@ -67,14 +67,6 @@ export default function Filter() {
     });
   };
 
-  const handlePriceChange = (e, option) => {
-    const check = e.target.checked;
-    filterDispatch({
-      type: "PRICE",
-      payload: { option, check },
-    });
-  };
-
   const handleSaleChange = (e, option) => {
     const check = e.target.checked;
     filterDispatch({
@@ -88,7 +80,6 @@ export default function Filter() {
   const [open3, setOpen3] = useState(true);
   const [open4, setOpen4] = useState(true);
   const [open5, setOpen5] = useState(true);
-  const [open6, setOpen6] = useState(true);
   const [open7, setOpen7] = useState(true);
 
   const handleClick = () => {
@@ -105,9 +96,6 @@ export default function Filter() {
   };
   const handleClick5 = () => {
     setOpen5(!open5);
-  };
-  const handleClick6 = () => {
-    setOpen6(!open6);
   };
   const handleClick7 = () => {
     setOpen7(!open7);
@@ -228,8 +216,8 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handlePlantTipeChange(e, "palms&trees")}
-            checked={plantTipe.includes("palms&trees")}
+            onChange={(e) => handlePlantTipeChange(e, "palm&trees")}
+            checked={plantTipe.includes("palm&trees")}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
@@ -323,7 +311,7 @@ export default function Filter() {
             control={<Checkbox />}
             labelPlacement="start"
             onChange={(e) => handlePlantHeightChange(e, "tall")}
-            checked={plantHeight.includes("tall")}
+            checked={plantSize.includes("tall")}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
@@ -342,7 +330,7 @@ export default function Filter() {
             control={<Checkbox />}
             labelPlacement="start"
             onChange={(e) => handlePlantHeightChange(e, "medium")}
-            checked={plantHeight.includes("medium")}
+            checked={plantSize.includes("medium")}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
@@ -359,7 +347,7 @@ export default function Filter() {
             control={<Checkbox />}
             labelPlacement="start"
             onChange={(e) => handlePlantHeightChange(e, "small")}
-            checked={plantHeight.includes("small")}
+            checked={plantSize.includes("small")}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
@@ -376,7 +364,7 @@ export default function Filter() {
             control={<Checkbox />}
             labelPlacement="start"
             onChange={(e) => handlePlantHeightChange(e, "tiny")}
-            checked={plantHeight.includes("tiny")}
+            checked={plantSize.includes("tiny")}
           />
         </ListItemButton>
       </Collapse>
@@ -508,70 +496,6 @@ export default function Filter() {
           />
         </ListItemButton>
       </Collapse>
-      <ListItemButton onClick={handleClick6}>
-        <ListItemText
-          primary={locale === "id" ? "Harga" : "Prices"}
-          primaryTypographyProps={{
-            fontWeight: "bold",
-            fontSize: 16,
-            fontFamily: fonts.comfortaa,
-          }}
-        />
-        {open6 ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={open6} timeout="auto" unmountOnExit>
-        <ListItemButton sx={{ py: 0 }}>
-          <ListItemText
-            secondary="10 - 50K "
-            secondaryTypographyProps={{
-              fontSize: 16,
-              fontWeight: 400,
-              fontFamily: fonts.inter,
-            }}
-          />
-          <FormControlLabel
-            value="start"
-            control={<Checkbox />}
-            labelPlacement="start"
-            onChange={(e) => handlePriceChange(e, "10-50")}
-            checked={price.includes("10-50")}
-          />
-        </ListItemButton>
-        <ListItemButton sx={{ py: 0 }}>
-          <ListItemText
-            secondary="50 - 100K "
-            secondaryTypographyProps={{
-              fontSize: 16,
-              fontWeight: 400,
-              fontFamily: fonts.inter,
-            }}
-          />
-          <FormControlLabel
-            value="start"
-            control={<Checkbox />}
-            labelPlacement="start"
-            onChange={(e) => handlePriceChange(e, "50-100")}
-            checked={price.includes("50-100")}
-          />
-        </ListItemButton>
-        <ListItemButton sx={{ py: 0 }}>
-          <ListItemText
-            secondary="100 - 500K"
-            secondaryTypographyProps={{
-              fontSize: 16,
-              fontWeight: 400,
-              fontFamily: fonts.inter,
-            }}
-          />
-          <FormControlLabel
-            value="start"
-            control={<Checkbox />}
-            labelPlacement="start"
-            onChange={(e) => handlePriceChange(e, "100-500")}
-            checked={price.includes("100-500")}
-          />
-        </ListItemButton>
-      </Collapse>
       <ListItemButton onClick={handleClick7}>
         <ListItemText
           primary={locale === "id" ? "Obral" : "Sale"}
@@ -597,8 +521,8 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleSaleChange(e, "diskon")}
-            checked={sale.includes("diskon")}
+            onChange={(e) => handleSaleChange(e, "discount")}
+            checked={sale.includes("discount")}
           />
         </ListItemButton>
       </Collapse>

@@ -49,7 +49,7 @@ export const truncate = (string, length, delimiter) => {
 };
 
 export const axiosInstance = axios.create({
-  baseURL: 'https://ruby-better-lion.cyclic.app/v2',
+  baseURL: 'https://friendly-red-frock.cyclic.app//v2',
   // baseURL : "http://localhost:5000/v2"
 });
 
@@ -66,12 +66,10 @@ export const getProductsByPlantTipe = (products, plantTipes) => products.filter(
 
 export const getProductsByEnv = (products, plantEnvironments) => products.filter(product => plantEnvironments.length > 0 ? plantEnvironments.includes(product.plantEnvironment) : products); 
 
-export const getProductsByPlantHeight = (products, plantHeights) => products.filter(product => plantHeights.length > 0 ? plantHeights.includes(product.plantHeight) : products); 
+export const getProductsByPlantHeight = (products, plantSizes) => products.filter(product => plantSizes.length > 0 ? plantSizes.includes(product.plantSize) : products); 
 
 export const getProductsByBenefit = (products, benefits) => products.filter(product => benefits.length > 0 ? benefits.includes(product.plantBenefit) : products); 
 
 export const getProductsByProductTipe = (products, productTipes) => products.filter(product => productTipes.length > 0 ? productTipes.includes(product.productTipe) : products); 
-
-export const getProductsByPrice = (products, prices) => products.filter(product => prices.length > 0 ? prices.includes(product.price) : products); 
 
 export const getProductsBySale = (products, sales) => products.filter(product => sales.length > 0 ? sales.includes(product.sale) : products); 

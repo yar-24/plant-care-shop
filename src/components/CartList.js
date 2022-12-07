@@ -78,12 +78,12 @@ const CartList = ({ locale }) => {
           <ListHarga textHarga="Subtotal" totalHarga={rupiah(subTotal)} />
           <ListHarga
             textHarga={locale === "id" ? "Pengiriman" : "Delivery"}
-            totalHarga={subTotal > 30000 ? "Free" : rupiah(13000)}
+            totalHarga={subTotal > 100000 ? "Free" : rupiah(25000)}
           />
           <ListHarga
             textHarga="Total"
             totalHarga={
-              subTotal > 30000 ? rupiah(subTotal) : rupiah(subTotal + 13000)
+              subTotal > 100000 ? rupiah(subTotal) : rupiah(subTotal + 25000)
             }
           />
           <Box
