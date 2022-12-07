@@ -7,7 +7,7 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useFilter } from '../contexts/filterContext';
 import LocaleContext from '../contexts/LocaleContext';
 import { colors, fonts } from '../utils';
@@ -15,7 +15,7 @@ import CardItem from './CardItem';
 import SkeletonCardItem from './kecil/SkeletonCardItem';
 
 const Product = ({ products, loading }) => {
-  const [Sort, setSort] = useState('htl');
+  const [Sort, setSort] = useState('');
 
   const { locale } = useContext(LocaleContext);
   const { filterDispatch, sort } = useFilter();
@@ -27,6 +27,15 @@ const Product = ({ products, loading }) => {
       payload: Sort === 'lth' ? 'htl' : 'lth',
     });
   };
+
+  useEffect(() => {
+    setSort('lth');
+    filterDispatch({
+      type: Sort === 'lth' ? 'LTH' : 'HTL',
+      payload: Sort === 'lth' ? 'htl' : 'lth',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Stack spacing={1} width="100%" flex={{ sm: 3, md: 8 }}>
@@ -42,11 +51,11 @@ const Product = ({ products, loading }) => {
           color="primary"
           inputProps={{ 'aria-label': 'Without label' }}
           checked={sort === Sort}>
-          <MenuItem name="price" value="htl">
-            Sort by : Price (high to low)
-          </MenuItem>
           <MenuItem name="price" value="lth">
             Sort by : Price (low to hight)
+          </MenuItem>
+          <MenuItem name="price" value="htl">
+            Sort by : Price (high to low)
           </MenuItem>
         </Select>
       </FormControl>
@@ -57,13 +66,13 @@ const Product = ({ products, loading }) => {
         columnSpacing={{ xs: 0, sm: 3, md: 2, lg: 3 }}>
         {!loading ? (
           Array.from(new Array(6)).map((index) => (
-            <Grid item xs={12} sm={12} md={4} key={index}>
+            <Grid item key={index} xs={12} sm={12} md={4}>
               <SkeletonCardItem />
             </Grid>
           ))
         ) : products.length > 0 ? (
           products.map((product, index) => (
-            <Grid item xs={12} sm={12} md={4} key={index}>
+            <Grid item key={index} xs={12} sm={12} md={4}>
               <CardItem product={product} />
             </Grid>
           ))

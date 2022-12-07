@@ -1,28 +1,26 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import {
-  Home,
-  Login,
-  Shop,
-  PlantCare,
-  Services,
-  Register,
-  ForgotPassword,
-  DetailProduct,
-  Cart,
-  ResetPassword,
-  DetailServices,
-  WriteServices,
-  HomeWrite,
-  NotResponding,
-  PageSearchBlog,
-} from '../pages';
+import { Box } from '@mui/material';
+import { useSelector } from 'react-redux';
 import Appbar from '../components/Appbar';
 import Toast from '../components/kecil/Toast';
 import ScrollToTop from '../components/ScrollToTop';
-import { useSelector } from 'react-redux';
 import Footer from '../components/Footer';
-import { Box } from '@mui/material';
+const Home = React.lazy(() => import('../pages/Home'));
+const Login = React.lazy(() => import('../pages/Login'));
+const Shop = React.lazy(() => import('../pages/Shop'));
+const PlantCare = React.lazy(() => import('../pages/PlantCare'));
+const Services = React.lazy(() => import('../pages/Services'));
+const Register = React.lazy(() => import('../pages/Register'));
+const ForgotPassword = React.lazy(() => import('../pages/ForgotPassword'));
+const DetailProduct = React.lazy(() => import('../pages/DetailProduct'));
+const Cart = React.lazy(() => import('../pages/Cart'));
+const ResetPassword = React.lazy(() => import('../pages/ResetPassword'));
+const DetailServices = React.lazy(() => import('../pages/DetailServices'));
+const WriteServices = React.lazy(() => import('../pages/WriteServices'));
+const HomeWrite = React.lazy(() => import('../pages/HomeWrite'));
+const NotResponding = React.lazy(() => import('../pages/NotResponding'));
+const PageSearchBlog = React.lazy(() => import('../pages/PageSearchBlog'));
 
 const Navigation = () => {
   const { user } = useSelector((state) => state.auth);
@@ -34,28 +32,36 @@ const Navigation = () => {
         <Appbar />
       </header>
       <Toast />
-      <Box component="main" sx={{ pt: 8 }}>
-        <Routes>
-          <Route element={<Home />} path="/" />
-          <Route element={<Register />} path="/register" />
-          <Route element={<Login />} path="/login" />
-          <Route element={<Services />} path="/services" />
-          <Route element={<PlantCare />} path="/plant-care" />
-          <Route element={<Shop />} path="/shop" />
-          <Route element={<DetailProduct />} path="/detail-product/:id" />
-          <Route element={<DetailServices />} path="/blog/detail/:id" />
-          <Route element={<ForgotPassword />} path="/forgot-password" />
-          <Route element={<ResetPassword />} path="/reset-password" />
-          <Route element={<Cart />} path="/cart" />
-          <Route element={user ? <HomeWrite /> : <Home />} path="/home-write" />
-          <Route element={user ? <WriteServices /> : <Home />} path="/write" />
-          <Route
-            element={user ? <WriteServices /> : <Home />}
-            path="/edit/:id"
-          />
-          <Route element={<PageSearchBlog />} path="/search" />
-          <Route element={<NotResponding />} path="/*" />
-        </Routes>
+      <Box component="main" sx={{ pt: { xs: 7, md: 8 } }}>
+        <Suspense fallback={<Box height="100vh" />}>
+          <Routes>
+            <Route element={<Home />} path="/" />
+            <Route element={<Register />} path="/register" />
+            <Route element={<Login />} path="/login" />
+            <Route element={<Services />} path="/services" />
+            <Route element={<PlantCare />} path="/plant-care" />
+            <Route element={<Shop />} path="/shop" />
+            <Route element={<DetailProduct />} path="/detail-product/:id" />
+            <Route element={<DetailServices />} path="/blog/detail/:id" />
+            <Route element={<ForgotPassword />} path="/forgot-password" />
+            <Route element={<ResetPassword />} path="/reset-password" />
+            <Route element={<Cart />} path="/cart" />
+            <Route
+              element={user ? <HomeWrite /> : <Home />}
+              path="/home-write"
+            />
+            <Route
+              element={user ? <WriteServices /> : <Home />}
+              path="/write"
+            />
+            <Route
+              element={user ? <WriteServices /> : <Home />}
+              path="/edit/:id"
+            />
+            <Route element={<PageSearchBlog />} path="/search" />
+            <Route element={<NotResponding />} path="/*" />
+          </Routes>
+        </Suspense>
       </Box>
       <Footer />
     </>
