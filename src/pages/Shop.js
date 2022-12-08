@@ -1,13 +1,14 @@
-import { Typography } from "@mui/material";
-import { Container, Stack } from "@mui/system";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import Swal from "sweetalert2";
-import Filter from "../components/Filter";
-import Product from "../components/Product";
-import { useFilter } from "../contexts/filterContext";
-import LocaleContext from "../contexts/LocaleContext";
-import { getProducts } from "../redux/features/products/productSlice";
+import { Typography } from '@mui/material';
+import { Container, Stack } from '@mui/system';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
+import Filter from '../components/Filter';
+import DrawerFilter from '../components/kecil/DrawerFilter';
+import Product from '../components/Product';
+import { useFilter } from '../contexts/filterContext';
+import LocaleContext from '../contexts/LocaleContext';
+import { getProducts } from '../redux/features/products/productSlice';
 import {
   fonts,
   getProductsByBenefit,
@@ -17,12 +18,25 @@ import {
   getProductsByPriceSort,
   getProductsByProductTipe,
   getProductsBySale,
-} from "../utils";
+} from '../utils';
 
 const Shop = () => {
   const { locale } = React.useContext(LocaleContext);
+  const [drawerFilter, setdrawerFilter] = useState(false);
   const [products, setproducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setdrawerFilter(open);
+  };
 
   const dispatch = useDispatch();
 
@@ -35,9 +49,9 @@ const Shop = () => {
       })
       .catch((err) => {
         Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
           footer: err,
         });
       });
@@ -52,6 +66,7 @@ const Shop = () => {
     productTipe,
     sale,
   } = useFilter();
+
   const filteredProductsByPriceSort = getProductsByPriceSort(products, sort);
   const filteredProductsByPlantTipe = getProductsByPlantTipe(
     filteredProductsByPriceSort,
@@ -86,13 +101,17 @@ const Shop = () => {
           variant="h5"
           component="h2"
           align="center"
-          paddingY={4}
-        >
-          {locale === "id" ? "Semua Produk" : "All Product"}
+          paddingY={4}>
+          {locale === 'id' ? 'Semua Produk' : 'All Product'}
         </Typography>
         <Stack direction="row" spacing={{ md: 1 }}>
           <Filter />
-          <Product loading={isLoading} products={filteredProductsBySale} />
+          <DrawerFilter openDrawer={drawerFilter} toggleDrawer={toggleDrawer} />
+          <Product
+            toggleDrawer={toggleDrawer}
+            loading={isLoading}
+            products={filteredProductsBySale}
+          />
         </Stack>
       </Container>
     </>
