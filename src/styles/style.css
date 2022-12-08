@@ -119,21 +119,11 @@ body {
 .input-login,
 .forgot-password {
   font-size: 17px;
-  margin: 50px;
 }
 
 .input-register h2,
 .input-login h2 {
   font-size: 35px;
-  margin-left: 50px;
-  font-family: "Comfortaa";
-  font-style: normal;
-  font-weight: 800;
-}
-
-.forgot-password h2 {
-  font-size: 32px;
-  margin-left: 50px;
   font-family: "Comfortaa";
   font-style: normal;
   font-weight: 800;
@@ -141,36 +131,33 @@ body {
 
 .input-register h3,
 .forgot-password h3 {
-  padding-top: 15px;
-  margin-left: 50px;
+  padding-top: 16px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
 }
 
-.input-register button,
+/* .input-register button,
 .input-login button,
 .forgot-password button {
-  /* display: block; */
+  display: block;
   padding: 12px;
   font-size: 17px;
   background-color: #009e72;
   color: white;
   border: transparent;
   border-radius: 10px;
-  margin-left: 100px;
-  /* margin: auto; */
+  margin: auto;
   cursor: pointer;
   width: 12%;
-}
+} */
 
 .forgot-password .button2 {
   text-align: center;
   background-color: white;
   color: #009e72;
   border-radius: 10px;
-  margin-left: 10px;
   padding: 16px 4%;
   font-size: 17px;
   font-weight: 600;
@@ -190,8 +177,7 @@ body {
 
 .input-register p,
 .input-login p {
-  margin-top: 10px;
-  margin-left: 100px;
+  margin-top: 12px;
 }
 
 .input-login input,
@@ -200,17 +186,13 @@ body {
 .reset-password input {
   font-size: 18px;
   font-family: 'Inter', sans-serif;
-  display: block;
-  width: 100%;
-  padding: 20px;
-  background-color: #9ed7c1;
-  border: 5px #009e72;
+  /* display: block;
+  width: 100%; */
+  /* padding: 20px; */
+  /* background-color: #9ed7c1; */
+  /* border-color: #009e72; */
+  /* border: 1px #009e72 solid; */
   color: black;
-
-}
-
-.forgot-password p {
-  margin-left: 50px;
 }
 
 /* .services {
@@ -292,9 +274,9 @@ a {
 
 @media screen and (max-width : 1050px) {
 
-  .input-register button {
+  /* .input-register button {
     width: 19%;
-  }
+  } */
 }
 
 @media screen and (max-width : 725px) {
@@ -339,7 +321,6 @@ a {
   .forgot-password button {
 
     margin: auto;
-    margin-left: 30px;
     width: auto;
     font-size: 15px;
   }
@@ -352,16 +333,10 @@ a {
   
   .input-login p {
     margin: 5px auto;
-    margin-left: 30px;
   }
 
   .input-register p{
     margin: 5px auto;
-  }
-
-  .forgot-password .button2 {
-    margin-left: 10px auto;
-    width: auto;
   }
 
   .forgot-password p {
@@ -378,11 +353,11 @@ a {
   .reset-password input  {
     font-size: 16px;
     font-family: 'Inter', sans-serif;
-    display: block;
+    /* display: block;
     width: 100%;
     padding: 20px;
     background-color: #9ed7c1;
-    border: 5px #009e72;
+    border: 5px #009e72; */
     color: black;
 
   }
@@ -403,11 +378,11 @@ a {
   .reset-password input  {
     font-size: 14px;
     font-family: 'Inter', sans-serif;
-    display: block;
+    /* display: block;
     width: 100%;
     padding: 20px;
     background-color: #9ed7c1;
-    border: 5px #009e72;
+    border: 5px #009e72; */
     color: black;
 
   }

@@ -36,7 +36,7 @@ const ForgotPassword = () => {
 
   return (
     // <Forpas className="reset-password">
-    <Container maxWidth="md" fixed sx={{ pt: 10 }}>
+    <Container maxWidth="md" disableGutters fixed sx={{ pt: 10 }}>
       <Typography
         variant="h4"
         component="h4"
