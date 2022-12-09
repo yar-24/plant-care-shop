@@ -60,13 +60,17 @@ const Product = ({
             inputProps={{ 'aria-label': 'Without label' }}
             checked={sort === Sort}>
             <MenuItem name="price" value="">
-              Sort by : Default
+              {locale === 'id' ? 'Urutkan : Default' : 'Sort by : Default'}
             </MenuItem>
             <MenuItem name="price" value="lth">
-              Sort by : Price (low to hight)
+              {locale === 'id'
+                ? 'Urutkan : Harga Terendah'
+                : 'Sort by : Price (low to hight)'}
             </MenuItem>
             <MenuItem name="price" value="htl">
-              Sort by : Price (high to low)
+              {locale === 'id'
+                ? 'Urutkan : Harga Tertinggi'
+                : 'Sort by : Price (high to low)'}
             </MenuItem>
           </Select>
         </FormControl>
