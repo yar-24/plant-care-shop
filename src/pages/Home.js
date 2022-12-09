@@ -13,7 +13,8 @@ const Title = styled.h1`
   color: white;
   margin-bottom: 20px;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 600px) {
+    font-size: 1.2rem ;
   }
 `;
 

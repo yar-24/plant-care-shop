@@ -11,7 +11,8 @@ import { RiPlantLine } from 'react-icons/ri';
 import LocaleContext from '../contexts/LocaleContext';
 import { colors, fonts } from '../utils';
 
-export default function ProductDetail({ namePlant, plantLike, plantAbout }) {
+export default function ProductDetail({ namePlant, plantLike, plantAbout, loading }) {
+
   const { locale } = React.useContext(LocaleContext);
   const [open, setOpen] = React.useState(false);
   // const [open2, setOpen2] = React.useState(false);
@@ -38,8 +39,8 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout }) {
         }}
         component="ul"
         aria-labelledby="nested-list-subheader">
-        <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton disableGutters disableRipple onClick={handleClick}>
+        <ListItem disablePadding sx={{ display: 'block' }} >
+          <ListItemButton disableGutters disableRipple onClick={handleClick} disabled={!loading}>
             <Typography
               variant="h5"
               component="h1"
@@ -62,7 +63,7 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout }) {
                         fontFamily={fonts.inter}
                         fontWeight={600}
                         gutterBottom>
-                        <RiPlantLine color={colors.secondary} />{' '}
+                        <RiPlantLine color={colors.secondary} />
                         {item.titleLike}
                       </Typography>
                       <Typography
@@ -102,7 +103,7 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout }) {
           </Collapse>
         </ListItem> */}
         <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton disableGutters disableRipple onClick={handleClick3}>
+          <ListItemButton disableGutters disableRipple onClick={handleClick3} disabled={!loading}>
             <Typography
               variant="h5"
               component="h1"

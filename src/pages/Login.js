@@ -81,7 +81,7 @@ const Login = () => {
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   return (
-    <Container disableGutters fixed maxWidth="md" sx={{ my: 10 }}>
+    <Container fixed maxWidth="md" sx={{ my: 10 }}>
       <form className="input-login" onSubmit={onSubmit}>
         <h2>{locale === 'id' ? 'Halaman Masuk' : 'Login Page'}</h2>
         <Stack direction="column" gap={3} mt={6} mb={3}>

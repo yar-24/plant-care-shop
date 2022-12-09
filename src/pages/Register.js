@@ -91,7 +91,7 @@ const Register = () => {
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   return (
-    <Container fixed maxWidth="md" disableGutters sx={{ my: 9 }}>
+    <Container fixed maxWidth="md" sx={{ my: 9 }}>
       <div className="input-register">
         <form onSubmit={onSubmit}>
           <h2>{locale === 'id' ? 'Halaman Daftar' : 'Register Page'}</h2>

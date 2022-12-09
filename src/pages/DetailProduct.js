@@ -76,6 +76,7 @@ const DetailProduct = () => {
         namePlant={product.namePlant}
         plantAbout={product.plantAbout}
         plantLike={product.plantLike}
+        loading = {loading}
       />
       <BannerFreeOngkir />
       <CardList>

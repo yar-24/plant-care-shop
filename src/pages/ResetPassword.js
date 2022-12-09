@@ -81,7 +81,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <Container fixed maxWidth="md" disableGutters sx={{ my: 10 }}>
+    <Container fixed maxWidth="md" sx={{ my: 10 }}>
       <div className="forgot-password">
         <form onSubmit={onSubmit}>
           <Typography

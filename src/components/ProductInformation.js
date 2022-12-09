@@ -1,9 +1,10 @@
 import React from "react";
 import { Container, Stack, Box, Typography, Skeleton } from "@mui/material";
 import { TiWeatherPartlySunny } from "react-icons/ti";
+import { GiBottleVapors } from "react-icons/gi";
 import { FaShoppingCart } from "react-icons/fa";
 import { styled } from "@mui/material/styles";
-import { fonts, getItemById, rupiah } from "../utils";
+import { colors, fonts, getItemById, rupiah } from "../utils";
 import CustomButton from "./CustomButton";
 import LocaleContext from "../contexts/LocaleContext";
 import { useCart } from "../contexts/cartContext";
@@ -80,31 +81,36 @@ const ProductInformation = ({ product, loading }) => {
         <Stack sx={{ flex: 3 }} spacing={4} justifyContent="space-between">
           <Box>
             {loading ? (
-              <Typography
-                variant="h5"
-                component="h1"
-                fontFamily={fonts.comfortaa}
-                fontWeight={700}
-                gutterBottom
-              >
-                {namePlant}
-              </Typography>
+              <>
+                <Typography
+                  variant="h5"
+                  component="h1"
+                  fontFamily={fonts.comfortaa}
+                  fontWeight={700}
+                  gutterBottom
+                >
+                  {namePlant}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  lineHeight={2}
+                  fontFamily={fonts.inter}
+                  gutterBottom
+                >
+                  {locale === "id"
+                    ? "Pilih tinggi tanaman (cm)"
+                    : "Choose plant height (cm)"}
+                </Typography>
+              </>
             ) : (
-              <Skeleton variant="text" width={"30%"} />
+              <>
+                <Skeleton variant="text" animation="wave" width={"30%"} />
+                <Skeleton variant="text" animation="wave" width={"50%"} />
+              </>
             )}
 
-            <Typography
-              variant="body1"
-              lineHeight={2}
-              fontFamily={fonts.inter}
-              gutterBottom
-            >
-              {locale === "id"
-                ? "Pilih tinggi tanaman (cm)"
-                : "Choose plant height (cm)"}
-            </Typography>
             <Stack spacing={2} direction={{ xs: "column", md: "row" }}>
-              {Array.isArray(plantHeight)
+              {loading ? Array.isArray(plantHeight)
                 ? plantHeight.map((item, index) => (
                     <CustomButton
                       size="large"
@@ -114,7 +120,7 @@ const ProductInformation = ({ product, loading }) => {
                       {item.centimeters} cm
                     </CustomButton>
                   ))
-                : null}
+                : null : <Skeleton variant="rectangular" animation="wave" width={100} height={50} />}
             </Stack>
             {loading ? (
               <Typography
@@ -123,39 +129,61 @@ const ProductInformation = ({ product, loading }) => {
                 fontFamily={fonts.inter}
                 gutterBottom
               >
-                <TiWeatherPartlySunny /> {plantLight}
+                <TiWeatherPartlySunny color="orange" size={25} /> {plantLight}
               </Typography>
             ) : (
               <Skeleton animation="wave" variant="text" width={"20%"} />
             )}
-            {loading ?  <Typography
-              variant="body1"
-              lineHeight={2}
-              fontFamily={fonts.inter}
-              gutterBottom
-            >
-              <TiWeatherPartlySunny /> {care}
-            </Typography>:<Skeleton animation="wave" variant="text" width={"20%"} />}
-           
+            {loading ? (
+              <Typography
+                variant="body1"
+                lineHeight={2}
+                fontFamily={fonts.inter}
+                gutterBottom
+              >
+                <GiBottleVapors color={colors.secondary} size={25} /> {care}
+              </Typography>
+            ) : (
+              <Skeleton animation="wave" variant="text" width={"20%"} />
+            )}
           </Box>
-          <Stack> {loading ? <Typography
-              variant="h6"
-              component="p"
-              sx={{ fontFamily: fonts.comfortaa, fontWeight: 700 }}
-              gutterBottom
-            >
-              {locale === "id" ? "Mulai Dari" : "From"} {rupiah(price)}
-            </Typography> : <Skeleton animation="wave" variant="text" width={"40%"} height={40} />}
-            
-            <CustomButton
-              onClick={isItemInCart ? handleGoToCart : handleAddToCart}
-              startIcon={<FaShoppingCart />}
-              size="medium"
-              sx={{ fontSize: 18 }}
-            >
-              {" "}
-              {locale === "id" ? "Tambahkan ke Keranjang" : "Add To Bag"}
-            </CustomButton>
+          <Stack>
+            {" "}
+            {loading ? (
+              <Typography
+                variant="h6"
+                component="p"
+                sx={{ fontFamily: fonts.comfortaa, fontWeight: 700 }}
+                gutterBottom
+              >
+                {locale === "id" ? "Mulai Dari" : "From"} {rupiah(price)}
+              </Typography>
+            ) : (
+              <Skeleton
+                animation="wave"
+                variant="text"
+                width={"40%"}
+                height={40}
+              />
+            )}
+            {loading ? (
+              <CustomButton
+                onClick={isItemInCart ? handleGoToCart : handleAddToCart}
+                startIcon={<FaShoppingCart />}
+                size="medium"
+                sx={{ fontSize: 18 }}
+              >
+                {" "}
+                {locale === "id" ? "Tambahkan ke Keranjang" : "Add To Bag"}
+              </CustomButton>
+            ) : (
+              <Skeleton
+                animation="wave"
+                variant="rectangular"
+                width={"100%"}
+                height={40}
+              />
+            )}
           </Stack>
         </Stack>
       </Stack>

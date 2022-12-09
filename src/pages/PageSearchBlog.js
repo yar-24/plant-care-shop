@@ -102,6 +102,8 @@ function PageSearchBlog() {
     return keys.some((key)=> post[key].toLowerCase().includes(keyword.toLowerCase()));
   });
 
+  
+
 
   return (
     <Container>
