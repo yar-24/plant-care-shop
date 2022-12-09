@@ -15,15 +15,12 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout, loadin
 
   const { locale } = React.useContext(LocaleContext);
   const [open, setOpen] = React.useState(false);
-  // const [open2, setOpen2] = React.useState(false);
   const [open3, setOpen3] = React.useState(false);
 
   const handleClick = () => {
     setOpen(!open);
   };
-  // const handleClick2 = () => {
-  //   setOpen2(!open2);
-  // };
+
   const handleClick3 = () => {
     setOpen3(!open3);
   };
@@ -53,7 +50,6 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout, loadin
           </ListItemButton>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {/* <ListItemButton disableGutters sx={{ pl: 4 }} style={{ backgroundColor: '#9ed7c1' }}> */}
               {Array.isArray(plantLike)
                 ? plantLike.map((item, index) => (
                     <ListItemText key={index}>
@@ -76,32 +72,9 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout, loadin
                     </ListItemText>
                   ))
                 : null}
-              {/* </ListItemButton> */}
             </List>
           </Collapse>
         </ListItem>
-        {/* <ListItem disablePadding sx={{ display: 'block' }}>
-          <ListItemButton disableGutters disableRipple onClick={handleClick2}>
-            <Typography
-              variant="h5"
-              component="h1"
-              paddingY={1}
-              fontFamily={fonts.comfortaa}
-              fontWeight={700}>
-              {locale === 'id' ? 'Fakta Cepat' : 'Quick Facts'}
-            </Typography>
-            {open2 ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={open2} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemText>
-                <p>1. Tidak Semua Bunga Matahari Berwarna Kuning</p>
-                <p>2. Terdapat Ribuan Bunga di Dalam Kepala Bunga Matahari</p>
-                <p>3. Biji Bunga Matahari Bermanfaat untuk Kesehatan</p>
-              </ListItemText>
-            </List>
-          </Collapse>
-        </ListItem> */}
         <ListItem disablePadding sx={{ display: 'block' }}>
           <ListItemButton disableGutters disableRipple onClick={handleClick3} disabled={!loading}>
             <Typography
@@ -116,7 +89,6 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout, loadin
           </ListItemButton>
           <Collapse in={open3} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {/* <ListItemButton sx={{ pl: 4 }} style={{ backgroundColor: '#9ed7c1' }}> */}
               <ListItemText>
                 <Typography
                   component="p"
@@ -126,7 +98,6 @@ export default function ProductDetail({ namePlant, plantLike, plantAbout, loadin
                   {plantAbout}
                 </Typography>
               </ListItemText>
-              {/* </ListItemButton> */}
             </List>
           </Collapse>
         </ListItem>
