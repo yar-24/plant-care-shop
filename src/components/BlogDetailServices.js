@@ -22,14 +22,15 @@ const BlogDetailServices = ({ service, isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <Container maxWidth="md">
+        <Container maxWidth="md" style={{ marginBottom:'30px', marginTop:'20px' }}>
           <Typography
             variant="body2"
             component="p"
             fontWeight="500"
             fontFamily={fonts.inter}
             textAlign="center"
-            my={2}>
+            my={2}
+            style={{ marginBottom:'20px' }}>
             Posted {moment(createdAt).format('D MMMM YYYY, h:mm a')}
           </Typography>
           <Typography
@@ -65,7 +66,8 @@ const BlogDetailServices = ({ service, isLoading }) => {
               component="p"
               sx={{
                 fontFamily: fonts.comfortaa,
-              }}>
+              }}
+              style={{ marginTop:'10px' }}>
               Posted : {moment(createdAt).fromNow()}
             </Typography>
             <Typography
@@ -75,7 +77,8 @@ const BlogDetailServices = ({ service, isLoading }) => {
               sx={{
                 fontFamily: fonts.comfortaa,
                 textTransform: 'capitalize',
-              }}>
+              }}
+              style={{ marginTop:'10px' }}>
               Category : {category}
             </Typography>
           </Box>
