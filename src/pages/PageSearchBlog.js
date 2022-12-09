@@ -145,7 +145,7 @@ function PageSearchBlog() {
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      {item.title}
+                    {getText(truncate(item.title, 35))}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       {getText(truncate(item.desc, 150))}
