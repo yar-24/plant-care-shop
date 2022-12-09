@@ -32,7 +32,10 @@ const ForgotPassword = ({ forgotPassword, isLoading }) => {
     <form onSubmit={onForgotPasswordHandler}>
       <TextField
         fullWidth
-        sx={{ my: 3, fieldset: { borderColor: colors.secondary } }}
+        sx={{
+          my: 3,
+          fieldset: { borderColor: colors.secondary, borderRadius: 0 },
+        }}
         id="email"
         color="primary"
         type="email"

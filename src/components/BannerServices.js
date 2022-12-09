@@ -1,10 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { BgBannerServices } from "../images/img";
-import { fonts } from "../utils";
-import LocaleContext from "../contexts/LocaleContext";
+import React from 'react';
+import styled from 'styled-components';
+import { BgBannerServices } from '../images/img';
+import { fonts } from '../utils';
+import LocaleContext from '../contexts/LocaleContext';
+import { Container } from '@mui/material';
 
-const Container = styled.div`
+const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,26 +20,31 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  margin-top: 100px ;
+  margin-top: 100px;
+  padding: 16px 0;
   text-align: center;
   background: rgba(0, 158, 114, 0.4);
 `;
 const Text = styled.h2`
-  color: #ffffff ;
-  font-family: ${fonts.comfortaa} ;
+  color: #ffffff;
+  font-family: ${fonts.comfortaa};
 `;
 
 const BannerServices = () => {
   const { locale } = React.useContext(LocaleContext);
 
   return (
-    <Container>
+    <ImageContainer>
       <Wrapper>
-        <Text style={{ padding: '15px' }}>
-        {locale === 'id' ? 'Tanaman dapat memiliki dampak besar pada bagaimana ruang terasa dan terlihat' : 'Plants can have a massive impact on how a space feels and looks'}
-        </Text>
+        <Container fixed>
+          <Text>
+            {locale === 'id'
+              ? 'Tanaman dapat memiliki dampak besar pada bagaimana ruang terasa dan terlihat'
+              : 'Plants can have a massive impact on how a space feels and looks'}
+          </Text>
+        </Container>
       </Wrapper>
-    </Container>
+    </ImageContainer>
   );
 };
 

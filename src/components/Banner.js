@@ -1,10 +1,10 @@
-import React from "react";
-import { Stack } from "@mui/material";
-import styled from "styled-components";
-import { BgBanner } from "../images/img";
-import { mobile } from "../utils";
+import React from 'react';
+import { Container, Stack } from '@mui/material';
+import styled from 'styled-components';
+import { BgBanner } from '../images/img';
+import { mobile } from '../utils';
 
-const Container = styled.div`
+const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,16 +15,16 @@ const Container = styled.div`
   width: 100%;
   height: 300px;
   position: relative;
-  ${mobile({textAlign: "center", backgroundPosition: "50%"})}
+  ${mobile({ textAlign: 'center', backgroundPosition: '50%' })}
 `;
 
-const Banner = ({children, ...rest}) => {
+const Banner = ({ children, ...rest }) => {
   return (
-    <Container>
-      <Stack {...rest}>
-        {children}
-      </Stack>
-    </Container>
+    <ImageContainer>
+      <Container fixed>
+        <Stack {...rest}>{children}</Stack>
+      </Container>
+    </ImageContainer>
   );
 };
 
