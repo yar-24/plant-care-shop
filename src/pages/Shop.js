@@ -25,6 +25,21 @@ const Shop = () => {
   const [drawerFilter, setdrawerFilter] = useState(false);
   const [products, setproducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [Sort, setSort] = useState('');
+
+  const handlePriceChange = (e) => {
+    setSort(e.target.value);
+    if (e.target.value === '') {
+      filterDispatch({
+        type: 'CLEAR',
+      });
+    } else {
+      filterDispatch({
+        type: e.target.value === 'lth' ? 'LTH' : 'HTL',
+        payload: e.target.value === 'lth' ? 'lth' : 'htl',
+      });
+    }
+  };
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -58,6 +73,7 @@ const Shop = () => {
   }, [dispatch]);
 
   const {
+    filterDispatch,
     sort,
     plantTipe,
     plantEnvironment,
@@ -105,12 +121,18 @@ const Shop = () => {
           {locale === 'id' ? 'Semua Produk' : 'All Product'}
         </Typography>
         <Stack direction="row" spacing={{ md: 1 }}>
-          <Filter />
-          <DrawerFilter openDrawer={drawerFilter} toggleDrawer={toggleDrawer} />
+          <Filter setSort={setSort} />
+          <DrawerFilter
+            openDrawer={drawerFilter}
+            toggleDrawer={toggleDrawer}
+            setSort={setSort}
+          />
           <Product
             toggleDrawer={toggleDrawer}
             loading={isLoading}
             products={filteredProductsBySale}
+            Sort={Sort}
+            handlePriceChange={handlePriceChange}
           />
         </Stack>
       </Container>
