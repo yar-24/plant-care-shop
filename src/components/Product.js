@@ -9,45 +9,37 @@ import {
   Stack,
   Typography,
 } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useFilter } from '../contexts/filterContext';
 import LocaleContext from '../contexts/LocaleContext';
 import { colors, fonts } from '../utils';
 import CardItem from './CardItem';
 import SkeletonCardItem from './kecil/SkeletonCardItem';
 
-const Product = ({ products, loading, toggleDrawer }) => {
-  const [Sort, setSort] = useState('');
-
+const Product = ({
+  products,
+  loading,
+  toggleDrawer,
+  Sort,
+  handlePriceChange,
+}) => {
   const { locale } = useContext(LocaleContext);
-  const { filterDispatch, sort } = useFilter();
-
-  const handlePriceChange = (e) => {
-    setSort(e.target.value);
-    filterDispatch({
-      type: Sort === 'lth' ? 'LTH' : 'HTL',
-      payload: Sort === 'lth' ? 'htl' : 'lth',
-    });
-  };
-
-  useEffect(() => {
-    setSort('lth');
-    filterDispatch({
-      type: Sort === 'lth' ? 'LTH' : 'HTL',
-      payload: Sort === 'lth' ? 'htl' : 'lth',
-    });
-  }, [filterDispatch]);
+  const { sort } = useFilter();
 
   return (
     <Stack spacing={1} width="100%" flex={{ sm: 3, md: 8 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Stack
+        direction="row"
+        gap={1}
+        justifyContent={{ xs: 'space-between', sm: 'flex-end' }}>
         <Button
           variant="contained"
           disableElevation
           startIcon={<FilterAltIcon />}
           onClick={toggleDrawer(true)}
           sx={{
-            px: 3,
+            minWidth: 'initial',
+            p: 2,
             display: { sm: 'none' },
             borderRadius: 0,
             fontWeight: 600,
@@ -55,18 +47,21 @@ const Product = ({ products, loading, toggleDrawer }) => {
           aria-label="filter">
           Filter
         </Button>
-        <FormControl fullWidth>
+        <FormControl>
           <Select
             value={Sort}
             sx={{
-              alignSelf: 'flex-end',
               backgroundColor: colors.white,
               borderRadius: 0,
             }}
             onChange={handlePriceChange}
             color="primary"
+            displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
             checked={sort === Sort}>
+            <MenuItem name="price" value="">
+              Sort by : Default
+            </MenuItem>
             <MenuItem name="price" value="lth">
               Sort by : Price (low to hight)
             </MenuItem>
@@ -75,7 +70,7 @@ const Product = ({ products, loading, toggleDrawer }) => {
             </MenuItem>
           </Select>
         </FormControl>
-      </Box>
+      </Stack>
       <Grid
         maxWidth="100%"
         container

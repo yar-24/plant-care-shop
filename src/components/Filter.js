@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   ListSubheader,
   List,
@@ -9,28 +9,37 @@ import {
   Checkbox,
   FormControlLabel,
   ListItem,
-} from "@mui/material";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import LocaleContext from "../contexts/LocaleContext";
-import { colors, fonts } from "../utils";
-import { useFilter } from "../contexts/filterContext";
+} from '@mui/material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import LocaleContext from '../contexts/LocaleContext';
+import { colors, fonts } from '../utils';
+import { useFilter } from '../contexts/filterContext';
 
-export default function Filter() {
+export default function Filter({ setSort }) {
   const { locale } = React.useContext(LocaleContext);
 
-  const { filterDispatch, plantTipe, plantEnvironment, plantSize, plantBenefit, productTipe, sale} = useFilter();
+  const {
+    filterDispatch,
+    plantTipe,
+    plantEnvironment,
+    plantSize,
+    plantBenefit,
+    productTipe,
+    sale,
+  } = useFilter();
 
   const handleClearClick = () => {
+    setSort('');
     filterDispatch({
-      type: "CLEAR",
+      type: 'CLEAR',
     });
   };
 
   const handlePlantTipeChange = (e, option) => {
     const check = e.target.checked;
     filterDispatch({
-      type: "PLANT_TIPE",
+      type: 'PLANT_TIPE',
       payload: { option, check },
     });
   };
@@ -38,7 +47,7 @@ export default function Filter() {
   const handleEnvChange = (e, option) => {
     const check = e.target.checked;
     filterDispatch({
-      type: "ENVIRONMENT",
+      type: 'ENVIRONMENT',
       payload: { option, check },
     });
   };
@@ -46,7 +55,7 @@ export default function Filter() {
   const handlePlantHeightChange = (e, option) => {
     const check = e.target.checked;
     filterDispatch({
-      type: "PLANT_HEIGHT",
+      type: 'PLANT_HEIGHT',
       payload: { option, check },
     });
   };
@@ -54,7 +63,7 @@ export default function Filter() {
   const handleBenefitChange = (e, option) => {
     const check = e.target.checked;
     filterDispatch({
-      type: "BENEFIT",
+      type: 'BENEFIT',
       payload: { option, check },
     });
   };
@@ -62,7 +71,7 @@ export default function Filter() {
   const handleProductTipeChange = (e, option) => {
     const check = e.target.checked;
     filterDispatch({
-      type: "PRODUCT_TIPE",
+      type: 'PRODUCT_TIPE',
       payload: { option, check },
     });
   };
@@ -70,7 +79,7 @@ export default function Filter() {
   const handleSaleChange = (e, option) => {
     const check = e.target.checked;
     filterDispatch({
-      type: "SALE",
+      type: 'SALE',
       payload: { option, check },
     });
   };
@@ -105,9 +114,9 @@ export default function Filter() {
     <List
       sx={{
         flex: 2,
-        bgcolor: "background.paper",
-        display: { xs: "none", sm: "block" },
-        alignSelf: "flex-start",
+        bgcolor: 'background.paper',
+        display: { xs: 'none', sm: 'block' },
+        alignSelf: 'flex-start',
       }}
       aria-labelledby="nested-list-subheader"
       subheader={
@@ -117,34 +126,30 @@ export default function Filter() {
           sx={{
             backgroundColor: colors.secondary,
             color: colors.white,
-            fontSize: "20px",
+            fontSize: '20px',
             fontWeight: 600,
             fontFamily: fonts.inter,
-          }}
-        >
+          }}>
           Filter
         </ListSubheader>
-      }
-    >
+      }>
       <ListItem
         secondaryAction={
           <IconButton
             edge="end"
             aria-label="delete"
-            sx={{ color: "red" }}
-            onClick={handleClearClick}
-          >
+            sx={{ color: 'red' }}
+            onClick={handleClearClick}>
             <DeleteIcon />
           </IconButton>
-        }
-      >
+        }>
         <ListItemText secondary="Clear" />
       </ListItem>
       <ListItemButton onClick={handleClick}>
         <ListItemText
-          primary={locale === "id" ? "Tipe Tumbuhan" : "Plant Tipe"}
+          primary={locale === 'id' ? 'Tipe Tumbuhan' : 'Plant Tipe'}
           primaryTypographyProps={{
-            fontWeight: "bold",
+            fontWeight: 'bold',
             fontSize: 16,
             fontFamily: fonts.comfortaa,
           }}
@@ -154,7 +159,7 @@ export default function Filter() {
       <Collapse in={open} timeout="auto" unmountOnExit>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Berbunga" : "Flowering"}
+            secondary={locale === 'id' ? 'Berbunga' : 'Flowering'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -165,13 +170,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handlePlantTipeChange(e, "flowering")}
-            checked={plantTipe.includes("flowering")}
+            onChange={(e) => handlePlantTipeChange(e, 'flowering')}
+            checked={plantTipe.includes('flowering')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Pakis" : "Ferns"}
+            secondary={locale === 'id' ? 'Pakis' : 'Ferns'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -182,13 +187,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handlePlantTipeChange(e, "ferns")}
-            checked={plantTipe.includes("ferns")}
+            onChange={(e) => handlePlantTipeChange(e, 'ferns')}
+            checked={plantTipe.includes('ferns')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Kaktus" : "Cactus"}
+            secondary={locale === 'id' ? 'Kaktus' : 'Cactus'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -199,13 +204,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handlePlantTipeChange(e, "cactus")}
-            checked={plantTipe.includes("cactus")}
+            onChange={(e) => handlePlantTipeChange(e, 'cactus')}
+            checked={plantTipe.includes('cactus')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Palem & pohon" : "Palms & trees"}
+            secondary={locale === 'id' ? 'Palem & pohon' : 'Palms & trees'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -216,13 +221,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handlePlantTipeChange(e, "palm&trees")}
-            checked={plantTipe.includes("palm&trees")}
+            onChange={(e) => handlePlantTipeChange(e, 'palm&trees')}
+            checked={plantTipe.includes('palm&trees')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Bambu & rumput" : "Bamboo & grasses"}
+            secondary={locale === 'id' ? 'Bambu & rumput' : 'Bamboo & grasses'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -233,16 +238,16 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handlePlantTipeChange(e, "bamboo&grasses")}
-            checked={plantTipe.includes("bamboo&grasses")}
+            onChange={(e) => handlePlantTipeChange(e, 'bamboo&grasses')}
+            checked={plantTipe.includes('bamboo&grasses')}
           />
         </ListItemButton>
       </Collapse>
       <ListItemButton onClick={handleClick2}>
         <ListItemText
-          primary={locale === "id" ? "Lingkungan" : "Environment"}
+          primary={locale === 'id' ? 'Lingkungan' : 'Environment'}
           primaryTypographyProps={{
-            fontWeight: "bold",
+            fontWeight: 'bold',
             fontSize: 16,
             fontFamily: fonts.comfortaa,
           }}
@@ -252,7 +257,7 @@ export default function Filter() {
       <Collapse in={open2} timeout="auto" unmountOnExit>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Dalam ruangan" : "Indoor"}
+            secondary={locale === 'id' ? 'Dalam ruangan' : 'Indoor'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -263,13 +268,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleEnvChange(e, "indoor")}
-            checked={plantEnvironment.includes("indoor")}
+            onChange={(e) => handleEnvChange(e, 'indoor')}
+            checked={plantEnvironment.includes('indoor')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Luar ruangan" : "Outdoor"}
+            secondary={locale === 'id' ? 'Luar ruangan' : 'Outdoor'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -280,16 +285,16 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleEnvChange(e, "outdoor")}
-            checked={plantEnvironment.includes("outdoor")}
+            onChange={(e) => handleEnvChange(e, 'outdoor')}
+            checked={plantEnvironment.includes('outdoor')}
           />
         </ListItemButton>
       </Collapse>
       <ListItemButton onClick={handleClick3}>
         <ListItemText
-          primary={locale === "id" ? "Tinggi" : "Plant Height"}
+          primary={locale === 'id' ? 'Tinggi' : 'Plant Height'}
           primaryTypographyProps={{
-            fontWeight: "bold",
+            fontWeight: 'bold',
             fontSize: 16,
             fontFamily: fonts.comfortaa,
           }}
@@ -299,7 +304,7 @@ export default function Filter() {
       <Collapse in={open3} timeout="auto" unmountOnExit>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Tinggi / 1m-2.8m" : "Tall / 1m-2.8m"}
+            secondary={locale === 'id' ? 'Tinggi / 1m-2.8m' : 'Tall / 1m-2.8m'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -310,14 +315,14 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handlePlantHeightChange(e, "tall")}
-            checked={plantSize.includes("tall")}
+            onChange={(e) => handlePlantHeightChange(e, 'tall')}
+            checked={plantSize.includes('tall')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
             secondary={
-              locale === "id" ? "Sedang / 50cm-1m" : "Medium / 50cm-1m"
+              locale === 'id' ? 'Sedang / 50cm-1m' : 'Medium / 50cm-1m'
             }
             secondaryTypographyProps={{
               fontSize: 16,
@@ -329,13 +334,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handlePlantHeightChange(e, "medium")}
-            checked={plantSize.includes("medium")}
+            onChange={(e) => handlePlantHeightChange(e, 'medium')}
+            checked={plantSize.includes('medium')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Kecil / 15-50cm" : "Small / 15-50cm"}
+            secondary={locale === 'id' ? 'Kecil / 15-50cm' : 'Small / 15-50cm'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -346,13 +351,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handlePlantHeightChange(e, "small")}
-            checked={plantSize.includes("small")}
+            onChange={(e) => handlePlantHeightChange(e, 'small')}
+            checked={plantSize.includes('small')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Mungil / 0-15cm" : "Tiny / 0-15cm"}
+            secondary={locale === 'id' ? 'Mungil / 0-15cm' : 'Tiny / 0-15cm'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -363,16 +368,16 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handlePlantHeightChange(e, "tiny")}
-            checked={plantSize.includes("tiny")}
+            onChange={(e) => handlePlantHeightChange(e, 'tiny')}
+            checked={plantSize.includes('tiny')}
           />
         </ListItemButton>
       </Collapse>
       <ListItemButton onClick={handleClick4}>
         <ListItemText
-          primary={locale === "id" ? "Manfaat" : "Benefit"}
+          primary={locale === 'id' ? 'Manfaat' : 'Benefit'}
           primaryTypographyProps={{
-            fontWeight: "bold",
+            fontWeight: 'bold',
             fontSize: 16,
             fontFamily: fonts.comfortaa,
           }}
@@ -382,7 +387,7 @@ export default function Filter() {
       <Collapse in={open4} timeout="auto" unmountOnExit>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Pembersih udara" : "Air purifier"}
+            secondary={locale === 'id' ? 'Pembersih udara' : 'Air purifier'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -393,13 +398,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleBenefitChange(e, "airPurifier")}
-            checked={plantBenefit.includes("airPurifier")}
+            onChange={(e) => handleBenefitChange(e, 'airPurifier')}
+            checked={plantBenefit.includes('airPurifier')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Perawatan mudah" : "Easy care"}
+            secondary={locale === 'id' ? 'Perawatan mudah' : 'Easy care'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -410,16 +415,16 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleBenefitChange(e, "easyCare")}
-            checked={plantBenefit.includes("easyCare")}
+            onChange={(e) => handleBenefitChange(e, 'easyCare')}
+            checked={plantBenefit.includes('easyCare')}
           />
         </ListItemButton>
       </Collapse>
       <ListItemButton onClick={handleClick5}>
         <ListItemText
-          primary={locale === "id" ? "Tipe Produk" : "Product tipe"}
+          primary={locale === 'id' ? 'Tipe Produk' : 'Product tipe'}
           primaryTypographyProps={{
-            fontWeight: "bold",
+            fontWeight: 'bold',
             fontSize: 16,
             fontFamily: fonts.comfortaa,
           }}
@@ -429,7 +434,7 @@ export default function Filter() {
       <Collapse in={open5} timeout="auto" unmountOnExit>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Pot" : "Pots"}
+            secondary={locale === 'id' ? 'Pot' : 'Pots'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -440,13 +445,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleProductTipeChange(e, "pots")}
-            checked={productTipe.includes("pots")}
+            onChange={(e) => handleProductTipeChange(e, 'pots')}
+            checked={productTipe.includes('pots')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Tanaman" : "Plants "}
+            secondary={locale === 'id' ? 'Tanaman' : 'Plants '}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -457,13 +462,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleProductTipeChange(e, "plants")}
-            checked={productTipe.includes("plants")}
+            onChange={(e) => handleProductTipeChange(e, 'plants')}
+            checked={productTipe.includes('plants')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Kumpulan" : "Bundles "}
+            secondary={locale === 'id' ? 'Kumpulan' : 'Bundles '}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -474,13 +479,13 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleProductTipeChange(e, "bundles")}
-            checked={productTipe.includes("bundles")}
+            onChange={(e) => handleProductTipeChange(e, 'bundles')}
+            checked={productTipe.includes('bundles')}
           />
         </ListItemButton>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Aksesoris" : "Tools & accessories "}
+            secondary={locale === 'id' ? 'Aksesoris' : 'Tools & accessories '}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -491,16 +496,16 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleProductTipeChange(e, "accessories")}
-            checked={productTipe.includes("accessories")}
+            onChange={(e) => handleProductTipeChange(e, 'accessories')}
+            checked={productTipe.includes('accessories')}
           />
         </ListItemButton>
       </Collapse>
       <ListItemButton onClick={handleClick7}>
         <ListItemText
-          primary={locale === "id" ? "Obral" : "Sale"}
+          primary={locale === 'id' ? 'Obral' : 'Sale'}
           primaryTypographyProps={{
-            fontWeight: "bold",
+            fontWeight: 'bold',
             fontSize: 16,
             fontFamily: fonts.comfortaa,
           }}
@@ -510,7 +515,7 @@ export default function Filter() {
       <Collapse in={open7} timeout="auto" unmountOnExit>
         <ListItemButton sx={{ py: 0 }}>
           <ListItemText
-            secondary={locale === "id" ? "Item diskon" : "Discounted items"}
+            secondary={locale === 'id' ? 'Item diskon' : 'Discounted items'}
             secondaryTypographyProps={{
               fontSize: 16,
               fontWeight: 400,
@@ -521,8 +526,8 @@ export default function Filter() {
             value="start"
             control={<Checkbox />}
             labelPlacement="start"
-            onChange={(e) => handleSaleChange(e, "discount")}
-            checked={sale.includes("discount")}
+            onChange={(e) => handleSaleChange(e, 'discount')}
+            checked={sale.includes('discount')}
           />
         </ListItemButton>
       </Collapse>
