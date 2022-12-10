@@ -8,27 +8,6 @@ import LocaleContext from '../contexts/LocaleContext';
 import { login, reset } from '../redux/features/auth/authSlice';
 import { colors } from '../utils';
 
-// const Log = styled.div`
-//   font-size: 13px;
-//   display: grid;
-//   margin: 75px 100px 40px 100px;
-//   grid-template-columns: 1fr;
-//   grid-column-gap: 25px;
-//   grid-row-gap: 20px;
-//   width: 80;
-
-//   @media (max-width: 725px) {
-//     margin: 30px auto;
-//     padding-right: 40px;
-//     padding-left: 30px;
-//   }
-//   @media (max-width: 600px) {
-//     margin: 30px auto;
-//     padding-right: 5px;
-//     padding-left: 0px;
-//   }
-// `;
-
 const Login = () => {
   const { locale } = React.useContext(LocaleContext);
 

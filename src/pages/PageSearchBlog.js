@@ -14,7 +14,6 @@ import {
   InputBase,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-// import { useSearchParams } from "react-router-dom";
 import { getText, truncate } from '../utils';
 import { styled, alpha } from '@mui/material/styles';
 import LocaleContext from '../contexts/LocaleContext';
@@ -135,7 +134,6 @@ function PageSearchBlog() {
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card
                   sx={{
-                    // maxWidth: 345,
                     mx: 2,
                     height: '100%',
                     display: 'flex',

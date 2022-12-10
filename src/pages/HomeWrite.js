@@ -104,7 +104,7 @@ function HomeWrite() {
                     component="img"
                     height="140"
                     image={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${item.idImage}`}
-                    alt="green iguana"
+                    alt=""
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
