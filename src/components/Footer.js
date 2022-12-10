@@ -75,10 +75,10 @@ const Footer = () => {
             <h4>{locale === 'id' ? 'Kontak' : 'Contacts'}</h4>
             <ul>
               <li>
-                <a>
+                <Link>
                   <HiLocationMarker color="#006d4e" /> Jakarta, Soekarno Hatta
                   No. 13
-                </a>
+                </Link>
               </li>
               <li>
                 <Link>
@@ -93,7 +93,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/">
+                <Link>
                   <MdEmail color="#006d4e" /> breath@gmail.com
                 </Link>
               </li>
