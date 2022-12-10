@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteService,
   getServices,
-} from "../redux/features/services/servicesSlice";
+} from '../redux/features/services/servicesSlice';
 import {
   Box,
   Button,
@@ -16,12 +16,12 @@ import {
   Grid,
   Stack,
   Typography,
-} from "@mui/material";
-import CustomButton from "../components/CustomButton";
-import { getText, truncate } from "../utils";
-import Swal from "sweetalert2";
-import styled from "styled-components";
-import LocaleContext from "../contexts/LocaleContext";
+} from '@mui/material';
+import CustomButton from '../components/CustomButton';
+import { getText, truncate } from '../utils';
+import Swal from 'sweetalert2';
+import styled from 'styled-components';
+import LocaleContext from '../contexts/LocaleContext';
 
 const Font = styled.div`
   @media (max-width: 600px) {
@@ -57,19 +57,19 @@ function HomeWrite() {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: 'Are you sure?',
       text: "You won't be able to revert this!",
-      icon: "warning",
+      icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: "#009E72",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: '#009E72',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          "Deleted!",
-          "Your file has been deleted.",
-          "success",
+          'Deleted!',
+          'Your file has been deleted.',
+          'success',
           dispatch(deleteService(id))
         );
       }
@@ -79,16 +79,16 @@ function HomeWrite() {
   return (
     <Container>
       <Stack direction="column" spacing={2} my={7}>
-        <Box sx={{ alignSelf: "center", mb: 5, fontFamily: "Comfortaa" }}>
+        <Box sx={{ alignSelf: 'center', mb: 5, fontFamily: 'Comfortaa' }}>
           <Font>
             <h1 className="title__homewrite">
-              {locale === "id"
-                ? "Buat blog anda untuk perawatan tanaman"
-                : "Create your blog for plant care"}
+              {locale === 'id'
+                ? 'Buat blog anda untuk perawatan tanaman'
+                : 'Create your blog for plant care'}
             </h1>
           </Font>
-          <CustomButton component={Link} to={"/write"}>
-            {locale === "id" ? "Buat Sekarang" : "Create Now"}
+          <CustomButton component={Link} to={'/blog/write'}>
+            {locale === 'id' ? 'Buat Sekarang' : 'Create Now'}
           </CustomButton>
         </Box>
         {loading ? (
@@ -96,8 +96,7 @@ function HomeWrite() {
             container
             spacing={{ md: 1 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
-            direction="row"
-          >
+            direction="row">
             {userWrite.map((item, index) => (
               <Grid item xs={4} sm={4} md={4} key={index}>
                 <Card sx={{ maxWidth: 345, m: 2 }}>
@@ -120,28 +119,25 @@ function HomeWrite() {
                       variant="contained"
                       color="success"
                       component={Link}
-                      to={`/edit/${item._id}`}
-                      size="small"
-                    >
-                      {locale === "id" ? "Sunting" : "Edit"}
+                      to={`/blog/edit/${item._id}`}
+                      size="small">
+                      {locale === 'id' ? 'Sunting' : 'Edit'}
                     </Button>
                     <Button
                       variant="contained"
                       color="info"
                       component={Link}
                       to={`/blog/detail/${item._id}`}
-                      size="small"
-                    >
-                      {locale === "id" ? "Lihat" : "See"}
+                      size="small">
+                      {locale === 'id' ? 'Lihat' : 'See'}
                     </Button>
                     <Button
                       variant="contained"
                       color="error"
                       onClick={(e) => handleDelete(item._id)}
                       size="small"
-                      style={{ marginLeft: "8px" }}
-                    >
-                      {locale === "id" ? "Hapus" : "Delete"}
+                      style={{ marginLeft: '8px' }}>
+                      {locale === 'id' ? 'Hapus' : 'Delete'}
                     </Button>
                   </CardActions>
                 </Card>

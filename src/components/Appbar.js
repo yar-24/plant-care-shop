@@ -187,7 +187,7 @@ function DrawerAppBar(props) {
   const navigate = useNavigate();
 
   const onNavigate = () => {
-    navigate('/home-write');
+    navigate('/blog/dashboard');
   };
 
   return (
@@ -381,7 +381,12 @@ function DrawerAppBar(props) {
                             handleClose();
                           }}>
                           <InboxIcon />
-                          <ListItemText sx={{ ml: 2 }} primary={locale === 'id' ? 'Sunting Blog' : "Edit Blog"} />
+                          <ListItemText
+                            sx={{ ml: 2 }}
+                            primary={
+                              locale === 'id' ? 'Sunting Blog' : 'Edit Blog'
+                            }
+                          />
                         </ListItemButton>
                       </ListItem>
                     </List>
