@@ -12,9 +12,8 @@ const Title = styled.h1`
   font-family: ${fonts.inter};
   color: white;
   margin-bottom: 20px;
-
   @media (max-width: 600px) {
-    font-size: 1.2rem ;
+    font-size: 1.2rem;
   }
 `;
 
@@ -24,13 +23,14 @@ const Home = ({ addItem }) => {
   return (
     <>
       <Hero />
-      <Banner alignItems={{ lg: 'end', xs: 'center' }}>
+      <Banner alignItems={{ lg: 'start', xs: 'center' }}>
         <Title>
           {locale === 'id'
             ? 'Kiat, trik, dan panduan untuk membuat perawatan tanaman benar-benar mudah'
             : 'Tips, tricks, and plant guides to make plant care downright easy'}
         </Title>
         <Tombol
+          sx={{ alignSelf: { lg: 'end' } }}
           component={Link}
           to={'/search'}
           label={locale === 'id' ? 'Baca blog lainnya' : 'Read more blogs'}

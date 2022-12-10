@@ -41,22 +41,22 @@ const Navigation = () => {
             <Route element={<Services />} path="/services" />
             <Route element={<PlantCare />} path="/plant-care" />
             <Route element={<Shop />} path="/shop" />
-            <Route element={<DetailProduct />} path="/detail-product/:id" />
+            <Route element={<DetailProduct />} path="/product/detail/:id" />
             <Route element={<DetailServices />} path="/blog/detail/:id" />
             <Route element={<ForgotPassword />} path="/forgot-password" />
             <Route element={<ResetPassword />} path="/reset-password" />
             <Route element={<Cart />} path="/cart" />
             <Route
               element={user ? <HomeWrite /> : <Home />}
-              path="/home-write"
+              path="/blog/dashboard"
             />
             <Route
               element={user ? <WriteServices /> : <Home />}
-              path="/write"
+              path="/blog/write"
             />
             <Route
               element={user ? <WriteServices /> : <Home />}
-              path="/edit/:id"
+              path="/blog/edit/:id"
             />
             <Route element={<PageSearchBlog />} path="/search" />
             <Route element={<NotResponding />} path="/*" />

@@ -533,5 +533,4 @@ export default function Filter({ setSort }) {
       </Collapse>
     </List>
   );
-  // </Container>
 }

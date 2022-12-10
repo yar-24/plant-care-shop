@@ -8,27 +8,6 @@ import LoadingBtn from '../components/kecil/LoadingBtn';
 import LocaleContext from '../contexts/LocaleContext';
 import { axiosInstance, colors, fonts } from '../utils';
 
-// const Forpas = styled.div`
-//   font-size: 13px;
-//   display: grid;
-//   margin: 75px 100px 40px 100px;
-//   grid-template-columns: 1fr;
-//   grid-column-gap: 25px;
-//   grid-row-gap: 20px;
-
-//   @media (max-width: 725px) {
-//     margin: 30px auto;
-//     padding-right: 40px;
-//     padding-left: 30px;
-//   }
-//   @media (max-width: 600px) {
-//     margin: 30px auto;
-//     padding-right: 5px;
-//     padding-left: 0px;
-
-//   }
-// `;
-
 const ResetPassword = () => {
   const { locale } = React.useContext(LocaleContext);
 

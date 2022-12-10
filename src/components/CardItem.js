@@ -105,7 +105,7 @@ const CardItem = ({ product }) => {
         </ActionButton>
         <ActionButton
           component={Link}
-          to={`/detail-product/${_id}`}
+          to={`/product/detail/${_id}`}
           bgcolor={colors.secondary}
           txcolor={colors.white}
           size="large">
