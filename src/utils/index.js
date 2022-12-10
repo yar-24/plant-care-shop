@@ -49,27 +49,55 @@ export const truncate = (string, length, delimiter) => {
 };
 
 export const axiosInstance = axios.create({
-  baseURL: 'https://tasty-cod-outerwear.cyclic.app/v2',
+  baseURL: 'https://plant-care-shop-api.cyclic.app/v2',
   // baseURL : "http://localhost:5000/v2"
 });
 
-
-export const getItemById = (products, itemId)  => products.some(product => product._id === itemId);
+export const getItemById = (products, itemId) =>
+  products.some((product) => product._id === itemId);
 
 export const getProductsByPriceSort = (products, type) => {
-  const priceSortedProducts = [...products].sort((product1, product2) => type==="lth" ? product1.price - product2.price : type==="htl" ? product2.price - product1.price: products );
+  const priceSortedProducts = [...products].sort((product1, product2) =>
+    type === 'lth'
+      ? product1.price - product2.price
+      : type === 'htl'
+      ? product2.price - product1.price
+      : products
+  );
 
-  return priceSortedProducts
-}
+  return priceSortedProducts;
+};
 
-export const getProductsByPlantTipe = (products, plantTipes) => products.filter(product => plantTipes.length > 0 ? plantTipes.includes(product.plantTipe) : products);
+export const getProductsByPlantTipe = (products, plantTipes) =>
+  products.filter((product) =>
+    plantTipes.length > 0 ? plantTipes.includes(product.plantTipe) : products
+  );
 
-export const getProductsByEnv = (products, plantEnvironments) => products.filter(product => plantEnvironments.length > 0 ? plantEnvironments.includes(product.plantEnvironment) : products); 
+export const getProductsByEnv = (products, plantEnvironments) =>
+  products.filter((product) =>
+    plantEnvironments.length > 0
+      ? plantEnvironments.includes(product.plantEnvironment)
+      : products
+  );
 
-export const getProductsByPlantHeight = (products, plantSizes) => products.filter(product => plantSizes.length > 0 ? plantSizes.includes(product.plantSize) : products); 
+export const getProductsByPlantHeight = (products, plantSizes) =>
+  products.filter((product) =>
+    plantSizes.length > 0 ? plantSizes.includes(product.plantSize) : products
+  );
 
-export const getProductsByBenefit = (products, benefits) => products.filter(product => benefits.length > 0 ? benefits.includes(product.plantBenefit) : products); 
+export const getProductsByBenefit = (products, benefits) =>
+  products.filter((product) =>
+    benefits.length > 0 ? benefits.includes(product.plantBenefit) : products
+  );
 
-export const getProductsByProductTipe = (products, productTipes) => products.filter(product => productTipes.length > 0 ? productTipes.includes(product.productTipe) : products); 
+export const getProductsByProductTipe = (products, productTipes) =>
+  products.filter((product) =>
+    productTipes.length > 0
+      ? productTipes.includes(product.productTipe)
+      : products
+  );
 
-export const getProductsBySale = (products, sales) => products.filter(product => sales.length > 0 ? sales.includes(product.sale) : products); 
+export const getProductsBySale = (products, sales) =>
+  products.filter((product) =>
+    sales.length > 0 ? sales.includes(product.sale) : products
+  );
