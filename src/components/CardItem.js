@@ -4,12 +4,13 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import React from 'react';
+import React, { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCart } from '../contexts/cartContext';
 import LocaleContext from '../contexts/LocaleContext';
+import {useDispatch, useSelector} from 'react-redux'
+import {addToCart} from '../redux/reducer/cartRedux'
 import {
   colors,
   fonts,
@@ -59,15 +60,15 @@ const ActionButton = styled(Button)`
 
 const CardItem = ({ product }) => {
   const { _id, idImageProduct, price, namePlant } = product;
-  const { cart, cartDispatch } = useCart();
+  const [count, setCount] = useState(1);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  const cart = useSelector((state) => state.cart.cart);
 
   const handleAddToCart = () => {
-    cartDispatch({
-      type: 'ADD_TO_CART',
-      payload: product,
-    });
-    navigate('/cart');
+    dispatch(addToCart({ item: { ...product, count }}))
+    setCount(1)
   };
 
   const handleGoToCart = () => {
@@ -78,7 +79,7 @@ const CardItem = ({ product }) => {
 
   const { locale } = React.useContext(LocaleContext);
 
-  return (
+return (
     <CardContainer>
       <CardImage
         height="235"

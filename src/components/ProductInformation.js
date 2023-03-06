@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Stack, Box, Typography, Skeleton } from "@mui/material";
 import { TiWeatherPartlySunny } from "react-icons/ti";
 import { GiBottleVapors } from "react-icons/gi";
@@ -7,8 +7,9 @@ import { styled } from "@mui/material/styles";
 import { colors, fonts, getItemById, rupiah } from "../utils";
 import CustomButton from "./CustomButton";
 import LocaleContext from "../contexts/LocaleContext";
-import { useCart } from "../contexts/cartContext";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/reducer/cartRedux";
 
 const ProductImage = styled("img")`
   position: absolute;
@@ -34,7 +35,7 @@ const ImageContainer = styled(Box)`
 
 const ProductInformation = ({ product, loading }) => {
   const { locale } = React.useContext(LocaleContext);
-  const { cart, cartDispatch } = useCart();
+  const [count, setCount] = useState(1);
   const {
     _id,
     idImageProduct,
@@ -46,12 +47,11 @@ const ProductInformation = ({ product, loading }) => {
   } = product;
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    cartDispatch({
-      type: "ADD_TO_CART",
-      payload: product,
-    });
+    dispatch(addToCart({ item: { ...product, count } }));
+    setCount(1)
     navigate("/cart");
   };
 
@@ -59,6 +59,7 @@ const ProductInformation = ({ product, loading }) => {
     navigate("/cart");
   };
 
+  const cart = useSelector((state) => state.cart.cart);
   const isItemInCart = getItemById(cart, _id);
 
   return (
@@ -110,8 +111,9 @@ const ProductInformation = ({ product, loading }) => {
             )}
 
             <Stack spacing={2} direction={{ xs: "column", md: "row" }}>
-              {loading ? Array.isArray(plantHeight)
-                ? plantHeight.map((item, index) => (
+              {loading ? (
+                Array.isArray(plantHeight) ? (
+                  plantHeight.map((item, index) => (
                     <CustomButton
                       size="large"
                       key={index}
@@ -120,7 +122,15 @@ const ProductInformation = ({ product, loading }) => {
                       {item.centimeters} cm
                     </CustomButton>
                   ))
-                : null : <Skeleton variant="rectangular" animation="wave" width={100} height={50} />}
+                ) : null
+              ) : (
+                <Skeleton
+                  variant="rectangular"
+                  animation="wave"
+                  width={100}
+                  height={50}
+                />
+              )}
             </Stack>
             {loading ? (
               <Typography
@@ -174,7 +184,13 @@ const ProductInformation = ({ product, loading }) => {
                 sx={{ fontSize: 18 }}
               >
                 {" "}
-                {locale === "id" ? "Tambahkan ke Keranjang" : "Add To Bag"}
+                {isItemInCart
+                  ? locale === "id"
+                    ? "Lihat Keranjang"
+                    : "See To Bag"
+                  : locale === "id"
+                    ? "Tambahkan ke Keranjang"
+                    : "Add To Bag"}
               </CustomButton>
             ) : (
               <Skeleton

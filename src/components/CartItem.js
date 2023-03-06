@@ -2,7 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { colors, fonts, rupiah } from "../utils";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { useCart } from "../contexts/cartContext";
+import {
+  decreaseCount,
+  increaseCount,
+  removeFromCart,
+} from "../redux/reducer/cartRedux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -28,6 +34,7 @@ const Image = styled.img`
   height: 188px;
   margin: 20px 40px 20px 40px;
   object-fit: cover;
+  cursor: pointer;
 
   @media (max-width: 1000px) {
     width: 152px;
@@ -39,6 +46,12 @@ const Image = styled.img`
     height: 98px;
     margin: 10px 20px 10px 20px;
   }
+
+  :hover {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  }
 `;
 
 const ContainerText = styled.div`
@@ -48,7 +61,7 @@ const ContainerText = styled.div`
   }
 `;
 
-const NamePlant = styled.h4`
+const NamePlant = styled.h2`
   font-family: ${fonts.comfortaa};
 `;
 
@@ -126,36 +139,23 @@ const BtnDelete = styled(RiDeleteBinLine)`
   cursor: pointer;
 `;
 
-const CartItem = ({ product}) => {
-  const {_id, idImageProduct, namePlant, height, price, quantity } = product;
-  const { cartDispatch } = useCart();
+const CartItem = ({ product }) => {
+  const { _id, idImageProduct, namePlant, height, price, count } = product;
+  const dispatch = useDispatch();
 
-  const handleDecrement = (itemId) => {
-    cartDispatch({
-      type: "DECREMENT",
-      payload: itemId,
-    });
+  const navigation = useNavigate();
+
+  const handleClick = () => {
+    navigation(`/product/detail/${_id}`);
   };
 
-  const handleIncrement = (itemId) => {
-    cartDispatch({
-      type: "INCREMENT",
-      payload: itemId,
-    });
-  };
-  
-  const handleRemove = (itemId) => {
-    cartDispatch({
-        type: "REMOVE",
-        payload: itemId
-    })
-}
 
   return (
     <Container>
       <Left>
         <Image
           src={`https://res.cloudinary.com/eundangdotcom/image/upload/v1666578066/${idImageProduct}`}
+          onClick={handleClick}
         />
         <ContainerText>
           <NamePlant>{namePlant}</NamePlant>
@@ -165,17 +165,22 @@ const CartItem = ({ product}) => {
       <Right>
         <ContainerJumlah>
           <CounterBtn
-            disabled={quantity === 1 }
-            onClick={() => handleDecrement(_id)}
+            disabled={count === 1}
+            onClick={() => dispatch(decreaseCount({ _id }))}
           >
             -
           </CounterBtn>
-          <Angka>{quantity}</Angka>
-          <CounterBtn onClick={() => handleIncrement(_id)}>+</CounterBtn>
+          <Angka>{count}</Angka>
+          <CounterBtn onClick={() => dispatch(increaseCount({ _id }))}>
+            +
+          </CounterBtn>
         </ContainerJumlah>
         <ContainerHarga>
           <Harga>{rupiah(price)}</Harga>
-          <BtnDelete onClick={() => handleRemove(_id)} size={20} />
+          <BtnDelete
+            onClick={() => dispatch(removeFromCart({ _id }))}
+            size={20}
+          />
         </ContainerHarga>
       </Right>
     </Container>

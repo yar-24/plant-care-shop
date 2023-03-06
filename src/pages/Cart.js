@@ -13,7 +13,6 @@ const CartListContainer = styled(Container)`
 const Cart = () => {
   const { user } = useSelector((state) => state.auth);
   const { locale } = React.useContext(LocaleContext);
-  
 
   return (
     <>

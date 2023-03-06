@@ -5,7 +5,7 @@ import CartItem from "./CartItem";
 import { colors, fonts, rupiah } from "../utils";
 import { ShoppingCart } from "@mui/icons-material";
 import CustomButton from "./CustomButton";
-import { useCart } from "../contexts/cartContext";
+import { useSelector } from "react-redux";
 
 const CartListContainer = styled(Container)`
   margin-top: 60px;
@@ -41,11 +41,11 @@ const ListHarga = ({ textHarga, totalHarga }) => {
 };
 
 const CartList = ({ locale }) => {
-  
-  const { cart } = useCart();
+
+  const cart = useSelector((state) => state.cart.cart);
 
   const subTotal = cart.reduce(
-    (price, item) => price + item.quantity * item.price,
+    (price, item) => price + item.count * item.price,
     0
   );
   

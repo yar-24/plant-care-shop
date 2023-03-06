@@ -5,11 +5,11 @@ import CardItem from "./CardItem";
 import { fonts } from "../utils";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useDispatch } from "react-redux";
-import { getProducts } from "../redux/features/products/productSlice";
-import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
 import SkeletonCardItem from "./kecil/SkeletonCardItem";
 import { useParams } from "react-router-dom";
+import { getProducts } from "../redux/features/products/productSlice";
+import Swal from "sweetalert2";
 
 const TitleText = styled(Typography)`
   font-family: ${fonts.comfortaa};
@@ -18,41 +18,34 @@ const TitleText = styled(Typography)`
 `;
 
 const CardList = ({ children }) => {
+  const [products, setproducts] = useState([]);
+
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1200 },
-      items: 4,
-      slidesToSlide: 4,
-    },
-    laptop: {
-      breakpoint: { max: 1200, min: 900 },
+      breakpoint: { max: 3000, min: 1024 },
       items: 3,
-      slidesToSlide: 3,
+      paritialVisibilityGutter: 60
     },
     tablet: {
-      breakpoint: { max: 900, min: 480 },
+      breakpoint: { max: 1024, min: 464 },
       items: 2,
-      slidesToSlide: 2,
+      paritialVisibilityGutter: 50
     },
     mobile: {
-      breakpoint: { max: 480, min: 0 },
+      breakpoint: { max: 464, min: 0 },
       items: 1,
-      slidesToSlide: 1,
-    },
+      paritialVisibilityGutter: 30
+    }
   };
 
-  const [products, setproducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const dispatch = useDispatch();
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProducts())
       .then((res) => {
         const data = res.payload.products;
         setproducts(data);
-        setIsLoading(true);
       })
       .catch((err) => {
         Swal.fire({
@@ -64,6 +57,9 @@ const CardList = ({ children }) => {
       });
   }, [dispatch]);
 
+
+  const { isLoading } = useSelector((states) => states.products);
+  
   const filterProducts = products.filter((product) => product._id !== id);
 
   return (
@@ -73,38 +69,17 @@ const CardList = ({ children }) => {
       </TitleText>
       <Stack mx={1} my={5}>
         <Carousel
-          additionalTransfrom={0}
-          arrows
-          autoPlaySpeed={3000}
-          centerMode={false}
-          className=""
-          containerClass="carousel-container"
-          dotListClass=""
-          draggable
-          focusOnSelect={false}
-          infinite={false}
-          itemClass=""
-          keyBoardControl
-          minimumTouchDrag={80}
-          pauseOnHover
-          renderArrowsWhenDisabled={false}
-          renderButtonGroupOutside={false}
-          renderDotsOutside={false}
+          ssr
+          partialVisbile
+          // deviceType={deviceType}
+          itemClass="image-item"
           responsive={responsive}
-          rewind={false}
-          rewindWithAnimation={false}
-          rtl={false}
-          shouldResetAutoplay
-          showDots={false}
-          sliderClass=""
-          slidesToSlide={1}
-          swipeable
         >
-          {(!isLoading ? Array.from(new Array(4)) : filterProducts).map(
+          {(isLoading ? Array.from(new Array(4)) : filterProducts).map(
             (product, index) => (
               <Box sx={{ mx: 2 }} key={index}>
                 {product ? (
-                  <CardItem product={product}/>
+                  <CardItem product={product} />
                 ) : (
                   <SkeletonCardItem />
                 )}

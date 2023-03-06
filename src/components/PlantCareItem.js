@@ -26,7 +26,7 @@ const PlantCareItem = ({ title, image, id }) => {
             lineHeight: 1.5,
             color: colors.white,
           }}>
-          {getText(truncate(title, 40))}
+          {getText(truncate(title, 30))}
         </Typography>
         <CardActions sx={{ justifyContent: 'flex-end', padding: 0 }}>
           <Tombol

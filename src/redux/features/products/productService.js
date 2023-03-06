@@ -12,12 +12,12 @@ const createProduct = async (productData, token) => {
 
   const response = await axiosInstance
     .post("/products", productData, config)
-    .then((res) => {
-      console.log("sukses", res);
-    })
-    .catch((err) => {
-      console.log("err", err);
-    });
+    // .then((res) => {
+    //   console.log("sukses", res);
+    // })
+    // .catch((err) => {
+    //   console.log("err", err);
+    // });
 
   return response.data;
 };
@@ -50,7 +50,7 @@ const getProducts = async () => {
   const response = await axiosInstance.get("/products", config);
 
   if (response.data) {
-    localStorage.setItem('products', JSON.stringify(response.data))
+    localStorage.setItem('products', JSON.stringify(response.data.products))
   }
 
   return response.data;

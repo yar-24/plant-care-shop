@@ -1,36 +1,36 @@
-import React, { Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { Box } from '@mui/material';
-import { useSelector } from 'react-redux';
-import Appbar from '../components/Appbar';
-import Toast from '../components/kecil/Toast';
-import ScrollToTop from '../components/ScrollToTop';
-import Footer from '../components/Footer';
-const Home = React.lazy(() => import('../pages/Home'));
-const Login = React.lazy(() => import('../pages/Login'));
-const Shop = React.lazy(() => import('../pages/Shop'));
-const PlantCare = React.lazy(() => import('../pages/PlantCare'));
-const Services = React.lazy(() => import('../pages/Services'));
-const Register = React.lazy(() => import('../pages/Register'));
-const ForgotPassword = React.lazy(() => import('../pages/ForgotPassword'));
-const DetailProduct = React.lazy(() => import('../pages/DetailProduct'));
-const Cart = React.lazy(() => import('../pages/Cart'));
-const ResetPassword = React.lazy(() => import('../pages/ResetPassword'));
-const DetailServices = React.lazy(() => import('../pages/DetailServices'));
-const WriteServices = React.lazy(() => import('../pages/WriteServices'));
-const HomeWrite = React.lazy(() => import('../pages/HomeWrite'));
-const NotResponding = React.lazy(() => import('../pages/NotResponding'));
-const PageSearchBlog = React.lazy(() => import('../pages/PageSearchBlog'));
+import React, { Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import { Box } from "@mui/material";
+import { useSelector } from "react-redux";
+import Appbar from "../components/Appbar";
+import Toast from "../components/kecil/Toast";
+import ScrollToTop from "../components/kecil/ScrollToTop";
+import Footer from "../components/Footer";
+import Top from "../components/kecil/Top";
+const Home = React.lazy(() => import("../pages/Home"));
+const Login = React.lazy(() => import("../pages/Login"));
+const Shop = React.lazy(() => import("../pages/Shop"));
+const PlantCare = React.lazy(() => import("../pages/PlantCare"));
+const Services = React.lazy(() => import("../pages/Services"));
+const Register = React.lazy(() => import("../pages/Register"));
+const ForgotPassword = React.lazy(() => import("../pages/ForgotPassword"));
+const DetailProduct = React.lazy(() => import("../pages/DetailProduct"));
+const Cart = React.lazy(() => import("../pages/Cart"));
+const ResetPassword = React.lazy(() => import("../pages/ResetPassword"));
+const DetailServices = React.lazy(() => import("../pages/DetailServices"));
+const WriteServices = React.lazy(() => import("../pages/WriteServices"));
+const HomeWrite = React.lazy(() => import("../pages/HomeWrite"));
+const NotResponding = React.lazy(() => import("../pages/NotResponding"));
+const PageSearchBlog = React.lazy(() => import("../pages/PageSearchBlog"));
+const ClassificationPage = React.lazy(() => import("../pages/ClassificationPage"));
 
 const Navigation = () => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((states) => states.auth);
 
   return (
     <>
-      <ScrollToTop />
-      <header>
-        <Appbar />
-      </header>
+      <Top />
+      <Appbar />
       <Toast />
       <Box component="main" sx={{ pt: { xs: 7, md: 8 } }}>
         <Suspense fallback={<Box height="100vh" />}>
@@ -45,6 +45,7 @@ const Navigation = () => {
             <Route element={<DetailServices />} path="/blog/detail/:id" />
             <Route element={<ForgotPassword />} path="/forgot-password" />
             <Route element={<ResetPassword />} path="/reset-password" />
+            <Route element={<ClassificationPage />} path="/classification-plant" />
             <Route element={<Cart />} path="/cart" />
             <Route
               element={user ? <HomeWrite /> : <Home />}
@@ -63,6 +64,7 @@ const Navigation = () => {
           </Routes>
         </Suspense>
       </Box>
+      <ScrollToTop />
       <Footer />
     </>
   );
